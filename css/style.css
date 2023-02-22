@@ -1,0 +1,104 @@
+.sequence-control-container {
+  width: 320px;
+  height: 26px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  line-height: 33px;
+  text-align: center;
+  border: solid gray 1px;
+  border-radius: 1vmin;
+}
+
+.legend-control-container {
+  width: 200px;
+  /*height: 30px;*/
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  /*line-height: 45px;*/
+  text-align: center;
+  border: solid gray 1px;
+}
+
+.legend-control-container p {
+  margin: 0;
+}
+
+.range-slider {
+  width: 250px;
+}
+
+
+.step {
+  width: 60px;
+}
+
+
+.step img {
+  width: 100%;
+  height: auto;
+}
+
+.leaflet-popup-content p {
+  margin: 0.2em 0;
+}
+
+.serotype_1 circle {
+  fill: rgba(221, 121, 32, 0.5);
+}
+.serotype_2 circle {
+  fill: rgb(63, 157, 48, .5);
+}
+.serotype_3 circle {
+  fill: rgb(223, 76, 216, .5);
+}
+.serotype_4 circle {
+  fill: rgb(45, 98, 177, .5);
+}
+
+#heading {
+  position: absolute;
+  width: 10%;
+  left: 2%;
+  top: 8%;
+  font-weight: 100;
+  font-size: 150%;
+}
+
+#subheading {
+  position: absolute;
+  width: 10%;
+  font-size: 300%;
+  font-weight: bold;
+  letter-spacing: .5vmin;
+  color: rgb(229, 229, 229);
+  right: 2%;
+  top: 5%;
+}
+
+body {
+  background-color: rgb(52, 52, 52);
+  color: rgb(140, 140, 140);
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+#map {
+  display: inline-block;
+  position: absolute;
+  height: 75%;
+  width: 97.4%;
+  top:20%;
+  left: 1%;
+  border-radius: 2vmin;
+  border: solid rgb(128, 128, 128) .5vmin;
+  outline-offset: 5vmin;
+}
+
+#forward {
+  float: right;
+  width: 8%;
+}
+
+#reverse {
+  float: left;
+  width: 8%;
+}
