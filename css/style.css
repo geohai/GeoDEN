@@ -51,8 +51,8 @@
 .serotype_3 circle {
   fill: rgb(223, 76, 216, .5);
 }
-.serotype_4 circle {
-  fill: rgb(45, 98, 177, .5);
+.serotype {
+  opacity: .6;
 }
 
 #heading {
