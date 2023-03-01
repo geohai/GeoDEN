@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-            <title>DENV test</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>DENV test</title>
 
-        <!--put your external stylesheet links here-->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="lib/leaflet.css">
-    </head>
+    <!--put your external stylesheet links here-->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="lib/leaflet.css" />
+  </head>
 
-    <body>
-        <!--Headings-->
-        <h1 id = "heading">Dengue Fever</h1>
-        <h2 id = "subheading">1943 to 2013</h2>
-        
-        <!--Important Divs-->
-        <div id="map"></div>
-        <div id="panel"></div>
+  <body>
+    <!--Headings-->
+    <h1 id="heading">Dengue Fever</h1>
+    <h2 id="subheading">1943 to 2013</h2>
 
-        <!--put your external script links here-->
-        <script type="text/javascript" src="lib/leaflet.js"></script>
-        <script type="text/javascript" src="lib/jquery-3.6.1.js"></script>
-        <script type="text/javascript" src="lib/papaparse.min.js"></script>
-        <script type="text/javascript" src="js/map_DENV.js"></script>
-    </body>
+    <!--Year Delay-->
+    <div id="div_yearDelay">
+      <h3 id="label_yearDelay">Year Delay = <i id="current_yearDelay">0</i></h3>
+      <input
+        class="textInput"
+        id="input_yearDelay"
+        placeholder="0"
+        minlength="1"
+        maxlength="2"
+        size="1"
+      />
+      <button class="submit" onclick="submit_YearDelay()" id="submit_YearDelay">
+        Submit
+      </button>
+    </div>
+
+    <!--Map Divs-->
+    <div id="map"></div>
+    <div id="panel"></div>
+
+    <!--External Scripts-->
+    <script type="text/javascript" src="lib/leaflet.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.6.1.js"></script>
+    <script type="text/javascript" src="lib/papaparse.min.js"></script>
+    <script type="text/javascript" src="js/map_DENV.js"></script>
+  </body>
 </html>

@@ -42,15 +42,6 @@
   margin: 0.2em 0;
 }
 
-.serotype_1 circle {
-  fill: rgba(221, 121, 32, 0.5);
-}
-.serotype_2 circle {
-  fill: rgb(63, 157, 48, .5);
-}
-.serotype_3 circle {
-  fill: rgb(223, 76, 216, .5);
-}
 .serotype {
   opacity: .6;
 }
@@ -101,4 +92,29 @@ body {
 #reverse {
   float: left;
   width: 8%;
+}
+
+#div_yearDelay {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 9.5%;
+}
+
+#current_yearDelay {
+  font-size: 150%;
+  font-style: normal;
+  font-weight: bold;
+  color: rgb(229, 229, 229);
+}
+
+#label_yearDelay {
+  font-style: italic;
+  font-weight: 200;
+  font-size: 100%;
+  line-height: 0%;
+}
+
+#submit_YearDelay {
+  cursor: pointer;
 }

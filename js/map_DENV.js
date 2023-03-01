@@ -4,7 +4,7 @@ let map;
 let activeLayerGroup;
 // active year being shown global variable
 let activeYear = 1943;
-let yearDelay = 5;
+let yearDelay = 0;
 // global variable of the dataset, an object where the keys are years
 let dataset;
 
@@ -82,9 +82,7 @@ function getData(map) {
 
 // Given a year, show points from that year
 function showSelectedPoints() {
-  let dataPoints = dataset[activeYear];
-  dataPoints.concat(dataset[activeYear - 1]);
-  //console.log(dataPoints)
+  let dataPoints = getDataPoints(); 
   let layers = [];
   for (i in dataPoints) {
     let row = dataPoints[i];
@@ -331,28 +329,24 @@ function createIcon(type1, type2, type3, type4) {
       if (type == 4) {
         return order
       }
-      console.log(order)
       order -= 1
     }
     if (type3) {
       if (type == 3) {
         return order
       }
-      console.log(order)
       order -= 1
     }
     if (type2) {
       if (type == 2) {
         return order
       }
-      console.log(order)
       order -= 1
     }
     if (type1) {
       if (type == 1) {
         return order
       }
-      console.log(order)
       order -= 1
     }
     return order;
@@ -381,6 +375,39 @@ function createIcon(type1, type2, type3, type4) {
 
   return icon;
 }
+
+function getDataPoints() {
+  let totalPoints = [];
+  for (let i = 0; i <= yearDelay; i++) {
+    let tempPoints = dataset[activeYear - i]
+    if (tempPoints != undefined) {
+      totalPoints = totalPoints.concat(tempPoints)
+    }
+  }
+  let dataPoints = dataset[activeYear];
+  let dataPoints2 = dataset[activeYear - 1];
+  //let totalPoints = dataPoints.concat(dataPoints2)
+  //console.log(dataPoints)
+  return totalPoints
+}
+
+
+// function to set a new year based on typing and submitting a new year
+function submit_YearDelay() {
+  var inputString = document.getElementById("input_yearDelay").value;
+  var inputInt = parseInt(inputString)
+  if ((inputInt <= 70) && (inputInt >= 0)) {
+      document.getElementById("input_yearDelay").value = ""
+      document.getElementById("current_yearDelay").innerHTML = inputString
+      yearDelay = inputInt;
+      updateSymbols(activeYear);
+  }
+  else {
+      alert("Not in range 0-70")
+  }
+}
+
+
 
 // ---- _MAIN_ ---- //
 $(document).ready(createMap);
