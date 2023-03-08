@@ -1,12 +1,16 @@
 // declare map variable globally so all functions have access
 let map;
-// global variable of the activeLayerGroup
-let activeLayerGroup;
+
 // active year being shown global variable
 let activeYear = 1943;
 let yearDelay = 0;
+// global variable of the activeLayerGroup
+let activeLayerGroup;
+let activeLayerGroups = [];
 // global variable of the dataset, an object where the keys are years
 let dataset;
+
+
 
 // ---- Main Functions ---- //
 
@@ -50,49 +54,6 @@ function createMap() {
   getData(map);
 }
 
-//Import data, add it to the map, and add sequence controls
-function getData(map) {
-  $.get("data/DENV_types.csv", function (csvString) {
-    // Use PapaParse to convert string to array of objects
-    let data = Papa.parse(csvString, {
-      header: true,
-      dynamicTyping: true,
-    }).data;
-
-    // Make the dataset keys as the years to hold all datapoints for each year
-    dataset = {};
-    for (let i = 1943; i < 2014; i++) {
-      dataset[i] = [];
-    }
-
-    // For each row in data, add it to its year row in the dataset object
-    for (let i = 0; i < data.length - 1; i++) {
-      let row = data[i];
-      let year = row.YEAR;
-
-      dataset[year].push(row);
-    }
-
-    // This gets all points, adds them to the layer group and
-    showSelectedPoints();
-  });
-
-  createSequenceControls();
-}
-
-// Given a year, show points from that year
-function showSelectedPoints() {
-  let dataPoints = getDataPoints(); 
-  let layers = [];
-  for (i in dataPoints) {
-    let row = dataPoints[i];
-    let point = pointToLayer(row);
-    layers.push(point);
-  }
-  activeLayerGroup = L.layerGroup(layers);
-  activeLayerGroup.addTo(map);
-}
-
 // function to make a point based on a given row
 function pointToLayer(row) {
   let typeCount = row.DEN1 + row.DEN2 + row.DEN3 + row.DEN4;
@@ -102,25 +63,6 @@ function pointToLayer(row) {
 
   //Create Header
   updateHeadingContent();
-
-  //create marker options
-  // !! These will be deleted upon getting effective SVG points
-  let options = {
-    color: "rgb(100,100,100)",
-    weight: 0.5,
-    opacity: 1,
-    fillOpacity: 0.9,
-    radius: 3,
-    fillColor: "black",
-  };
-
-  options.radius = calcRadius(typeCount);
-  //options.fillColor = calcColor(typeCode);
-  //let layer = L.circleMarker(latlng, options); // set as circle marker
-
-  // Below code is for making SVG poings
-  // This is the lens idea.
-  // Other point types in the future might be: pie chart, color-fade, stacked bars
 
   // Once it is figured out, the svg stuff will be moved to its own tidy function
   const svgIcon = createIcon(row.DEN1, row.DEN2, row.DEN3, row.DEN4);
@@ -134,12 +76,14 @@ function pointToLayer(row) {
   var popupContent = createPopupContent(row);
   //bind the popup to the circle marker
   layer.bindPopup(popupContent, {
-    offset: new L.Point(0, -options.radius),
+    offset: new L.Point(0, -0),
   });
 
   //return the circle marker to the L.geoJson pointToLayer option
   return layer;
 }
+
+
 
 // ---- Updating Map ---- //
 
@@ -217,16 +161,7 @@ function updateHeadingContent() {
   document.getElementById("subheading").innerHTML = activeYear;
 }
 
-// delete current points and add correct points for given year
-function updateSymbols(index) {
-  // Set active year to index
-  activeYear = index;
-  activeLayerGroup.clearLayers();
-  showSelectedPoints();
 
-  // Update Header
-  updateHeadingContent();
-}
 
 // ---- Designing Points ---- //
 
@@ -260,59 +195,15 @@ function createPopupContent(row) {
   return popupContent;
 }
 
-//Once SVG is working, these two will be deleted!
-//calculate the radius of each symbol
-function calcRadius(typeCount) {
-  let radius = typeCount + 3;
-  return radius;
-}
-
-//calculate the color of each symbol
-function calcColor(typeCode) {
-  //Flannery Apperance Compensation formula
-  let color = "rgb(255,255,255)";
-
-  let type1 = "#e502c7";
-  let type2 = "#e59102";
-  let type3 = "#02e520";
-  let type4 = "#0255e5";
-
-  if (typeCode == "1000") {
-    color = "#e502c7";
-  }
-  if (typeCode == "0100") {
-    color = "#e59102";
-  }
-  if (typeCode == "0010") {
-    color = "#02e520";
-  }
-  if (typeCode == "0001") {
-    color = "#0255e5";
-  }
-
-  if (typeCode == "1111") {
-    color = "rgb(0,0,0)";
-  }
-
-  if (typeCode == "0111") {
-    color = "rgb(100,100,100)";
-  }
-  if (typeCode == "1011") {
-    color = "rgb(100,100,100)";
-  }
-  if (typeCode == "1101") {
-    color = "rgb(100,100,100)";
-  }
-  if (typeCode == "1110") {
-    color = "rgb(100,100,100)";
-  }
-  return color;
-}
-
 function createIcon(type1, type2, type3, type4) {
-  let nTypes = type1 + type2 + type3 + type4;
+  let nTypes = type1*(type1_active) + type2*(type2_active) + type3*(type3_active) + type4*(type4_active);
   let diameter = nTypes * 10;
   let slices = 100 / nTypes;
+
+  
+  if (midpointMode) {
+    diameter = 7
+  }
 
   let template = (
     color,
@@ -325,25 +216,25 @@ function createIcon(type1, type2, type3, type4) {
 
   let calcOrder = (type) => {
     let order = nTypes;
-    if (type4) {
+    if (type4 && type4_active) {
       if (type == 4) {
         return order
       }
       order -= 1
     }
-    if (type3) {
+    if (type3 && type3_active) {
       if (type == 3) {
         return order
       }
       order -= 1
     }
-    if (type2) {
+    if (type2 && type2_active) {
       if (type == 2) {
         return order
       }
       order -= 1
     }
-    if (type1) {
+    if (type1 && type1_active) {
       if (type == 1) {
         return order
       }
@@ -375,22 +266,6 @@ function createIcon(type1, type2, type3, type4) {
 
   return icon;
 }
-
-function getDataPoints() {
-  let totalPoints = [];
-  for (let i = 0; i <= yearDelay; i++) {
-    let tempPoints = dataset[activeYear - i]
-    if (tempPoints != undefined) {
-      totalPoints = totalPoints.concat(tempPoints)
-    }
-  }
-  let dataPoints = dataset[activeYear];
-  let dataPoints2 = dataset[activeYear - 1];
-  //let totalPoints = dataPoints.concat(dataPoints2)
-  //console.log(dataPoints)
-  return totalPoints
-}
-
 
 // function to set a new year based on typing and submitting a new year
 function submit_YearDelay() {

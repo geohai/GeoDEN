@@ -1,0 +1,13 @@
+#serotypeToggles{
+    position: absolute;
+    bottom: 2%;
+    left: 37%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0); 
+    border-radius: 20px;  
+    height: 3%;
+    width: 20rem;
+    font-size: .9rem;
+    text-align: center;
+    z-index: 9999;
+}

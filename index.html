@@ -6,7 +6,8 @@
     <title>DENV test</title>
 
     <!--put your external stylesheet links here-->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/map_style.css" />
+    <link rel="stylesheet" href="css/input_style.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
 
@@ -31,14 +32,66 @@
       </button>
     </div>
 
+    <div id="serotypeToggles">
+      <input
+        type="checkbox"
+        id="serotypeCheck_1"
+        onclick="serotypeCheck()"
+        checked
+      />
+      <label for="serotypeCheck_1">Type 1</label>
+      <input
+        type="checkbox"
+        id="serotypeCheck_2"
+        onclick="serotypeCheck()"
+        checked
+      />
+      <label for="serotypeCheck_2">Type 2</label>
+      <input
+        type="checkbox"
+        id="serotypeCheck_3"
+        onclick="serotypeCheck()"
+        checked
+      />
+      <label for="serotypeCheck_3">Type 3</label>
+      <input
+        type="checkbox"
+        id="serotypeCheck_4"
+        onclick="serotypeCheck()"
+        checked
+      />
+      <label for="serotypeCheck_4">Type 4</label>
+    </div>
+
+    <div id = "midpointModeToggle">
+      <input
+        type="checkbox"
+        id="midpointModeCheck"
+        onclick="midpointModeCheck()"
+      />
+      <label for="midpointModeCheck">Midpoint Mode</label>
+    </div>
+
     <!--Map Divs-->
     <div id="map"></div>
     <div id="panel"></div>
 
-    <!--External Scripts-->
+    <!--External JS Scripts-->
     <script type="text/javascript" src="lib/leaflet.js"></script>
+    <!--Leaflet-->
     <script type="text/javascript" src="lib/jquery-3.6.1.js"></script>
+    <!--JQuery-->
     <script type="text/javascript" src="lib/papaparse.min.js"></script>
-    <script type="text/javascript" src="js/map_DENV.js"></script>
+    <!--papaparse-->
+    <!--this is to solve an error that arrises where "exports is not defined" modules like commonJS or something would also fix it, but this was easier and I think less costly-->
+    <script>
+      var exports = {};
+    </script>
+    <script type="text/javascript" src="lib/simple-statistics.js"></script>
+    <!--simple statistics-->
+    <!--Internal JS Scripts-->
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="js/input.js"></script>
   </body>
 </html>
