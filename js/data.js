@@ -179,8 +179,7 @@ function getData(map) {
 }
 
 // delete current points and add correct points for given year
-function updateSymbols(index) {
-  console.log(type1_active)
+function updateSymbols(index, reset = false) {
   // Set active year to index
   activeYear = index;
 
@@ -188,7 +187,7 @@ function updateSymbols(index) {
   categoryGroups = [category1, category2, category3];
 
   // remove points that aren't relavent
-  removeUnnecessaryPoints();
+  removeUnnecessaryPoints(reset);
 
   // add correct points to objects and to map
   selectPoints();
@@ -209,7 +208,7 @@ function updateSymbols(index) {
 }
 
 // function to find years that are not relavent, and remove them from the list and clear from the map
-function removeUnnecessaryPoints() {
+function removeUnnecessaryPoints(reset) {
   // itterate through the list of categories
   for (category in categoryGroups) {
     // clear midpoints
@@ -217,14 +216,25 @@ function removeUnnecessaryPoints() {
       categoryGroups[category][2].clearLayers();
       //delete categoryGroups[category][2]
     }
-    //itterate through the category dict, analyzing each year
-    for (year in categoryGroups[category][1]) {
-      // if a key is greater than the year being looked at or less that the year being looked at, remove it
-      if (year > activeYear || year < activeYear - yearDelay) {
-        //remove year
-        //console.log() // activeLayerGroups[cat]
+
+    // if reset, remove all years
+    if (reset) {
+      //itterate through the category dict, analyzing each year
+      for (year in categoryGroups[category][1]) {
         categoryGroups[category][1][year].clearLayers();
         delete categoryGroups[category][1][year];
+      }
+      // otherwise, just remove needed years
+    } else {
+      //itterate through the category dict, analyzing each year
+      for (year in categoryGroups[category][1]) {
+        // if a key is greater than the year being looked at or less that the year being looked at, remove it
+        if (year > activeYear || year < activeYear - yearDelay) {
+          //remove year
+          //console.log() // activeLayerGroups[cat]
+          categoryGroups[category][1][year].clearLayers();
+          delete categoryGroups[category][1][year];
+        }
       }
     }
   }
@@ -284,8 +294,19 @@ function calculateMidpoint() {
     for (year in years) {
       let layers = years[year]._layers;
       for (layer in layers) {
-        latitudes.push(layers[layer]._latlng.lat);
-        longitudes.push(layers[layer]._latlng.lng);
+        if (layers[layer].options.options[1] * type1_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[2] * type2_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[3] * type3_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[4] * type4_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        }
       }
     }
     if (latitudes.length > 0) {
@@ -308,22 +329,26 @@ function calculateMidpoint() {
 function midpointToPointLayer(lat, lng, categoryLabel, pointColor) {
   let latlng = L.latLng(lat, lng);
 
-  let pointRadius = 3;
+  let size = 10;
+  let anchor = 7.5;
 
   if (midpointMode) {
-    pointRadius = 10
+    size = 20;
+    anchor = size / 2;
   }
 
-  //create circle marker layer
-  let layer = L.circleMarker(latlng, {
-    radius: pointRadius,
-    color: pointColor,
-    fillOpacity: 1,
-    stroke: 0,
+  let midpointIcon = L.divIcon({
+    html: `<svg height="${size}" width="${size}" viewBox="0 0 20 20">
+  <polygon points="100,0 0,100 -100,0 0,-100" fill = "${pointColor}"
+  </svg>`,
+    className: "midpoint",
+    iconAnchor: [size / 2, anchor],
   });
 
+  let layer = L.marker(latlng, { icon: midpointIcon });
+
   //bind the popup to the circle marker
-  layer.bindPopup(categoryLabel, {
+  layer.bindPopup(categoryLabel + "<br>Midpoint", {
     offset: new L.Point(0, -0),
   });
 

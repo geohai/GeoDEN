@@ -10,8 +10,6 @@ let activeLayerGroups = [];
 // global variable of the dataset, an object where the keys are years
 let dataset;
 
-
-
 // ---- Main Functions ---- //
 
 // Create the Map _ called from MAIN
@@ -38,17 +36,17 @@ function createMap() {
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
     }
   ).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
-  controlLayers.addBaseLayer(light, "Carto Light basemap");
+  controlLayers.addBaseLayer(light, "Light");
 
   // Stamen colored terrain basemap tiles with labels
-  let terrain = L.tileLayer(
-    "https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",
+  let dark = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
     {
       attribution:
-        'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     }
   ); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
-  controlLayers.addBaseLayer(terrain, "Stamen Terrain basemap");
+  controlLayers.addBaseLayer(dark, "Dark");
 
   //call getData function
   getData(map);
@@ -70,7 +68,15 @@ function pointToLayer(row) {
   // update `numSerotypes` and `className` dynamically based on the serotypes present
 
   //create circle marker layer
-  let layer = L.marker(latlng, { icon: svgIcon }); // set as svg
+  let layer = L.marker(latlng, {
+    icon: svgIcon,
+    options: { // store the values of each serotype
+      1: row.DEN1,
+      2: row.DEN2,
+      3: row.DEN3,
+      4: row.DEN4
+    },
+  }); // set as svg
 
   //add formatted attribute to panel content string
   var popupContent = createPopupContent(row);
@@ -82,8 +88,6 @@ function pointToLayer(row) {
   //return the circle marker to the L.geoJson pointToLayer option
   return layer;
 }
-
-
 
 // ---- Updating Map ---- //
 
@@ -161,8 +165,6 @@ function updateHeadingContent() {
   document.getElementById("subheading").innerHTML = activeYear;
 }
 
-
-
 // ---- Designing Points ---- //
 
 // write the string to fit in each point's popup content
@@ -196,13 +198,19 @@ function createPopupContent(row) {
 }
 
 function createIcon(type1, type2, type3, type4) {
-  let nTypes = type1*(type1_active) + type2*(type2_active) + type3*(type3_active) + type4*(type4_active);
+  let nTypes =
+    type1 * type1_active +
+    type2 * type2_active +
+    type3 * type3_active +
+    type4 * type4_active;
   let diameter = nTypes * 10;
   let slices = 100 / nTypes;
 
-  
+  // if midpoint mode and at least 1 serotype present, set diameter to 7
   if (midpointMode) {
-    diameter = 7
+    if (nTypes > 0) {
+      diameter = 7;
+    }
   }
 
   let template = (
@@ -218,30 +226,30 @@ function createIcon(type1, type2, type3, type4) {
     let order = nTypes;
     if (type4 && type4_active) {
       if (type == 4) {
-        return order
+        return order;
       }
-      order -= 1
+      order -= 1;
     }
     if (type3 && type3_active) {
       if (type == 3) {
-        return order
+        return order;
       }
-      order -= 1
+      order -= 1;
     }
     if (type2 && type2_active) {
       if (type == 2) {
-        return order
+        return order;
       }
-      order -= 1
+      order -= 1;
     }
     if (type1 && type1_active) {
       if (type == 1) {
-        return order
+        return order;
       }
-      order -= 1
+      order -= 1;
     }
     return order;
-  }
+  };
 
   let slice_type4 = template("#ba3aa9", slices * type4 * calcOrder(4));
   let slice_type3 = template("#e07f00", slices * type3 * calcOrder(3));
@@ -270,19 +278,17 @@ function createIcon(type1, type2, type3, type4) {
 // function to set a new year based on typing and submitting a new year
 function submit_YearDelay() {
   var inputString = document.getElementById("input_yearDelay").value;
-  var inputInt = parseInt(inputString)
-  if ((inputInt <= 70) && (inputInt >= 0)) {
-      document.getElementById("input_yearDelay").value = ""
-      document.getElementById("current_yearDelay").innerHTML = inputString
-      yearDelay = inputInt;
-      updateSymbols(activeYear);
-  }
-  else {
-      alert("Not in range 0-70")
+  var inputInt = parseInt(inputString);
+  if (inputInt <= 70 && inputInt >= 0) {
+    document.getElementById("input_yearDelay").value = "";
+    document.getElementById("input_yearDelay").placeholder = inputString;
+    document.getElementById("current_yearDelay").innerHTML = inputString;
+    yearDelay = inputInt;
+    updateSymbols(activeYear);
+  } else {
+    alert("Not in range 0-70");
   }
 }
-
-
 
 // ---- _MAIN_ ---- //
 $(document).ready(createMap);

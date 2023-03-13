@@ -1,13 +1,104 @@
-#serotypeToggles{
-    position: absolute;
-    bottom: 2%;
-    left: 37%;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0); 
-    border-radius: 20px;  
-    height: 3%;
-    width: 20rem;
-    font-size: .9rem;
-    text-align: center;
-    z-index: 9999;
+/* -- Button Defaults -- */
+.button {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  border-radius: 0.3rem;
+  border: 0px solid;
+  top: .1rem;
+  position: relative;
+}
+
+.button:hover {
+  box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.24),
+    0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.1s;
+}
+.inactive-button {
+  background-color: rgb(88, 88, 88);
+  color: rgb(185, 185, 185);
+}
+.inactive-button:hover {
+  background-color: rgb(111, 111, 111);
+  color: rgb(201, 201, 201);
+}
+
+/* - Serotype Toggles - */
+#serotypeCheck_1.active-button {
+  background-color: #03a8a0;
+  color: rgb(255, 255, 255);
+}
+#serotypeCheck_1.active-button:hover {
+  background-color: #11b8b0;
+}
+#serotypeCheck_2.active-button {
+  background-color: #33b312;
+  color: rgb(255, 255, 255);
+}
+#serotypeCheck_2.active-button:hover {
+  background-color: #40ca1d;
+}
+#serotypeCheck_3.active-button {
+  background-color: #e07f00;
+  color: rgb(255, 255, 255);
+}
+#serotypeCheck_3.active-button:hover {
+  background-color: #f5981f;
+}
+#serotypeCheck_4.active-button {
+  background-color: #ba3aa9;
+  color: rgb(255, 255, 255);
+}
+#serotypeCheck_4.active-button:hover {
+  background-color: #cf4ebe;
+}
+
+/* - Midpoint Toggle - */
+#midpointButton {
+  width: 8rem;
+  border-radius: 3rem;
+  top: 0rem;
+}
+#midpointButton.active-button {
+  background-color: #012f00;
+  color: rgb(255, 255, 255);
+}
+#midpointButton.active-button:hover {
+  background-color: #083b07;
+}
+
+/* - Animation Play,Pause - */
+#playButton{
+    margin: auto;
+    top: .2rem;
+}
+#playButton.active-button {
+  background-color: rgb(53, 53, 53);
+}
+#playButton.active-button img {
+    filter: invert(1);
+}
+#playButton img {
+  filter: invert(0.88);
+  height: 1.3rem;
+}
+
+/* - Year Delay - */
+#input_yearDelay {
+  width: 1.5rem;
+  height: 1.3rem;
+  border-radius: 3rem;
+  border: 0px solid;
+  background-color: rgb(201, 201, 201);
+  text-align: center;
+  top: -.1rem;
+  position: relative;
+} 
+#submit_YearDelay {
+  width: 5rem;
+  border-radius: 3rem;
+  top: 0rem;
 }

@@ -6,75 +6,71 @@
     <title>DENV test</title>
 
     <!--put your external stylesheet links here-->
+    <link rel="stylesheet" href="css/layout_style.css" />
     <link rel="stylesheet" href="css/map_style.css" />
     <link rel="stylesheet" href="css/input_style.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
 
   <body>
+    <div id="background"></div>
     <!--Headings-->
-    <h1 id="heading">Dengue Fever</h1>
-    <h2 id="subheading">1943 to 2013</h2>
-
-    <!--Year Delay-->
-    <div id="div_yearDelay">
-      <h3 id="label_yearDelay">Year Delay = <i id="current_yearDelay">0</i></h3>
-      <input
-        class="textInput"
-        id="input_yearDelay"
-        placeholder="0"
-        minlength="1"
-        maxlength="2"
-        size="1"
-      />
-      <button class="submit" onclick="submit_YearDelay()" id="submit_YearDelay">
-        Submit
-      </button>
+    <div id="headings">
+      <h1 id="heading">Dengue Fever</h1>
+      <h1 id="subheading">1943 to 2013</h2>
+      <div id="div_yearDelay"><h3 id="label_yearDelay">Year Delay <br><i id="current_yearDelay">0</i></h3></div>
+      
     </div>
-
-    <div id="serotypeToggles">
-      <input
-        type="checkbox"
-        id="serotypeCheck_1"
-        onclick="serotypeCheck()"
-        checked
-      />
-      <label for="serotypeCheck_1">Type 1</label>
-      <input
-        type="checkbox"
-        id="serotypeCheck_2"
-        onclick="serotypeCheck()"
-        checked
-      />
-      <label for="serotypeCheck_2">Type 2</label>
-      <input
-        type="checkbox"
-        id="serotypeCheck_3"
-        onclick="serotypeCheck()"
-        checked
-      />
-      <label for="serotypeCheck_3">Type 3</label>
-      <input
-        type="checkbox"
-        id="serotypeCheck_4"
-        onclick="serotypeCheck()"
-        checked
-      />
-      <label for="serotypeCheck_4">Type 4</label>
+    <div id="controlBar_top">
+      <!--Serotype Toggle Buttons-->
+      <div class="control_div" id="serotypeToggles">
+        <!--Type 1-->
+        <button class="button active-button" id="serotypeCheck_1">1</button>
+        <!--Type 2-->
+        <button class="button active-button" id="serotypeCheck_2">2</button>
+        <!--Type 3-->
+        <button class="button active-button" id="serotypeCheck_3">3</button>
+        <!--Type 4-->
+        <button class="button active-button" id="serotypeCheck_4">4</button>
+      </div>
+      <!--Midpoint Toggle Button-->
+      <div class="control_div" id="midpointToggle">
+        <button class="button inactive-button" id="midpointButton">
+          midpoint mode
+        </button>
+      </div>
     </div>
-
-    <div id = "midpointModeToggle">
-      <input
-        type="checkbox"
-        id="midpointModeCheck"
-        onclick="midpointModeCheck()"
-      />
-      <label for="midpointModeCheck">Midpoint Mode</label>
+    <div id="controlBar_bottom">
+      <!--Timeline-->
+      <div class="control_div" id="timelineControls"></div>
+      <!--Animation Toggle Buttons-->
+      <div class="control_div" id="animationControls">
+        <button class="button inactive-button" id="playButton">
+          <img src="img/play-solid.svg" />
+        </button>
+      </div>
+      <!--Year Delay-->
+      <div class="control_div" id="yearDelayControls">
+        <input
+          class="textInput"
+          id="input_yearDelay"
+          placeholder="0"
+          minlength="1"
+          maxlength="2"
+        />
+        <button
+          class="button inactive-button"
+          onclick="submit_YearDelay()"
+          id="submit_YearDelay"
+        >
+          set delay
+        </button>
+      </div>
     </div>
 
     <!--Map Divs-->
     <div id="map"></div>
-    <div id="panel"></div>
+    
 
     <!--External JS Scripts-->
     <script type="text/javascript" src="lib/leaflet.js"></script>
