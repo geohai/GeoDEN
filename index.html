@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="css/layout_style.css" />
     <link rel="stylesheet" href="css/map_style.css" />
     <link rel="stylesheet" href="css/input_style.css" />
+    <link rel="stylesheet" href="css/helpWindows.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
 
   <body>
     <div id="background"></div>
+    <div id="helpWindow_main" class="helpWindow"></div>
     <!--Headings-->
     <div id="headings">
       <h1 id="heading">Dengue Fever</h1>
@@ -22,6 +24,8 @@
       
     </div>
     <div id="controlBar_top">
+      <!--Create divs for a help icon and a help window-->
+      <div id="helpIcon_main" class="helpIcon">?</div>
       <!--Serotype Toggle Buttons-->
       <div class="control_div" id="serotypeToggles">
         <!--Type 1-->
@@ -89,5 +93,6 @@
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/input.js"></script>
+    <script type="text/javascript" src="js/helpPrompt.js"></script>
   </body>
 </html>

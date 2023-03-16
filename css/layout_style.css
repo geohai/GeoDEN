@@ -41,7 +41,7 @@
   width: 8.5rem;
   line-height: 2rem;
   text-align: center;
-  z-index: 9999;
+  z-index: 99;
   cursor: default;
   right: 4.5rem;
   margin: auto;
@@ -60,7 +60,7 @@
   width: 8.5rem;
   height: 2rem;
   text-align: center;
-  z-index: 9999;
+  z-index: 99;
   cursor: default;
   margin: auto;
 }

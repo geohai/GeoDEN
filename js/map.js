@@ -193,6 +193,7 @@ function createPopupContent(row) {
 
   popupContent += "Admin: <b>" + row.ADMIN_LEVEL + "</b>, ";
   popupContent += "N_types: <b>" + row.N_TYPES + "</b>";
+  popupContent +=  "</br>X,Y: "+ row.X + ", "+ row.Y;
 
   return popupContent;
 }
