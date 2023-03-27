@@ -204,13 +204,16 @@ function createIcon(type1, type2, type3, type4) {
     type2 * type2_active +
     type3 * type3_active +
     type4 * type4_active;
-  let diameter = nTypes * 10;
+  let diameter = 0;
+  if (nTypes > 0) {
+    diameter = (nTypes + .5) * 7;
+  }
   let slices = 100 / nTypes;
 
   // if midpoint mode and at least 1 serotype present, set diameter to 7
   if (midpointMode) {
     if (nTypes > 0) {
-      diameter = 7;
+      diameter = (nTypes + .5) * 3;
     }
   }
 
@@ -252,10 +255,10 @@ function createIcon(type1, type2, type3, type4) {
     return order;
   };
 
-  let slice_type4 = template("#ba3aa9", slices * type4 * calcOrder(4));
-  let slice_type3 = template("#e07f00", slices * type3 * calcOrder(3));
-  let slice_type2 = template("#3dd417", slices * type2 * calcOrder(2));
-  let slice_type1 = template("#03a8a0", slices * type1 * calcOrder(1));
+  let slice_type4 = template("#26670A", slices * type4 * calcOrder(4));
+  let slice_type3 = template("#21BEE6", slices * type3 * calcOrder(3));
+  let slice_type2 = template("#B32D9D", slices * type2 * calcOrder(2));
+  let slice_type1 = template("#D4B100", slices * type1 * calcOrder(1));
 
   icon = L.divIcon({
     html: `<svg height="${diameter}" width="${diameter}" viewBox="0 0 20 20"

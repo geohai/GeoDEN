@@ -48,7 +48,7 @@ let category1 = [
     "Cayman Islands",
   ],
   {},
-  ,
+  [],
   "Americas",
   "#702c1e",
 ];
@@ -85,7 +85,7 @@ let category2 = [
     "Kenya",
   ],
   {},
-  ,
+  [],
   "Africa",
   "#1e3f70",
 ];
@@ -135,16 +135,19 @@ let category3 = [
     "Wallis and Futuna",
   ],
   {},
-  ,
+  [],
   "Asia",
   "#1e7021",
 ];
-let category4 = [[], {}];
-let category5 = [[], {}];
-let category6 = [[], {}];
-let category7 = [[], {}];
-let category8 = [[], {}];
+let category4 = [[], {}, [], "name", "red"];
+let category5 = [[], {}, [], "name", "red"];
+let category6 = [[], {}, [], "name", "red"];
+let category7 = [[], {}, [], "name", "red"];
+let category8 = [[], {}, [], "name", "red"];
 //let category
+
+let regionalMidpoints = true;
+let serotypeMidpoints = false;
 
 //Import data, add it to the map, and add sequence controls
 function getData(map) {
@@ -212,8 +215,13 @@ function removeUnnecessaryPoints(reset) {
   // itterate through the list of categories
   for (category in categoryGroups) {
     // clear midpoints
-    if (categoryGroups[category][2]) {
-      categoryGroups[category][2].clearLayers();
+    if (categoryGroups[category][2].length > 0) {
+      for (layer in categoryGroups[category][2]) {
+        categoryGroups[category][2][layer].clearLayers();
+        delete categoryGroups[category][2][layer];
+      }
+      categoryGroups[category][2] = [];
+
       //delete categoryGroups[category][2]
     }
 
@@ -285,48 +293,111 @@ function getDataPoints(year, categoryList) {
 
 //funciton to calculate midpoints of category
 function calculateMidpoint() {
+  let categories;
+  if (regionalMidpoints) {
+    categories = categoryGroups;
+  } //ELSE calculate categories based on DB scan clusters
+
   // for category in list of categories
-  for (category in categoryGroups) {
+  for (category in categories) {
+    // set variables
     let latitudes = [];
     let longitudes = [];
-    let years = categoryGroups[category][1];
-
-    for (year in years) {
-      let layers = years[year]._layers;
-      for (layer in layers) {
-        if (layers[layer].options.options[1] * type1_active == 1) {
-          latitudes.push(layers[layer]._latlng.lat);
-          longitudes.push(layers[layer]._latlng.lng);
-        } else if (layers[layer].options.options[2] * type2_active == 1) {
-          latitudes.push(layers[layer]._latlng.lat);
-          longitudes.push(layers[layer]._latlng.lng);
-        } else if (layers[layer].options.options[3] * type3_active == 1) {
-          latitudes.push(layers[layer]._latlng.lat);
-          longitudes.push(layers[layer]._latlng.lng);
-        } else if (layers[layer].options.options[4] * type4_active == 1) {
-          latitudes.push(layers[layer]._latlng.lat);
-          longitudes.push(layers[layer]._latlng.lng);
-        }
-      }
-    }
-    if (latitudes.length > 0) {
-      let avg_lat = mean(latitudes);
-      let avg_lng = mean(longitudes);
-      // make midpoint
-      let layerGroup = midpointToPointLayer(
-        avg_lat,
-        avg_lng,
-        categoryGroups[category][3],
-        categoryGroups[category][4]
-      );
-      categoryGroups[category][2] = layerGroup;
-      categoryGroups[category][2].addTo(map);
+    let years = categories[category][1];
+    // choose between serotype or sum midpoints
+    if (serotypeMidpoints) {
+      calcMidpointBySerotype(latitudes, longitudes, years, categories);
+    } else {
+      calcMidpointSumSerotypes(latitudes, longitudes, years, categories);
     }
   }
 }
 
+// Plot a midpoint that shows midpoint of category, regardless of Serotype
+function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
+  // for each year, add it to the array to combine if type is active
+  for (year in years) {
+    let layers = years[year]._layers;
+    for (layer in layers) {
+      if (layers[layer].options.options[1] * type1_active == 1) {
+        latitudes.push(layers[layer]._latlng.lat);
+        longitudes.push(layers[layer]._latlng.lng);
+      } else if (layers[layer].options.options[2] * type2_active == 1) {
+        latitudes.push(layers[layer]._latlng.lat);
+        longitudes.push(layers[layer]._latlng.lng);
+      } else if (layers[layer].options.options[3] * type3_active == 1) {
+        latitudes.push(layers[layer]._latlng.lat);
+        longitudes.push(layers[layer]._latlng.lng);
+      } else if (layers[layer].options.options[4] * type4_active == 1) {
+        latitudes.push(layers[layer]._latlng.lat);
+        longitudes.push(layers[layer]._latlng.lng);
+      }
+    }
+  }
+  plotMidpoint(latitudes, longitudes, categories, "");
+}
+
+// Plot a midpoint that shows midpoint of category's serotype
+function calcMidpointBySerotype(latitudes, longitudes, years, categories) {
+  // for each year, add it to the array to combine if type is active
+
+  function setupMidpointCalc(type, label, typeInt) {
+    // If type is active
+    if (type) {
+      // set lat and lon to empty
+      latitudes = [];
+      longitudes = [];
+      // for each year
+      for (year in years) {
+        let layers = years[year]._layers;
+        for (layer in layers) {
+          // if present, add lat and lon to array
+          if (layers[layer].options.options[typeInt] * type == 1) {
+            latitudes.push(layers[layer]._latlng.lat);
+            longitudes.push(layers[layer]._latlng.lng);
+          }
+        }
+      }
+      plotMidpoint(latitudes, longitudes, categories, label);
+    }
+  }
+
+  // serotype 1
+  setupMidpointCalc(type1_active, "1", 1);
+  // serotype 2
+  setupMidpointCalc(type2_active, "2", 2);
+  // serotype 3
+  setupMidpointCalc(type3_active, "3", 3);
+  // serotype 4
+  setupMidpointCalc(type4_active, "4", 4);
+}
+
+function plotMidpoint(latitudes, longitudes, categories, additionalInfo) {
+  // As long as 1 point is in the list, make a midpoint
+  if (latitudes.length > 0) {
+    let avg_lat = mean(latitudes);
+    let avg_lng = mean(longitudes);
+    // make midpoint
+    let layerGroup = midpointToPointLayer(
+      avg_lat,
+      avg_lng,
+      categories[category][3],
+      categories[category][4],
+      additionalInfo
+    );
+    categories[category][2].push(layerGroup);
+    categories[category][2][categories[category][2].length - 1].addTo(map);
+  }
+}
+
 // uses calculated midpoint to make a midpoint icon and add it to the map
-function midpointToPointLayer(lat, lng, categoryLabel, pointColor) {
+function midpointToPointLayer(
+  lat,
+  lng,
+  categoryLabel,
+  pointColor,
+  additionalInfo
+) {
   let latlng = L.latLng(lat, lng);
 
   let size = 10;
@@ -348,7 +419,7 @@ function midpointToPointLayer(lat, lng, categoryLabel, pointColor) {
   let layer = L.marker(latlng, { icon: midpointIcon });
 
   //bind the popup to the circle marker
-  layer.bindPopup(categoryLabel + "<br>Midpoint", {
+  layer.bindPopup(categoryLabel + "<br>Midpoint" + " " + additionalInfo, {
     offset: new L.Point(0, -0),
   });
 

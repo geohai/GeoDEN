@@ -34,7 +34,7 @@
 
 #serotypeToggles {
   position: relative;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(5, 5, 5);
   color: rgb(0, 0, 0);
   border-radius: 20px;
   height: 2rem;
@@ -54,7 +54,7 @@
   
 .control_div {
   position: relative;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(5, 5, 5);
   color: rgb(0, 0, 0);
   border-radius: 20px;
   width: 8.5rem;
@@ -67,13 +67,15 @@
 
 #serotypeToggles {
   line-height: 1.8rem;
-  right: 4.5rem;
+  right: 0rem;
 }
 
 #midpointToggle {
   line-height: 2rem;
-  left: 4.5rem;
+  left: 15.1rem;
+  width: 20.5rem;
 }
+
 #timelineControls {
     right: 20rem;
     background-color: rgb(115, 115, 115,0);

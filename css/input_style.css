@@ -10,12 +10,13 @@
   border: 0px solid;
   top: .1rem;
   position: relative;
+  color: rgb(255, 255, 255);
 }
 
 .button:hover {
   box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.24),
     0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.19);
-  transition: all 0.1s;
+  transition: all 0.2s;
 }
 .inactive-button {
   background-color: rgb(88, 88, 88);
@@ -28,46 +29,59 @@
 
 /* - Serotype Toggles - */
 #serotypeCheck_1.active-button {
-  background-color: #03a8a0;
-  color: rgb(255, 255, 255);
+  background-color: #D4B100;
 }
 #serotypeCheck_1.active-button:hover {
-  background-color: #11b8b0;
+  background-color: #ebc817;
+  font-size: 1.2rem;
+  height: 1.6rem;
 }
 #serotypeCheck_2.active-button {
-  background-color: #33b312;
-  color: rgb(255, 255, 255);
+  background-color: #B32D9D;
 }
 #serotypeCheck_2.active-button:hover {
-  background-color: #40ca1d;
+  background-color: #d144ba;
+  font-size: 1.2rem;
+  height: 1.6rem;
 }
 #serotypeCheck_3.active-button {
-  background-color: #e07f00;
-  color: rgb(255, 255, 255);
+  background-color: #21BEE6;
 }
 #serotypeCheck_3.active-button:hover {
-  background-color: #f5981f;
+  background-color: #3ed3f8;
+  font-size: 1.2rem;
+  height: 1.6rem;
 }
 #serotypeCheck_4.active-button {
-  background-color: #ba3aa9;
-  color: rgb(255, 255, 255);
+  background-color: #26670A;
 }
 #serotypeCheck_4.active-button:hover {
-  background-color: #cf4ebe;
+  background-color: #388217;
+  font-size: 1.2rem;
+  height: 1.6rem;
 }
 
 /* - Midpoint Toggle - */
-#midpointButton {
-  width: 8rem;
+
+.midpointButton.active-button {
+  background-color: #f4f4f4;
+  color: #292929;
+}
+.midpointButton.active-button:hover {
+  background-color: #fefefe;
+  font-size: 1.05rem;
+}
+
+#bigMidpointButton {
+  width: 8.5rem;
   border-radius: 3rem;
   top: 0rem;
 }
-#midpointButton.active-button {
-  background-color: #012f00;
-  color: rgb(255, 255, 255);
-}
-#midpointButton.active-button:hover {
-  background-color: #083b07;
+
+#typeMidpointButton {
+  width: 11rem;
+  border-radius: 3rem;
+  top: 0rem;
 }
 
 /* - Animation Play,Pause - */
@@ -98,7 +112,7 @@
   position: relative;
 } 
 #submit_YearDelay {
-  width: 5rem;
+  width: 6rem;
   border-radius: 3rem;
   top: 0rem;
 }

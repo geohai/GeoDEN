@@ -5,7 +5,8 @@ const button1 = document.getElementById("serotypeCheck_1");
 const button2 = document.getElementById("serotypeCheck_2");
 const button3 = document.getElementById("serotypeCheck_3");
 const button4 = document.getElementById("serotypeCheck_4");
-const midpointButton = document.getElementById("midpointButton");
+const midpointButton = document.getElementById("bigMidpointButton");
+const typeMidpointButton = document.getElementById("typeMidpointButton");
 const animButton = document.getElementById("playButton");
 
 // Input Variables
@@ -52,6 +53,15 @@ midpointButton.addEventListener("click", () => {
   midpointButton.classList.toggle("inactive-button", !midpointMode);
   updateSymbols(activeYear, (reset = true));
 });
+
+// Type Based Midpoint Toggle
+typeMidpointButton.addEventListener("click", () => {
+  serotypeMidpoints = !serotypeMidpoints;
+  typeMidpointButton.classList.toggle("active-button", serotypeMidpoints);
+  typeMidpointButton.classList.toggle("inactive-button", !serotypeMidpoints);
+  updateSymbols(activeYear, (reset = true));
+});
+
 
 // Animation Toggle
 animButton.addEventListener("click", () => {
