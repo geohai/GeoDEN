@@ -1,13 +1,19 @@
 #map {
   display: inline-block;
   position: absolute;
-  height: 75%;
   width: 97.4%;
   bottom: 3.5rem;
+  top: 8rem;
   left: 1%;
-  border-radius: 2vmin;
-  border: solid rgb(128, 128, 128) 0.5vmin;
+  border-radius: 3vmin;
+  border: solid rgba(0, 0, 0, .7) 0.5vmin;
   outline-offset: 5vmin;
+}
+
+#headings {
+  top:0rem;
+  bottom:3rem;
+  margin: auto;
 }
 
 #controlBar_top {
@@ -17,7 +23,7 @@
   background-color: rgba(76, 76, 76, 0.5);
   border: solid rgb(100, 100, 100, 0) 0.5vmin;
   height: 2rem;
-  top: 10%;
+  top: 5rem;
   border-radius: 2.3rem;
 }
 
