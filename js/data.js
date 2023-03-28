@@ -50,7 +50,7 @@ let category1 = [
   {},
   [],
   "Americas",
-  "#702c1e",
+  "#ffffff",
 ];
 // Africa
 let category2 = [
@@ -87,7 +87,7 @@ let category2 = [
   {},
   [],
   "Africa",
-  "#1e3f70",
+  "#b8b8b8",
 ];
 // Asia
 let category3 = [
@@ -137,7 +137,7 @@ let category3 = [
   {},
   [],
   "Asia",
-  "#1e7021",
+  "#424242",
 ];
 let category4 = [[], {}, [], "name", "red"];
 let category5 = [[], {}, [], "name", "red"];
@@ -341,7 +341,7 @@ function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
 function calcMidpointBySerotype(latitudes, longitudes, years, categories) {
   // for each year, add it to the array to combine if type is active
 
-  function setupMidpointCalc(type, label, typeInt) {
+  function setupMidpointCalc(type, typeInt, typeColor) {
     // If type is active
     if (type) {
       // set lat and lon to empty
@@ -358,31 +358,38 @@ function calcMidpointBySerotype(latitudes, longitudes, years, categories) {
           }
         }
       }
-      plotMidpoint(latitudes, longitudes, categories, label);
+      plotMidpoint(latitudes, longitudes, categories, String(typeInt), typeColor);
     }
   }
 
   // serotype 1
-  setupMidpointCalc(type1_active, "1", 1);
+  setupMidpointCalc(type1_active, 1, type1_color);
   // serotype 2
-  setupMidpointCalc(type2_active, "2", 2);
+  setupMidpointCalc(type2_active, 2, type2_color);
   // serotype 3
-  setupMidpointCalc(type3_active, "3", 3);
+  setupMidpointCalc(type3_active, 3, type3_color);
   // serotype 4
-  setupMidpointCalc(type4_active, "4", 4);
+  setupMidpointCalc(type4_active, 4, type4_color);
 }
 
-function plotMidpoint(latitudes, longitudes, categories, additionalInfo) {
+function plotMidpoint(latitudes, longitudes, categories, additionalInfo, typeColor) {
   // As long as 1 point is in the list, make a midpoint
   if (latitudes.length > 0) {
     let avg_lat = mean(latitudes);
     let avg_lng = mean(longitudes);
+    let color;
+    if (typeColor) {
+      color = typeColor;
+    } else {
+      color = categories[category][4];
+    }
     // make midpoint
     let layerGroup = midpointToPointLayer(
       avg_lat,
       avg_lng,
       categories[category][3],
-      categories[category][4],
+      color,
+      color = categories[category][4],
       additionalInfo
     );
     categories[category][2].push(layerGroup);
@@ -395,23 +402,27 @@ function midpointToPointLayer(
   lat,
   lng,
   categoryLabel,
-  pointColor,
+  primaryColor,
+  secondaryColor,
   additionalInfo
 ) {
   let latlng = L.latLng(lat, lng);
 
-  let size = 10;
+  let size = 12;
   let anchor = 7.5;
 
   if (midpointMode) {
-    size = 20;
+    size = 25;
     anchor = size / 2;
   }
 
   let midpointIcon = L.divIcon({
     html: `<svg height="${size}" width="${size}" viewBox="0 0 20 20">
-  <polygon points="100,0 0,100 -100,0 0,-100" fill = "${pointColor}"
-  </svg>`,
+	  <polygon points="10,0 0,10 10,20 20,10" fill = "white"/>
+    <polygon points="10,1 1,10 10,19 19,10" fill = "black"/>
+    <polygon points="10,3 3,10 10,17 17,10" fill = "${primaryColor}"/>
+    <polygon points="10,7 7,10 10,13 13,10" fill = "${secondaryColor}"/>
+    </svg>`,
     className: "midpoint",
     iconAnchor: [size / 2, anchor],
   });

@@ -10,6 +10,11 @@ let activeLayerGroups = [];
 // global variable of the dataset, an object where the keys are years
 let dataset;
 
+const type1_color = "#D4B100";
+const type2_color = "#B32D9D";
+const type3_color = "#21BEE6";
+const type4_color = "#26670A";
+
 // ---- Main Functions ---- //
 
 // Create the Map _ called from MAIN
@@ -18,6 +23,7 @@ function createMap() {
   map = L.map("map", {
     center: [0, 0], // EDIT latitude, longitude to re-center map
     zoom: 2, // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
+    minZoom: 2,
   });
 
   // Control panel to display map layers
@@ -35,7 +41,7 @@ function createMap() {
       attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
     }
-  ).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
+  ); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
   controlLayers.addBaseLayer(light, "Light");
 
   // Stamen colored terrain basemap tiles with labels
@@ -45,7 +51,7 @@ function createMap() {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     }
-  ); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
+  ).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
   controlLayers.addBaseLayer(dark, "Dark");
 
   //call getData function
@@ -255,10 +261,10 @@ function createIcon(type1, type2, type3, type4) {
     return order;
   };
 
-  let slice_type4 = template("#26670A", slices * type4 * calcOrder(4));
-  let slice_type3 = template("#21BEE6", slices * type3 * calcOrder(3));
-  let slice_type2 = template("#B32D9D", slices * type2 * calcOrder(2));
-  let slice_type1 = template("#D4B100", slices * type1 * calcOrder(1));
+  let slice_type4 = template(type4_color, slices * type4 * calcOrder(4));
+  let slice_type3 = template(type3_color, slices * type3 * calcOrder(3));
+  let slice_type2 = template(type2_color, slices * type2 * calcOrder(2));
+  let slice_type1 = template(type1_color, slices * type1 * calcOrder(1));
 
   icon = L.divIcon({
     html: `<svg height="${diameter}" width="${diameter}" viewBox="0 0 20 20"

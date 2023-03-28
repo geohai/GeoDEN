@@ -8,6 +8,7 @@ const button4 = document.getElementById("serotypeCheck_4");
 const midpointButton = document.getElementById("bigMidpointButton");
 const typeMidpointButton = document.getElementById("typeMidpointButton");
 const animButton = document.getElementById("playButton");
+const input_yearDelay = document.getElementById('input_yearDelay');
 
 // Input Variables
 let type1_active = 1;
@@ -164,3 +165,10 @@ function start_mapAnimation() {
     animateSingleYear(); //start loop
   }
 }
+
+input_yearDelay.addEventListener('input', () => {
+  console.log("test")
+  input_yearDelay.style.borderColor = '#ff0000';
+  input_yearDelay.style.backgroundColor = '#ff0000';
+  input_yearDelay.style.color = '#fff';
+});
