@@ -9,6 +9,7 @@ const midpointButton = document.getElementById("bigMidpointButton");
 const typeMidpointButton = document.getElementById("typeMidpointButton");
 const animButton = document.getElementById("playButton");
 const input_yearDelay = document.getElementById('input_yearDelay');
+const submit_YearDelayButton = document.getElementById('submit_YearDelay');
 
 // Input Variables
 let type1_active = 1;
@@ -167,8 +168,23 @@ function start_mapAnimation() {
 }
 
 input_yearDelay.addEventListener('input', () => {
-  console.log("test")
-  input_yearDelay.style.borderColor = '#ff0000';
-  input_yearDelay.style.backgroundColor = '#ff0000';
-  input_yearDelay.style.color = '#fff';
+  if(input_yearDelay.value){
+    activate_yearDelay();
+  } else {
+    deactivate_yearDelay();
+  }
 });
+
+function activate_yearDelay() {
+  input_yearDelay.classList.toggle("active-button", true);
+  input_yearDelay.classList.toggle("inactive-button", false);
+  submit_YearDelayButton.classList.toggle("active-button", true);
+  submit_YearDelayButton.classList.toggle("inactive-button", false);
+}
+
+function deactivate_yearDelay() {
+  input_yearDelay.classList.toggle("active-button", false);
+  input_yearDelay.classList.toggle("inactive-button", true);
+  submit_YearDelayButton.classList.toggle("active-button", false);
+  submit_YearDelayButton.classList.toggle("inactive-button", true);
+}

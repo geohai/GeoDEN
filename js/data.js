@@ -87,7 +87,7 @@ let category2 = [
   {},
   [],
   "Africa",
-  "#b8b8b8",
+  "#919191",
 ];
 // Asia
 let category3 = [
@@ -412,7 +412,7 @@ function midpointToPointLayer(
   let anchor = 7.5;
 
   if (midpointMode) {
-    size = 25;
+    size = 27;
     anchor = size / 2;
   }
 
@@ -421,7 +421,7 @@ function midpointToPointLayer(
 	  <polygon points="10,0 0,10 10,20 20,10" fill = "white"/>
     <polygon points="10,1 1,10 10,19 19,10" fill = "black"/>
     <polygon points="10,3 3,10 10,17 17,10" fill = "${primaryColor}"/>
-    <polygon points="10,7 7,10 10,13 13,10" fill = "${secondaryColor}"/>
+    <circle cx="10" cy="10" r="3" fill="${secondaryColor}" />
     </svg>`,
     className: "midpoint",
     iconAnchor: [size / 2, anchor],

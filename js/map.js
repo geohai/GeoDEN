@@ -293,10 +293,13 @@ function submit_YearDelay() {
     document.getElementById("input_yearDelay").value = "";
     document.getElementById("input_yearDelay").placeholder = inputString;
     document.getElementById("current_yearDelay").innerHTML = inputString;
+    deactivate_yearDelay();
     yearDelay = inputInt;
     updateSymbols(activeYear);
   } else {
-    alert("Not in range 0-70");
+    if (inputString) {
+      alert("Not in range 0-70");
+    }
   }
 }
 

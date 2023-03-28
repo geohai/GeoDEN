@@ -106,13 +106,38 @@
   height: 1.3rem;
   border-radius: 3rem;
   border: 0px solid;
-  background-color: rgb(201, 201, 201);
   text-align: center;
   top: -.1rem;
   position: relative;
+  font-weight: 700;
+  transition: all .2s;
 } 
-#submit_YearDelay {
+#input_yearDelay::placeholder {
+  color: rgb(88, 88, 88);
+}
+#input_yearDelay.inactive-button {
+  background-color: rgb(138, 138, 138);
+} 
+#input_yearDelay.active-button {
+  background-color: rgb(224, 224, 224);
+  color: rgb(0, 0, 0);
+}
+#input_yearDelay.inactive-button:hover {
+  background-color: rgb(171, 171, 171);
+} 
+#input_yearDelay.inactive-button:focus {
+  background-color: rgb(171, 171, 171);
+} 
+
+#submit_YearDelay{
   width: 6rem;
   border-radius: 3rem;
   top: 0rem;
 }
+#submit_YearDelay.inactive-button:hover {
+  background-color: rgb(88, 88, 88);
+  color: rgb(185, 185, 185);
+  cursor: default;
+  box-shadow: 0;
+}
+
