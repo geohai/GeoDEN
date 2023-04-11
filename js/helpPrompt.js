@@ -62,13 +62,16 @@ function helpWindowMain() {
     // Title
     helpWindowContent = "<b><font size='6rem'>Dengue Fever</b></br> 1943-2013</font><font size='4rem'>" 
     
-    helpWindowContent += "<br><br><br>The dataset visualized is <a href='https://www.cell.com/trends/microbiology/fulltext/S0966-842X(13)00273-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0966842X13002734%3Fshowall%3Dtrue' target='_blank'><em>Messina et al. 2014</em></a>"
+    helpWindowContent += "<br><br><br><small>The dataset visualized is <a href='https://www.cell.com/trends/microbiology/fulltext/S0966-842X(13)00273-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0966842X13002734%3Fshowall%3Dtrue' target='_blank'><em>Messina et al. 2014</em></a></small>"
 
     helpWindowContent += "<br><br><br><b>Keybindings:</b>"
-    helpWindowContent += "<br>Space: pause/play" + "<br>Up Arrow: Speed-Up Animation" + "<br>Down Arrow: Slow-Down Animation"
-    helpWindowContent +="<br>Right Arrow: Show Next Year" + "<br>Left Arrow: Show Previous Year"
-    
-    helpWindowContent += "<br><br><br><b>Credits:</b>" + "<br>Aidan Marler"
-    helpWindowContent += "<br>Yannik Roell" + "<br>Dr. Thomas Jaenisch" + "<br>Dr. Morteza Karimzadeh</font>" 
+    helpWindowContent += "<br><span class='keybindings'>⎵ <small>Space:</span> pause/play</small>"
+    helpWindowContent += "<br><span class='keybindings'>↑ <small>Up Arrow:</span> Speed-Up Animation</small>" 
+    helpWindowContent +="<span class='keybindings'><br>↓ <small>Down Arrow:</span> Slow-Down Animation</small>"
+    helpWindowContent +="<br><span class='keybindings'>→ <small>Right Arrow:</span> Show Next Year</small>" 
+    helpWindowContent +="<br><span class='keybindings'>← <small>Left Arrow:</span> Show Previous Year</small>"
+
+    helpWindowContent += "<br><br><br><b>Credits:</b>" + "<small><br>Aidan Marler"
+    helpWindowContent += "<br>Yannik Roell" + "<br>Dr. Thomas Jaenisch" + "<br>Dr. Morteza Karimzadeh</font></small>" 
     helpWindowContent += "<br><br><font size='2rem'> and a special thanks to</font><br><font size='4rem'>Dr. Janey Messina</font>"
 }

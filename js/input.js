@@ -1,15 +1,22 @@
 //--VARIABLES--//
 
-// Button Holders
+//-Button Holders-//
+// - serotype toggles
 const button1 = document.getElementById("serotypeCheck_1");
 const button2 = document.getElementById("serotypeCheck_2");
 const button3 = document.getElementById("serotypeCheck_3");
 const button4 = document.getElementById("serotypeCheck_4");
-const midpointButton = document.getElementById("bigMidpointButton");
+// - midpoint toggles
+const focusMidpointButton = document.getElementById("focusMidpointButton");
 const typeMidpointButton = document.getElementById("typeMidpointButton");
+const traceMidpointButton = document.getElementById("traceMidpointButton");
+const soloMidpointButton = document.getElementById("soloMidpointButton");
+// - animation buttons
 const animButton = document.getElementById("playButton");
-const input_yearDelay = document.getElementById('input_yearDelay');
-const submit_YearDelayButton = document.getElementById('submit_YearDelay');
+const input_yearDelay = document.getElementById("input_yearDelay");
+const submit_YearDelayButton = document.getElementById("submit_YearDelay");
+
+const yearInput = document.getElementById("year");
 
 // Input Variables
 let type1_active = 1;
@@ -19,6 +26,12 @@ let type4_active = 1;
 let midpointMode = false;
 let animation_active = false;
 let animSpeed = 300;
+let midpointTrace = false;
+let showEventPoints = true;
+
+// General Variable
+let minYear = 1943;
+let maxYear = 2020;
 
 //--EVENT LISTENERS--//
 
@@ -49,10 +62,10 @@ button4.addEventListener("click", () => {
 });
 
 // Midpoint Toggle
-midpointButton.addEventListener("click", () => {
+focusMidpointButton.addEventListener("click", () => {
   midpointMode = !midpointMode;
-  midpointButton.classList.toggle("active-button", midpointMode);
-  midpointButton.classList.toggle("inactive-button", !midpointMode);
+  focusMidpointButton.classList.toggle("active-button", midpointMode);
+  focusMidpointButton.classList.toggle("inactive-button", !midpointMode);
   updateSymbols(activeYear, (reset = true));
 });
 
@@ -64,6 +77,21 @@ typeMidpointButton.addEventListener("click", () => {
   updateSymbols(activeYear, (reset = true));
 });
 
+// Trace Midpoints Toggle
+traceMidpointButton.addEventListener("click", () => {
+  midpointTrace = !midpointTrace;
+  traceMidpointButton.classList.toggle("active-button", midpointTrace);
+  traceMidpointButton.classList.toggle("inactive-button", !midpointTrace);
+  updateSymbols(activeYear, (reset = true));
+});
+
+// Show Only Midpoints Toggle
+soloMidpointButton.addEventListener("click", () => {
+  showEventPoints = !showEventPoints;
+  soloMidpointButton.classList.toggle("active-button", !showEventPoints);
+  soloMidpointButton.classList.toggle("inactive-button", showEventPoints);
+  updateSymbols(activeYear, (reset = true));
+});
 
 // Animation Toggle
 animButton.addEventListener("click", () => {
@@ -81,7 +109,7 @@ document.addEventListener("keydown", function (event) {
     start_mapAnimation();
   } else if (event.keyCode == "39") {
     event.preventDefault();
-    if (activeYear < 2013) {
+    if (activeYear < 2020) {
       // update variables and visuals to show new year
       activeYear = parseInt(activeYear) + 1;
     } else {
@@ -95,7 +123,7 @@ document.addEventListener("keydown", function (event) {
       // update variables and visuals to show new year
       activeYear = parseInt(activeYear) - 1;
     } else {
-      activeYear = 2013;
+      activeYear = 2020;
     }
     $(".range-slider").val(parseInt(activeYear));
     updateSymbols(activeYear);
@@ -139,9 +167,9 @@ function midpointModeCheck() {
 
 function start_mapAnimation() {
   if (animation_active) {
-    animButton.innerHTML = '<img src="img/pause-solid.svg">';
+    animButton.innerHTML = '<img src="img/pause-solid.svg"><span class="tooltip top">Speed Up: <b>↑</b><br>Slow Down: <b>↓</b><br><br>Stop <b>animation</b></span>';
   } else {
-    animButton.innerHTML = '<img src="img/play-solid.svg">';
+    animButton.innerHTML = '<img src="img/play-solid.svg"><span class="tooltip top">Speed Up: <b>↑</b><br>Slow Down: <b>↓</b><br><br>Start <b>animation</b></span>';
   }
 
   // set speed
@@ -149,7 +177,7 @@ function start_mapAnimation() {
 
   let animateSingleYear = () =>
     setTimeout(function () {
-      if (animation_active && parseInt(activeYear) < 2013) {
+      if (animation_active && parseInt(activeYear) < 2020) {
         delayInMilliseconds = animSpeed;
         updateSymbols(parseInt(activeYear) + 1);
         animateSingleYear();
@@ -158,7 +186,9 @@ function start_mapAnimation() {
       } else {
         animation_active = false;
         start_mapAnimation();
-        if (activeYear==2013){activeYear = 1943;}
+        if (activeYear == 2020) {
+          activeYear = 1943;
+        }
       }
     }, delayInMilliseconds);
 
@@ -167,8 +197,8 @@ function start_mapAnimation() {
   }
 }
 
-input_yearDelay.addEventListener('input', () => {
-  if(input_yearDelay.value){
+input_yearDelay.addEventListener("input", () => {
+  if (input_yearDelay.value) {
     activate_yearDelay();
   } else {
     deactivate_yearDelay();
@@ -188,3 +218,33 @@ function deactivate_yearDelay() {
   submit_YearDelayButton.classList.toggle("active-button", false);
   submit_YearDelayButton.classList.toggle("inactive-button", true);
 }
+
+// On submit, check the value then change the activeYear to the input value
+yearInput.addEventListener("keyup", (event) => {
+  if (event.key == "Enter") {
+    // get input vaue
+    let value = yearInput.value;
+    // if value == nthing, do nothing
+    // if value < 1943 or > 2020, deny input
+    // if value in range,
+    if (parseInt(value) >= minYear && parseInt(value) <= maxYear) {
+      // update slider and symbols
+      $(".range-slider").val(parseInt(value));
+      updateSymbols(parseInt(value));
+      yearInput.blur();
+      return;
+    }
+    if (value == "") {
+      yearInput.blur();
+      return;
+    }
+    alert("Value must be any year from 1943 to 2020");
+  }
+  event.preventDefault(); // prevent form from submitting
+  // do something here
+});
+
+// On stop focus on the yearInput box, just show the default value
+yearInput.addEventListener("blur", (event) => {
+  yearInput.value = "";
+});

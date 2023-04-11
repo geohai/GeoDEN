@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/layout_style.css" />
     <link rel="stylesheet" href="css/map_style.css" />
     <link rel="stylesheet" href="css/input_style.css" />
+    <link rel="stylesheet" href="css/tooltips.css" />
     <link rel="stylesheet" href="css/helpWindows.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
@@ -18,10 +19,29 @@
     <div id="helpWindow_main" class="helpWindow"></div>
     <!--Headings-->
     <div id="headings">
-      <h1 id="heading">Dengue Fever</h1>
-      <h1 id="subheading">1943 to 2013</h2>
-      <div id="div_yearDelay"><h3 id="label_yearDelay">Year Delay <br><i id="current_yearDelay">0</i></h3></div>
-      
+      <h1 id="title">Dengue Fever</h1>
+      <input
+        id="year"
+        type="text"
+        placeholder="1943"
+        minlength="4"
+        maxlength="4"
+      />
+      <div id="dataWarning">
+        <img
+          class="data-warning-icon"
+          src="img/triangle-exclamation-solid.svg"
+        /><span class="tooltip dataTooltip"
+          >Data from 1943-2013 comes from Messina et al. 2014. In this
+        </span>
+      </div>
+    </div>
+    <div id="div_yearDelay">
+      <div id="label_yearDelay">Year Delay:</div>
+      <i id="current_yearDelay">0</i>
+      <span class="tooltip bottom"
+          >Data from 1943-2013 comes from Messina et al. 2014. In this
+        </span>
     </div>
     <div id="controlBar_top">
       <!--Create divs for a help icon and a help window-->
@@ -29,21 +49,69 @@
       <!--Serotype Toggle Buttons-->
       <div class="control_div" id="serotypeToggles">
         <!--Type 1-->
-        <button class="button active-button" id="serotypeCheck_1">1</button>
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_1"
+        >
+          1<span class="tooltip bottom">Toggle Serotype <b>1</b></span>
+        </button>
         <!--Type 2-->
-        <button class="button active-button" id="serotypeCheck_2">2</button>
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_2"
+        >
+          2<span class="tooltip bottom">Toggle Serotype <b>2</b></span>
+        </button>
         <!--Type 3-->
-        <button class="button active-button" id="serotypeCheck_3">3</button>
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_3"
+        >
+          3<span class="tooltip bottom">Toggle Serotype <b>3</b></span>
+        </button>
         <!--Type 4-->
-        <button class="button active-button" id="serotypeCheck_4">4</button>
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_4"
+        >
+          4<span class="tooltip bottom">Toggle Serotype <b>4</b></span>
+        </button>
       </div>
       <!--Midpoint Toggle Button-->
       <div class="control_div" id="midpointToggle">
-        <button class="button midpointButton inactive-button" id="bigMidpointButton">
-          big midpoints
+        midpoints
+        <button
+          class="button midpointButton inactive-button"
+          id="soloMidpointButton"
+        >
+          solo
+          <span class="tooltip bottom"><b>Only show</b> midpoints</span>
         </button>
-        <button class="button midpointButton inactive-button" id="typeMidpointButton">
-          serotype midpoints
+        <button
+          class="button midpointButton inactive-button"
+          id="focusMidpointButton"
+        >
+          focus
+          <span class="tooltip bottom">Make midpoints <b>big</b></span>
+        </button>
+        <button
+          class="button midpointButton inactive-button"
+          id="traceMidpointButton"
+        >
+          trace
+          <span class="tooltip bottom"
+            >When <b>delay >= 1</b>, draw a line <em>tracing</em> each
+            midpoint's position over time</span
+          >
+        </button>
+        <button
+          class="button midpointButton inactive-button"
+          id="typeMidpointButton"
+        >
+          serotype
+          <span class="tooltip bottom"
+            >Calculate a midpoint for <b>each serotype</b></span
+          >
         </button>
       </div>
     </div>
@@ -54,6 +122,7 @@
       <div class="control_div" id="animationControls">
         <button class="button inactive-button" id="playButton">
           <img src="img/play-solid.svg" />
+          <span class="tooltip top">Speed Up: <b>↑</b><br>Slow Down: <b>↓</b><br><br>Start <b>animation</b></span>
         </button>
       </div>
       <!--Year Delay-->
@@ -71,31 +140,38 @@
           id="submit_YearDelay"
         >
           set delay
+          <span class="tooltip top">Delay how many years before points are removed</span>
         </button>
       </div>
     </div>
 
-    <!--Map Divs-->
-    <div id="map"></div>
-    
+    <!--Panel Divs-->
+    <div class="panelDiv" id="map"></div>
+    <div class="panelDiv" id="stats"></div>
+    <div class="panelDiv" id="gantt"></div>
+    <div class="panelDiv" id="nodeLink"></div>
 
     <!--External JS Scripts-->
-    <script type="text/javascript" src="lib/leaflet.js"></script>
     <!--Leaflet-->
-    <script type="text/javascript" src="lib/jquery-3.6.1.js"></script>
+    <script type="text/javascript" src="lib/leaflet.js"></script>
     <!--JQuery-->
-    <script type="text/javascript" src="lib/papaparse.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.6.1.js"></script>
     <!--papaparse-->
+    <script type="text/javascript" src="lib/papaparse.min.js"></script>
+    <!--DB Scan-->
+    <script type="text/javascript" src="lib/jDBScan.js"></script>
+    <!--simple statistics-->
     <!--this is to solve an error that arrises where "exports is not defined" modules like commonJS or something would also fix it, but this was easier and I think less costly-->
     <script>
       var exports = {};
     </script>
     <script type="text/javascript" src="lib/simple-statistics.js"></script>
-    <!--simple statistics-->
+
     <!--Internal JS Scripts-->
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/input.js"></script>
     <script type="text/javascript" src="js/helpPrompt.js"></script>
+    <script type="text/javascript" src="js/dbScan.js"></script>
   </body>
 </html>

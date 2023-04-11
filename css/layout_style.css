@@ -1,18 +1,42 @@
-#map {
+.panelDiv {
+  border-radius: 3vmin;
+  border: solid rgba(0, 0, 0, 0.7) 0.5vmin;
+  outline-offset: 5vmin;
   display: inline-block;
   position: absolute;
-  width: 97.4%;
-  bottom: 3.5rem;
-  top: 8rem;
+  z-index: 9;
+}
+#map {
+  right: 20%;
+  bottom: 3rem;
+  top: 42%;
   left: 1%;
-  border-radius: 3vmin;
-  border: solid rgba(0, 0, 0, .7) 0.5vmin;
-  outline-offset: 5vmin;
+}
+
+#gantt {
+  right: 1%;
+  bottom: 59%;
+  top: 6.7rem;
+  left: 80.5%;
+}
+
+#stats {
+  right: 1%;
+  bottom: 3rem;
+  top: 42%;
+  left: 80.5%;
+}
+
+#nodeLink {
+  right: 20%;
+  bottom: 59%;
+  top: 6.7rem;
+  left: 1%;
 }
 
 #headings {
-  top:0rem;
-  bottom:3rem;
+  top: 0rem;
+  height: 1rem;
   margin: auto;
 }
 
@@ -23,7 +47,7 @@
   background-color: rgb(59, 59, 59);
   border: solid rgb(100, 100, 100, 0) 0.5vmin;
   height: 2rem;
-  top: 5rem;
+  top: 4rem;
   border-radius: 2.3rem;
 }
 
@@ -34,7 +58,7 @@
   background-color: rgb(59, 59, 59);
   border: solid rgb(100, 100, 100, 0) 0.5vmin;
   height: 2rem;
-  bottom: 1%;
+  bottom: 0.3rem;
   border-radius: 2.3rem;
 }
 
@@ -47,17 +71,16 @@
   width: 8.5rem;
   line-height: 2rem;
   text-align: center;
-  z-index: 99;
+  z-index: 999;
   cursor: default;
   right: 4.5rem;
   margin: auto;
 }
 
 #midpointToggle {
-    position: relative;
-    bottom: 100%;
-  }
-  
+  position: relative;
+}
+
 .control_div {
   position: relative;
   background-color: rgb(5, 5, 5);
@@ -72,23 +95,30 @@
 }
 
 #serotypeToggles {
+  position: absolute;
   line-height: 1.8rem;
   right: 0rem;
 }
 
 #midpointToggle {
+  position: absolute;
   line-height: 2rem;
-  left: 15.1rem;
-  width: 20.5rem;
+  letter-spacing: 0.1rem;
+  right: 9rem;
+  width: 24.8rem;
+  color: rgb(168, 168, 168);
+  font-style: italic;
+  z-index: 998;
+  border-left: 0.5rem solid black;
 }
 
 #timelineControls {
-    right: 20rem;
-    background-color: rgb(115, 115, 115,0);
+  right: 20rem;
+  background-color: rgb(115, 115, 115, 0);
 }
 #animationControls {
   line-height: 2rem;
-  bottom: 100%
+  bottom: 100%;
 }
 
 #yearDelayControls {

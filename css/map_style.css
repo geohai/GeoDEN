@@ -5,8 +5,8 @@
   padding: 5px;
   line-height: 33px;
   text-align: center;
-  border: solid gray .1rem;
-  border-radius: .5rem;
+  border: solid gray 0.1rem;
+  border-radius: 0.5rem;
 }
 
 .legend-control-container {
@@ -32,11 +32,9 @@
   cursor: grabbing;
 }
 
-
 .step {
   width: 60px;
 }
-
 
 .step img {
   width: 100%;
@@ -48,45 +46,106 @@
 }
 
 .serotype {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .midpoint {
   opacity: 1;
 }
 
-#heading {
+#title {
+  color: rgb(130, 130, 130);
   position: absolute;
-  left: 2%;
-  font-weight: 100;
-  font-size: 140%;
+  right: 1rem;
+  font-weight: lighter;
+  font-size: 1.8rem;
+  top: -0.4rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: right;
 }
 
-#subheading {
-  position: relative;
-  font-size: 300%;
-  font-weight: bold;
-  letter-spacing: .5vmin;
-  color: rgb(229, 229, 229);
-  right: 2%;
-  text-align: right;
-  bottom: .5rem;
+#year {
+  position: absolute;
+  font-size: 2.6rem;
+  height: 2.7rem;
+  width: 10rem;
+  font-weight: lighter;
+  letter-spacing: 0.5rem;
+  color: rgb(0, 0, 0);
+  left: 1rem;
+  text-align: center;
+  top: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 1rem;
+  border: solid 0.1rem rgb(211, 211, 211);
+  background-color: rgb(211, 211, 211);
+  transition: all 0.2s ease;
+}
+#year::placeholder {
+  color: rgb(0, 0, 0);
+}
+#year:focus::placeholder {
+  color: rgb(112, 112, 112);
+}
+#year:focus,
+#year:focus:hover {
+  border: solid 0.1rem rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+#year:hover {
+  border: solid 0.1rem rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+#dataWarning {
+  position: absolute;
+  font-size: 1rem;
+  left: 12rem;
+  top: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.data-warning-icon {
+  filter: grayscale(1) invert(.3);
+  height: 2.2rem;
+  transition: all 0.2s ease;
+}
+
+#dataWarning.yearWarn .data-warning-icon {
+  filter: grayscale(0) invert(0);
+}
+
+.data-warning-icon:hover {
+  filter: grayscale(.8) invert(.5);
+}
+
+#dataWarning.yearWarn .data-warning-icon:hover {
+  filter: grayscale(.7) invert(.1);
 }
 
 #div_yearDelay {
-  position: relative;
-  width: 20rem;
-  height: 3rem;
+  position: absolute;
+  width: 10rem;
+  height: 2.7rem;
   text-align: center;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
-  bottom: 6rem;
+  border-radius: 1rem;
+  top: .5rem;
+  left: 14.7rem;
+  border: solid 0.1rem rgb(121, 121, 121);
+  background-color: rgb(121, 121, 121);
+  border-width: 0.1rem;
+  line-height: 0rem;
+  font-size: 0.9rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: default;
 }
 
 body {
   color: rgb(140, 140, 140);
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #background {
@@ -111,19 +170,33 @@ body {
   cursor: pointer;
 }
 
-#current_yearDelay {
-  font-size: 150%;
-  font-style: normal;
-  font-weight: bold;
-  color: rgb(229, 229, 229);
+#label_yearDelay {
+  position: absolute;
+  font-style: italic;
+  font-weight: 100 !important;
+  letter-spacing: 0.05rem;
+  font-size: 110%;
+  line-height: 2.7rem;
+  text-align: left;
+  left: 0.8rem;
+  color: rgb(0, 0, 0);
 }
 
-#label_yearDelay {
-  font-style: italic;
-  font-weight: 200;
-  font-size: 100%;
+#current_yearDelay {
+  position: absolute;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: normal;
+  color: rgb(0, 0, 0);
+  line-height: 2.5rem;
+  right: 1.1rem;
+  text-align: left;
 }
 
 #submit_YearDelay {
   cursor: pointer;
+}
+
+#map {
+  z-index: 9;
 }

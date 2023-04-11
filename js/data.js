@@ -46,11 +46,12 @@ let category1 = [
     "Antigua and Barbuda",
     "St. Vincent & the Grenadines",
     "Cayman Islands",
-  ],
-  {},
-  [],
-  "Americas",
-  "#ffffff",
+  ], // 0: country list
+  {}, // 1: data points as a dictionary of layer groups, key representing the years
+  [], // 2: midpoint layergroup
+  "Americas", // 3: name
+  "#ffffff", // 4: color
+  // 5: polyline layergroup
 ];
 // Africa
 let category2 = [
@@ -119,7 +120,6 @@ let category3 = [
     "Australia",
     "Bangladesh",
     "Bhutan",
-    "French Guiana",
     "Brunei Darussalam",
     "China",
     "Taiwan",
@@ -151,7 +151,7 @@ let serotypeMidpoints = false;
 
 //Import data, add it to the map, and add sequence controls
 function getData(map) {
-  $.get("data/DENV_types.csv", function (csvString) {
+  $.get("data/DENV_combined.csv", function (csvString) {
     // Use PapaParse to convert string to array of objects
     let data = Papa.parse(csvString, {
       header: true,
@@ -160,7 +160,7 @@ function getData(map) {
 
     // Make the dataset keys as the years to hold all datapoints for each year
     dataset = {};
-    for (let i = 1943; i < 2014; i++) {
+    for (let i = 1943; i < 2021; i++) {
       dataset[i] = [];
     }
 
@@ -198,7 +198,7 @@ function updateSymbols(index, reset = false) {
   // calc statistics--essentially just count number of points of each serotype
 
   // make central point
-  calculateMidpoint();
+  startMidpointCalculation();
   // for each object in each category...
   // for each leaflet marker in each category...
   // if type 1 is present && type1_active || type 2 is present and type2_active ||...
@@ -223,6 +223,11 @@ function removeUnnecessaryPoints(reset) {
       categoryGroups[category][2] = [];
 
       //delete categoryGroups[category][2]
+    }
+    // clear midpoints trace polylines
+    if (categoryGroups[category][5]) {
+      categoryGroups[category][5].clearLayers();
+      delete categoryGroups[category][5];
     }
 
     // if reset, remove all years
@@ -271,7 +276,9 @@ function selectPoints() {
         }
         // add the generated layer group to the category object and the map
         categoryGroups[category][1][year] = L.layerGroup(points);
-        categoryGroups[category][1][year].addTo(map);
+        if (showEventPoints) {
+          categoryGroups[category][1][year].addTo(map);
+        }
       }
     }
   }
@@ -292,7 +299,7 @@ function getDataPoints(year, categoryList) {
 }
 
 //funciton to calculate midpoints of category
-function calculateMidpoint() {
+function startMidpointCalculation() {
   let categories;
   if (regionalMidpoints) {
     categories = categoryGroups;
@@ -306,8 +313,10 @@ function calculateMidpoint() {
     let years = categories[category][1];
     // choose between serotype or sum midpoints
     if (serotypeMidpoints) {
+      // midpoint for each serotype in each category
       calcMidpointBySerotype(latitudes, longitudes, years, categories);
     } else {
+      // midpoint for whole category, regardless of serotype
       calcMidpointSumSerotypes(latitudes, longitudes, years, categories);
     }
   }
@@ -315,50 +324,128 @@ function calculateMidpoint() {
 
 // Plot a midpoint that shows midpoint of category, regardless of Serotype
 function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
-  // for each year, add it to the array to combine if type is active
-  for (year in years) {
-    let layers = years[year]._layers;
-    for (layer in layers) {
-      if (layers[layer].options.options[1] * type1_active == 1) {
-        latitudes.push(layers[layer]._latlng.lat);
-        longitudes.push(layers[layer]._latlng.lng);
-      } else if (layers[layer].options.options[2] * type2_active == 1) {
-        latitudes.push(layers[layer]._latlng.lat);
-        longitudes.push(layers[layer]._latlng.lng);
-      } else if (layers[layer].options.options[3] * type3_active == 1) {
-        latitudes.push(layers[layer]._latlng.lat);
-        longitudes.push(layers[layer]._latlng.lng);
-      } else if (layers[layer].options.options[4] * type4_active == 1) {
-        latitudes.push(layers[layer]._latlng.lat);
-        longitudes.push(layers[layer]._latlng.lng);
+  // tracer or sum point?
+  if (midpointTrace) {
+    let tracePointArray = [];
+    for (year in years) {
+      let layers = years[year]._layers;
+      let latitudes = [];
+      let longitudes = [];
+      for (layer in layers) {
+        if (layers[layer].options.options[1] * type1_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[2] * type2_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[3] * type3_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[4] * type4_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        }
+      }
+      //console.log(year);
+      //console.log(latitudes);
+      if (latitudes.length > 0) {
+        tracePointArray.push([mean(latitudes), mean(longitudes)]);
+      }
+      if (year == activeYear) {
+        plotMidpoint(latitudes, longitudes, categories, "");
       }
     }
+
+    if (tracePointArray.length > 1) {
+      let polyline = L.polyline(tracePointArray, {
+        color: categories[category][4],
+      });
+      categories[category][5] = L.layerGroup([polyline]);
+      categories[category][5].addTo(map);
+    }
+  } else {
+    // for each year, add it to the array to combine if type is active
+    for (year in years) {
+      let layers = years[year]._layers;
+      for (layer in layers) {
+        if (layers[layer].options.options[1] * type1_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[2] * type2_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[3] * type3_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        } else if (layers[layer].options.options[4] * type4_active == 1) {
+          latitudes.push(layers[layer]._latlng.lat);
+          longitudes.push(layers[layer]._latlng.lng);
+        }
+      }
+    }
+    plotMidpoint(latitudes, longitudes, categories, "");
   }
-  plotMidpoint(latitudes, longitudes, categories, "");
 }
 
 // Plot a midpoint that shows midpoint of category's serotype
 function calcMidpointBySerotype(latitudes, longitudes, years, categories) {
+  traceGroup = [];
   // for each year, add it to the array to combine if type is active
-
   function setupMidpointCalc(type, typeInt, typeColor) {
     // If type is active
     if (type) {
       // set lat and lon to empty
       latitudes = [];
       longitudes = [];
+      let tracePointArray = [];
+
       // for each year
       for (year in years) {
-        let layers = years[year]._layers;
-        for (layer in layers) {
-          // if present, add lat and lon to array
-          if (layers[layer].options.options[typeInt] * type == 1) {
-            latitudes.push(layers[layer]._latlng.lat);
-            longitudes.push(layers[layer]._latlng.lng);
+        // trace active
+        if (midpointTrace /* && year != activeYear*/) {
+          // reset lat and lng
+          latitudes = [];
+          longitudes = [];
+          //continue; // skip the rest of the loop and move to the next year
+          let layers = years[year]._layers;
+          for (layer in layers) {
+            // if present, add lat and lon to array
+            if (layers[layer].options.options[typeInt] * type == 1) {
+              latitudes.push(layers[layer]._latlng.lat);
+              longitudes.push(layers[layer]._latlng.lng);
+            }
+          }
+          if (latitudes.length > 0) {
+            tracePointArray.push([mean(latitudes), mean(longitudes)]);
+          }
+        }
+        // trace inactive
+        else {
+          let layers = years[year]._layers;
+          for (layer in layers) {
+            // if present, add lat and lon to array
+            if (layers[layer].options.options[typeInt] * type == 1) {
+              latitudes.push(layers[layer]._latlng.lat);
+              longitudes.push(layers[layer]._latlng.lng);
+            }
           }
         }
       }
-      plotMidpoint(latitudes, longitudes, categories, String(typeInt), typeColor);
+
+      if (tracePointArray.length > 1) {
+        let polyline = L.polyline(tracePointArray, {
+          color: typeColor,
+        });
+        traceGroup.push(polyline);
+      }
+
+      plotMidpoint(
+        latitudes,
+        longitudes,
+        categories,
+        String(typeInt),
+        typeColor
+      );
     }
   }
 
@@ -370,9 +457,19 @@ function calcMidpointBySerotype(latitudes, longitudes, years, categories) {
   setupMidpointCalc(type3_active, 3, type3_color);
   // serotype 4
   setupMidpointCalc(type4_active, 4, type4_color);
+
+  categories[category][5] = L.layerGroup(traceGroup);
+  categories[category][5].addTo(map);
 }
 
-function plotMidpoint(latitudes, longitudes, categories, additionalInfo, typeColor) {
+// function to plot a midpoint given a set of lat an lngs, cats
+function plotMidpoint(
+  latitudes,
+  longitudes,
+  categories,
+  additionalInfo,
+  typeColor
+) {
   // As long as 1 point is in the list, make a midpoint
   if (latitudes.length > 0) {
     let avg_lat = mean(latitudes);
@@ -389,13 +486,20 @@ function plotMidpoint(latitudes, longitudes, categories, additionalInfo, typeCol
       avg_lng,
       categories[category][3],
       color,
-      color = categories[category][4],
+      (color = categories[category][4]),
       additionalInfo
     );
     categories[category][2].push(layerGroup);
     categories[category][2][categories[category][2].length - 1].addTo(map);
   }
 }
+
+// function to plot a polyline based on midpoint
+function plotMidpointTracer() {}
+function midpointSumSerotypesPoint() {}
+function midpointSumSerotypesTrace() {}
+function midpointBySerotypesPoint() {}
+function midpointBySerotypesPoint() {}
 
 // uses calculated midpoint to make a midpoint icon and add it to the map
 function midpointToPointLayer(

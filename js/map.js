@@ -21,7 +21,7 @@ const type4_color = "#26670A";
 function createMap() {
   // Set up initial map center and zoom level
   map = L.map("map", {
-    center: [0, 0], // EDIT latitude, longitude to re-center map
+    center: [-10, 37], // EDIT latitude, longitude to re-center map
     zoom: 2, // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
     minZoom: 2,
   });
@@ -129,7 +129,7 @@ function createSequenceControls() {
   map.addControl(new SequenceControl());
 
   $(".range-slider").attr({
-    max: 2013,
+    max: 2020,
     min: 1943,
     value: 0,
     step: 1,
@@ -143,11 +143,11 @@ function createSequenceControls() {
     if ($(this).attr("id") == "forward") {
       index++;
       //Step 7: if past the last attribute, wrap around to first attribute
-      index = index > 2013 ? 1943 : index;
+      index = index > 2020 ? 1943 : index;
     } else if ($(this).attr("id") == "reverse") {
       index--;
       //Step 7: if past the first attribute, wrap around to last attribute
-      index = index < 1943 ? 2013 : index;
+      index = index < 1943 ? 2020 : index;
     }
 
     //Step 8: update slider
@@ -168,7 +168,12 @@ function createSequenceControls() {
 // update heading to show current year
 function updateHeadingContent() {
   //add formatted attribute to panel content string
-  document.getElementById("subheading").innerHTML = activeYear;
+  document.getElementById("year").placeholder = activeYear;
+  if (activeYear > 2013) {
+    document.getElementById("dataWarning").classList.toggle("yearWarn", true);
+  } else {
+    document.getElementById("dataWarning").classList.toggle("yearWarn", false);
+  }
 }
 
 // ---- Designing Points ---- //
@@ -266,6 +271,32 @@ function createIcon(type1, type2, type3, type4) {
   let slice_type2 = template(type2_color, slices * type2 * calcOrder(2));
   let slice_type1 = template(type1_color, slices * type1 * calcOrder(1));
 
+
+  
+  let offset = (nTypes) => {
+    if (nTypes == 1) {
+      if (midpointMode) {
+        return diameter/2 + 6
+      } else {
+        return diameter/2
+      }
+    }
+    if (nTypes == 2) {
+      return 1
+    }
+    if (nTypes == 3) {
+      if (midpointMode) {
+        return diameter/2 + 3
+      } else {
+        return diameter/2
+      }
+      
+    }
+    if (nTypes == 4) {
+      return diameter/2
+    }
+  }
+
   icon = L.divIcon({
     html: `<svg height="${diameter}" width="${diameter}" viewBox="0 0 20 20"
     >
@@ -279,7 +310,7 @@ function createIcon(type1, type2, type3, type4) {
     
     </svg>`,
     className: "serotype",
-    iconAnchor: [diameter / 2, diameter / 2],
+    iconAnchor: [diameter / 2, offset(nTypes)],
   });
 
   return icon;
@@ -289,7 +320,7 @@ function createIcon(type1, type2, type3, type4) {
 function submit_YearDelay() {
   var inputString = document.getElementById("input_yearDelay").value;
   var inputInt = parseInt(inputString);
-  if (inputInt <= 70 && inputInt >= 0) {
+  if (inputInt <= 77 && inputInt >= 0) {
     document.getElementById("input_yearDelay").value = "";
     document.getElementById("input_yearDelay").placeholder = inputString;
     document.getElementById("current_yearDelay").innerHTML = inputString;
@@ -298,7 +329,7 @@ function submit_YearDelay() {
     updateSymbols(activeYear);
   } else {
     if (inputString) {
-      alert("Not in range 0-70");
+      alert("Not in range 0-77");
     }
   }
 }

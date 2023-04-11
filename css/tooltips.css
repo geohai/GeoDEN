@@ -1,0 +1,47 @@
+.tooltip {
+  visibility: hidden;
+  background-color: rgb(198, 198, 198);
+  width: 10rem;
+  height: fit-content;
+  color: #000000;
+  text-align: center;
+  border-radius: .5rem;
+  padding: .2rem .2rem;
+  position: absolute;
+  z-index: 99999;
+  left: 50%;
+  margin-left: -60px;
+  cursor: default;
+  font-size: 1rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity .4s ;
+  transition-delay: .3s;
+}
+
+.tooltip.bottom {
+    top: 110%;
+    margin-left: -8rem;
+}
+
+.tooltip.top {
+  bottom: 110%;
+  margin-left: -5rem;
+}
+
+.button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.serotypeSwitch .tooltip {
+    margin-left: -8rem;
+}
+
+.tooltip.dataTooltip {
+  top: 110%;
+  margin-left: 0rem;
+  z-index: 999999;
+}
