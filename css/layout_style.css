@@ -1,6 +1,7 @@
 .panelDiv {
   border-radius: 3vmin;
-  border: solid rgba(0, 0, 0, 0.7) 0.5vmin;
+  background-color: rgb(59, 59, 59);
+  border: solid rgb(100, 100, 100, 0) 0.5vmin;
   outline-offset: 5vmin;
   display: inline-block;
   position: absolute;
@@ -11,6 +12,7 @@
   bottom: 3rem;
   top: 42%;
   left: 1%;
+  border: solid rgba(0, 0, 0, 0.7) 0.5vmin;
 }
 
 #gantt {
