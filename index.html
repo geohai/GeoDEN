@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>DENV test</title>
+    <title>Dengue Fever</title>
 
     <!--put your external stylesheet links here-->
     <link rel="stylesheet" href="css/layout_style.css" />
@@ -20,63 +20,44 @@
     <!--Headings-->
     <div id="headings">
       <h1 id="title">Dengue Fever</h1>
-      <input
-        id="year"
-        type="text"
-        placeholder="1943"
-        minlength="4"
-        maxlength="4"
-      />
-      <div id="dataWarning">
-        <img
-          class="data-warning-icon"
-          src="img/triangle-exclamation-solid.svg"
-        /><span class="tooltip dataTooltip"
-          >Data from 1943-2013 comes from Messina et al. 2014. In this
+      <div class="yearInputDiv">
+        <input
+          id="year"
+          type="text"
+          placeholder="1943"
+          minlength="4"
+          maxlength="4"
+        />
+        <span class="tooltip bottom"
+          ><b>1943-2013</b> data comes from Messina et al. 2014.
         </span>
       </div>
     </div>
+    <div id="dataWarning">
+      <img
+        class="data-warning-icon"
+        src="img/triangle-exclamation-solid.svg"
+      /><span class="tooltip dataTooltip"
+        ><b>1943-2013</b> data comes from Messina et al. 2014. <br />
+        It was collected over the entireworld for research purposes.
+        <br /><br /><b>2014-2020</b> data was instead collected for only certain
+        countries.<br /><br />
+      </span>
+    </div>
+
     <div id="div_yearDelay">
       <div id="label_yearDelay">Year Delay:</div>
       <i id="current_yearDelay">0</i>
       <span class="tooltip bottom"
-          >Data from 1943-2013 comes from Messina et al. 2014. In this
-        </span>
+        >Data from 1943-2013 comes from Messina et al. 2014. In this
+      </span>
     </div>
     <div id="controlBar_top">
       <!--Create divs for a help icon and a help window-->
-      <div id="helpIcon_main" class="helpIcon">?</div>
-      <!--Serotype Toggle Buttons-->
-      <div class="control_div" id="serotypeToggles">
-        <!--Type 1-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_1"
-        >
-          1<span class="tooltip bottom">Toggle Serotype <b>1</b></span>
-        </button>
-        <!--Type 2-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_2"
-        >
-          2<span class="tooltip bottom">Toggle Serotype <b>2</b></span>
-        </button>
-        <!--Type 3-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_3"
-        >
-          3<span class="tooltip bottom">Toggle Serotype <b>3</b></span>
-        </button>
-        <!--Type 4-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_4"
-        >
-          4<span class="tooltip bottom">Toggle Serotype <b>4</b></span>
-        </button>
-      </div>
+      <button id="helpIcon_main" class="helpIcon button">
+        ?<span class="tooltip">Help</span>
+      </button>
+
       <!--Midpoint Toggle Button-->
       <div class="control_div" id="midpointToggle">
         midpoints
@@ -114,6 +95,37 @@
           >
         </button>
       </div>
+      <!--Serotype Toggle Buttons-->
+      <div class="control_div" id="serotypeToggles">
+        <!--Type 1-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_1"
+        >
+          1<span class="tooltip bottom">Toggle Serotype <b>1</b></span>
+        </button>
+        <!--Type 2-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_2"
+        >
+          2<span class="tooltip bottom">Toggle Serotype <b>2</b></span>
+        </button>
+        <!--Type 3-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_3"
+        >
+          3<span class="tooltip bottom">Toggle Serotype <b>3</b></span>
+        </button>
+        <!--Type 4-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_4"
+        >
+          4<span class="tooltip bottom">Toggle Serotype <b>4</b></span>
+        </button>
+      </div>
     </div>
     <div id="controlBar_bottom">
       <!--Timeline-->
@@ -122,7 +134,10 @@
       <div class="control_div" id="animationControls">
         <button class="button inactive-button" id="playButton">
           <img src="img/play-solid.svg" />
-          <span class="tooltip top">Speed Up: <b>↑</b><br>Slow Down: <b>↓</b><br><br>Start <b>animation</b></span>
+          <span class="tooltip top"
+            >Speed Up: <b>↑</b><br />Slow Down: <b>↓</b><br /><br />Start
+            <b>animation</b></span
+          >
         </button>
       </div>
       <!--Year Delay-->
@@ -140,7 +155,9 @@
           id="submit_YearDelay"
         >
           set delay
-          <span class="tooltip top">Delay how many years before points are removed</span>
+          <span class="tooltip top"
+            >Delay how many years before points are removed</span
+          >
         </button>
       </div>
     </div>
@@ -173,5 +190,6 @@
     <script type="text/javascript" src="js/input.js"></script>
     <script type="text/javascript" src="js/helpPrompt.js"></script>
     <script type="text/javascript" src="js/dbScan.js"></script>
+    <script type="text/javascript" src="js/caculateStats.js"></script>
   </body>
 </html>
