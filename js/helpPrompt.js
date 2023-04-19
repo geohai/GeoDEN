@@ -17,7 +17,7 @@ function helpWindowMain() {
         // If the prompt was open, close it by changing the icon, 
         //      moving the promp below the background, and setting isOpen as false
         if (isOpen === true) {
-            helpIcon.innerHTML = "?"
+            helpIcon.innerHTML = "?<span class='tooltip'>Help</span>"
             helpWindow.style.zIndex = (-2);
             isOpen = false;
             //make yellow

@@ -1,0 +1,49 @@
+#statSheet {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.headerText {
+    color: rgb(221, 221, 221);
+    font-size: 1.05rem;
+    text-align: center;
+}
+.headerText .big {
+    font-size: 1.3rem;
+}
+
+.typeStats {
+    border-radius: 1rem;
+    margin: .5rem;
+    padding: .1rem;
+    padding-left: .6rem;
+    border: solid .2rem;
+    transition: all ease .1s;
+}
+.typeStats.active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(41, 41, 41);
+}
+
+.typeStats.inactive {
+    border-color: rgba(0, 0, 0, 0);
+}
+.typeStats.value {
+    font-size: large;
+}
+
+.typeStats.t1.active {
+    border-color: rgba(212, 177, 0, 0.7);
+}
+
+.typeStats.t2.active {
+    border-color: rgb(179, 45, 157, 0.7);
+}
+
+.typeStats.t3.active {
+    border-color: rgb(33, 190, 230, 0.7);
+}
+
+.typeStats.t4.active {
+    border-color: rgb(38, 103, 10, 0.7);
+}

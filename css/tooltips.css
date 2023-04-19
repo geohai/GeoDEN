@@ -5,25 +5,25 @@
   height: fit-content;
   color: #000000;
   text-align: center;
-  border-radius: .5rem;
-  padding: .2rem .2rem;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.2rem;
   position: absolute;
   z-index: 99999;
   left: 50%;
   margin-left: -60px;
   cursor: default;
   font-size: 1rem;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
   opacity: 0;
-  transition: opacity .4s ;
-  transition-delay: .3s;
+  transition: opacity 0.4s;
+  transition-delay: 0.3s;
 }
 
 .tooltip.bottom {
-    top: 110%;
-    margin-left: -8rem;
+  top: 110%;
+  margin-left: -8rem;
 }
 
 .tooltip.top {
@@ -37,11 +37,40 @@
 }
 
 .serotypeSwitch .tooltip {
-    margin-left: -8rem;
+  margin-left: -8rem;
 }
 
 .tooltip.dataTooltip {
   top: 110%;
-  margin-left: 0rem;
+  margin-left: -1rem;
   z-index: 999999;
+}
+
+
+
+#dataWarning:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  padding: 0.5rem 1rem;
+  width: 22rem;
+}
+
+#title:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.helpIcon:hover .tooltip{
+  width: 3rem;
+  top: 110%;
+  margin-left: -1rem;
+}
+
+#year:hover .yearInputDiv.tooltip{
+  visibility: visible;
+  opacity: 1;
+  width: 100rem;
+  height: 100rem;
+  color: red;
+  z-index: 99999;
 }

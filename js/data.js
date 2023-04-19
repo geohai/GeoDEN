@@ -160,7 +160,7 @@ function getData(map) {
 
     // Make the dataset keys as the years to hold all datapoints for each year
     dataset = {};
-    for (let i = 1943; i < 2021; i++) {
+    for (let i = minYear; i < (maxYear+1); i++) {
       dataset[i] = [];
     }
 
@@ -208,6 +208,9 @@ function updateSymbols(index, reset = false) {
 
   // Update Header
   updateHeadingContent();
+
+  // Function to update the other 3 panels!
+  calculateStats();
 }
 
 // function to find years that are not relavent, and remove them from the list and clear from the map

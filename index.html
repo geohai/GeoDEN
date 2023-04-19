@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/input_style.css" />
     <link rel="stylesheet" href="css/tooltips.css" />
     <link rel="stylesheet" href="css/helpWindows.css" />
+    <link rel="stylesheet" href="css/statsPanel.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
 
@@ -28,7 +29,7 @@
           minlength="4"
           maxlength="4"
         />
-        <span class="tooltip bottom"
+        <span class="tooltip top"
           ><b>1943-2013</b> data comes from Messina et al. 2014.
         </span>
       </div>
@@ -164,7 +165,9 @@
 
     <!--Panel Divs-->
     <div class="panelDiv" id="map"></div>
-    <div class="panelDiv" id="stats"></div>
+    <div class="panelDiv" id="stats">
+      <p id="statSheet"></p>
+    </div>
     <div class="panelDiv" id="gantt"></div>
     <div class="panelDiv" id="nodeLink"></div>
 

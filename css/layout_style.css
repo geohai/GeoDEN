@@ -9,7 +9,7 @@
 }
 #map {
   right: 20%;
-  bottom: 3rem;
+  bottom: 3.1rem;
   top: 42%;
   left: 1%;
   border: solid rgba(0, 0, 0, 0.7) 0.5vmin;
@@ -18,13 +18,13 @@
 #gantt {
   right: 1%;
   bottom: 59%;
-  top: 6.7rem;
+  top: 6.8rem;
   left: 80.5%;
 }
 
 #stats {
   right: 1%;
-  bottom: 3rem;
+  bottom: 3.1rem;
   top: 42%;
   left: 80.5%;
 }
@@ -32,7 +32,7 @@
 #nodeLink {
   right: 20%;
   bottom: 59%;
-  top: 6.7rem;
+  top: 6.8rem;
   left: 1%;
 }
 
