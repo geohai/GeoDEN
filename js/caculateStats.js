@@ -11,6 +11,7 @@ function calculateStats() {
 
   // Display General Stats
   updateStatsPanel(timeRange)
+  updateCooccurPanel()
   // Display Co-Occurance
   console.log(statsMap)
 }
@@ -62,6 +63,7 @@ function calculateTimeRangeStats(data) {
     stats.cooccur_34 = 0 // 34/43
     stats.cooccur_123 = 0
     stats.cooccur_124 = 0
+    stats.cooccur_134 = 0
     stats.cooccur_423 = 0
     stats.cooccur_1234 = 0
     for (row in data) {
@@ -96,6 +98,9 @@ function calculateTimeRangeStats(data) {
         if ((data[row].DEN1 + data[row].DEN2 + data[row].DEN4) == 3){
             stats.cooccur_124 += 1;
         }
+        if ((data[row].DEN1 + data[row].DEN3 + data[row].DEN4) == 3){
+          stats.cooccur_134 += 1;
+      }
         if ((data[row].DEN4 + data[row].DEN2 + data[row].DEN3) == 3){
             stats.cooccur_423 += 1;
         }
@@ -136,4 +141,17 @@ function updateStatsPanel(timeRange) {
     string += "<div class='typeStats t3 active'><b class='big'>3</b> - <em>n:</em> " + statsMap.count3 + ", \t <em>p:</em> " + roundTo(statsMap.percent3, 2) + "%</div>"
     string += "<div class='typeStats t4 active'><b class='big'>4</b> - <em>n:</em> " + statsMap.count4 + ", \t <em>p:</em> " + roundTo(statsMap.percent4, 2) + "%</div>"
     statSheet.innerHTML = string
+}
+
+const cooccurSheet = document.getElementById("cooccurSheet");
+
+function updateCooccurPanel() {    
+  let string = ""
+
+  string += "<div class='headerText'>Cooccurances</div>"
+  string += "<div class='typeStats inactive'>1+2: <b>" + statsMap.cooccur_12 + "</b>, 1+3: <b>" + statsMap.cooccur_13 + "</b>, 1+4: <b>" + statsMap.cooccur_14 + "</b></div>"
+  string += "<div class='typeStats inactive'>2+3: <b>" + statsMap.cooccur_23 + "</b>, 2+4: <b>" + statsMap.cooccur_24 + "</b>, 3+4: <b>" + statsMap.cooccur_34 + "</b></div>"
+  string += "<div class='typeStats nactive'>123: <b>" + statsMap.cooccur_123 + "</b>, 124: <b>" + statsMap.cooccur_124 + "</b>, 134: <b>" + statsMap.cooccur_134 + "</b>, 234: <b>" + statsMap.cooccur_423 + "</b></div>"
+  string += "<div class='typeStats active'>1234: <b>" + statsMap.cooccur_1234 + "</b></div>"
+  cooccurSheet.innerHTML = string
 }

@@ -16,10 +16,10 @@
 }
 
 #gantt {
-  right: 1%;
+  right: 20%;
   bottom: 59%;
   top: 6.8rem;
-  left: 80.5%;
+  left: 1%;
 }
 
 #stats {
@@ -30,10 +30,10 @@
 }
 
 #nodeLink {
-  right: 20%;
+  right: 1%;
   bottom: 59%;
   top: 6.8rem;
-  left: 1%;
+  left: 80.5%;
 }
 
 #headings {

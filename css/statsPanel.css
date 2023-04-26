@@ -3,6 +3,12 @@
     margin-right: 1rem;
 }
 
+#cooccurSheet {
+    margin-left: .5rem;
+    margin-right: .5rem;
+    font-size: .8rem;
+}
+
 .headerText {
     color: rgb(221, 221, 221);
     font-size: 1.05rem;
