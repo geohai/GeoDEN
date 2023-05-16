@@ -1,0 +1,31 @@
+#chart_panel {
+  position: absolute;
+  background: radial-gradient(ellipse at 30%  20%, #575257, transparent),
+    radial-gradient(ellipse at 60% 80%, #414c4e, transparent);
+  bottom: 1vb;
+  left: 1vb;
+  right: 1vb;
+  border-radius: 2vb;
+  top: 5rem;
+  border-width: .2vb;
+  border-style: solid;
+  border-color: rgb(109, 109, 109);
+}
+
+#chart_container {
+  position: absolute;
+  bottom: 1vb;
+  left: 0vb;
+  right: 0vb;
+  top: 4vb;
+  background-color: rgba(133, 133, 133, 0);
+}
+
+.tab_label {
+  background-color: rgb(29, 29, 29);
+  border-top-left-radius: 1vb;
+  border-bottom-left-radius: 1vb;
+  height: 30px;
+  width: 30px;
+  border: solid rgb(29, 29, 29);
+}

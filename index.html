@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/tooltips.css" />
     <link rel="stylesheet" href="css/helpWindows.css" />
     <link rel="stylesheet" href="css/statsPanel.css" />
+    <link rel="stylesheet" href="css/barChart.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
 
@@ -166,12 +167,10 @@
     <!--Panel Divs-->
     <div class="panelDiv" id="map"></div>
     <div class="panelDiv" id="stats">
-      <p id="statSheet"></p>
+      <p id="barTitle"></p>
+      <div id="chart_panel"><div id="chart_container"></div></div>
     </div>
     <div class="panelDiv" id="gantt"></div>
-    <div class="panelDiv" id="nodeLink">
-      <p id="cooccurSheet"></p>
-    </div>
 
     <!--External JS Scripts-->
     <!--Leaflet-->
@@ -188,6 +187,8 @@
       var exports = {};
     </script>
     <script type="text/javascript" src="lib/simple-statistics.js"></script>
+    <!--D3 v6-->
+    <script src="lib/d3.v6.js"></script>
 
     <!--Internal JS Scripts-->
     <script type="text/javascript" src="js/map.js"></script>
@@ -195,6 +196,7 @@
     <script type="text/javascript" src="js/input.js"></script>
     <script type="text/javascript" src="js/helpPrompt.js"></script>
     <script type="text/javascript" src="js/dbScan.js"></script>
+    <script type="text/javascript" src="js/barChart.js"></script>
     <script type="text/javascript" src="js/caculateStats.js"></script>
   </body>
 </html>

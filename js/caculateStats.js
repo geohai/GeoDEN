@@ -10,10 +10,10 @@ function calculateStats() {
   statsMap = calculateTimeRangeStats(timeRangeData)
 
   // Display General Stats
-  updateStatsPanel(timeRange)
-  updateCooccurPanel()
+  updateStatsTitle(timeRange)
+  updateChart()
   // Display Co-Occurance
-  console.log(statsMap)
+  //console.log(statsMap)
 }
 
 
@@ -51,82 +51,84 @@ function calculateTimeRangeStats(data) {
     stats.events = data.length
 
     // Get count of each serotype
-    stats.count1 = 0
-    stats.count2 = 0
-    stats.count3 = 0
-    stats.count4 = 0
-    stats.cooccur_12 = 0 // 12/21
-    stats.cooccur_13 = 0 // 13/31
-    stats.cooccur_14 = 0 // 14/41
-    stats.cooccur_23 = 0 // 23/32
-    stats.cooccur_24 = 0 // 24/42
-    stats.cooccur_34 = 0 // 34/43
-    stats.cooccur_123 = 0
-    stats.cooccur_124 = 0
-    stats.cooccur_134 = 0
-    stats.cooccur_423 = 0
-    stats.cooccur_1234 = 0
+    stats.c1 = 0
+    stats.c2 = 0
+    stats.c3 = 0
+    stats.c4 = 0
+    stats.c12 = 0 // 12/21
+    stats.c13 = 0 // 13/31
+    stats.c14 = 0 // 14/41
+    stats.c23 = 0 // 23/32
+    stats.c24 = 0 // 24/42
+    stats.c34 = 0 // 34/43
+    stats.c123 = 0
+    stats.c124 = 0
+    stats.c134 = 0
+    stats.c234 = 0
+    stats.c1234 = 0
     for (row in data) {
         // Count all single occuracences
-        stats.count1 += data[row].DEN1
-        stats.count2 += data[row].DEN2
-        stats.count3 += data[row].DEN3
-        stats.count4 += data[row].DEN4
+        stats.c1 += data[row].DEN1
+        stats.c2 += data[row].DEN2
+        stats.c3 += data[row].DEN3
+        stats.c4 += data[row].DEN4
         // Count all double cooccuracences
         if ((data[row].DEN1 + data[row].DEN2) == 2){
-            stats.cooccur_12 += 1;
+            stats.c12 += 1;
         }
         if ((data[row].DEN1 + data[row].DEN3) == 2){
-            stats.cooccur_13 += 1;
+            stats.c13 += 1;
         }
         if ((data[row].DEN1 + data[row].DEN4) == 2){
-            stats.cooccur_14 += 1;
+            stats.c14 += 1;
         }
         if ((data[row].DEN2 + data[row].DEN3) == 2){
-            stats.cooccur_23 += 1;
+            stats.c23 += 1;
         }
         if ((data[row].DEN2 + data[row].DEN4) == 2){
-            stats.cooccur_24 += 1;
+            stats.c24 += 1;
         }
         if ((data[row].DEN3 + data[row].DEN4) == 2){
-            stats.cooccur_34 += 1;
+            stats.c34 += 1;
         }
         // Count all triple cooccuracences
         if ((data[row].DEN1 + data[row].DEN2 + data[row].DEN3) == 3){
-            stats.cooccur_123 += 1;
+            stats.c123 += 1;
         }
         if ((data[row].DEN1 + data[row].DEN2 + data[row].DEN4) == 3){
-            stats.cooccur_124 += 1;
+            stats.c124 += 1;
         }
         if ((data[row].DEN1 + data[row].DEN3 + data[row].DEN4) == 3){
-          stats.cooccur_134 += 1;
+          stats.c134 += 1;
       }
         if ((data[row].DEN4 + data[row].DEN2 + data[row].DEN3) == 3){
-            stats.cooccur_423 += 1;
+            stats.c234 += 1;
         }
         // Count all total cooccuracences
         if ((data[row].DEN1 + data[row].DEN2 + data[row].DEN3 + data[row].DEN4) == 4){
-            stats.cooccur_1234 += 1;
+            stats.c1234 += 1;
         }
     }
 
 
-    stats.percent1 = (stats.count1 / stats.events)*100
-    stats.percent2 = (stats.count2 / stats.events)*100
-    stats.percent3 = (stats.count3 / stats.events)*100
-    stats.percent4 = (stats.count4 / stats.events)*100
+    stats.percent1 = (stats.c1 / stats.events)*100
+    stats.percent2 = (stats.c2 / stats.events)*100
+    stats.percent3 = (stats.c3 / stats.events)*100
+    stats.percent4 = (stats.c4 / stats.events)*100
 
     return stats;
   }
 
-const statSheet = document.getElementById("statSheet");
+const barTitle = document.getElementById("barTitle");
 
 // create a rounding function
 function roundTo(n, place) {    
     return +(Math.round(n + "e+" + place) + "e-" + place);
 }
 
-function updateStatsPanel(timeRange) {    
+function updateStatsTitle(timeRange) {   
+  
+    //console.log(statsMap.count1)
     let string = ""
 
     if (timeRange[0] == timeRange [1]) {
@@ -136,22 +138,9 @@ function updateStatsPanel(timeRange) {
     }
 
     string += "<div class='headerText'>Total Events: <b class='big'>" + statsMap.events + "</b></div><br>"
-    string += "<div class='typeStats t1 active'><b class='big'>1</b> - <em>n:</em> " + statsMap.count1 + ", \t <em>p:</em> " + roundTo(statsMap.percent1, 2) + "%</div>"
-    string += "<div class='typeStats t2 active'><b class='big'>2</b> - <em>n:</em> " + statsMap.count2 + ", \t <em>p:</em> " + roundTo(statsMap.percent2, 2) + "%</div>"
-    string += "<div class='typeStats t3 active'><b class='big'>3</b> - <em>n:</em> " + statsMap.count3 + ", \t <em>p:</em> " + roundTo(statsMap.percent3, 2) + "%</div>"
-    string += "<div class='typeStats t4 active'><b class='big'>4</b> - <em>n:</em> " + statsMap.count4 + ", \t <em>p:</em> " + roundTo(statsMap.percent4, 2) + "%</div>"
-    statSheet.innerHTML = string
-}
-
-const cooccurSheet = document.getElementById("cooccurSheet");
-
-function updateCooccurPanel() {    
-  let string = ""
-
-  string += "<div class='headerText'>Cooccurances</div>"
-  string += "<div class='typeStats inactive'>1+2: <b>" + statsMap.cooccur_12 + "</b>, 1+3: <b>" + statsMap.cooccur_13 + "</b>, 1+4: <b>" + statsMap.cooccur_14 + "</b></div>"
-  string += "<div class='typeStats inactive'>2+3: <b>" + statsMap.cooccur_23 + "</b>, 2+4: <b>" + statsMap.cooccur_24 + "</b>, 3+4: <b>" + statsMap.cooccur_34 + "</b></div>"
-  string += "<div class='typeStats nactive'>123: <b>" + statsMap.cooccur_123 + "</b>, 124: <b>" + statsMap.cooccur_124 + "</b>, 134: <b>" + statsMap.cooccur_134 + "</b>, 234: <b>" + statsMap.cooccur_423 + "</b></div>"
-  string += "<div class='typeStats active'>1234: <b>" + statsMap.cooccur_1234 + "</b></div>"
-  cooccurSheet.innerHTML = string
+    //string += "<div class='typeStats t1 active'><b class='big'>1</b> - <em>n:</em> " + statsMap.count1 + ", \t <em>p:</em> " + roundTo(statsMap.percent1, 2) + "%</div>"
+    //string += "<div class='typeStats t2 active'><b class='big'>2</b> - <em>n:</em> " + statsMap.count2 + ", \t <em>p:</em> " + roundTo(statsMap.percent2, 2) + "%</div>"
+    //string += "<div class='typeStats t3 active'><b class='big'>3</b> - <em>n:</em> " + statsMap.count3 + ", \t <em>p:</em> " + roundTo(statsMap.percent3, 2) + "%</div>"
+    //string += "<div class='typeStats t4 active'><b class='big'>4</b> - <em>n:</em> " + statsMap.count4 + ", \t <em>p:</em> " + roundTo(statsMap.percent4, 2) + "%</div>"
+    barTitle.innerHTML = string
 }

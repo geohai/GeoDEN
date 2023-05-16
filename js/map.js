@@ -209,7 +209,8 @@ function createPopupContent(row) {
   return popupContent;
 }
 
-function createIcon(type1, type2, type3, type4) {
+//Function to create a new icon
+function createIcon(type1, type2, type3, type4, label = false) {
   let nTypes =
     type1 * type1_active +
     type2 * type2_active +
@@ -228,14 +229,20 @@ function createIcon(type1, type2, type3, type4) {
     }
   }
 
+  if (label) {
+    diameter = (nTypes + 2) * 2.5;
+  }
+
   let template = (
     color,
-    proportion
+    proportion,
+    yTranslate,
+    xTranslate
   ) => `<circle r="5" cx="10" cy="10" fill = "transparent"
   stroke = "${color}"
   stroke-width="10"
   stroke-dasharray="calc(${proportion} * 31.41593 / 100) 31.41593"
-  transform="rotate(-90) translate (-20)"/>`;
+  transform="rotate(-90) translate (${yTranslate}, ${xTranslate})"/>`;
 
   let calcOrder = (type) => {
     let order = nTypes;
@@ -266,10 +273,13 @@ function createIcon(type1, type2, type3, type4) {
     return order;
   };
 
-  let slice_type4 = template(type4_color, slices * type4 * calcOrder(4));
-  let slice_type3 = template(type3_color, slices * type3 * calcOrder(3));
-  let slice_type2 = template(type2_color, slices * type2 * calcOrder(2));
-  let slice_type1 = template(type1_color, slices * type1 * calcOrder(1));
+  yTranslate = -20
+  xTranslate = (4/nTypes - 2)
+
+  let slice_type4 = template(type4_color, slices * type4 * calcOrder(4), yTranslate, xTranslate);
+  let slice_type3 = template(type3_color, slices * type3 * calcOrder(3), yTranslate, xTranslate);
+  let slice_type2 = template(type2_color, slices * type2 * calcOrder(2), yTranslate, xTranslate);
+  let slice_type1 = template(type1_color, slices * type1 * calcOrder(1), yTranslate, xTranslate);
 
 
   
