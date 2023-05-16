@@ -49,7 +49,7 @@ function constructChart(dataObj) {
     (label = true)
   );
 
-  console.log(svgsymbol.options.html);
+  //console.log(svgsymbol.options.html);
 
   // set the width and height of each chart
   const width = chartContainer.node().getBoundingClientRect().width;
@@ -125,34 +125,6 @@ function constructChart(dataObj) {
   dataObj.chart = chart;
 }
 
-// This function adds the starting charts and is where any other chart code should go that should just be ran on start
-function initiateCharts() {
-  // construct chart for each row of data
-  activeData.forEach((dataObj) => {
-    constructChart(dataObj);
-  });
-  
-  // Create a button below the last chart
-  const buttonDiv = chartContainer
-    .append("div")
-    .attr("class", "button-div");
-
-  // Append a button element to the button container
-  buttonDiv
-    .append("button")
-    .attr("class", "button addChart")
-    .text("+");
-
-  // Add an event listener to the button
-  buttonDiv.select("button").on("click", function () {
-    newObject = {types:1234}
-    activeData.push(newObject)
-    console.log(activeData)
-    constructChart(activeData[activeData.length-1])
-    updateChart()
-  });
-}
-
 // updateChart updates the whole chart panel every time there is new data
 function updateChart() {
   // upon updateChart being called, the activeData variable is updated
@@ -190,6 +162,75 @@ function updateChart() {
           (chart.select(".count-label")._groups[0][0].innerHTML.length + 5) * 10
       )
       .text(dataObj.count);
+  });
+}
+
+// This function adds the starting charts and is where any other chart code should go that should just be ran on start
+function initiateCharts() {
+  // construct chart for each row of data
+  activeData.forEach((dataObj) => {
+    constructChart(dataObj);
+  });
+
+  createButton();
+  /*
+  // Create a button below the last chart
+  const buttonDiv = chartContainer.append("div").attr("class", "button-div");
+
+  // Append a button element to the button container
+  buttonDiv.append("button").attr("class", "button addChart").text("+");
+
+  // Add an event listener to the button
+  buttonDiv.select("button").on("click", function () {
+    newObject = { types: 1234 };
+    activeData.push(newObject);
+    //console.log(activeData);
+    constructChart(activeData[activeData.length - 1]);
+    updateChart();
+
+    buttonDiv.remove();
+    //buttonDiv.append("button").attr("class", "button addChart").text("+");
+
+    /*
+    // Get the reference to the div element with class "button-div"
+    const buttonDiv = chartContainer.querySelector(".button-div");
+
+    buttonDiv.remove();
+
+    console.log(buttonDiv)
+
+    chartContainer._groups[0][0].remove(buttonDiv)
+
+    //var chartContainer = document.querySelector("#chart_Container");
+
+    // Get the reference to the last SVG element within the chart container
+    //const lastSVG = chartContainer.querySelector("svg:last-of-type");
+
+    // Move the button div after the last SVG element
+    //chartContainer.insertBefore(buttonDiv, lastSVG.nextSibling);
+
+    console.log(chartContainer._groups[0][0]);
+    
+  });*/
+}
+
+function createButton() {
+  // Create a button below the last chart
+  const buttonDiv = chartContainer.append("div").attr("class", "button-div");
+
+  // Append a button element to the button container
+  buttonDiv.append("button").attr("class", "button addChart").text("+");
+
+  // Add an event listener to the button
+  buttonDiv.select("button").on("click", function () {
+    newObject = { types: 1 };
+    activeData.push(newObject);
+    //console.log(activeData);
+    constructChart(activeData[activeData.length - 1]);
+    updateChart();
+
+    buttonDiv.remove();
+    createButton();
   });
 }
 
