@@ -1,13 +1,13 @@
 #chart_panel {
   position: absolute;
-  background: radial-gradient(ellipse at 30%  20%, #575257, transparent),
+  background: radial-gradient(ellipse at 30% 20%, #575257, transparent),
     radial-gradient(ellipse at 60% 80%, #414c4e, transparent);
   bottom: 1vb;
   left: 1vb;
   right: 1vb;
   border-radius: 2vb;
   top: 5rem;
-  border-width: .2vb;
+  border-width: 0.2vb;
   border-style: solid;
   border-color: rgb(109, 109, 109);
 }
@@ -28,4 +28,19 @@
   height: 30px;
   width: 30px;
   border: solid rgb(29, 29, 29);
+  cursor: pointer;
+}
+
+.tab_label:active {
+    cursor:  grabbing;
+}
+
+.button.addChart {
+    background-color: #000000;
+    border-radius: 2rem;
+    font-size: large;
+    text-align: center;
+    height: 1.3rem;
+    width: 1.3rem;
+    left: 12px;
 }

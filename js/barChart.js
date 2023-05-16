@@ -1,14 +1,6 @@
 // chartContainer is just a variable to hold the div chart container, which should be used to place and show the 5 horizontal bar charts
 let chartContainer = d3.select("#chart_container"); //.append("svg").append("g");
 
-let tabLabel = document.createElement("button");
-tabLabel.className = "tab";
-tabLabel.addEventListener("click", function () {
-  alert("tab clicked");
-});
-
-let chartsActive = [];
-
 // Create an activeData variable, so store data for our 5 variables of interest.  Each starts as count 0 to wait for statsMap to be created and store the actual information.
 activeData = [
   {
@@ -61,7 +53,7 @@ function constructChart(dataObj) {
 
   // set the width and height of each chart
   const width = chartContainer.node().getBoundingClientRect().width;
-  const barWidth = width ;
+  const barWidth = width;
   const height = 30;
   const barHeight = 10;
 
@@ -92,9 +84,31 @@ function constructChart(dataObj) {
     .append("xhtml:body")
     .html(`<button class="tab_label">${svgsymbol.options.html}</button>`);
 
-  typeButton.select("button").on("click", function () {
-    alert("tab clicked");
-  });
+  // Tab Interaction Events!
+  typeButton
+    .select("button")
+    .on("click", function () {
+      //console.log("tab clicked");
+    })
+    .on("mousedown", function () {
+      //console.log("mouse down on tab");
+    })
+    .on("mouseover", function () {
+      //console.log("mouse over tab");
+    })
+    .on("dblclick", function () {
+      // Transition to remove the chart
+      chart
+        .transition()
+        .duration(200)
+        .attr("transform", "translate(" + -40 + ", 0)")
+        .style("opacity", 0)
+        .remove();
+      // get index of dataObj
+      const index = activeData.indexOf(dataObj);
+      // remove that item from activeData array
+      activeData.splice(index, 1);
+    });
 
   // add the count label to the right of the bar
   chart
@@ -113,8 +127,29 @@ function constructChart(dataObj) {
 
 // This function adds the starting charts and is where any other chart code should go that should just be ran on start
 function initiateCharts() {
+  // construct chart for each row of data
   activeData.forEach((dataObj) => {
     constructChart(dataObj);
+  });
+  
+  // Create a button below the last chart
+  const buttonDiv = chartContainer
+    .append("div")
+    .attr("class", "button-div");
+
+  // Append a button element to the button container
+  buttonDiv
+    .append("button")
+    .attr("class", "button addChart")
+    .text("+");
+
+  // Add an event listener to the button
+  buttonDiv.select("button").on("click", function () {
+    newObject = {types:1234}
+    activeData.push(newObject)
+    console.log(activeData)
+    constructChart(activeData[activeData.length-1])
+    updateChart()
   });
 }
 
@@ -132,8 +167,8 @@ function updateChart() {
   // create a new chart for each object in activeData
   activeData.forEach((dataObj) => {
     // set the width and height of each chart
-    const width = chartContainer.node().getBoundingClientRect().width
-    const barWidth = width*.8;
+    const width = chartContainer.node().getBoundingClientRect().width;
+    const barWidth = width * 0.8;
 
     // get chart from data object
     let chart = dataObj.chart;
