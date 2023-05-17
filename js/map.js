@@ -229,7 +229,7 @@ function createIcon(type1, type2, type3, type4, label = false) {
     }
   }
 
-  if (label) {
+  if (label == true) {
     diameter = (nTypes + 2) * 2.5;
   }
 

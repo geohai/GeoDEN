@@ -46,7 +46,7 @@ function removeChart(dataObj) {
 // This function creates a chart, given an object with 'types'
 function constructChart(dataObj) {
   // Make the tab label symbol which represents which types are importnatn
-  let svgsymbol = createIcon(
+  const svgsymbol = createIcon(
     dataObj.types.toString().includes("1") ? 1 : 0,
     dataObj.types.toString().includes("2") ? 1 : 0,
     dataObj.types.toString().includes("3") ? 1 : 0,
@@ -261,15 +261,6 @@ function updateChart() {
       )
       .text(dataObj.count);
 
-    // Update the classes of each typeTool button
-    for (let i = 1; i <= 4; i++) {
-      const button = dataObj.chart.select(`.serotypeSwitch_${i}`);
-      const isActive = dataObj.types.toString().includes(i.toString());
-      button.classed("active-button", isActive);
-      button.classed("inactive-button", !isActive);
-    }
-
-    
     // Update the SVG symbol in the .tab_label button
     let svgsymbol = createIcon(
       dataObj.types.toString().includes("1") ? 1 : 0,
@@ -280,6 +271,23 @@ function updateChart() {
     );
     const tabLabel = dataObj.chart.select(".tab_label svg");
     tabLabel.html(svgsymbol.options.html);
+    // Set explicit width and height for the SVG element
+    const symbolWidth = 25; // Adjust the desired width
+    const symbolHeight = 25; // Adjust the desired height
+    tabLabel
+      .style("position", "absolute")
+      .style("left", "1rem")
+      .style("top", "1rem")
+      .attr("width", symbolWidth)
+      .attr("height", symbolHeight);
+
+    // Update the classes of each typeTool button
+    for (let i = 1; i <= 4; i++) {
+      const button = dataObj.chart.select(`.serotypeSwitch_${i}`);
+      const isActive = dataObj.types.toString().includes(i.toString());
+      button.classed("active-button", isActive);
+      button.classed("inactive-button", !isActive);
+    }
   });
 }
 
@@ -293,6 +301,7 @@ function initiateCharts() {
   createButton();
 }
 
+// This function creates the add chart button.  It sets up interaction as well.
 function createButton() {
   // Create a button below the last chart
   const buttonDiv = chartContainer.append("div").attr("class", "button-div");
@@ -307,13 +316,14 @@ function createButton() {
     //console.log(activeData);
     constructChart(activeData[activeData.length - 1]);
     updateChart();
-
     buttonDiv.remove();
     createButton();
+    updateChart();
   });
 }
 
 // call the updateChart function initially to create the initial charts
 initiateCharts();
 
+// On window resize, call updateChart
 window.onresize = updateChart;
