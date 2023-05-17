@@ -2,7 +2,7 @@
 let chartContainer = d3.select("#chart_container"); //.append("svg").append("g");
 
 // Create an activeData variable, so store data for our 5 variables of interest.  Each starts as count 0 to wait for statsMap to be created and store the actual information.
-activeData = [
+let activeData = [
   {
     types: 1,
   },
@@ -18,25 +18,30 @@ activeData = [
   {
     types: 1234,
   },
-  {
-    types: 14,
-  },
-  {
-    types: 24,
-  },
-  {
-    types: 34,
-  },
-  {
-    types: 124,
-  },
-  {
-    types: 134,
-  },
-  {
-    types: 234,
-  },
 ];
+
+// -- UTILITY FUNCTIONS -- // these are little functions that can be reused anywhere
+
+// sort numbers in a string--this is a utitly function
+function sortNumbersInString(numbersString) {
+  return numbersString.split("").sort().join("");
+}
+
+function removeChart(dataObj) {
+  // get index of dataObj
+  const index = activeData.indexOf(dataObj);
+  // Transition to remove the chart
+  dataObj.chart
+    .transition()
+    .duration(200)
+    .attr("transform", "translate(" + -40 + ", 0)")
+    .style("opacity", 0)
+    .remove();
+  // remove that item from activeData array
+  activeData.splice(index, 1);
+}
+
+// -- MAIN FUNCTIONS -- //
 
 // This function creates a chart, given an object with 'types'
 function constructChart(dataObj) {
@@ -99,13 +104,29 @@ function constructChart(dataObj) {
       `<button class="tab_label">${svgsymbol.options.html}      
     <span class="tooltip tablabel">        
      <!--Type 1-->
-      <button class="button typeTool serotypeSwitch_1 ${dataObj.types.toString().includes("1") ? "active-button" : "inactive-button"}">1</button>
+      <button class="button typeTool serotypeSwitch_1 ${
+        dataObj.types.toString().includes("1")
+          ? "active-button"
+          : "inactive-button"
+      }">1</button>
      <!--Type 2-->
-      <button class="button typeTool serotypeSwitch_2 ${dataObj.types.toString().includes("2") ? "active-button" : "inactive-button"}">2</button>
+      <button class="button typeTool serotypeSwitch_2 ${
+        dataObj.types.toString().includes("2")
+          ? "active-button"
+          : "inactive-button"
+      }">2</button>
      <!--Type 3-->
-      <button class="button typeTool serotypeSwitch_3 ${dataObj.types.toString().includes("3") ? "active-button" : "inactive-button"}">3</button>
+      <button class="button typeTool serotypeSwitch_3 ${
+        dataObj.types.toString().includes("3")
+          ? "active-button"
+          : "inactive-button"
+      }">3</button>
      <!--Type 4-->
-      <button class="button typeTool serotypeSwitch_4 ${dataObj.types.toString().includes("4") ? "active-button" : "inactive-button"}">4</button>
+      <button class="button typeTool serotypeSwitch_4 ${
+        dataObj.types.toString().includes("4")
+          ? "active-button"
+          : "inactive-button"
+      }">4</button>
     </span>
   </button>`
     );
@@ -122,38 +143,81 @@ function constructChart(dataObj) {
     .on("mouseover", function () {
       // Show the tooltip
       const tooltip = chart.select(".tooltip");
-      tooltip.style("visibility", "visible").style("opacity", 1).style("width", "6.5rem");
+      tooltip
+        .style("visibility", "visible")
+        .style("opacity", 1)
+        .style("width", "6.5rem");
 
       // Show the tooltip buttons
       const tooltipButtons = chart.selectAll(".button.typeTool");
-      tooltipButtons.style("visibility", "visible").style("opacity", 1).style("left", ".5rem");
-      tooltipButtons.on("mouseover",function () {
+      tooltipButtons
+        .style("visibility", "visible")
+        .style("opacity", 1)
+        .style("width", "1.3rem")
+        .style("left", ".5rem");
+      tooltipButtons.on("mouseover", function () {
         // on hover the buttons,  keep the whole tooltip visible
-        tooltip.style("visibility", "visible").style("opacity", 1).style("width", "6.5rem");
-        tooltipButtons.style("visibility", "visible").style("opacity", 1).style("left", ".5rem");
-      })
+        tooltip
+          .style("visibility", "visible")
+          .style("opacity", 1)
+          .style("width", "6.5rem");
+        tooltipButtons
+          .style("visibility", "visible")
+          .style("opacity", 1)
+          .style("width", "1.3rem")
+          .style("left", ".5rem");
+
+        tooltipButtons.on("click", function () {
+          //console.log(dataObj.types)
+          if (dataObj.types.toString().includes(this.innerHTML)) {
+            dataObj.types = parseInt(
+              sortNumbersInString(
+                dataObj.types.toString().replace(this.innerHTML, "")
+              )
+            );
+            if (!dataObj.types) {
+              removeChart(dataObj);
+            }
+          } else {
+            dataObj.types = parseInt(
+              sortNumbersInString(dataObj.types + this.innerHTML)
+            );
+          }
+          //console.log(dataObj.types)
+          updateChart();
+        });
+      });
+      tooltipButtons.on("mouseout", function () {
+        // on hover the buttons,  keep the whole tooltip visible
+        tooltip
+          .style("visibility", "visible")
+          .style("opacity", 1)
+          .style("width", "6.5rem");
+        tooltipButtons
+          .style("visibility", "visible")
+          .style("opacity", 1)
+          .style("width", "1.3rem")
+          .style("left", ".5rem");
+      });
     })
     .on("mouseout", function () {
       // Hide the tooltip
       const tooltip = chart.select(".tooltip");
-      tooltip.style("visibility", "hidden").style("opacity", 0).style("width", ".5rem");
+      tooltip
+        .style("visibility", "hidden")
+        .style("opacity", 0)
+        .style("width", ".5rem");
 
       // Hide the tooltip buttons
       const tooltipButtons = chart.selectAll(".button.typeTool");
-      tooltipButtons.style("visibility", "hidden").style("opacity", 0).style("left", "0rem");
+      tooltipButtons
+        .style("visibility", "hidden")
+        .style("opacity", 0)
+        .style("width", ".9rem")
+        .style("left", "0rem");
     })
     .on("dblclick", function () {
-      // Transition to remove the chart
-      chart
-        .transition()
-        .duration(200)
-        .attr("transform", "translate(" + -40 + ", 0)")
-        .style("opacity", 0)
-        .remove();
-      // get index of dataObj
-      const index = activeData.indexOf(dataObj);
-      // remove that item from activeData array
-      activeData.splice(index, 1);
+      removeChart(dataObj);
     });
 
   dataObj.chart = chart;
@@ -165,6 +229,7 @@ function updateChart() {
   activeData.forEach((dataObj) => {
     activeVars = dataObj.types;
     dataObj.count = statsMap["c" + activeVars];
+    //console.log(statsMap["c" + activeVars])
   });
 
   // use something like this to remove specific charts
@@ -176,16 +241,13 @@ function updateChart() {
     const width = chartContainer.node().getBoundingClientRect().width;
     const barWidth = width * 0.8;
 
-    // get chart from data object
-    let chart = dataObj.chart;
-
     // update the bar width and count label to match the dataObj count value
-    chart
+    dataObj.chart
       .selectAll(".bar")
       .transition()
       .duration(200)
       .attr("width", (barWidth * dataObj.count) / (statsMap.events + 1));
-    chart
+    dataObj.chart
       .selectAll(".count-label")
       .transition()
       .duration(200)
@@ -193,9 +255,31 @@ function updateChart() {
       .attr(
         "x",
         (barWidth * dataObj.count) / (statsMap.events + 1) +
-          (chart.select(".count-label")._groups[0][0].innerHTML.length + 5) * 10
+          (dataObj.chart.select(".count-label")._groups[0][0].innerHTML.length +
+            5) *
+            10
       )
       .text(dataObj.count);
+
+    // Update the classes of each typeTool button
+    for (let i = 1; i <= 4; i++) {
+      const button = dataObj.chart.select(`.serotypeSwitch_${i}`);
+      const isActive = dataObj.types.toString().includes(i.toString());
+      button.classed("active-button", isActive);
+      button.classed("inactive-button", !isActive);
+    }
+
+    
+    // Update the SVG symbol in the .tab_label button
+    let svgsymbol = createIcon(
+      dataObj.types.toString().includes("1") ? 1 : 0,
+      dataObj.types.toString().includes("2") ? 1 : 0,
+      dataObj.types.toString().includes("3") ? 1 : 0,
+      dataObj.types.toString().includes("4") ? 1 : 0,
+      (label = true)
+    );
+    const tabLabel = dataObj.chart.select(".tab_label svg");
+    tabLabel.html(svgsymbol.options.html);
   });
 }
 
@@ -207,45 +291,6 @@ function initiateCharts() {
   });
 
   createButton();
-  /*
-  // Create a button below the last chart
-  const buttonDiv = chartContainer.append("div").attr("class", "button-div");
-
-  // Append a button element to the button container
-  buttonDiv.append("button").attr("class", "button addChart").text("+");
-
-  // Add an event listener to the button
-  buttonDiv.select("button").on("click", function () {
-    newObject = { types: 1234 };
-    activeData.push(newObject);
-    //console.log(activeData);
-    constructChart(activeData[activeData.length - 1]);
-    updateChart();
-
-    buttonDiv.remove();
-    //buttonDiv.append("button").attr("class", "button addChart").text("+");
-
-    /*
-    // Get the reference to the div element with class "button-div"
-    const buttonDiv = chartContainer.querySelector(".button-div");
-
-    buttonDiv.remove();
-
-    console.log(buttonDiv)
-
-    chartContainer._groups[0][0].remove(buttonDiv)
-
-    //var chartContainer = document.querySelector("#chart_Container");
-
-    // Get the reference to the last SVG element within the chart container
-    //const lastSVG = chartContainer.querySelector("svg:last-of-type");
-
-    // Move the button div after the last SVG element
-    //chartContainer.insertBefore(buttonDiv, lastSVG.nextSibling);
-
-    console.log(chartContainer._groups[0][0]);
-    
-  });*/
 }
 
 function createButton() {

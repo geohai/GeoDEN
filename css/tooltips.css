@@ -93,14 +93,14 @@
   background-color: rgba(32, 32, 32, 0.844);
   border-color: rgb(29, 29, 29);
 
-  transition: all ease .3s;
+  transition: all ease .2s;
 }
 
 /* this is the base class for the buttons in the tooltip*/
 .button.typeTool {
   visibility: hidden;
   opacity: 0;
-  left: 0rem;
+  left: .5rem;
   top: .05rem;
   width: 1.3rem;
   height: 1.3rem;
@@ -108,5 +108,5 @@
   font-size: 0.9rem;
   z-index: 99999;
   
-  transition: all ease .4s;
+  transition: all ease .1s;
 }
