@@ -63,6 +63,19 @@ function constructChart(dataObj) {
     .attr("width", width)
     .attr("height", height);
 
+  // add the count label to the right of the bar
+  chart
+    .append("text")
+    .attr("class", "count-label")
+    .attr("x", barWidth)
+    .attr("y", height / 2 + 5)
+    .attr("text-anchor", "end")
+    .style("fill", "rgb(159, 159, 159)") // Set the text color to red
+    .style("font-size", ".8rem") // Set the font size to 12 pixels
+    .style("z-index", "0")
+    //.style("font-family", "Arial") // Set the font family to Arial
+    .text(dataObj.count);
+
   // create the initial bar with zero width
   chart
     .append("rect")
@@ -82,7 +95,20 @@ function constructChart(dataObj) {
     .attr("x", 0)
     .attr("y", -7.5)
     .append("xhtml:body")
-    .html(`<button class="tab_label">${svgsymbol.options.html}</button>`);
+    .html(
+      `<button class="tab_label">${svgsymbol.options.html}      
+    <span class="tooltip tablabel">        
+     <!--Type 1-->
+      <button class="button typeTool serotypeSwitch_1 ${dataObj.types.toString().includes("1") ? "active-button" : "inactive-button"}">1</button>
+     <!--Type 2-->
+      <button class="button typeTool serotypeSwitch_2 ${dataObj.types.toString().includes("2") ? "active-button" : "inactive-button"}">2</button>
+     <!--Type 3-->
+      <button class="button typeTool serotypeSwitch_3 ${dataObj.types.toString().includes("3") ? "active-button" : "inactive-button"}">3</button>
+     <!--Type 4-->
+      <button class="button typeTool serotypeSwitch_4 ${dataObj.types.toString().includes("4") ? "active-button" : "inactive-button"}">4</button>
+    </span>
+  </button>`
+    );
 
   // Tab Interaction Events!
   typeButton
@@ -94,7 +120,27 @@ function constructChart(dataObj) {
       //console.log("mouse down on tab");
     })
     .on("mouseover", function () {
-      //console.log("mouse over tab");
+      // Show the tooltip
+      const tooltip = chart.select(".tooltip");
+      tooltip.style("visibility", "visible").style("opacity", 1).style("width", "6.5rem");
+
+      // Show the tooltip buttons
+      const tooltipButtons = chart.selectAll(".button.typeTool");
+      tooltipButtons.style("visibility", "visible").style("opacity", 1).style("left", ".5rem");
+      tooltipButtons.on("mouseover",function () {
+        // on hover the buttons,  keep the whole tooltip visible
+        tooltip.style("visibility", "visible").style("opacity", 1).style("width", "6.5rem");
+        tooltipButtons.style("visibility", "visible").style("opacity", 1).style("left", ".5rem");
+      })
+    })
+    .on("mouseout", function () {
+      // Hide the tooltip
+      const tooltip = chart.select(".tooltip");
+      tooltip.style("visibility", "hidden").style("opacity", 0).style("width", ".5rem");
+
+      // Hide the tooltip buttons
+      const tooltipButtons = chart.selectAll(".button.typeTool");
+      tooltipButtons.style("visibility", "hidden").style("opacity", 0).style("left", "0rem");
     })
     .on("dblclick", function () {
       // Transition to remove the chart
@@ -109,18 +155,6 @@ function constructChart(dataObj) {
       // remove that item from activeData array
       activeData.splice(index, 1);
     });
-
-  // add the count label to the right of the bar
-  chart
-    .append("text")
-    .attr("class", "count-label")
-    .attr("x", barWidth)
-    .attr("y", height / 2 + 5)
-    .attr("text-anchor", "end")
-    .style("fill", "rgb(159, 159, 159)") // Set the text color to red
-    .style("font-size", ".8rem") // Set the font size to 12 pixels
-    //.style("font-family", "Arial") // Set the font family to Arial
-    .text(dataObj.count);
 
   dataObj.chart = chart;
 }

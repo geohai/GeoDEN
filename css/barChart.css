@@ -1,7 +1,7 @@
 #chart_panel {
   position: absolute;
   background: radial-gradient(ellipse at 30% 20%, #575257, transparent),
-    radial-gradient(ellipse at 60% 80%, #414c4e, transparent);
+    radial-gradient(ellipse at 60% 80%, #41464e, transparent);
   bottom: 1vb;
   left: 1vb;
   right: 1vb;
@@ -10,6 +10,7 @@
   border-width: 0.2vb;
   border-style: solid;
   border-color: rgb(109, 109, 109);
+  cursor: default;
 }
 
 #chart_container {
@@ -28,7 +29,8 @@
   height: 30px;
   width: 30px;
   border: solid rgb(29, 29, 29);
-  cursor: pointer;
+  cursor: grab;
+  z-index: 999;
 }
 
 .tab_label:active {
@@ -43,4 +45,30 @@
     height: 1.3rem;
     width: 1.3rem;
     left: 12px;
+}
+
+/* - Serotype Toggles - */
+.serotypeSwitch_1.active-button{
+  background-color: #D4B100;
+}
+.serotypeSwitch_1.active-button:hover {
+  background-color: #ebc817;
+}
+.serotypeSwitch_2.active-button{
+  background-color: #B32D9D;
+}
+.serotypeSwitch_2.active-button:hover {
+  background-color: #d144ba;
+}
+.serotypeSwitch_3.active-button{
+  background-color: #21BEE6;
+}
+.serotypeSwitch_3.active-button:hover {
+  background-color: #3ed3f8;
+}
+.serotypeSwitch_4.active-button{
+  background-color: #26670A;
+}
+.serotypeSwitch_4.active-button:hover {
+  background-color: #388217;
 }
