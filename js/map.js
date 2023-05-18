@@ -211,6 +211,7 @@ function createPopupContent(row) {
 
 //Function to create a new icon
 function createIcon(type1, type2, type3, type4, label = false) {
+  // First, define nTypes and diameter
   let nTypes =
     type1 * type1_active +
     type2 * type2_active +
@@ -220,51 +221,55 @@ function createIcon(type1, type2, type3, type4, label = false) {
   if (nTypes > 0) {
     diameter = (nTypes + .5) * 7;
   }
-  let slices = 100 / nTypes;
 
-  // if midpoint mode and at least 1 serotype present, set diameter to 7
+  // if midpoint mode and at least 1 serotype present, set diameter differently
   if (midpointMode) {
     if (nTypes > 0) {
       diameter = (nTypes + .5) * 3;
     }
   }
 
+  // if its a label, define nTypes and diameter differently
   if (label == true) {
+    nTypes = type1 + type2 + type3 + type4
     diameter = (nTypes + 2) * 2.5;
   }
 
+  // slices just represents what percentage each slice should be
+  let slices = 100 / nTypes;
+
+  // Function to create an svg template based on color and proportion
   let template = (
     color,
     proportion,
-    yTranslate,
-    xTranslate
   ) => `<circle r="5" cx="10" cy="10" fill = "transparent"
   stroke = "${color}"
   stroke-width="10"
   stroke-dasharray="calc(${proportion} * 31.41593 / 100) 31.41593"
-  transform="rotate(-90) translate (${yTranslate}, ${xTranslate})"/>`;
+  transform="rotate(-90) translate (-20)"/>`;
+
 
   let calcOrder = (type) => {
     let order = nTypes;
-    if (type4 && type4_active) {
+    if (type4 && (type4_active || label)) {
       if (type == 4) {
         return order;
       }
       order -= 1;
     }
-    if (type3 && type3_active) {
+    if (type3 && (type3_active || label)) {
       if (type == 3) {
         return order;
       }
       order -= 1;
     }
-    if (type2 && type2_active) {
+    if (type2 && (type2_active || label)) {
       if (type == 2) {
         return order;
       }
       order -= 1;
     }
-    if (type1 && type1_active) {
+    if (type1 && (type1_active || label)) {
       if (type == 1) {
         return order;
       }
@@ -273,13 +278,10 @@ function createIcon(type1, type2, type3, type4, label = false) {
     return order;
   };
 
-  yTranslate = -20
-  xTranslate = (4/nTypes - 2)
-
-  let slice_type4 = template(type4_color, slices * type4 * calcOrder(4), yTranslate, xTranslate);
-  let slice_type3 = template(type3_color, slices * type3 * calcOrder(3), yTranslate, xTranslate);
-  let slice_type2 = template(type2_color, slices * type2 * calcOrder(2), yTranslate, xTranslate);
-  let slice_type1 = template(type1_color, slices * type1 * calcOrder(1), yTranslate, xTranslate);
+  let slice_type4 = template(type4_color, slices * type4 * calcOrder(4));
+  let slice_type3 = template(type3_color, slices * type3 * calcOrder(3));
+  let slice_type2 = template(type2_color, slices * type2 * calcOrder(2));
+  let slice_type1 = template(type1_color, slices * type1 * calcOrder(1));
 
 
   
