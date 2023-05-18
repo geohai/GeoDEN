@@ -1,3 +1,44 @@
+/*Title Section*/
+#barTitle {
+  position: absolute;
+  background-color: rgb(45, 45, 45);
+  top: 1vb;
+  height: 10vb;
+  left: 1vb;
+  right: 1vb;
+  border-radius: 2vb;
+  border-width: 0.2vb;
+  border-style: solid;
+  border-color: rgb(101, 101, 101);
+}
+
+.headerText {
+  position: absolute;
+  width: 100%;
+  color: rgb(169, 169, 169);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.headerText .big {
+  font-size: 1.3rem;
+  color: rgb(221, 221, 221);
+}
+
+#barchartTitle {
+  top: 0.7vb;
+}
+
+#barchartTitle .big {
+  font-size: 1.4rem;
+}
+
+#barchartSubtitle {
+  top: 4.5vb;
+}
+
+/*Chart*/
+
 #chart_panel {
   position: absolute;
   background: radial-gradient(ellipse at 30% 20%, #575257, transparent),
@@ -22,7 +63,10 @@
   background-color: rgba(133, 133, 133, 0);
 }
 
+/*Tab Labels*/
+
 .tab_label {
+  position: absolute;
   background-color: rgb(29, 29, 29);
   border-top-left-radius: 1vb;
   border-bottom-left-radius: 1vb;
@@ -34,40 +78,41 @@
 }
 
 .tab_label:active {
-    cursor:  grabbing;
+  cursor: grabbing;
 }
 
 .button.addChart {
-    background-color: #000000;
-    border-radius: 2rem;
-    font-size: large;
-    text-align: center;
-    height: 1.3rem;
-    width: 1.3rem;
-    left: 12px;
+  position: relative;
+  background-color: rgb(29, 29, 29);
+  border-radius: 2rem;
+  font-size: large;
+  text-align: center;
+  height: 1.3rem;
+  width: 1.3rem;
+  left: 12px;
 }
 
 /* - Serotype Toggles - */
-.serotypeSwitch_1.active-button{
-  background-color: #D4B100;
+.serotypeSwitch_1.active-button {
+  background-color: #d4b100;
 }
 .serotypeSwitch_1.active-button:hover {
   background-color: #ebc817;
 }
-.serotypeSwitch_2.active-button{
-  background-color: #B32D9D;
+.serotypeSwitch_2.active-button {
+  background-color: #b32d9d;
 }
 .serotypeSwitch_2.active-button:hover {
   background-color: #d144ba;
 }
-.serotypeSwitch_3.active-button{
-  background-color: #21BEE6;
+.serotypeSwitch_3.active-button {
+  background-color: #21bee6;
 }
 .serotypeSwitch_3.active-button:hover {
   background-color: #3ed3f8;
 }
-.serotypeSwitch_4.active-button{
-  background-color: #26670A;
+.serotypeSwitch_4.active-button {
+  background-color: #26670a;
 }
 .serotypeSwitch_4.active-button:hover {
   background-color: #388217;

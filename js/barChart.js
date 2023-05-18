@@ -102,33 +102,35 @@ function constructChart(dataObj) {
     .append("xhtml:body")
     .html(
       `<button class="tab_label">${svgsymbol.options.html}      
-    <span class="tooltip tablabel">        
-     <!--Type 1-->
-      <button class="button typeTool serotypeSwitch_1 ${
-        dataObj.types.toString().includes("1")
-          ? "active-button"
-          : "inactive-button"
-      }">1</button>
-     <!--Type 2-->
-      <button class="button typeTool serotypeSwitch_2 ${
-        dataObj.types.toString().includes("2")
-          ? "active-button"
-          : "inactive-button"
-      }">2</button>
-     <!--Type 3-->
-      <button class="button typeTool serotypeSwitch_3 ${
-        dataObj.types.toString().includes("3")
-          ? "active-button"
-          : "inactive-button"
-      }">3</button>
-     <!--Type 4-->
-      <button class="button typeTool serotypeSwitch_4 ${
-        dataObj.types.toString().includes("4")
-          ? "active-button"
-          : "inactive-button"
-      }">4</button>
-    </span>
-  </button>`
+        <span class="tooltip tablabel">
+          <div class="buttonHolder">        
+            <!--Type 1-->
+              <button class="button typeTool serotypeSwitch_1 ${
+                dataObj.types.toString().includes("1")
+                  ? "active-button"
+                  : "inactive-button"
+              }">1</button>
+            <!--Type 2-->
+              <button class="button typeTool serotypeSwitch_2 ${
+                dataObj.types.toString().includes("2")
+                  ? "active-button"
+                  : "inactive-button"
+              }">2</button>
+            <!--Type 3-->
+              <button class="button typeTool serotypeSwitch_3 ${
+                dataObj.types.toString().includes("3")
+                  ? "active-button"
+                  : "inactive-button"
+              }">3</button>
+            <!--Type 4-->
+              <button class="button typeTool serotypeSwitch_4 ${
+                dataObj.types.toString().includes("4")
+                  ? "active-button"
+                  : "inactive-button"
+              }">4</button>
+            </div>
+        </span>
+      </button>`
     );
 
   // Tab Interaction Events!
@@ -274,10 +276,21 @@ function updateChart() {
     // Set explicit width and height for the SVG element
     const symbolWidth = 25; // Adjust the desired width
     const symbolHeight = 25; // Adjust the desired height
+    const nTypes = dataObj.types.toString().length; // Adjust the desired height
+    const sideShift =
+      nTypes === 1
+        ? 0.55
+        : nTypes === 2
+        ? 0.45
+        : nTypes === 3
+        ? 0.35
+        : nTypes === 4
+        ? 0.25
+        : undefined;
     tabLabel
       .style("position", "absolute")
-      .style("left", "1rem")
-      .style("top", "1rem")
+      .style("left", sideShift + "rem")
+      .style("top", sideShift + "rem")
       .attr("width", symbolWidth)
       .attr("height", symbolHeight);
 
@@ -311,7 +324,7 @@ function createButton() {
 
   // Add an event listener to the button
   buttonDiv.select("button").on("click", function () {
-    newObject = { types: 1 };
+    newObject = { types: 4 };
     activeData.push(newObject);
     //console.log(activeData);
     constructChart(activeData[activeData.length - 1]);

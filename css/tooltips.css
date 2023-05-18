@@ -82,9 +82,9 @@
   visibility: hidden;
   z-index: 9;
   opacity: 0;
-  left: 6.1rem;
-  top: 0.51rem;
-  height: 1.1rem;
+  left: 5.55rem;
+  top: -.1rem;
+  height: 1.11rem;
   width: 1rem;
   border-width: 0.2vb;
   border-radius: 0rem;
@@ -93,20 +93,36 @@
   background-color: rgba(32, 32, 32, 0.844);
   border-color: rgb(29, 29, 29);
 
-  transition: all ease .2s;
+  transition: all ease 0.2s;
 }
+/* 
+.buttonHolder {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  left: 1rem !important;
+  top: 0rem;
+  margin-left: 0rem; Increase or decrease as needed 
+  background-color: aqua  !important;
+}*/
 
 /* this is the base class for the buttons in the tooltip*/
 .button.typeTool {
+  position: relative;
   visibility: hidden;
   opacity: 0;
-  left: .5rem;
-  top: .05rem;
+  left: 2.5rem !important;
   width: 1.3rem;
   height: 1.3rem;
   border-radius: 0.5rem;
   font-size: 0.9rem;
   z-index: 99999;
-  
-  transition: all ease .1s;
+
+  /* Adjust the position of the buttons */
+  margin-top: 0.15rem; /* Increase or decrease as needed */
+  margin-left: 0rem; /* Increase or decrease as needed */
+
+  transition: all ease 0.1s;
 }
+
+

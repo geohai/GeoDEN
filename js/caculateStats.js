@@ -132,12 +132,12 @@ function updateStatsTitle(timeRange) {
     let string = ""
 
     if (timeRange[0] == timeRange [1]) {
-        string += "<div class='headerText'><b class='big'>" + timeRange[0] + "</b></div>"
+        string += "<div class='headerText' id='barchartTitle'><b class='big'>" + timeRange[0] + "</b></div>"
     } else {
-        string += "<div class='headerText'><b class='big'>" + timeRange[0] + "</b> to <b class='big'>" + timeRange[1] + "</b></div>"
+        string += "<div class='headerText' id='barchartTitle'><b class='big'>" + timeRange[0] + "</b> to <b class='big'>" + timeRange[1] + "</b></div>"
     }
 
-    string += "<div class='headerText'>Total Events: <b class='big'>" + statsMap.events + "</b></div><br>"
+    string += "<div class='headerText' id='barchartSubtitle'>Reported Cases: <b class='big'>" + statsMap.events + "</b></div><br>"
     //string += "<div class='typeStats t1 active'><b class='big'>1</b> - <em>n:</em> " + statsMap.count1 + ", \t <em>p:</em> " + roundTo(statsMap.percent1, 2) + "%</div>"
     //string += "<div class='typeStats t2 active'><b class='big'>2</b> - <em>n:</em> " + statsMap.count2 + ", \t <em>p:</em> " + roundTo(statsMap.percent2, 2) + "%</div>"
     //string += "<div class='typeStats t3 active'><b class='big'>3</b> - <em>n:</em> " + statsMap.count3 + ", \t <em>p:</em> " + roundTo(statsMap.percent3, 2) + "%</div>"
