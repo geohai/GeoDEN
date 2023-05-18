@@ -20,6 +20,8 @@ let activeData = [
   },
 ];
 
+let addPresent = false;
+
 // -- UTILITY FUNCTIONS -- // these are little functions that can be reused anywhere
 
 // sort numbers in a string--this is a utitly function
@@ -316,6 +318,9 @@ function initiateCharts() {
 
 // This function creates the add chart button.  It sets up interaction as well.
 function createButton() {
+
+  addPresent = true;
+
   // Create a button below the last chart
   const buttonDiv = chartContainer.append("div").attr("class", "button-div");
 
@@ -329,9 +334,13 @@ function createButton() {
     //console.log(activeData);
     constructChart(activeData[activeData.length - 1]);
     updateChart();
+    addPresent = false;
     buttonDiv.remove();
-    createButton();
-    updateChart();
+    if (true) {
+      createButton();
+      updateChart();
+    }
+    
   });
 }
 

@@ -95,23 +95,13 @@
 
   transition: all ease 0.2s;
 }
-/* 
-.buttonHolder {
-  position: absolute;
-  width: 10rem;
-  height: 10rem;
-  left: 1rem !important;
-  top: 0rem;
-  margin-left: 0rem; Increase or decrease as needed 
-  background-color: aqua  !important;
-}*/
 
 /* this is the base class for the buttons in the tooltip*/
 .button.typeTool {
   position: relative;
   visibility: hidden;
   opacity: 0;
-  left: 2.5rem !important;
+  left: 2.45rem !important;
   width: 1.3rem;
   height: 1.3rem;
   border-radius: 0.5rem;
