@@ -14,6 +14,11 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.icon-button {
+  background-color: #ffffff00;
+  border-style: none;
+}
+
 .button:hover {
   box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.24),
     0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.19);
@@ -62,23 +67,10 @@
   height: 1.6rem;
 }
 
-/* - Animation Play,Pause - */
-#playButton{
-    margin: auto;
-    top: .2rem;
-}
-#playButton.active-button {
-  background-color: rgb(53, 53, 53);
-}
-#playButton.active-button img {
-    filter: invert(1);
-}
-#playButton img {
-  filter: invert(0.88);
-  height: 1.3rem;
-}
+
 
 /* - Year Delay - */
+
 #input_yearDelay {
   width: 1.5rem;
   height: 1.3rem;

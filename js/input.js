@@ -13,10 +13,9 @@ const traceMidpointButton = document.getElementById("traceMidpointButton");
 const soloMidpointButton = document.getElementById("soloMidpointButton");
 // - animation buttons
 const animButton = document.getElementById("playButton");
-const input_yearDelay = document.getElementById("input_yearDelay");
-const submit_YearDelayButton = document.getElementById("submit_YearDelay");
 
 const yearInput = document.getElementById("year");
+const delayInput = document.getElementById("current_yearDelay");
 
 // Input Variables
 let type1_active = 1;
@@ -197,28 +196,6 @@ function start_mapAnimation() {
   }
 }
 
-input_yearDelay.addEventListener("input", () => {
-  if (input_yearDelay.value) {
-    activate_yearDelay();
-  } else {
-    deactivate_yearDelay();
-  }
-});
-
-function activate_yearDelay() {
-  input_yearDelay.classList.toggle("active-button", true);
-  input_yearDelay.classList.toggle("inactive-button", false);
-  submit_YearDelayButton.classList.toggle("active-button", true);
-  submit_YearDelayButton.classList.toggle("inactive-button", false);
-}
-
-function deactivate_yearDelay() {
-  input_yearDelay.classList.toggle("active-button", false);
-  input_yearDelay.classList.toggle("inactive-button", true);
-  submit_YearDelayButton.classList.toggle("active-button", false);
-  submit_YearDelayButton.classList.toggle("inactive-button", true);
-}
-
 // On submit, check the value then change the activeYear to the input value
 yearInput.addEventListener("keyup", (event) => {
   if (event.key == "Enter") {
@@ -248,3 +225,47 @@ yearInput.addEventListener("keyup", (event) => {
 yearInput.addEventListener("blur", (event) => {
   yearInput.value = "";
 });
+
+
+
+/*-- Year Delay --*/
+
+// Set initial value to 0
+delayInput.value = "0";
+
+// On enter, submit the value
+delayInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    delayInput.blur();
+  }
+  event.preventDefault();
+});
+
+// On stop focus on the yearInput box, just show the default value
+delayInput.addEventListener("blur", (event) => {
+  submit_YearDelay(parseInt(delayInput.value.trim()));
+});
+
+// On input event (including arrow button clicks), update the year delay
+delayInput.addEventListener("input", () => {
+  let value = parseInt(delayInput.value.trim());
+  if (!isNaN(value) && value >= 0 && value <= 77) {
+    submit_YearDelay(value);
+  }
+});
+
+// Show alert for value range
+function showRangeAlert() {
+  alert("Value must be between 0 and 77");
+}
+
+// function to set a new year based on typing and submitting a new year
+function submit_YearDelay(inputInt) {
+  if (inputInt <= 77 && inputInt >= 0) {
+    delayInput.value = inputInt.toString();
+    yearDelay = inputInt;
+    updateSymbols(activeYear);
+  } else {
+    showRangeAlert();
+  }
+}

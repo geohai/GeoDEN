@@ -92,6 +92,9 @@
   height: 1.3rem;
   width: 1.3rem;
   left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* - Serotype Toggles - */

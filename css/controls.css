@@ -23,8 +23,8 @@
   top: 0.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 1rem;
-  border: solid 0.1rem rgb(211, 211, 211);
-  background-color: rgb(211, 211, 211);
+  border: solid 0.1rem rgb(172, 172, 172);
+  background-color: rgb(172, 172, 172);
   transition: all 0.2s ease;
 }
 #year::placeholder {
@@ -72,14 +72,8 @@
 }
 
 /* Year Delay */
-#yearDelayControls {
-  position: absolute;
-  line-height: 2rem;
-  left: 25.5rem;
-  bottom: 0%;
-}
 
-#div_yearDelay {
+#div_yearDelay{/* the div that holds everything*/
   position: absolute;
   width: 10rem;
   height: 2.7rem;
@@ -88,8 +82,8 @@
   border-radius: 1rem;
   top: 0.5rem;
   left: 14.7rem;
-  border: solid 0.1rem rgb(121, 121, 121);
-  background-color: rgb(121, 121, 121);
+  border: solid 0.1rem rgb(172, 172, 172);
+  background-color: rgb(172, 172, 172);
   border-width: 0.1rem;
   line-height: 0rem;
   font-size: 0.9rem;
@@ -97,7 +91,7 @@
   cursor: default;
 }
 
-#label_yearDelay {
+#label_yearDelay {/* the static label */
   position: absolute;
   font-style: italic;
   font-weight: 100 !important;
@@ -109,46 +103,97 @@
   color: rgb(0, 0, 0);
 }
 
-#current_yearDelay {
+#current_yearDelay {/* the input window */
   position: absolute;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: normal;
+  font-size: 2.2rem;
+  height: 1.8rem;
+  width:3.3rem;
+  font-weight: lighter;
+  letter-spacing: 0.1rem;
   color: rgb(0, 0, 0);
-  line-height: 2.5rem;
-  right: 1.1rem;
-  text-align: left;
+  right: 0rem;
+  top: 0.2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: .5rem;
+  border: solid 0.1rem rgb(172, 172, 172);
+  background-color: rgb(172, 172, 172);
+  transition: all 0.2s ease;
+  text-align: right;
+  justify-content: center;
+  align-items: center;
 }
 
-#submit_YearDelay {
-  cursor: pointer;
+#current_yearDelay:focus {
+  border: solid 0.1rem rgb(219, 219, 219);
+  background-color: rgb(219, 219, 219);
+}
+
+#div_yearDelay:hover #current_yearDelay {
+  border: solid 0.1rem rgb(219, 219, 219);
+  background-color: rgb(219, 219, 219);
 }
 
 /* Timeline */
-#animationControls {
+#timeControls {
   position: absolute;
-  line-height: 2rem;
   left: 2.5rem;
-  bottom: 0%;
-  width: 7rem;
+  width: 20rem;
 }
 
-#timelineControls {
+.range-slider {
   position: absolute;
-  left: 10rem;
-  width: 15rem;
+  right: 2rem;
+  left: 5.8rem;
+  cursor: pointer;
+  top: .4rem;
+}
+
+.range-slider:active {
+  cursor: grabbing;
+}
+
+.step {
+  position: absolute;
+  width: 1.8rem !important;
+  top: .25rem;
+}
+
+.step img {
+  filter: grayscale(1) invert(.7);
+  transition: all 0.1s ease;
+  width: 1.3rem;
+}
+
+.step:hover img {
+  filter: grayscale(1) invert(.9);
 }
 
 #forward {
-  float: right;
-  width: 8%;
+  right: .2rem;
   cursor: pointer;
 }
 
 #reverse {
-  float: left;
-  width: 8%;
+  right: 14.5rem;
   cursor: pointer;
+}
+
+/* - Animation Play,Pause - */
+#playButton{
+  position: absolute;
+  left: 1rem;
+  margin: auto;
+  top: .2rem;
+}
+#playButton.active-button {
+background-color: rgb(53, 53, 53);
+}
+#playButton.active-button img {
+  filter: invert(1);
+}
+#playButton img {
+filter: invert(0.88);
+height: 1.3rem;
 }
 
 /* Midpoint Controls */

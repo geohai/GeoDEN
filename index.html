@@ -21,7 +21,8 @@
     <div id="background"></div>
     <div id="helpWindow_main" class="helpWindow"></div>
 
-    <!--Headings-->
+  <!-- HEADINGS -->
+    <!--Year-->
     <div id="headings">
       <h1 id="title">Dengue Vis</h1>
       <div class="yearInputDiv">
@@ -32,11 +33,12 @@
           minlength="4"
           maxlength="4"
         />
-        <span class="tooltip top"
-          ><b>1943-2013</b> data comes from Messina et al. 2014.
+        <span class="tooltip heading"
+          ><b>Set year</b>
         </span>
       </div>
     </div>
+    <!--data warning-->
     <div id="dataWarning">
       <img
         class="data-warning-icon"
@@ -49,12 +51,22 @@
       </span>
     </div>
 
+    <!--year delay-->
     <div id="div_yearDelay">
       <div id="label_yearDelay">Year Delay:</div>
-      <i id="current_yearDelay">0</i>
-      <span class="tooltip bottom"
-        >Data from 1943-2013 comes from Messina et al. 2014. In this
-      </span>
+      <input
+      id="current_yearDelay"
+      type="number"
+      placeholder="0"
+      minlength="1"
+      maxlength="2"
+      min="0"
+      max="77"
+    />
+    <span class="tooltip heading"
+      ><b>Set year</b>
+    </span>
+  </div>
     </div>
 
     <!--Control Bar-->
@@ -64,8 +76,10 @@
         ?<span class="tooltip">Help</span>
       </button>
 
-      <!--Animation Toggle Buttons-->
-      <div class="control_div" id="animationControls">
+      <!--Timeline-->
+      <div class="control_div" id="timeControls">
+              <!--Animation Toggle Buttons-->
+      <div id="animationControls">
         <button class="button inactive-button" id="playButton">
           <img src="img/play-solid.svg" />
           <span class="tooltip bottom-C"
@@ -73,27 +87,7 @@
           >
         </button>
       </div>
-      <!--Timeline-->
-      <div class="control_div" id="timelineControls"></div>
-      <!--Year Delay-->
-      <div class="control_div" id="yearDelayControls">
-        <input
-          class="textInput inactive-button"
-          id="input_yearDelay"
-          placeholder="0"
-          minlength="1"
-          maxlength="2"
-        />
-        <button
-          class="button midpointButton inactive-button"
-          onclick="submit_YearDelay()"
-          id="submit_YearDelay"
-        >
-          set delay
-          <span class="tooltip bottom-C"
-            >Delay how many years before points are removed</span
-          >
-        </button>
+
       </div>
 
       <!--Midpoint Controls-->

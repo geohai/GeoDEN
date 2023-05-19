@@ -76,11 +76,12 @@ function pointToLayer(row) {
   //create circle marker layer
   let layer = L.marker(latlng, {
     icon: svgIcon,
-    options: { // store the values of each serotype
+    options: {
+      // store the values of each serotype
       1: row.DEN1,
       2: row.DEN2,
       3: row.DEN3,
-      4: row.DEN4
+      4: row.DEN4,
     },
   }); // set as svg
 
@@ -106,21 +107,23 @@ function createSequenceControls() {
 
     onAdd: function () {
       // create the control container div with a particular class name
-      var container = L.DomUtil.create("div", "sequence-control-container");
+      var container = L.DomUtil.create("div");
 
+      $("#timeControls").append(
+        '<button class="icon-button step" id="reverse" title="Previous Year"><img src="img/arrow_left.svg"></button>'
+      );
+      
       // ... initialize other DOM elements
-      $(container).append('<input class="range-slider" type="range">');
+      $("#timeControls").append('<input class="range-slider" type="range"> title="Timeline"');
       //add skip buttons
       //below Example 3.6...add step buttons
-      $(container).append(
-        '<button class="step" id="reverse" title="Reverse"><img src="img/left.png"></button>'
-      );
-      $(container).append(
-        '<button class="step" id="forward" title="Forward"><img src="img/right.png"></button>'
+
+      $("#timeControls").append(
+        '<button class="icon-button step" id="forward" title="Next Year"><img src="img/arrow_right.svg"></button>'
       );
 
       //disable any mouse event listeners for the container
-      L.DomEvent.disableClickPropagation(container);
+      //L.DomEvent.disableClickPropagation(container);
 
       return container;
     },
@@ -204,12 +207,12 @@ function createPopupContent(row) {
 
   popupContent += "Admin: <b>" + row.ADMIN_LEVEL + "</b>, ";
   popupContent += "N_types: <b>" + row.N_TYPES + "</b>";
-  popupContent +=  "</br>X,Y: "+ row.X + ", "+ row.Y;
+  popupContent += "</br>X,Y: " + row.X + ", " + row.Y;
 
   return popupContent;
 }
 
-//Function to create a new icon
+//Function to create a new icon (pie chart symbol)
 function createIcon(type1, type2, type3, type4, label = false) {
   // First, define nTypes and diameter
   let nTypes =
@@ -219,19 +222,19 @@ function createIcon(type1, type2, type3, type4, label = false) {
     type4 * type4_active;
   let diameter = 0;
   if (nTypes > 0) {
-    diameter = (nTypes + .5) * 7;
+    diameter = (nTypes + 0.5) * 7;
   }
 
   // if midpoint mode and at least 1 serotype present, set diameter differently
   if (midpointMode) {
     if (nTypes > 0) {
-      diameter = (nTypes + .5) * 3;
+      diameter = (nTypes + 0.5) * 3;
     }
   }
 
   // if its a label, define nTypes and diameter differently
   if (label == true) {
-    nTypes = type1 + type2 + type3 + type4
+    nTypes = type1 + type2 + type3 + type4;
     diameter = (nTypes + 2) * 2.5;
   }
 
@@ -241,13 +244,12 @@ function createIcon(type1, type2, type3, type4, label = false) {
   // Function to create an svg template based on color and proportion
   let template = (
     color,
-    proportion,
+    proportion
   ) => `<circle r="5" cx="10" cy="10" fill = "transparent"
   stroke = "${color}"
   stroke-width="10"
   stroke-dasharray="calc(${proportion} * 31.41593 / 100) 31.41593"
   transform="rotate(-90) translate (-20)"/>`;
-
 
   let calcOrder = (type) => {
     let order = nTypes;
@@ -283,31 +285,28 @@ function createIcon(type1, type2, type3, type4, label = false) {
   let slice_type2 = template(type2_color, slices * type2 * calcOrder(2));
   let slice_type1 = template(type1_color, slices * type1 * calcOrder(1));
 
-
-  
   let offset = (nTypes) => {
     if (nTypes == 1) {
       if (midpointMode) {
-        return diameter/2 + 6
+        return diameter / 2 + 6;
       } else {
-        return diameter/2
+        return diameter / 2;
       }
     }
     if (nTypes == 2) {
-      return 1
+      return 1;
     }
     if (nTypes == 3) {
       if (midpointMode) {
-        return diameter/2 + 3
+        return diameter / 2 + 3;
       } else {
-        return diameter/2
+        return diameter / 2;
       }
-      
     }
     if (nTypes == 4) {
-      return diameter/2
+      return diameter / 2;
     }
-  }
+  };
 
   icon = L.divIcon({
     html: `<svg height="${diameter}" width="${diameter}" viewBox="0 0 20 20"
@@ -326,24 +325,6 @@ function createIcon(type1, type2, type3, type4, label = false) {
   });
 
   return icon;
-}
-
-// function to set a new year based on typing and submitting a new year
-function submit_YearDelay() {
-  var inputString = document.getElementById("input_yearDelay").value;
-  var inputInt = parseInt(inputString);
-  if (inputInt <= 77 && inputInt >= 0) {
-    document.getElementById("input_yearDelay").value = "";
-    document.getElementById("input_yearDelay").placeholder = inputString;
-    document.getElementById("current_yearDelay").innerHTML = inputString;
-    deactivate_yearDelay();
-    yearDelay = inputInt;
-    updateSymbols(activeYear);
-  } else {
-    if (inputString) {
-      alert("Not in range 0-77");
-    }
-  }
 }
 
 // ---- _MAIN_ ---- //
