@@ -60,7 +60,7 @@ function constructChart(dataObj) {
 
   // set the width and height of each chart
   const width = chartContainer.node().getBoundingClientRect().width;
-  const barWidth = width;
+  const barWidth = width * 0.7;
   const height = 30;
   const barHeight = 10;
 
@@ -69,6 +69,26 @@ function constructChart(dataObj) {
     .append("svg")
     .attr("width", width)
     .attr("height", height);
+
+  // create the background bar with 100% width
+  chart
+    .append("rect")
+    .attr("class", "bar_backdrop")
+    .attr("x", 30)
+    .attr("y", (height - (barHeight + 5)) / 2)
+    .attr("width", barWidth)
+    .attr("height", barHeight + 5)
+    .attr("fill", "rgba(20,20,20,.3)");
+
+  // create the initial bar with 0% width
+  chart
+    .append("rect")
+    .attr("class", "bar")
+    .attr("x", 40)
+    .attr("y", (height - barHeight) / 2)
+    .attr("width", 0)
+    .attr("height", barHeight)
+    .attr("fill", "white");
 
   // add the count label to the right of the bar
   chart
@@ -82,16 +102,6 @@ function constructChart(dataObj) {
     .style("z-index", "0")
     //.style("font-family", "Arial") // Set the font family to Arial
     .text(dataObj.count);
-
-  // create the initial bar with zero width
-  chart
-    .append("rect")
-    .attr("class", "bar")
-    .attr("x", 40)
-    .attr("y", (height - barHeight) / 2)
-    .attr("width", 0)
-    .attr("height", barHeight)
-    .attr("fill", "white");
 
   // add the type button to the left of the bar
   const typeButton = chart
@@ -225,6 +235,10 @@ function constructChart(dataObj) {
     });
 
   dataObj.chart = chart;
+
+  setTimeout(() => {
+    updateChart();
+  }, 100);
 }
 
 // updateChart updates the whole chart panel every time there is new data
@@ -236,74 +250,81 @@ function updateChart() {
     //console.log(statsMap["c" + activeVars])
   });
 
+  // The rest is the actual updating of each chart.  I put it all in a set timeout to make sure the data comes back from the above loop before it starts
+  setTimeout(() => {
+    // create a new chart for each object in activeData
+    activeData.forEach((dataObj) => {
+      // set the width and height of each chart
+      const width = chartContainer.node().getBoundingClientRect().width;
+      const barWidth = width * 0.65;
+      const events = statsMap.events === 0 ? 0 : statsMap.events;
+      const adjWidth =
+        statsMap.events === 0 ? 0 : barWidth * (dataObj.count / events);
+
+      console.log(events);
+
+      // update the bar width and count label to match the dataObj count value
+      dataObj.chart
+        .selectAll(".bar_backdrop")
+        .transition()
+        .duration(200)
+        .attr("width", barWidth + 13);
+      dataObj.chart
+        .selectAll(".bar")
+        .transition()
+        .duration(200)
+        .attr("width", adjWidth);
+      dataObj.chart
+        .selectAll(".count-label")
+        .transition()
+        .duration(200)
+        // this .att sets the position of the label, as defined by the number of digits in the label
+        .attr("x", adjWidth + (dataObj.count.toString().length + 5) * 10)
+        .text(dataObj.count);
+
+      // Update the SVG symbol in the .tab_label button
+      let svgsymbol = createIcon(
+        dataObj.types.toString().includes("1") ? 1 : 0,
+        dataObj.types.toString().includes("2") ? 1 : 0,
+        dataObj.types.toString().includes("3") ? 1 : 0,
+        dataObj.types.toString().includes("4") ? 1 : 0,
+        (label = true)
+      );
+      const tabLabel = dataObj.chart.select(".tab_label svg");
+      tabLabel.html(svgsymbol.options.html);
+      // Set explicit width and height for the SVG element
+      const symbolWidth = 25; // Adjust the desired width
+      const symbolHeight = 25; // Adjust the desired height
+      const nTypes = dataObj.types.toString().length; // Adjust the desired height
+      const sideShift =
+        nTypes === 1
+          ? 0.55
+          : nTypes === 2
+          ? 0.45
+          : nTypes === 3
+          ? 0.35
+          : nTypes === 4
+          ? 0.25
+          : undefined;
+      tabLabel
+        .style("position", "absolute")
+        .style("left", sideShift + "rem")
+        .style("top", sideShift + "rem")
+        .attr("width", symbolWidth)
+        .attr("height", symbolHeight);
+
+      // Update the classes of each typeTool button
+      for (let i = 1; i <= 4; i++) {
+        const button = dataObj.chart.select(`.serotypeSwitch_${i}`);
+        const isActive = dataObj.types.toString().includes(i.toString());
+        button.classed("active-button", isActive);
+        button.classed("inactive-button", !isActive);
+      }
+    });
+  }, 50);
+
   // use something like this to remove specific charts
   // chartContainer.selectAll("*").remove();
-
-  // create a new chart for each object in activeData
-  activeData.forEach((dataObj) => {
-    // set the width and height of each chart
-    const width = chartContainer.node().getBoundingClientRect().width;
-    const barWidth = width * 0.8;
-
-    // update the bar width and count label to match the dataObj count value
-    dataObj.chart
-      .selectAll(".bar")
-      .transition()
-      .duration(200)
-      .attr("width", (barWidth * dataObj.count) / (statsMap.events + 1));
-    dataObj.chart
-      .selectAll(".count-label")
-      .transition()
-      .duration(200)
-      // this .att sets the position of the label, as defined by the number of digits in the label
-      .attr(
-        "x",
-        (barWidth * dataObj.count) / (statsMap.events + 1) +
-          (dataObj.chart.select(".count-label")._groups[0][0].innerHTML.length +
-            5) *
-            10
-      )
-      .text(dataObj.count);
-
-    // Update the SVG symbol in the .tab_label button
-    let svgsymbol = createIcon(
-      dataObj.types.toString().includes("1") ? 1 : 0,
-      dataObj.types.toString().includes("2") ? 1 : 0,
-      dataObj.types.toString().includes("3") ? 1 : 0,
-      dataObj.types.toString().includes("4") ? 1 : 0,
-      (label = true)
-    );
-    const tabLabel = dataObj.chart.select(".tab_label svg");
-    tabLabel.html(svgsymbol.options.html);
-    // Set explicit width and height for the SVG element
-    const symbolWidth = 25; // Adjust the desired width
-    const symbolHeight = 25; // Adjust the desired height
-    const nTypes = dataObj.types.toString().length; // Adjust the desired height
-    const sideShift =
-      nTypes === 1
-        ? 0.55
-        : nTypes === 2
-        ? 0.45
-        : nTypes === 3
-        ? 0.35
-        : nTypes === 4
-        ? 0.25
-        : undefined;
-    tabLabel
-      .style("position", "absolute")
-      .style("left", sideShift + "rem")
-      .style("top", sideShift + "rem")
-      .attr("width", symbolWidth)
-      .attr("height", symbolHeight);
-
-    // Update the classes of each typeTool button
-    for (let i = 1; i <= 4; i++) {
-      const button = dataObj.chart.select(`.serotypeSwitch_${i}`);
-      const isActive = dataObj.types.toString().includes(i.toString());
-      button.classed("active-button", isActive);
-      button.classed("inactive-button", !isActive);
-    }
-  });
 }
 
 // This function adds the starting charts and is where any other chart code should go that should just be ran on start
@@ -318,7 +339,6 @@ function initiateCharts() {
 
 // This function creates the add chart button.  It sets up interaction as well.
 function createButton() {
-
   addPresent = true;
 
   // Create a button below the last chart
@@ -340,7 +360,6 @@ function createButton() {
       createButton();
       updateChart();
     }
-    
   });
 }
 

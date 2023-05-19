@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Dengue Vis</title>
 
-    <!--put your external stylesheet links here-->
+    <!--Stylesheets-->
     <link rel="stylesheet" href="css/layout_style.css" />
     <link rel="stylesheet" href="css/map_style.css" />
     <link rel="stylesheet" href="css/input_style.css" />
@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="css/helpWindows.css" />
     <link rel="stylesheet" href="css/statsPanel.css" />
     <link rel="stylesheet" href="css/barChart.css" />
+    <link rel="stylesheet" href="css/controls.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
 
   <body>
     <div id="background"></div>
     <div id="helpWindow_main" class="helpWindow"></div>
+
     <!--Headings-->
     <div id="headings">
       <h1 id="title">Dengue Vis</h1>
@@ -43,7 +45,7 @@
         ><b>1943-2013</b> data comes from Messina et al. 2014. <br />
         It was collected over the entireworld for research purposes.
         <br /><br /><b>2014-2020</b> data was instead collected for only certain
-        countries.<br /><br />
+        countries.<br />
       </span>
     </div>
 
@@ -54,94 +56,26 @@
         >Data from 1943-2013 comes from Messina et al. 2014. In this
       </span>
     </div>
-    <div id="controlBar_top">
+
+    <!--Control Bar-->
+    <div id="controlBar">
       <!--Create divs for a help icon and a help window-->
       <button id="helpIcon_main" class="helpIcon button">
         ?<span class="tooltip">Help</span>
       </button>
 
-      <!--Midpoint Toggle Button-->
-      <div class="control_div" id="midpointToggle">
-        midpoints
-        <button
-          class="button midpointButton inactive-button"
-          id="soloMidpointButton"
-        >
-          solo
-          <span class="tooltip bottom"><b>Only show</b> midpoints</span>
-        </button>
-        <button
-          class="button midpointButton inactive-button"
-          id="focusMidpointButton"
-        >
-          focus
-          <span class="tooltip bottom">Make midpoints <b>big</b></span>
-        </button>
-        <button
-          class="button midpointButton inactive-button"
-          id="traceMidpointButton"
-        >
-          trace
-          <span class="tooltip bottom"
-            >When <b>delay >= 1</b>, draw a line <em>tracing</em> each
-            midpoint's position over time</span
-          >
-        </button>
-        <button
-          class="button midpointButton inactive-button"
-          id="typeMidpointButton"
-        >
-          serotype
-          <span class="tooltip bottom"
-            >Calculate a midpoint for <b>each serotype</b></span
-          >
-        </button>
-      </div>
-      <!--Serotype Toggle Buttons-->
-      <div class="control_div" id="serotypeToggles">
-        <!--Type 1-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_1"
-        >
-          1<span class="tooltip bottom">Toggle Serotype <b>1</b></span>
-        </button>
-        <!--Type 2-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_2"
-        >
-          2<span class="tooltip bottom">Toggle Serotype <b>2</b></span>
-        </button>
-        <!--Type 3-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_3"
-        >
-          3<span class="tooltip bottom">Toggle Serotype <b>3</b></span>
-        </button>
-        <!--Type 4-->
-        <button
-          class="button active-button serotypeSwitch"
-          id="serotypeCheck_4"
-        >
-          4<span class="tooltip bottom">Toggle Serotype <b>4</b></span>
-        </button>
-      </div>
-    </div>
-    <div id="controlBar_bottom">
-      <!--Timeline-->
-      <div class="control_div" id="timelineControls"></div>
       <!--Animation Toggle Buttons-->
       <div class="control_div" id="animationControls">
         <button class="button inactive-button" id="playButton">
           <img src="img/play-solid.svg" />
-          <span class="tooltip top"
+          <span class="tooltip bottom-C"
             >Speed Up: <b>↑</b><br />Slow Down: <b>↓</b><br /><br />Start
             <b>animation</b></span
           >
         </button>
       </div>
+      <!--Timeline-->
+      <div class="control_div" id="timelineControls"></div>
       <!--Year Delay-->
       <div class="control_div" id="yearDelayControls">
         <input
@@ -157,20 +91,101 @@
           id="submit_YearDelay"
         >
           set delay
-          <span class="tooltip top"
+          <span class="tooltip bottom-C"
             >Delay how many years before points are removed</span
           >
+        </button>
+      </div>
+
+      <!--Midpoint Controls-->
+      <div class="control_div" id="midpointToggle">
+        <button
+          class="button midpointButton inactive-button"
+          id="soloMidpointButton"
+        >
+          <img
+            class="midpointControl-icon"
+            src="img/solo.svg"
+          />
+          <span class="tooltip bottom-C"><b>Hide reported cases</b></span>
+        </button>
+        <button
+          class="button midpointButton inactive-button"
+          id="focusMidpointButton"
+        >
+          <img
+            class="midpointControl-icon"
+            src="img/focus.svg"
+          />
+          <span class="tooltip bottom-C"><b>Shrink reported cases</b></span>
+        </button>
+        <button
+          class="button midpointButton inactive-button"
+          id="traceMidpointButton"
+        >
+          <img
+            class="midpointControl-icon"
+            src="img/trace.svg"
+          />
+          <span class="tooltip bottom-C"
+            ><b>Show midpoint path</b></br><em>This requires that a delay is active</em></span
+          >
+        </button>
+        <button
+          class="button midpointButton inactive-button"
+          id="typeMidpointButton"
+        >
+          <img
+            class="midpointControl-icon"
+            src="img/serotype.svg"
+          />
+          <span class="tooltip bottom-C"
+            ><b>Serotype midpoints</b></span
+          >
+        </button>
+      </div>
+      <!--Serotype Toggle Buttons-->
+      <div class="control_div" id="serotypeToggles">
+        <!--Type 1-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_1"
+        >
+          1<span class="tooltip bottom-L">Toggle Serotype <b>1</b></span>
+        </button>
+        <!--Type 2-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_2"
+        >
+          2<span class="tooltip bottom-L">Toggle Serotype <b>2</b></span>
+        </button>
+        <!--Type 3-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_3"
+        >
+          3<span class="tooltip bottom-L">Toggle Serotype <b>3</b></span>
+        </button>
+        <!--Type 4-->
+        <button
+          class="button active-button serotypeSwitch"
+          id="serotypeCheck_4"
+        >
+          4<span class="tooltip bottom-L">Toggle Serotype <b>4</b></span>
         </button>
       </div>
     </div>
 
     <!--Panel Divs-->
-    <div class="panelDiv" id="map"></div>
+
+    <div class="panelDiv" id="gantt"></div>
+    <div class="panelDiv" id="matrix"></div>
     <div class="panelDiv" id="stats">
       <div id="barTitle"></div>
       <div id="chart_panel"><div id="chart_container"></div></div>
     </div>
-    <div class="panelDiv" id="gantt"></div>
+    <div class="panelDiv" id="map"></div>
 
     <!--External JS Scripts-->
     <!--Leaflet-->

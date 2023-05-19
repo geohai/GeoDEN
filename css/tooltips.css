@@ -10,7 +10,7 @@
   border-radius: 0.5rem;
   padding: 0.3rem 0.3rem;
   position: absolute;
-  z-index: 99999;
+  z-index: 999;
   left: 50%;
   margin-left: -60px;
   cursor: default;
@@ -23,14 +23,15 @@
   transition-delay: 0.2s;
 }
 
-.tooltip.bottom {
+.tooltip.bottom-L {
   top: 110%;
   margin-left: -8.5rem;
 }
 
-.tooltip.top {
-  bottom: 110%;
-  margin-left: -5rem;
+.tooltip.bottom-C {
+  top: 110%;
+  margin-left: -5.5rem;
+  z-index: 1;
 }
 
 .button:hover .tooltip {

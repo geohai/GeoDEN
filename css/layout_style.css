@@ -1,6 +1,6 @@
 .panelDiv {
   border-radius: 3vmin;
-  background-color: rgb(59, 59, 59);
+  background-color: rgb(53, 53, 53);
   border: solid rgb(100, 100, 100, 0) 0.5vmin;
   outline-offset: 5vmin;
   display: inline-block;
@@ -9,10 +9,10 @@
 }
 #map {
   right: 20%;
-  bottom: 3.1rem;
+  bottom: 0.5rem;
   top: 42%;
   left: 1%;
-  border: solid rgba(0, 0, 0, 0.7) 0.5vmin;
+  border: solid rgba(0, 0, 0, 0.71) 0.5vmin;
 }
 
 #gantt {
@@ -22,17 +22,17 @@
   left: 1%;
 }
 
-#stats {
+#matrix {
   right: 1%;
-  bottom: 3.1rem;
+  bottom: 59%;
   top: 6.8rem;
   left: 80.5%;
 }
 
-#nodeLink {
+#stats {
   right: 1%;
-  bottom: 59%;
-  top: 6.8rem;
+  bottom: 0.5rem;
+  top: 42%;
   left: 80.5%;
 }
 
@@ -42,27 +42,18 @@
   margin: auto;
 }
 
-#controlBar_top {
+#controlBar {
   position: absolute;
   width: 97.4%;
   left: 1%;
-  background-color: rgb(59, 59, 59);
+  background-color: rgb(94, 94, 94);
   border: solid rgb(100, 100, 100, 0) 0.5vmin;
   height: 2rem;
   top: 4rem;
   border-radius: 2.3rem;
 }
 
-#controlBar_bottom {
-  position: absolute;
-  width: 97.4%;
-  left: 1%;
-  background-color: rgb(59, 59, 59);
-  border: solid rgb(100, 100, 100, 0) 0.5vmin;
-  height: 2rem;
-  bottom: 0.3rem;
-  border-radius: 2.3rem;
-}
+
 
 #serotypeToggles {
   position: relative;
@@ -96,35 +87,3 @@
   margin: auto;
 }
 
-#serotypeToggles {
-  position: absolute;
-  line-height: 1.8rem;
-  right: 0rem;
-}
-
-#midpointToggle {
-  position: absolute;
-  line-height: 2rem;
-  letter-spacing: 0.1rem;
-  right: 9rem;
-  width: 24.8rem;
-  color: rgb(168, 168, 168);
-  font-style: italic;
-  z-index: 998;
-  border-left: 0.5rem solid black;
-}
-
-#timelineControls {
-  right: 20rem;
-  background-color: rgb(115, 115, 115, 0);
-}
-#animationControls {
-  line-height: 2rem;
-  bottom: 100%;
-}
-
-#yearDelayControls {
-  line-height: 2rem;
-  left: 9rem;
-  bottom: 200%;
-}

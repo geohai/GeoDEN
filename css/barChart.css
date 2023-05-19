@@ -3,7 +3,7 @@
   position: absolute;
   background-color: rgb(45, 45, 45);
   top: 1vb;
-  height: 10vb;
+  height: 7vb;
   left: 1vb;
   right: 1vb;
   border-radius: 2vb;
@@ -13,28 +13,30 @@
 }
 
 .headerText {
-  position: absolute;
   width: 100%;
+  position: absolute;
   color: rgb(169, 169, 169);
-  font-size: 1rem;
+  font-size: .8rem;
   text-align: center;
+  
 }
 
 .headerText .big {
   font-size: 1.3rem;
-  color: rgb(221, 221, 221);
+  color: rgb(255, 255, 255);
 }
 
 #barchartTitle {
-  top: 0.7vb;
+  top: -.1vb;
 }
 
 #barchartTitle .big {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
+  color: rgb(214, 214, 214);
 }
 
 #barchartSubtitle {
-  top: 4.5vb;
+  bottom: .2vb;
 }
 
 /*Chart*/
@@ -47,7 +49,7 @@
   left: 1vb;
   right: 1vb;
   border-radius: 2vb;
-  top: 5rem;
+  top: 9.5vb;
   border-width: 0.2vb;
   border-style: solid;
   border-color: rgb(109, 109, 109);
@@ -59,7 +61,7 @@
   bottom: 1vb;
   left: 0vb;
   right: 0vb;
-  top: 1.5vb;
+  top: 0.3vb;
   background-color: rgba(133, 133, 133, 0);
 }
 

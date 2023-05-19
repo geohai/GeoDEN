@@ -1,0 +1,199 @@
+/* Year Input */
+#title {
+  color: rgb(130, 130, 130);
+  position: absolute;
+  right: 1rem;
+  font-weight: lighter;
+  font-size: 1.8rem;
+  top: -0.4rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: right;
+}
+
+#year {
+  position: absolute;
+  font-size: 2.6rem;
+  height: 2.7rem;
+  width: 10rem;
+  font-weight: lighter;
+  letter-spacing: 0.5rem;
+  color: rgb(0, 0, 0);
+  left: 1rem;
+  text-align: center;
+  top: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 1rem;
+  border: solid 0.1rem rgb(211, 211, 211);
+  background-color: rgb(211, 211, 211);
+  transition: all 0.2s ease;
+}
+#year::placeholder {
+  color: rgb(0, 0, 0);
+}
+#year:focus::placeholder {
+  color: rgb(112, 112, 112);
+}
+#year:focus,
+#year:focus:hover {
+  border: solid 0.1rem rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+#year:hover {
+  border: solid 0.1rem rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+/* Data Warning */
+#dataWarning {
+  position: absolute;
+  font-size: 1rem;
+  left: 12rem;
+  top: 1rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.data-warning-icon {
+  filter: grayscale(1) invert(0.3);
+  height: 2.2rem;
+  transition: all 0.2s ease;
+}
+
+#dataWarning.yearWarn .data-warning-icon {
+  filter: grayscale(0) invert(0);
+}
+
+.data-warning-icon:hover {
+  filter: grayscale(0.8) invert(0.5);
+}
+
+#dataWarning.yearWarn .data-warning-icon:hover {
+  filter: grayscale(0.7) invert(0.1);
+}
+
+/* Year Delay */
+#yearDelayControls {
+  position: absolute;
+  line-height: 2rem;
+  left: 25.5rem;
+  bottom: 0%;
+}
+
+#div_yearDelay {
+  position: absolute;
+  width: 10rem;
+  height: 2.7rem;
+  text-align: center;
+  margin: auto;
+  border-radius: 1rem;
+  top: 0.5rem;
+  left: 14.7rem;
+  border: solid 0.1rem rgb(121, 121, 121);
+  background-color: rgb(121, 121, 121);
+  border-width: 0.1rem;
+  line-height: 0rem;
+  font-size: 0.9rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: default;
+}
+
+#label_yearDelay {
+  position: absolute;
+  font-style: italic;
+  font-weight: 100 !important;
+  letter-spacing: 0.05rem;
+  font-size: 110%;
+  line-height: 2.7rem;
+  text-align: left;
+  left: 0.8rem;
+  color: rgb(0, 0, 0);
+}
+
+#current_yearDelay {
+  position: absolute;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: normal;
+  color: rgb(0, 0, 0);
+  line-height: 2.5rem;
+  right: 1.1rem;
+  text-align: left;
+}
+
+#submit_YearDelay {
+  cursor: pointer;
+}
+
+/* Timeline */
+#animationControls {
+  position: absolute;
+  line-height: 2rem;
+  left: 2.5rem;
+  bottom: 0%;
+  width: 7rem;
+}
+
+#timelineControls {
+  position: absolute;
+  left: 10rem;
+  width: 15rem;
+}
+
+#forward {
+  float: right;
+  width: 8%;
+  cursor: pointer;
+}
+
+#reverse {
+  float: left;
+  width: 8%;
+  cursor: pointer;
+}
+
+/* Midpoint Controls */
+/* - Midpoint Toggle - */
+
+.midpointButton {
+    width: 2.5rem;
+    border-radius: 3rem;
+    top: .25rem;
+}
+.midpointButton.active-button {
+  background-color: #f4f4f4;
+  color: #292929;
+}
+.midpointButton.active-button:hover {
+  background-color: #fefefe;
+  font-size: 1.05rem;
+}
+
+.midpointControl-icon {
+  position: relative;
+  filter: grayscale(1) invert(.6);
+  height: 1.3rem;
+  bottom: 0rem;
+  transition: all 0.2s ease;
+}
+
+.midpointButton.active-button .midpointControl-icon {
+    filter: grayscale(1) invert(0);
+  }
+
+#serotypeToggles {
+  position: absolute;
+  line-height: 1.8rem;
+  right: 0rem;
+}
+
+#midpointToggle {
+  position: absolute;
+  line-height: 2rem;
+  letter-spacing: 0.3rem;
+  right: 9rem;
+  width: 14.8rem;
+  color: rgb(168, 168, 168);
+  font-style: italic;
+  z-index: 998;
+  border-left: 0.5rem solid black;
+}
