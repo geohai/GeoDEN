@@ -261,7 +261,6 @@ function updateChart() {
       const adjWidth =
         statsMap.events === 0 ? 0 : barWidth * (dataObj.count / events);
 
-      console.log(events);
 
       // update the bar width and count label to match the dataObj count value
       dataObj.chart

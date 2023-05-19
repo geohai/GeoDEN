@@ -2,12 +2,12 @@
 #barTitle {
   position: absolute;
   background-color: rgb(45, 45, 45);
-  top: 1vb;
-  height: 7vb;
-  left: 1vb;
-  right: 1vb;
-  border-radius: 2vb;
-  border-width: 0.2vb;
+  top: .2rem;
+  height: 3rem;
+  left: .2rem;
+  right: .2rem;
+  border-radius: 2.5vmin;
+  border-width: 0.08rem;
   border-style: solid;
   border-color: rgb(101, 101, 101);
 }
@@ -16,7 +16,7 @@
   width: 100%;
   position: absolute;
   color: rgb(169, 169, 169);
-  font-size: .8rem;
+  font-size:.9rem;
   text-align: center;
   
 }
@@ -27,7 +27,7 @@
 }
 
 #barchartTitle {
-  top: -.1vb;
+  top: 0rem;
 }
 
 #barchartTitle .big {
@@ -36,7 +36,7 @@
 }
 
 #barchartSubtitle {
-  bottom: .2vb;
+  top: 1.1rem;
 }
 
 /*Chart*/
@@ -45,12 +45,12 @@
   position: absolute;
   background: radial-gradient(ellipse at 30% 20%, #575257, transparent),
     radial-gradient(ellipse at 60% 80%, #41464e, transparent);
-  bottom: 1vb;
-  left: 1vb;
-  right: 1vb;
-  border-radius: 2vb;
-  top: 9.5vb;
-  border-width: 0.2vb;
+  bottom: .2rem;
+  left: .2rem;
+  right: .2rem;
+  border-radius: 2.5vmin;
+  top: 3.6rem;
+  border-width: 0.08rem;
   border-style: solid;
   border-color: rgb(109, 109, 109);
   cursor: default;
@@ -58,10 +58,10 @@
 
 #chart_container {
   position: absolute;
-  bottom: 1vb;
-  left: 0vb;
-  right: 0vb;
-  top: 0.3vb;
+  bottom: 0rem;
+  left: 0rem;
+  right: 0rem;
+  top: 0.3rem;
   background-color: rgba(133, 133, 133, 0);
 }
 
