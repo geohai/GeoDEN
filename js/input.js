@@ -166,9 +166,9 @@ function midpointModeCheck() {
 
 function start_mapAnimation() {
   if (animation_active) {
-    animButton.innerHTML = '<img src="img/pause-solid.svg"><span class="tooltip bottom-C"><b>Stop Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+    animButton.innerHTML = '<img src="img/pause-solid.svg"><span class="tooltip"><b>Stop Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
   } else {
-    animButton.innerHTML = '<img src="img/play-solid.svg"><span class="tooltip bottom-C"><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+    animButton.innerHTML = '<img src="img/play-solid.svg"><span class="tooltip"><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
   }
 
   // set speed

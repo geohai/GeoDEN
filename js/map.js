@@ -114,7 +114,7 @@ function createSequenceControls() {
       );
       
       // ... initialize other DOM elements
-      $("#timeControls").append('<input class="range-slider" type="range"> title="Timeline"');
+      $("#timeControls").append('<input class="range-slider" type="range" title="Timeline"> ');
       //add skip buttons
       //below Example 3.6...add step buttons
 
