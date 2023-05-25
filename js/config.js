@@ -12,9 +12,10 @@ function initiateCategoryDivs() {
 
 // This function creates a the Category Div
 function constructCategoryDiv(category) {
-  console.log(category);
+  //console.log(category);
 
   const container = d3.select("#categoryConfig");
+  const treeContainer = d3.select("#countryConfig");
 
   // create a new svg element for each chart
   const categoryDiv = container.append("div").attr("class", "categoryDiv");
@@ -29,18 +30,6 @@ function constructCategoryDiv(category) {
     eyeImg = "img/hide.svg";
   }
 
-  // Append a button for toggling the visibility
-  categoryDiv
-    .append("button")
-    .attr("class", "icon-button visibility-toggle category-icon-button")
-    .append("img")
-    .attr("src", eyeImg)
-    .each(function () {
-      d3.select(this).on("click", function () {
-        toggleVisibility(category);
-      });
-    });
-
   // Append a button for editing the category
   categoryDiv
     .append("button")
@@ -53,6 +42,18 @@ function constructCategoryDiv(category) {
       });
     });
 
+  // Append a button for toggling the visibility
+  categoryDiv
+    .append("button")
+    .attr("class", "icon-button visibility-toggle category-icon-button")
+    .append("img")
+    .attr("src", eyeImg)
+    .each(function () {
+      d3.select(this).on("click", function () {
+        toggleVisibility(category);
+      });
+    });
+
   // Function to handle toggle visibility button click
   function toggleVisibility(category) {
     // Your logic for toggling visibility goes here
@@ -61,22 +62,24 @@ function constructCategoryDiv(category) {
     category.hidden = !category.hidden;
     // Update the source based on the 'hidden' state
     if (category.hidden == false) {
-      d3.select(categoryDiv._groups[0][0].childNodes[1].childNodes[0]).attr(
+      d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
         "src",
         "img/show.svg"
       );
     } else {
-      d3.select(categoryDiv._groups[0][0].childNodes[1].childNodes[0]).attr(
+      d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
         "src",
         "img/hide.svg"
       );
     }
-    updateSymbols(activeYear, reset = true);
+    updateSymbols(activeYear, (reset = true));
   }
 
   // Function to handle edit category button click
   function editCategory(category) {
-    // Your logic for editing the category goes here
-    console.log("Category edited:", category);
+    // Remove the 'closed' class
+    treeContainer.classed("closed", false);
+    // Add the 'open' class
+    treeContainer.classed("open", true);
   }
 }

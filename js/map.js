@@ -2,7 +2,7 @@
 let map;
 
 // active year being shown global variable
-let activeYear = 1943;
+let activeYear = 1988;
 let yearDelay = 0;
 // global variable of the activeLayerGroup
 let activeLayerGroup;

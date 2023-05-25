@@ -50,7 +50,7 @@ let category1 = {
   midPoints: [], // 2: midpoint layergroup
   name: "Americas", // 3: name
   color: "#ffffff", // 4: color
-  hidden: true, // 5: polyline layergroup
+  hidden: false, // 5: polyline layergroup
 };
 // Africa
 let category2 = {
@@ -171,7 +171,6 @@ function getData(map) {
     }
 
     // function here to set category groups
-
     // This gets all points, adds them to the layer group and
     updateSymbols(activeYear);
 
@@ -179,6 +178,10 @@ function getData(map) {
   });
 
   createSequenceControls();
+
+  $(".range-slider").val(parseInt(activeYear))
+
+
 }
 
 // delete current points and add correct points for given year
@@ -190,7 +193,6 @@ function updateSymbols(index, reset = false) {
   // Define what categories to look through
   allCategoryGroups.forEach((category) => {
     if (category.hidden == false) {
-      console.log(category.name);
       visibleCategoryGroups.push(category);
     }
   });
