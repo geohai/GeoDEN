@@ -73,7 +73,8 @@
 
 /* Year Delay */
 
-#div_yearDelay{/* the div that holds everything*/
+#div_yearDelay {
+  /* the div that holds everything*/
   position: absolute;
   width: 10rem;
   height: 2.7rem;
@@ -91,7 +92,8 @@
   cursor: default;
 }
 
-#label_yearDelay {/* the static label */
+#label_yearDelay {
+  /* the static label */
   position: absolute;
   font-style: italic;
   font-weight: 100 !important;
@@ -103,18 +105,19 @@
   color: rgb(0, 0, 0);
 }
 
-#current_yearDelay {/* the input window */
+#current_yearDelay {
+  /* the input window */
   position: absolute;
   font-size: 2.2rem;
   height: 1.8rem;
-  width:3.3rem;
+  width: 3.3rem;
   font-weight: lighter;
   letter-spacing: 0.1rem;
   color: rgb(0, 0, 0);
   right: 0rem;
   top: 0.2rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   border: solid 0.1rem rgb(172, 172, 172);
   background-color: rgb(172, 172, 172);
   transition: all 0.2s ease;
@@ -145,7 +148,7 @@
   right: 2rem;
   left: 5.8rem;
   cursor: pointer;
-  top: .4rem;
+  top: 0.4rem;
 }
 
 .range-slider:active {
@@ -155,21 +158,21 @@
 .step {
   position: absolute;
   width: 1.8rem !important;
-  top: .25rem;
+  top: 0.25rem;
 }
 
 .step img {
-  filter: grayscale(1) invert(.7);
+  filter: grayscale(1) invert(0.7);
   transition: all 0.1s ease;
   width: 1.3rem;
 }
 
 .step:hover img {
-  filter: grayscale(1) invert(.9);
+  filter: grayscale(1) invert(0.9);
 }
 
 #forward {
-  right: .2rem;
+  right: 0.2rem;
   cursor: pointer;
 }
 
@@ -179,68 +182,67 @@
 }
 
 /* - Animation Play,Pause - */
-#playButton{
+#playButton {
   position: absolute;
   left: 1.5rem;
   margin: auto;
-  top: .2rem;
+  top: 0.2rem;
 }
-#playButton.active-button {
-background-color: rgb(53, 53, 53);
-}
+
 #playButton.active-button img {
   filter: invert(1);
 }
 #playButton img {
-filter: invert(0.88);
-height: 1.3rem;
+  filter: invert(0.88);
+  height: 1.3rem;
 }
 
 /* Midpoint Controls */
 /* - Midpoint Toggle - */
 
 .midpointButton {
-    width: 2.5rem;
-    border-radius: 3rem;
-    top: .15rem;
-    height: 1.6rem;
-}
-.midpointButton.active-button {
-  background-color: #f4f4f4;
-  color: #292929;
-}
-.midpointButton.active-button:hover {
-  background-color: #fefefe;
-  font-size: 1.05rem;
+  width: 2.2rem;
+  border-radius: 3rem;
+  top: 0.15rem;
+  height: 1.6rem;
 }
 
 .midpointControl-icon {
   position: relative;
-  filter: grayscale(1) invert(.6);
   height: 1.3rem;
   bottom: 0rem;
   transition: all 0.2s ease;
+  top: 0.15rem;
 }
 
-.midpointButton.active-button .midpointControl-icon {
-    filter: grayscale(1) invert(0);
-  }
+.midpointButton:hover .midpointControl-icon {
+  /* hover */
+  top: 0.06rem;
+  filter: grayscale(0) invert(0.1) !important;
+}
+
+.midpointButton.active-mid .midpointControl-icon {
+  /* active */
+  filter: grayscale(1) invert(.5) brightness(1.5);
+}
+
+.midpointButton.inactive-mid .midpointControl-icon {
+  /* inactive */
+  filter: grayscale(1) invert(0.5) brightness(0.6);
+}
 
 #serotypeToggles {
   position: absolute;
   line-height: 1.8rem;
   letter-spacing: 0.1rem;
-  right: 0.1rem;
+  right: 0.25rem;
 }
 
 #midpointToggle {
   position: absolute;
   line-height: 2rem;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.1rem;
   right: 10.6rem;
-  width: 14rem;
-  color: rgb(168, 168, 168);
-  font-style: italic;
+  width: 12rem;
   z-index: 998;
-  border-left: 0.5rem solid black;
 }

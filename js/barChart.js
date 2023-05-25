@@ -344,7 +344,12 @@ function createButton() {
   const buttonDiv = chartContainer.append("div").attr("class", "button-div");
 
   // Append a button element to the button container
-  buttonDiv.append("button").attr("class", "button addChart").text("+");
+  buttonDiv
+  .append("button")
+  .attr("id", "addChart")
+  .attr("class", "icon-button")
+  .append("img")
+  .attr("src", "img/cross.svg");
 
   // Add an event listener to the button
   buttonDiv.select("button").on("click", function () {

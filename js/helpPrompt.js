@@ -22,7 +22,6 @@ function helpWindowMain() {
       isOpen = false;
       //make yellow
       helpIcon.style.backgroundColor = "rgb(255, 217, 0)";
-      helpIcon.style.borderColor = "rgb(255, 217, 0)";
       helpIcon.style.color = "black";
       // empty the window of its contents
       helpWindow.innerHTML = "";
@@ -32,7 +31,6 @@ function helpWindowMain() {
       isOpen = true;
       //make red
       helpIcon.style.backgroundColor = "rgb(214, 79, 79)";
-      helpIcon.style.borderColor = "rgb(214, 79, 79)";
       helpIcon.style.color = "black";
       // set the window to have contents
       helpWindow.innerHTML = helpWindowContent;
@@ -44,12 +42,10 @@ function helpWindowMain() {
     if (isOpen) {
       //make red
       helpIcon.style.backgroundColor = "rgb(214, 79, 79)";
-      helpIcon.style.borderColor = "rgb(214, 79, 79)";
       helpIcon.style.color = "black";
     } else {
       //make yellow
       helpIcon.style.backgroundColor = "rgb(255, 217, 0)";
-      helpIcon.style.borderColor = "rgb(255, 217, 0)";
       helpIcon.style.color = "black";
     }
   });
@@ -59,13 +55,11 @@ function helpWindowMain() {
     if (isOpen) {
       //make white
       helpIcon.style.backgroundColor = "white";
-      helpIcon.style.borderColor = "white";
       helpIcon.style.color = "black";
     } else {
       //make black
-      helpIcon.style.backgroundColor = "black";
-      helpIcon.style.borderColor = "black";
-      helpIcon.style.color = "white";
+      helpIcon.style.backgroundColor = "white";
+      helpIcon.style.color = "black";
     }
   });
 

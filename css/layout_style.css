@@ -11,7 +11,7 @@
   right: 20%;
   bottom: 0.5rem;
   top: 42%;
-  left: 1%;
+  left: 18.5%;
   border: solid rgba(0, 0, 0, 0.71) 0.5vmin;
 }
 
@@ -19,7 +19,7 @@
   right: 20%;
   bottom: 59%;
   top: 6.8rem;
-  left: 1%;
+  left: 18.5%;
 }
 
 #matrix {
@@ -36,6 +36,13 @@
   left: 80.5%;
 }
 
+#config {
+  right: 82%;
+  bottom: 0.5rem;
+  top: 6.8rem;
+  left: 1%;
+}
+
 #headings {
   top: 0rem;
   height: 1rem;
@@ -47,17 +54,23 @@
   width: 97.4%;
   left: 1%;
   background-color: rgb(94, 94, 94);
-  border: solid rgb(100, 100, 100, 0) 0.5vmin;
+  background: radial-gradient(ellipse at 0% 20%, #807180, transparent),
+  radial-gradient(ellipse at 100% 20%, #625a69, transparent),
+  radial-gradient(ellipse at 50% 100%, #4d5c74, transparent);
   height: 2rem;
   top: 4rem;
   border-radius: 2.3rem;
+  padding-top: .5vmin;
+  padding-bottom: .5vmin;
+  padding-left: .5vmin;
+  padding-right: .5vmin;
 }
 
 
 
 #serotypeToggles {
   position: absolute;
-  background-color: rgb(5, 5, 5);
+  background-color: rgb(26, 26, 26);
   color: rgb(0, 0, 0);
   border-radius: 20px;
   height: 2rem;
@@ -67,12 +80,13 @@
   z-index: 999;
   cursor: default;
   margin: auto;
+  right: .2rem;
 }
 
 .control_div {
   position: relative;
-  background-color: rgb(5, 5, 5);
-  color: rgb(0, 0, 0);
+  background-color: rgb(26, 26, 26);
+  color: rgb(26, 26, 26);
   border-radius: 20px;
   width: 8.5rem;
   height: 2rem;

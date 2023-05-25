@@ -29,12 +29,36 @@
 }
 
 .tooltip.bottom-C {
-  top: 110%;
+  top: 100%;
   margin-left: -5.5rem;
   z-index: 1;
 }
 
+.icon-button:nth-child(1) .tooltip {
+  left: 33%;
+}
+
+.icon-button:nth-child(2) .tooltip {
+  left: 63%;
+}
+
+.icon-button:nth-child(3) .tooltip {
+  left: 85%;
+}
+
+.icon-button:nth-child(4) .tooltip {
+  left: 90%;
+  width: 9rem;
+}
+
 .button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+.icon-button .tooltip {
+  width: fit-content;
+}
+.icon-button:hover .tooltip {
   visibility: visible;
   opacity: 1;
 }

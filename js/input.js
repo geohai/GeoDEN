@@ -63,32 +63,61 @@ button4.addEventListener("click", () => {
 // Midpoint Toggle
 focusMidpointButton.addEventListener("click", () => {
   midpointMode = !midpointMode;
-  focusMidpointButton.classList.toggle("active-button", midpointMode);
-  focusMidpointButton.classList.toggle("inactive-button", !midpointMode);
+  focusMidpointButton.classList.toggle("active-mid", midpointMode);
+  focusMidpointButton.classList.toggle("inactive-mid", !midpointMode);
+  if (midpointMode) {
+    focusMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/enlarge.svg" /><span class="tooltip bottom-C"><b>Large</b></br>Midpoints</span>';
+  } else {
+    focusMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/shrink.svg" /><span class="tooltip bottom-C"><b>Small</b></br>Midpoints</span>';
+  }
   updateSymbols(activeYear, (reset = true));
 });
 
 // Type Based Midpoint Toggle
 typeMidpointButton.addEventListener("click", () => {
   serotypeMidpoints = !serotypeMidpoints;
-  typeMidpointButton.classList.toggle("active-button", serotypeMidpoints);
-  typeMidpointButton.classList.toggle("inactive-button", !serotypeMidpoints);
+  typeMidpointButton.classList.toggle("active-mid", serotypeMidpoints);
+  typeMidpointButton.classList.toggle("inactive-mid", !serotypeMidpoints);
+  if (serotypeMidpoints) {
+    typeMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/multipleType.svg" /><span class="tooltip bottom-C"><b>Serotype</b></br>Midpoints</span>';
+  } else {
+    typeMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/singleType.svg" /><span class="tooltip bottom-C"><b>Regional</b></br>Midpoints</span>';
+  }
   updateSymbols(activeYear, (reset = true));
 });
 
 // Trace Midpoints Toggle
 traceMidpointButton.addEventListener("click", () => {
   midpointTrace = !midpointTrace;
-  traceMidpointButton.classList.toggle("active-button", midpointTrace);
-  traceMidpointButton.classList.toggle("inactive-button", !midpointTrace);
+  traceMidpointButton.classList.toggle("active-mid", midpointTrace);
+  traceMidpointButton.classList.toggle("inactive-mid", !midpointTrace);
+  if (midpointTrace) {
+    traceMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/trace.svg" /><span class="tooltip bottom-C"><b>Trace Midpoints</b></br><em>Requires a Delay</em></span>';
+  } else {
+    traceMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/point.svg" /><span class="tooltip bottom-C"><b>Average Midpoint</b></span>';
+  }
   updateSymbols(activeYear, (reset = true));
 });
 
 // Show Only Midpoints Toggle
 soloMidpointButton.addEventListener("click", () => {
   showEventPoints = !showEventPoints;
-  soloMidpointButton.classList.toggle("active-button", !showEventPoints);
-  soloMidpointButton.classList.toggle("inactive-button", showEventPoints);
+  soloMidpointButton.classList.toggle("active-mid", showEventPoints);
+  soloMidpointButton.classList.toggle("inactive-mid", !showEventPoints);
+  if (showEventPoints) {
+    soloMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/show.svg" /><span class="tooltip bottom-C"><b>Show</b></br>Reported Cases</span>';
+  } else {
+    soloMidpointButton.innerHTML =
+      '<img class="midpointControl-icon" src="img/hide.svg" /><span class="tooltip bottom-C"><b>Don\'t Show</b></br>Reported Cases</span>';
+  }
+
   updateSymbols(activeYear, (reset = true));
 });
 
@@ -166,9 +195,11 @@ function midpointModeCheck() {
 
 function start_mapAnimation() {
   if (animation_active) {
-    animButton.innerHTML = '<img src="img/pause-solid.svg"><span class="tooltip"><b>Stop Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+    animButton.innerHTML =
+      '<img src="img/pause-solid.svg"><span class="tooltip"><b>Stop Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
   } else {
-    animButton.innerHTML = '<img src="img/play-solid.svg"><span class="tooltip"><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+    animButton.innerHTML =
+      '<img src="img/play-solid.svg"><span class="tooltip"><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
   }
 
   // set speed
@@ -225,8 +256,6 @@ yearInput.addEventListener("keyup", (event) => {
 yearInput.addEventListener("blur", (event) => {
   yearInput.value = "";
 });
-
-
 
 /*-- Year Delay --*/
 

@@ -1,15 +1,12 @@
 /*Title Section*/
 #barTitle {
   position: absolute;
-  background-color: rgb(45, 45, 45);
+  background-color: rgb(26, 26, 26);
   top: .2rem;
   height: 3rem;
   left: .2rem;
   right: .2rem;
   border-radius: 2.5vmin;
-  border-width: 0.08rem;
-  border-style: solid;
-  border-color: rgb(101, 101, 101);
 }
 
 .headerText {
@@ -43,16 +40,15 @@
 
 #chart_panel {
   position: absolute;
+  /*
   background: radial-gradient(ellipse at 30% 20%, #575257, transparent),
-    radial-gradient(ellipse at 60% 80%, #41464e, transparent);
+    radial-gradient(ellipse at 60% 80%, #41464e, transparent);*/
   bottom: .2rem;
   left: .2rem;
   right: .2rem;
   border-radius: 2.5vmin;
   top: 3.6rem;
-  border-width: 0.08rem;
-  border-style: solid;
-  border-color: rgb(109, 109, 109);
+  background-color: rgb(78, 78, 78);
   cursor: default;
 }
 
@@ -83,18 +79,20 @@
   cursor: grabbing;
 }
 
-.button.addChart {
+#addChart{
   position: relative;
-  background-color: rgb(29, 29, 29);
-  border-radius: 2rem;
-  font-size: large;
-  text-align: center;
-  height: 1.3rem;
-  width: 1.3rem;
-  left: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 1.8rem;
+  width: 1.8rem;
+  left: 9px;
+  cursor: pointer;
+  font-size: .5rem;
+  filter: grayscale(1) invert(.7);
+  transition: all .15s ease;
+  rotate: 45deg;
+}
+
+#addChart:hover{
+  filter: grayscale(1) invert(1);
 }
 
 /* - Serotype Toggles - */

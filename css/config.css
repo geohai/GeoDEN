@@ -1,0 +1,134 @@
+.configWindow {
+  position: absolute;
+  width: 97%;
+  left: 1.1%;
+  border-radius: 1rem;
+  transition: all 0.5s ease;
+}
+
+#titleConfig {
+  height: 2rem;
+  top: 0.1rem;
+  background-color: rgb(26, 26, 26);
+}
+
+#categoryConfig {
+  top: 2.5rem;
+  bottom: .1rem;
+  background-color: rgb(78, 78, 78);
+}
+
+#countryConfig .open {
+  bottom: 0.1rem;
+  background: radial-gradient(ellipse at 30% 50%, #3e3c3e, transparent),
+    radial-gradient(ellipse at 60% 80%, #393c41, transparent);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+#countryConfig .closed {
+  bottom: 0.1rem;
+  background: radial-gradient(ellipse at 30% 50%, #3e3c3e, transparent),
+    radial-gradient(ellipse at 60% 80%, #393c41, transparent);
+  border-color: rgba(255, 255, 255, 0);
+}
+
+#config.expandCategory #countryConfig {
+  height: 4rem;
+}
+
+#config.expandCountry #countryConfig {
+  top: 12rem;
+}
+
+#configTitleText {
+  position: absolute;
+  top: 0.1rem;
+  font-size: 1.2rem;
+  font-weight: 100;
+  text-align: center;
+  width: 80%;
+  left: 12%;
+  color: rgb(213, 213, 213);
+  z-index: 9;
+}
+
+#toggleConfigButton {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  left: 0rem;
+  top: 0.05rem;
+  cursor: pointer;
+  font-size: 0.5rem;
+  filter: grayscale(1) invert(0.5);
+  transition: all 0.15s ease;
+  rotate: 0deg;
+  z-index: 10;
+}
+
+#toggleConfigButton:hover {
+  filter: grayscale(1) invert(0.8);
+}
+
+
+.categoryDiv {
+  position: relative;
+  background-color: rgb(43, 43, 43);
+  height: 2.2rem;
+  width: 95%;
+  left: 2.5%;
+  border-radius: 2rem;
+  margin-top: .5rem;
+}
+
+.categoryTitle {
+  top: .24rem;
+  font-weight: 500;
+  color:#bababa;
+  font-size: large;
+  left: .19rem;
+  right: 4rem;
+  position: absolute;
+  background-color: #ffffff00;
+  border: 0rem solid;
+  border-radius: .8rem;
+  transition: all 0.15s ease;
+  height: 1.6rem;
+  padding-left: .5rem;
+}
+
+.categoryTitle:hover, .categoryTitle:focus {
+  background-color: #3b3b3b;
+}
+
+.category-icon-button {
+  position: absolute;
+  text-align: right;
+  z-index: 10;
+  cursor: default;
+}
+
+.category-icon-button img {
+  cursor: pointer;
+  filter: grayscale(1) invert(.5) brightness(.7);
+  transition: all 0.15s ease;
+}
+
+.category-icon-button img:hover {
+  filter: grayscale(1) invert(.5) brightness(1.5); 
+}
+
+
+.visibility-toggle{
+  top: 0.3rem;
+  right: .4rem;
+  height: 1.9rem;
+  width: 1.9rem;
+}
+
+.category-edit{
+  top: 0.3rem;
+  right: 2.2rem;
+  height: 1.8rem;
+  width: 1.8rem;
+}

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/statsPanel.css" />
     <link rel="stylesheet" href="css/barChart.css" />
     <link rel="stylesheet" href="css/controls.css" />
+    <link rel="stylesheet" href="css/config.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
   </head>
 
@@ -21,7 +22,7 @@
     <div id="background"></div>
     <div id="helpWindow_main" class="helpWindow"></div>
 
-  <!-- HEADINGS -->
+    <!-- HEADINGS -->
     <!--Year-->
     <div id="headings">
       <h1 id="title">Dengue Vis</h1>
@@ -33,11 +34,10 @@
           minlength="4"
           maxlength="4"
         />
-        <span class="tooltip heading"
-          ><b>Set year</b>
-        </span>
+        <span class="tooltip heading"><b>Set year</b> </span>
       </div>
     </div>
+
     <!--data warning-->
     <div id="dataWarning">
       <img
@@ -55,18 +55,15 @@
     <div id="div_yearDelay">
       <div id="label_yearDelay">Year Delay:</div>
       <input
-      id="current_yearDelay"
-      type="number"
-      placeholder="0"
-      minlength="1"
-      maxlength="2"
-      min="0"
-      max="77"
-    />
-    <span class="tooltip heading"
-      ><b>Set year</b>
-    </span>
-  </div>
+        id="current_yearDelay"
+        type="number"
+        placeholder="0"
+        minlength="1"
+        maxlength="2"
+        min="0"
+        max="77"
+      />
+      <span class="tooltip heading"><b>Set year</b> </span>
     </div>
 
     <!--Control Bar-->
@@ -78,63 +75,48 @@
 
       <!--Timeline-->
       <div class="control_div" id="timeControls">
-              <!--Animation Toggle Buttons-->
-      <div id="animationControls">
-        <button class="button inactive-button" id="playButton">
-          <img src="img/play-solid.svg" />
-          <span class="tooltip"
-            ><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span
-          >
-        </button>
-      </div>
-
+        <!--Animation Toggle Buttons-->
+        <div id="animationControls">
+          <button class="button inactive-button" id="playButton">
+            <img src="img/play-solid.svg" />
+            <span class="tooltip"
+              ><b>Start Animation</b
+              ><em><br />Speed Up: <b>↑</b><br />Slow Down: <b>↓</b></em></span
+            >
+          </button>
+        </div>
       </div>
 
       <!--Midpoint Controls-->
       <div class="control_div" id="midpointToggle">
         <button
-          class="button midpointButton inactive-button"
+          class="icon-button midpointButton active-mid"
           id="soloMidpointButton"
         >
-          <img
-            class="midpointControl-icon"
-            src="img/solo.svg"
-          />
-          <span class="tooltip bottom-C"><b>Hide reported cases</b></span>
+          <img class="midpointControl-icon" src="img/show.svg" />
+          <span class="tooltip bottom-C"><b>Show</b><br />Reported Cases</span>
         </button>
         <button
-          class="button midpointButton inactive-button"
+          class="icon-button midpointButton inactive-mid"
           id="focusMidpointButton"
         >
-          <img
-            class="midpointControl-icon"
-            src="img/focus.svg"
-          />
-          <span class="tooltip bottom-C"><b>Shrink reported cases</b></span>
+          <img class="midpointControl-icon" src="img/shrink.svg" />
+          <span class="tooltip bottom-C"><b>Small</b><br />Midpoints</span>
         </button>
         <button
-          class="button midpointButton inactive-button"
-          id="traceMidpointButton"
-        >
-          <img
-            class="midpointControl-icon"
-            src="img/trace.svg"
-          />
-          <span class="tooltip bottom-C"
-            ><b>Show midpoint path</b></br><em>Requires a delay</em></span
-          >
-        </button>
-        <button
-          class="button midpointButton inactive-button"
+          class="icon-button midpointButton inactive-mid"
           id="typeMidpointButton"
         >
-          <img
-            class="midpointControl-icon"
-            src="img/serotype.svg"
-          />
-          <span class="tooltip bottom-C"
-            ><b>Serotype midpoints</b></span
-          >
+          <img class="midpointControl-icon" src="img/singleType.svg" />
+          <span class="tooltip bottom-C"><b>Regional</b><br />Midpoints</span>
+        </button>
+
+        <button
+          class="icon-button midpointButton inactive-mid"
+          id="traceMidpointButton"
+        >
+          <img class="midpointControl-icon" src="img/point.svg" />
+          <span class="tooltip bottom-C"><b>Average Midpoint</b></span>
         </button>
       </div>
       <!--Serotype Toggle Buttons-->
@@ -172,6 +154,16 @@
 
     <!--Panel Divs-->
 
+    <div class="panelDiv openConfig" id="config">
+      <div class="configWindow" id="titleConfig">
+        <button class="icon-button" id="toggleConfigButton">
+          <img src="img/cross.svg" />
+        </button>
+        <span id="configTitleText">Configuration</span>
+      </div>
+      <div class="configWindow" id="categoryConfig"></div>
+      <!--<div class="configWindow" id="countryConfig"></div>-->
+    </div>
     <div class="panelDiv" id="gantt"></div>
     <div class="panelDiv" id="matrix"></div>
     <div class="panelDiv" id="stats">
@@ -206,5 +198,7 @@
     <script type="text/javascript" src="js/dbScan.js"></script>
     <script type="text/javascript" src="js/barChart.js"></script>
     <script type="text/javascript" src="js/caculateStats.js"></script>
+    <script type="text/javascript" src="js/resize.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
   </body>
 </html>

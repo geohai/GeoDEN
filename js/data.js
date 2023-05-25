@@ -1,7 +1,6 @@
-let categoryGroups = [];
 // Americas
-let category1 = [
-  [
+let category1 = {
+  countryList: [
     "Anguilla",
     "Aruba",
     "Bahamas",
@@ -47,15 +46,15 @@ let category1 = [
     "St. Vincent & the Grenadines",
     "Cayman Islands",
   ], // 0: country list
-  {}, // 1: data points as a dictionary of layer groups, key representing the years
-  [], // 2: midpoint layergroup
-  "Americas", // 3: name
-  "#ffffff", // 4: color
-  // 5: polyline layergroup
-];
+  dataPoints: {}, // 1: data points as a dictionary of layer groups, key representing the years
+  midPoints: [], // 2: midpoint layergroup
+  name: "Americas", // 3: name
+  color: "#ffffff", // 4: color
+  hidden: true, // 5: polyline layergroup
+};
 // Africa
-let category2 = [
-  [
+let category2 = {
+  countryList: [
     "Angola",
     "Burkina Faso",
     "Cameroon",
@@ -85,14 +84,15 @@ let category2 = [
     "Tanzania",
     "Kenya",
   ],
-  {},
-  [],
-  "Africa",
-  "#919191",
-];
+  dataPoints: {},
+  midPoints: [],
+  name: "Africa",
+  color: "#919191",
+  hidden: false,
+};
 // Asia
-let category3 = [
-  [
+let category3 = {
+  countryList: [
     "Cambodia",
     "Cook Islands",
     "Fiji",
@@ -134,17 +134,15 @@ let category3 = [
     "Vanuatu",
     "Wallis and Futuna",
   ],
-  {},
-  [],
-  "Asia",
-  "#424242",
-];
-let category4 = [[], {}, [], "name", "red"];
-let category5 = [[], {}, [], "name", "red"];
-let category6 = [[], {}, [], "name", "red"];
-let category7 = [[], {}, [], "name", "red"];
-let category8 = [[], {}, [], "name", "red"];
-//let category
+  dataPoints: {},
+  midPoints: [],
+  name: "Asia",
+  color: "#424242",
+  hidden: false,
+};
+
+let allCategoryGroups = [category1, category2, category3];
+let visibleCategoryGroups = [];
 
 let regionalMidpoints = true;
 let serotypeMidpoints = false;
@@ -160,7 +158,7 @@ function getData(map) {
 
     // Make the dataset keys as the years to hold all datapoints for each year
     dataset = {};
-    for (let i = minYear; i < (maxYear+1); i++) {
+    for (let i = minYear; i < maxYear + 1; i++) {
       dataset[i] = [];
     }
 
@@ -176,6 +174,8 @@ function getData(map) {
 
     // This gets all points, adds them to the layer group and
     updateSymbols(activeYear);
+
+    initiateCategoryDivs();
   });
 
   createSequenceControls();
@@ -185,9 +185,17 @@ function getData(map) {
 function updateSymbols(index, reset = false) {
   // Set active year to index
   activeYear = index;
+  visibleCategoryGroups = [];
 
-  // just define what categories to look through
-  categoryGroups = [category1, category2, category3];
+  // Define what categories to look through
+  allCategoryGroups.forEach((category) => {
+    if (category.hidden == false) {
+      console.log(category.name);
+      visibleCategoryGroups.push(category);
+    }
+  });
+
+  //createButton();s
 
   // remove points that aren't relavent
   removeUnnecessaryPoints(reset);
@@ -216,61 +224,58 @@ function updateSymbols(index, reset = false) {
 // function to find years that are not relavent, and remove them from the list and clear from the map
 function removeUnnecessaryPoints(reset) {
   // itterate through the list of categories
-  for (category in categoryGroups) {
+  for (category in allCategoryGroups) {
     // clear midpoints
-    if (categoryGroups[category][2].length > 0) {
-      for (layer in categoryGroups[category][2]) {
-        categoryGroups[category][2][layer].clearLayers();
-        delete categoryGroups[category][2][layer];
+    if (allCategoryGroups[category].midPoints.length > 0) {
+      for (layer in allCategoryGroups[category].midPoints) {
+        allCategoryGroups[category].midPoints[layer].clearLayers();
+        delete allCategoryGroups[category].midPoints[layer];
       }
-      categoryGroups[category][2] = [];
-
-      //delete categoryGroups[category][2]
+      allCategoryGroups[category].midPoints = [];
     }
     // clear midpoints trace polylines
-    if (categoryGroups[category][5]) {
-      categoryGroups[category][5].clearLayers();
-      delete categoryGroups[category][5];
+    if (allCategoryGroups[category].lineTrace) {
+      allCategoryGroups[category].lineTrace.clearLayers();
+      delete allCategoryGroups[category].lineTrace;
     }
 
     // if reset, remove all years
     if (reset) {
       //itterate through the category dict, analyzing each year
-      for (year in categoryGroups[category][1]) {
-        categoryGroups[category][1][year].clearLayers();
-        delete categoryGroups[category][1][year];
+      for (year in allCategoryGroups[category].dataPoints) {
+        allCategoryGroups[category].dataPoints[year].clearLayers();
+        delete allCategoryGroups[category].dataPoints[year];
       }
       // otherwise, just remove needed years
     } else {
       //itterate through the category dict, analyzing each year
-      for (year in categoryGroups[category][1]) {
+      for (year in allCategoryGroups[category].dataPoints) {
         // if a key is greater than the year being looked at or less that the year being looked at, remove it
         if (year > activeYear || year < activeYear - yearDelay) {
           //remove year
           //console.log() // activeLayerGroups[cat]
-          categoryGroups[category][1][year].clearLayers();
-          delete categoryGroups[category][1][year];
+          allCategoryGroups[category].dataPoints[year].clearLayers();
+          delete allCategoryGroups[category].dataPoints[year];
         }
       }
     }
   }
-
-  //console.log(categoryGroups[category][2]);
-  //categoryGroups[category][2][0].clearLayers();
 }
 
 //Function to layer groups that do not correspond to years in question
 function selectPoints() {
   // for category in list of categories
-  for (category in categoryGroups) {
-    //console.log(categoryGroups[category[1]])
+  for (category in visibleCategoryGroups) {
     // for each year of year delay
     for (let i = 0; i <= yearDelay; i++) {
       let year = activeYear - i;
       // if that year is not in the category...
-      if (!(year in categoryGroups[category][1])) {
+      if (!(year in visibleCategoryGroups[category].dataPoints)) {
         // get that years points, and make them a layer group
-        let dataPoints = getDataPoints(year, categoryGroups[category][0]);
+        let dataPoints = getDataPoints(
+          year,
+          visibleCategoryGroups[category].countryList
+        );
         let points = [];
         for (item in dataPoints) {
           let row = dataPoints[item];
@@ -278,9 +283,9 @@ function selectPoints() {
           points.push(point);
         }
         // add the generated layer group to the category object and the map
-        categoryGroups[category][1][year] = L.layerGroup(points);
+        visibleCategoryGroups[category].dataPoints[year] = L.layerGroup(points);
         if (showEventPoints) {
-          categoryGroups[category][1][year].addTo(map);
+          visibleCategoryGroups[category].dataPoints[year].addTo(map);
         }
       }
     }
@@ -305,7 +310,7 @@ function getDataPoints(year, categoryList) {
 function startMidpointCalculation() {
   let categories;
   if (regionalMidpoints) {
-    categories = categoryGroups;
+    categories = visibleCategoryGroups;
   } //ELSE calculate categories based on DB scan clusters
 
   // for category in list of categories
@@ -313,7 +318,7 @@ function startMidpointCalculation() {
     // set variables
     let latitudes = [];
     let longitudes = [];
-    let years = categories[category][1];
+    let years = categories[category].dataPoints;
     // choose between serotype or sum midpoints
     if (serotypeMidpoints) {
       // midpoint for each serotype in each category
@@ -361,10 +366,10 @@ function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
 
     if (tracePointArray.length > 1) {
       let polyline = L.polyline(tracePointArray, {
-        color: categories[category][4],
+        color: categories[category].color,
       });
-      categories[category][5] = L.layerGroup([polyline]);
-      categories[category][5].addTo(map);
+      categories[category].lineTrace = L.layerGroup([polyline]);
+      categories[category].lineTrace.addTo(map);
     }
   } else {
     // for each year, add it to the array to combine if type is active
@@ -461,8 +466,8 @@ function calcMidpointBySerotype(latitudes, longitudes, years, categories) {
   // serotype 4
   setupMidpointCalc(type4_active, 4, type4_color);
 
-  categories[category][5] = L.layerGroup(traceGroup);
-  categories[category][5].addTo(map);
+  categories[category].lineTrace = L.layerGroup(traceGroup);
+  categories[category].lineTrace.addTo(map);
 }
 
 // function to plot a midpoint given a set of lat an lngs, cats
@@ -481,19 +486,21 @@ function plotMidpoint(
     if (typeColor) {
       color = typeColor;
     } else {
-      color = categories[category][4];
+      color = categories[category].color;
     }
     // make midpoint
     let layerGroup = midpointToPointLayer(
       avg_lat,
       avg_lng,
-      categories[category][3],
+      categories[category].midPoints,
       color,
-      (color = categories[category][4]),
+      (color = categories[category].color),
       additionalInfo
     );
-    categories[category][2].push(layerGroup);
-    categories[category][2][categories[category][2].length - 1].addTo(map);
+    categories[category].midPoints.push(layerGroup);
+    categories[category].midPoints[
+      categories[category].midPoints.length - 1
+    ].addTo(map);
   }
 }
 

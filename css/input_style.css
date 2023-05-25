@@ -17,6 +17,7 @@
 .icon-button {
   background-color: #ffffff00;
   border-style: none;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -24,10 +25,12 @@
     0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.19);
   transition: all 0.2s ease;
 }
+
 .inactive-button {
   background-color: rgb(88, 88, 88);
   color: rgb(185, 185, 185);
 }
+
 .inactive-button:hover {
   background-color: rgb(111, 111, 111);
   color: rgb(201, 201, 201);
@@ -66,49 +69,3 @@
   font-size: 1.2rem;
   height: 1.6rem;
 }
-
-
-
-/* - Year Delay - */
-
-#input_yearDelay {
-  width: 1.5rem;
-  height: 1.3rem;
-  border-radius: 3rem;
-  border: 0px solid;
-  text-align: center;
-  top: -.1rem;
-  position: relative;
-  font-weight: 700;
-  transition: all .2s;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-} 
-#input_yearDelay::placeholder {
-  color: rgb(88, 88, 88);
-}
-#input_yearDelay.inactive-button {
-  background-color: rgb(138, 138, 138);
-} 
-#input_yearDelay.active-button {
-  background-color: rgb(224, 224, 224);
-  color: rgb(0, 0, 0);
-}
-#input_yearDelay.inactive-button:hover, #input_yearDelay.inactive-button:focus{
-  background-color: rgb(171, 171, 171);
-} 
-#div_yearDelay:hover body.inactive-button {
-  background-color: rgb(0, 0, 0) !important;
-} 
-
-#submit_YearDelay{
-  width: 6rem;
-  border-radius: 3rem;
-  top: 0rem;
-}
-#submit_YearDelay.inactive-button:hover {
-  background-color: rgb(88, 88, 88);
-  color: rgb(185, 185, 185);
-  cursor: default;
-  box-shadow: 0;
-}
-
