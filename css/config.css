@@ -263,7 +263,7 @@
 }
 
 #treeContainer::-webkit-scrollbar {
-  width: 1rem;
+  width: 0rem;
 }
 
 #countryConfig.closed #treeContainer{

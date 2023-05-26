@@ -388,7 +388,7 @@ let countryHeirarchy = [
         checked: 0,
       },
       {
-        id: "Micronesia",
+        id: "Micronesia, Federated States of",
         text: "Micronesia",
         children: [
           { id: "Guam", text: "Guam", children: [], checked: 0 },
@@ -400,7 +400,7 @@ let countryHeirarchy = [
             checked: 0,
           },
           {
-            id: "Micronesia, Federated States of",
+            id: "Micronesia (Federated States of)",
             text: "Micronesia (Federated States of)",
             children: [],
             checked: 0,
@@ -420,8 +420,8 @@ let countryHeirarchy = [
     checked: 0,
   },
   {
-    id: "Americas",
-    text: "Americas",
+    id: "Latin America",
+    text: "Latin America",
     children: [
       {
         id: "Caribbean",
