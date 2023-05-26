@@ -4,8 +4,10 @@ let statsMap;
 function calculateStats() {
   // Calculate Min and Max years
   let timeRange = calculateTimeRange();
+  // Get active countries
+  let activeCountries = getActiveCountries(visibleCategoryGroups);
   // Get Data for time-frame
-  let timeRangeData = getDataForTimeRange(timeRange);
+  let timeRangeData = getDataForTimeRange(timeRange, activeCountries);
   // Find Stats
   statsMap = calculateTimeRangeStats(timeRangeData);
 
@@ -32,12 +34,23 @@ function calculateTimeRange() {
   return [yearMin, yearMax];
 }
 
+// Get a list of all active countries
+function getActiveCountries(visibleCategories) {
+  let activeCountries = [];
+  for (let i = 0; i < visibleCategories.length; i += 1) {
+    activeCountries = activeCountries.concat(visibleCategories[i].countryList);
+  }
+  return activeCountries;
+}
+
 // Get a list of all events from min to max year
-function getDataForTimeRange(timeRange) {
+function getDataForTimeRange(timeRange, activeCountries) {
   let pointEvents = [];
   for (let i = timeRange[0]; i <= timeRange[1]; i += 1) {
     for (row in dataset[i]) {
-      pointEvents.push(dataset[i][row]);
+      if (activeCountries.includes(dataset[i][row]["COUNTR"])) {
+        pointEvents.push(dataset[i][row]);
+      }
     }
   }
   return pointEvents;
