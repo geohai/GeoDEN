@@ -15,7 +15,9 @@ function constructCategoryDiv(category) {
   //console.log(category);
 
   const container = d3.select("#categoryConfig");
-  const treeContainer = d3.select("#countryConfig");
+  const countryConfig = d3.select("#countryConfig");
+  const treeContainer = d3.select("#treeContainer");
+  const categoryTitle = d3.select("#categoryTitle");
 
   // create a new svg element for each chart
   const categoryDiv = container.append("div").attr("class", "categoryDiv");
@@ -78,8 +80,36 @@ function constructCategoryDiv(category) {
   // Function to handle edit category button click
   function editCategory(category) {
     // Remove the 'closed' class
-    treeContainer.classed("closed", false);
+    countryConfig.classed("closed", false);
     // Add the 'open' class
-    treeContainer.classed("open", true);
+    countryConfig.classed("open", true);
+
+    categoryTitle.attr("value", category.name);
   }
+
+  /*Title Input*/
+
+  categoryTitle.on("input", function () {})
+
+  /*Exit Buttons*/
+
+  // Get the buttons by their class name
+  const submitButton = document.querySelector(".countrySubmit");
+  const cancelButton = document.querySelector(".countryCancel");
+
+  // Add click event listener to the Submit button
+  submitButton.addEventListener("click", function () {
+    // Code to execute when the Submit button is clicked
+    countryConfig.classed("open", false);
+    countryConfig.classed("closed", true);
+  });
+
+  // Add click event listener to the Cancel button
+  cancelButton.addEventListener("click", function () {
+    // Code to execute when the Cancel button is clicked
+    countryConfig.classed("open", false);
+    countryConfig.classed("closed", true);
+  });
+
+
 }

@@ -11,7 +11,7 @@
   right: 20%;
   bottom: 0.5rem;
   top: 42%;
-  left: 18.5%;
+  left: 20.5%;
   border: solid rgba(0, 0, 0, 0.71) 0.5vmin;
 }
 
@@ -19,7 +19,7 @@
   right: 20%;
   bottom: 59%;
   top: 6.8rem;
-  left: 18.5%;
+  left: 20.5%;
 }
 
 #matrix {
@@ -37,7 +37,7 @@
 }
 
 #config {
-  right: 82%;
+  right: 80%;
   bottom: 0.5rem;
   top: 6.8rem;
   left: 1%;

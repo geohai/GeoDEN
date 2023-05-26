@@ -59,6 +59,12 @@
   right: 0rem;
   top: 0.3rem;
   background-color: rgba(133, 133, 133, 0);
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+#chart_container::-webkit-scrollbar {
+  width: 0rem;
 }
 
 /*Tab Labels*/

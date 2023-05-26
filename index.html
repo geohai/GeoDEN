@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="css/controls.css" />
     <link rel="stylesheet" href="css/config.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
+
+    <!--TreeView-->
+    <script src="lib/tree.min.js"></script>
+    <script src="data/countryHeirarchy.js"></script>
   </head>
 
   <body>
@@ -162,7 +166,36 @@
         <span id="configTitleText">Configuration</span>
       </div>
       <div class="configWindow" id="categoryConfig"></div>
-      <div class="configWindow closed" id="countryConfig"></div>
+      <div class="configWindow closed" id="countryConfig">
+        <input
+          id="categoryTitle"
+          type="text"
+          class="categoryTitle"
+          placeholder=""
+        />
+        <button id="categoryRemove" class="icon-button">
+          <img src="img/trash.svg" />
+        </button>
+        <div id="treeContainer">
+          <script>
+            let tree = new Tree("#treeContainer", {
+              data: countryHeirarchy,
+              closeDepth: 1,
+              loaded: function () {
+                this.values = ["0-0-0", "0-1-1"];
+                console.log(this.selectedNodes);
+                console.log(this.values);
+                this.disables = ["0-0-0", "0-0-1", "0-0-2"];
+              },
+              onChange: function () {
+                console.log(this.values);
+              },
+            });
+          </script>
+        </div>
+        <button class="countrySubmit countryExitButton">Submit</button>
+        <button class="countryCancel countryExitButton">Cancel</button>
+      </div>
       <!--<div class="configWindow" id="countryConfig"></div>-->
     </div>
     <div class="panelDiv" id="gantt"></div>
