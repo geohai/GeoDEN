@@ -124,8 +124,8 @@ soloMidpointButton.addEventListener("click", () => {
 // Animation Toggle
 animButton.addEventListener("click", () => {
   animation_active = !animation_active;
-  animButton.classList.toggle("active-button", animation_active);
-  animButton.classList.toggle("inactive-button", !animation_active);
+  animButton.classList.toggle("active-animButton", animation_active);
+  animButton.classList.toggle("inactive-animButton", !animation_active);
   start_mapAnimation();
 });
 
@@ -196,10 +196,10 @@ function midpointModeCheck() {
 function start_mapAnimation() {
   if (animation_active) {
     animButton.innerHTML =
-      '<img src="img/pause-solid.svg"><span class="tooltip"><b>Stop Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+      '<img src="img/pause-solid.svg" id="playButtonIMG"><span class="tooltip playTooltip"><b>Stop Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
   } else {
     animButton.innerHTML =
-      '<img src="img/play-solid.svg"><span class="tooltip"><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+      '<img src="img/play-solid.svg" id="playButtonIMG"><span class="tooltip playTooltip"><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
   }
 
   // set speed

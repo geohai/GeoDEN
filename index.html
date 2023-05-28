@@ -81,9 +81,9 @@
       <div class="control_div" id="timeControls">
         <!--Animation Toggle Buttons-->
         <div id="animationControls">
-          <button class="button inactive-button" id="playButton">
-            <img src="img/play-solid.svg" />
-            <span class="tooltip"
+          <button class="icon-button inactive-animButton" id="playButton">
+            <img src="img/play-solid.svg" id="playButtonIMG"/>
+            <span class="tooltip playTooltip"
               ><b>Start Animation</b
               ><em><br />Speed Up: <b>↑</b><br />Slow Down: <b>↓</b></em></span
             >
@@ -181,15 +181,21 @@
             let tree = new Tree("#treeContainer", {
               data: countryHeirarchy,
               closeDepth: 1,
+              beforeLoad: function (rawData) {
+                // do some format
+                console.log(rawData);
+                return formatData(rawData);
+              },
               loaded: function () {
                 this.collapseAll();
-                this.values = ["0-0-0", "0-1-1"];
-                console.log(this.selectedNodes);
-                console.log(this.values);
-                this.disables = ["0-0-0", "0-0-1", "0-0-2"];
-              },
-              onChange: function () {
-                console.log(this.values);
+
+                for (let i = 0; i < countryHeirarchy.length; i++) {
+                  for (let j = 0; j < countryHeirarchy[i].children.length; j++) {
+                    countryHeirarchy[i].children[j].checked = 1;
+                    console.log(countryHeirarchy[i].children[j].checked)
+                  }
+                }
+                console.log(countryHeirarchy);
               },
             });
           </script>

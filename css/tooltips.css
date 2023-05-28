@@ -2,7 +2,7 @@
   visibility: hidden;
   background-color: rgba(224, 224, 224, 0.751);
   border: 0.1rem solid rgba(228, 228, 228, 0.914);
-  backdrop-filter: blur(0.1rem);
+  backdrop-filter: blur(.1rem) !important;
   width: 10rem;
   height: fit-content;
   color: #000000;
@@ -32,6 +32,12 @@
   top: 100%;
   margin-left: -5.5rem;
   z-index: 1;
+}
+
+.playTooltip {
+  top: 110%;
+  margin-left: -4rem;
+  width: 9rem !important;
 }
 
 .icon-button:nth-child(1) .tooltip {

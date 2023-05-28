@@ -12,8 +12,8 @@ function initiateCategoryDivs() {
 
 // This function creates a the Category Div
 function constructCategoryDiv(category) {
-  //console.log(category);
-
+  
+  // Save the container for the whole window, the editer window, the tree container, and the title in the div
   const container = d3.select("#categoryConfig");
   const countryConfig = d3.select("#countryConfig");
   const treeContainer = d3.select("#treeContainer");
@@ -40,6 +40,7 @@ function constructCategoryDiv(category) {
     .attr("src", "img/edit.svg")
     .each(function () {
       d3.select(this).on("click", function () {
+        console.log(category)
         editCategory(category);
       });
     });
@@ -84,12 +85,33 @@ function constructCategoryDiv(category) {
     // Add the 'open' class
     countryConfig.classed("open", true);
 
+    // Set the category name
     categoryTitle.attr("value", category.name);
   }
 
   /*Title Input*/
 
-  categoryTitle.on("input", function () {})
+  // save the Title
+  let titleChange = "";
+
+  // On submit (Enter key press), check the value and change the activeYear to the input value
+  categoryTitle.on("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // prevent form from submitting
+
+      // Get input value
+      let value = categoryTitle.property("value");
+
+      titleChange = value;
+    }
+  });
+
+  // On blur (focus lost), just show the default value
+  categoryTitle.on("blur", (event) => {
+    // Perform actions when the input field loses focus
+    let value = categoryTitle.property("value");
+    titleChange = value;
+  });
 
   /*Exit Buttons*/
 
@@ -99,9 +121,16 @@ function constructCategoryDiv(category) {
 
   // Add click event listener to the Submit button
   submitButton.addEventListener("click", function () {
+    container.selectAll("*").remove();
+    // Call the function to change the category name
+    changeCategoryName(category, titleChange);
+    // Call the function to change the category countries
+    //changeCategoryCountries(category, countriesChange);
     // Code to execute when the Submit button is clicked
     countryConfig.classed("open", false);
     countryConfig.classed("closed", true);
+    updateSymbols(activeYear, (reset = true));
+    initiateCategoryDivs()
   });
 
   // Add click event listener to the Cancel button
@@ -110,6 +139,12 @@ function constructCategoryDiv(category) {
     countryConfig.classed("open", false);
     countryConfig.classed("closed", true);
   });
+}
 
-
+// This function changes the category name
+function changeCategoryName(category, newName) {
+  //console.log("Category name changed to:", newName);
+  category.name = newName;
+  //updateSymbols(activeYear, (reset = true));
+  console.log(category);
 }

@@ -232,7 +232,6 @@
   filter: grayscale(.1) invert(0) brightness(2);
   top: 0.6rem!important;
   rotate: 6deg;
-
 }
 
 #countryConfig.closed #categoryRemove{

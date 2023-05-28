@@ -114,27 +114,30 @@
   font-weight: lighter;
   letter-spacing: 0.1rem;
   color: rgb(0, 0, 0);
-  right: 0rem;
+  right: 0.2rem;
   top: 0.2rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   border: solid 0.1rem rgb(172, 172, 172);
   background-color: rgb(172, 172, 172);
   transition: all 0.2s ease;
   text-align: right;
   justify-content: center;
   align-items: center;
+  padding-bottom: 0.3rem !important;
 }
 
-#current_yearDelay:focus {
-  border: solid 0.1rem rgb(219, 219, 219);
-  background-color: rgb(219, 219, 219);
-}
-
+#current_yearDelay:focus,
 #div_yearDelay:hover #current_yearDelay {
-  border: solid 0.1rem rgb(219, 219, 219);
-  background-color: rgb(219, 219, 219);
+  border: solid 0.1rem rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
+
+/*
+#div_yearDelay:hover #current_yearDelay {
+  border: solid 0.1rem rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}*/
 
 /* Timeline */
 #timeControls {
@@ -145,56 +148,71 @@
 
 .range-slider {
   position: absolute;
-  right: 2rem;
-  left: 5.8rem;
+  right: 1.8rem;
+  left: 5.25rem;
   cursor: pointer;
   top: 0.4rem;
 }
 
-.range-slider:active {
+.range-slider::-webkit-slider-thumb {
+  cursor: grab;
+}
+
+.range-slider::-webkit-slider-thumb:active {
   cursor: grabbing;
 }
 
 .step {
   position: absolute;
   width: 1.8rem !important;
-  top: 0.25rem;
+  top: 0.3rem;
 }
 
 .step img {
-  filter: grayscale(1) invert(0.7);
+  filter: grayscale(1) invert(.5) brightness(.7);
   transition: all 0.1s ease;
   width: 1.3rem;
 }
 
 .step:hover img {
-  filter: grayscale(1) invert(0.9);
+  filter: grayscale(1) invert(.5) brightness(1.5);
 }
 
 #forward {
-  right: 0.2rem;
+  right: 0.3rem;
   cursor: pointer;
 }
 
 #reverse {
-  right: 14.5rem;
+  right: 14.7rem;
   cursor: pointer;
 }
 
 /* - Animation Play,Pause - */
 #playButton {
   position: absolute;
-  left: 1.5rem;
+  left: 1.3rem;
   margin: auto;
-  top: 0.2rem;
+  bottom: 0.1rem;
+  height: 1.7rem;
+  width: 1.7rem;
+  transition: all 0.2s ease;
 }
 
-#playButton.active-button img {
-  filter: invert(1);
+#playButton:hover {
+  bottom: 0.18rem;
 }
-#playButton img {
-  filter: invert(0.88);
-  height: 1.3rem;
+
+#playButtonIMG {
+  filter: grayscale(1) invert(.5) brightness(1.2);
+}
+
+#playButton:hover #playButtonIMG {
+  filter: grayscale(1) invert(.5) brightness(2) !important;
+}
+
+#playButton.active-animButton #playButtonIMG {
+  filter: grayscale(1) invert(.5) brightness(1.5);
 }
 
 /* Midpoint Controls */
@@ -223,7 +241,7 @@
 
 .midpointButton.active-mid .midpointControl-icon {
   /* active */
-  filter: grayscale(1) invert(.5) brightness(1.5);
+  filter: grayscale(1) invert(0.5) brightness(1.5);
 }
 
 .midpointButton.inactive-mid .midpointControl-icon {
