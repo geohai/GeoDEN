@@ -1,0 +1,601 @@
+[
+  {
+    "id": "Asia",
+    "text": "Asia",
+    "children": [
+      {
+        "id": "Southern Asia",
+        "text": "Southern Asia",
+        "children": [
+          {
+            "id": "Bangladesh",
+            "text": "Bangladesh",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Bhutan", "text": "Bhutan", "children": [], "checked": 0 },
+          { "id": "India", "text": "India", "children": [], "checked": 0 },
+          {
+            "id": "Maldives",
+            "text": "Maldives",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Nepal", "text": "Nepal", "children": [], "checked": 0 },
+          {
+            "id": "Pakistan",
+            "text": "Pakistan",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "SriLanka",
+            "text": "Sri Lanka",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Western Asia",
+        "text": "Western Asia",
+        "children": [
+          {
+            "id": "Saudi Arabia",
+            "text": "Saudi Arabia",
+            "children": [],
+            "checked": 0
+          },
+
+          { "id": "Yemen", "text": "Yemen", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "South-Eastern Asia",
+        "text": "South-Eastern Asia",
+        "children": [
+          {
+            "id": "Brunei Darussalam",
+            "text": "Brunei Darussalam",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Cambodia",
+            "text": "Cambodia",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Indonesia",
+            "text": "Indonesia",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Lao PDR",
+            "text": "Lao People's Democratic Republic",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Malaysia",
+            "text": "Malaysia",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Myanmar", "text": "Myanmar", "children": [], "checked": 0 },
+          {
+            "id": "Philippines",
+            "text": "Philippines",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Singapore",
+            "text": "Singapore",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Thailand",
+            "text": "Thailand",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Timor-Leste",
+            "text": "Timor-Leste",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Vietnam", "text": "Viet Nam", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Eastern Asia",
+        "text": "Eastern Asia",
+        "children": [
+          { "id": "China", "text": "China", "children": [], "checked": 0 },
+          { "id": "Taiwan", "text": "Taiwan", "children": [], "checked": 0 },
+
+          { "id": "Japan", "text": "Japan", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      }
+    ],
+    "checked": 0
+  },
+  {
+    "id": "Africa",
+    "text": "Africa",
+    "children": [
+      {
+        "id": "Northern Africa",
+        "text": "Northern Africa",
+        "children": [
+          { "id": "Sudan", "text": "Sudan", "children": [], "checked": 0 },
+          {
+            "id": "Portugal",
+            "text": "Madeira Island",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Middle Africa",
+        "text": "Middle Africa",
+        "children": [
+          { "id": "Angola", "text": "Angola", "children": [], "checked": 0 },
+          {
+            "id": "Cameroon",
+            "text": "Cameroon",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Gabon", "text": "Gabon", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Western Africa",
+        "text": "Western Africa",
+        "children": [
+          { "id": "Benin", "text": "Benin", "children": [], "checked": 0 },
+          {
+            "id": "Burkina Faso",
+            "text": "Burkina Faso",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Cape Verde",
+            "text": "Cabo Verde",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Cote d'Ivoire",
+            "text": "Cote d'Ivoire",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Ghana", "text": "Ghana", "children": [], "checked": 0 },
+          { "id": "Guinea", "text": "Guinea", "children": [], "checked": 0 },
+          { "id": "Mali", "text": "Mali", "children": [], "checked": 0 },
+          { "id": "Nigeria", "text": "Nigeria", "children": [], "checked": 0 },
+          { "id": "Senegal", "text": "Senegal", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Eastern Africa",
+        "text": "Eastern Africa",
+        "children": [
+          { "id": "Comoros", "text": "Comoros", "children": [], "checked": 0 },
+          {
+            "id": "Djibouti",
+            "text": "Djibouti",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Eritrea", "text": "Eritrea", "children": [], "checked": 0 },
+          {
+            "id": "Ethiopia",
+            "text": "Ethiopia",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Kenya", "text": "Kenya", "children": [], "checked": 0 },
+          {
+            "id": "Madagascar",
+            "text": "Madagascar",
+            "children": [],
+            "checked": 0
+          },
+
+          {
+            "id": "France -  Mayotte",
+            "text": "Mayotte",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Mozambique",
+            "text": "Mozambique",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "France - Reunion",
+            "text": "RÃ©union",
+            "children": [],
+            "checked": 0
+          },
+
+          {
+            "id": "Seychelles",
+            "text": "Seychelles",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Somalia", "text": "Somalia", "children": [], "checked": 0 },
+
+          {
+            "id": "Tanzania",
+            "text": "United Republic of Tanzania",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      }
+    ],
+    "checked": 0
+  },
+  {
+    "id": "Oceania",
+    "text": "Oceania",
+    "children": [
+      {
+        "id": "Polynesia",
+        "text": "Polynesia",
+        "children": [
+          {
+            "id": "American Samoa",
+            "text": "American Samoa",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Cook Islands",
+            "text": "Cook Islands",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "French Polynesia",
+            "text": "French Polynesia",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Niue", "text": "Niue", "children": [], "checked": 0 },
+          { "id": "Samoa", "text": "Samoa", "children": [], "checked": 0 },
+
+          { "id": "Tonga", "text": "Tonga", "children": [], "checked": 0 },
+
+          {
+            "id": "Wallis and Futuna",
+            "text": "Wallis and Futuna Islands",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Australia and New Zealand",
+        "text": "Australia and New Zealand",
+        "children": [
+          {
+            "id": "Australia",
+            "text": "Australia",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Melanesia",
+        "text": "Melanesia",
+        "children": [
+          { "id": "Fiji", "text": "Fiji", "children": [], "checked": 0 },
+          {
+            "id": "New Caledonia",
+            "text": "New Caledonia",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Papua New Guinea",
+            "text": "Papua New Guinea",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Solomon Islands",
+            "text": "Solomon Islands",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Vanuatu", "text": "Vanuatu", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Micronesia",
+        "text": "Micronesia",
+        "children": [
+          { "id": "Guam", "text": "Guam", "children": [], "checked": 0 },
+          {
+            "id": "Kiribati",
+            "text": "Kiribati",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Marshall Islands",
+            "text": "Marshall Islands",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Micronesia, Federated States of",
+            "text": "Micronesia (Federated States of)",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Nauru", "text": "Nauru", "children": [], "checked": 0 },
+
+          { "id": "Palau", "text": "Palau", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      }
+    ],
+    "checked": 0
+  },
+  {
+    "id": "Americas",
+    "text": "Americas",
+    "children": [
+      {
+        "id": "Caribbean",
+        "text": "Caribbean",
+        "children": [
+          {
+            "id": "Anguilla",
+            "text": "Anguilla",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Antigua and Barbuda",
+            "text": "Antigua and Barbuda",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Aruba", "text": "Aruba", "children": [], "checked": 0 },
+          { "id": "Bahamas", "text": "Bahamas", "children": [], "checked": 0 },
+          {
+            "id": "Barbados",
+            "text": "Barbados",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Virgin Islands, British",
+            "text": "British Virgin Islands",
+            "children": [],
+            "checked": 0
+          },
+
+          {
+            "id": "Cayman Islands",
+            "text": "Cayman Islands",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Cuba", "text": "Cuba", "children": [], "checked": 0 },
+
+          {
+            "id": "Dominica",
+            "text": "Dominica",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Dominican Republic",
+            "text": "Dominican Republic",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "French Antilles",
+            "text": "French Antilles",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Grenada", "text": "Grenada", "children": [], "checked": 0 },
+
+          { "id": "Haiti", "text": "Haiti", "children": [], "checked": 0 },
+          { "id": "Jamaica", "text": "Jamaica", "children": [], "checked": 0 },
+
+          {
+            "id": "Netherlands Antilles",
+            "text": "Netherlands Antilles",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Puerto Rico",
+            "text": "Puerto Rico",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "St. Kitts & Nevis",
+            "text": "Saint Kitts and Nevis",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Saint Lucia",
+            "text": "Saint Lucia",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "St. Vincent & the Grenadines",
+            "text": "Saint Vincent and the Grenadines",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Trinidad and Tobago",
+            "text": "Trinidad and Tobago",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Turks & Caicos Islands",
+            "text": "Turks and Caicos Islands",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Virgin Islands, U.S.",
+            "text": "United States Virgin Islands",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "South America",
+        "text": "South America",
+        "children": [
+          {
+            "id": "Argentina",
+            "text": "Argentina",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Bolivia",
+            "text": "Bolivia (Plurinational State of)",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Brazil", "text": "Brazil", "children": [], "checked": 0 },
+          { "id": "Chile", "text": "Chile", "children": [], "checked": 0 },
+          {
+            "id": "Colombia",
+            "text": "Colombia",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Ecuador", "text": "Ecuador", "children": [], "checked": 0 },
+          {
+            "id": "French Guiana",
+            "text": "French Guiana",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Guyana", "text": "Guyana", "children": [], "checked": 0 },
+          {
+            "id": "Paraguay",
+            "text": "Paraguay",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Peru", "text": "Peru", "children": [], "checked": 0 },
+          {
+            "id": "Suriname",
+            "text": "Suriname",
+            "children": [],
+            "checked": 0
+          },
+
+          {
+            "id": "Venezuela",
+            "text": "Venezuela (Bolivarian Republic of)",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Central America",
+        "text": "Central America",
+        "children": [
+          { "id": "Belize", "text": "Belize", "children": [], "checked": 0 },
+          {
+            "id": "Costa Rica",
+            "text": "Costa Rica",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "El Salvador",
+            "text": "El Salvador",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Guatemala",
+            "text": "Guatemala",
+            "children": [],
+            "checked": 0
+          },
+          {
+            "id": "Honduras",
+            "text": "Honduras",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Mexico", "text": "Mexico", "children": [], "checked": 0 },
+          {
+            "id": "Nicaragua",
+            "text": "Nicaragua",
+            "children": [],
+            "checked": 0
+          },
+          { "id": "Panama", "text": "Panama", "children": [], "checked": 0 }
+        ],
+        "checked": 0
+      },
+      {
+        "id": "Northern America",
+        "text": "Northern America",
+        "children": [
+          {
+            "id": "United States of America",
+            "text": "United States of America",
+            "children": [],
+            "checked": 0
+          }
+        ],
+        "checked": 0
+      }
+    ],
+    "checked": 0
+  }
+]

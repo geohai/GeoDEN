@@ -1,163 +1,5 @@
 const countryHeirarchy_main = [
   {
-    id: "Americas",
-    text: "Americas",
-    children: [
-      {
-        id: "Caribbean",
-        text: "Caribbean",
-        children: [
-          { id: "Anguilla", text: "Anguilla", children: [], checked: 0 },
-          {
-            id: "Antigua and Barbuda",
-            text: "Antigua and Barbuda",
-            children: [],
-            checked: 0,
-          },
-          { id: "Aruba", text: "Aruba", children: [], checked: 0 },
-          { id: "Bahamas", text: "Bahamas", children: [], checked: 0 },
-          { id: "Barbados", text: "Barbados", children: [], checked: 0 },
-          {
-            id: "Virgin Islands, British",
-            text: "British Virgin Islands",
-            children: [],
-            checked: 0,
-          },
-
-          {
-            id: "Cayman Islands",
-            text: "Cayman Islands",
-            children: [],
-            checked: 0,
-          },
-          { id: "Cuba", text: "Cuba", children: [], checked: 0 },
-
-          { id: "Dominica", text: "Dominica", children: [], checked: 0 },
-          {
-            id: "Dominican Republic",
-            text: "Dominican Republic",
-            children: [],
-            checked: 0,
-          },
-          {
-            id: "French Antilles",
-            text: "French Antilles",
-            children: [],
-            checked: 0,
-          },
-          { id: "Grenada", text: "Grenada", children: [], checked: 0 },
-
-          { id: "Haiti", text: "Haiti", children: [], checked: 0 },
-          { id: "Jamaica", text: "Jamaica", children: [], checked: 0 },
-
-          {
-            id: "Netherlands Antilles",
-            text: "Netherlands Antilles",
-            children: [],
-            checked: 0,
-          },
-          { id: "Puerto Rico", text: "Puerto Rico", children: [], checked: 0 },
-          {
-            id: "St. Kitts & Nevis",
-            text: "Saint Kitts and Nevis",
-            children: [],
-            checked: 0,
-          },
-          { id: "Saint Lucia", text: "Saint Lucia", children: [], checked: 0 },
-          {
-            id: "St. Vincent & the Grenadines",
-            text: "Saint Vincent and the Grenadines",
-            children: [],
-            checked: 0,
-          },
-          {
-            id: "Trinidad and Tobago",
-            text: "Trinidad and Tobago",
-            children: [],
-            checked: 0,
-          },
-          {
-            id: "Turks & Caicos Islands",
-            text: "Turks and Caicos Islands",
-            children: [],
-            checked: 0,
-          },
-          {
-            id: "Virgin Islands, U.S.",
-            text: "United States Virgin Islands",
-            children: [],
-            checked: 0,
-          },
-        ],
-        checked: 0,
-      },
-      {
-        id: "South America",
-        text: "South America",
-        children: [
-          { id: "Argentina", text: "Argentina", children: [], checked: 0 },
-          {
-            id: "Bolivia",
-            text: "Bolivia (Plurinational State of)",
-            children: [],
-            checked: 0,
-          },
-          { id: "Brazil", text: "Brazil", children: [], checked: 0 },
-          { id: "Chile", text: "Chile", children: [], checked: 0 },
-          { id: "Colombia", text: "Colombia", children: [], checked: 0 },
-          { id: "Ecuador", text: "Ecuador", children: [], checked: 0 },
-          {
-            id: "French Guiana",
-            text: "French Guiana",
-            children: [],
-            checked: 0,
-          },
-          { id: "Guyana", text: "Guyana", children: [], checked: 0 },
-          { id: "Paraguay", text: "Paraguay", children: [], checked: 0 },
-          { id: "Peru", text: "Peru", children: [], checked: 0 },
-          { id: "Suriname", text: "Suriname", children: [], checked: 0 },
-
-          {
-            id: "Venezuela",
-            text: "Venezuela (Bolivarian Republic of)",
-            children: [],
-            checked: 0,
-          },
-        ],
-        checked: 0,
-      },
-      {
-        id: "Central America",
-        text: "Central America",
-        children: [
-          { id: "Belize", text: "Belize", children: [], checked: 0 },
-          { id: "Costa Rica", text: "Costa Rica", children: [], checked: 0 },
-          { id: "El Salvador", text: "El Salvador", children: [], checked: 0 },
-          { id: "Guatemala", text: "Guatemala", children: [], checked: 0 },
-          { id: "Honduras", text: "Honduras", children: [], checked: 0 },
-          { id: "Mexico", text: "Mexico", children: [], checked: 0 },
-          { id: "Nicaragua", text: "Nicaragua", children: [], checked: 0 },
-          { id: "Panama", text: "Panama", children: [], checked: 0 },
-        ],
-        checked: 0,
-      },
-      {
-        id: "Northern America",
-        text: "Northern America",
-        children: [
-          {
-            id: "United States of America",
-            text: "United States of America",
-            children: [],
-            checked: 0,
-          },
-        ],
-        checked: 0,
-      },
-    ],
-    checked: 0,
-  },
-  {
     id: "Asia",
     text: "Asia",
     children: [
@@ -168,6 +10,12 @@ const countryHeirarchy_main = [
           { id: "Bangladesh", text: "Bangladesh", children: [], checked: 0 },
           { id: "Bhutan", text: "Bhutan", children: [], checked: 0 },
           { id: "India", text: "India", children: [], checked: 0 },
+          {
+            id: "Iran (Islamic Republic of)",
+            text: "Iran (Islamic Republic of)",
+            children: [],
+            checked: 0,
+          },
           { id: "Maldives", text: "Maldives", children: [], checked: 0 },
           { id: "Nepal", text: "Nepal", children: [], checked: 0 },
           { id: "Pakistan", text: "Pakistan", children: [], checked: 0 },
@@ -227,6 +75,12 @@ const countryHeirarchy_main = [
 
           { id: "Japan", text: "Japan", children: [], checked: 0 },
         ],
+        checked: 0,
+      },
+      {
+        id: "Central Asia",
+        text: "Central Asia",
+        children: [],
         checked: 0,
       },
     ],
@@ -417,6 +271,176 @@ const countryHeirarchy_main = [
           { id: "Nauru", text: "Nauru", children: [], checked: 0 },
 
           { id: "Palau", text: "Palau", children: [], checked: 0 },
+        ],
+        checked: 0,
+      },
+    ],
+    checked: 0,
+  },
+  {
+    id: "Americas",
+    text: "Americas",
+    children: [
+      {
+        id: "Caribbean",
+        text: "Caribbean",
+        children: [
+          { id: "Anguilla", text: "Anguilla", children: [], checked: 0 },
+          {
+            id: "Antigua and Barbuda",
+            text: "Antigua and Barbuda",
+            children: [],
+            checked: 0,
+          },
+          { id: "Aruba", text: "Aruba", children: [], checked: 0 },
+          { id: "Bahamas", text: "Bahamas", children: [], checked: 0 },
+          { id: "Barbados", text: "Barbados", children: [], checked: 0 },
+          {
+            id: "Virgin Islands, British",
+            text: "British Virgin Islands",
+            children: [],
+            checked: 0,
+          },
+
+          {
+            id: "Cayman Islands",
+            text: "Cayman Islands",
+            children: [],
+            checked: 0,
+          },
+          { id: "Cuba", text: "Cuba", children: [], checked: 0 },
+
+          { id: "Dominica", text: "Dominica", children: [], checked: 0 },
+          {
+            id: "Dominican Republic",
+            text: "Dominican Republic",
+            children: [],
+            checked: 0,
+          },
+          {
+            id: "French Antilles",
+            text: "French Antilles",
+            children: [],
+            checked: 0,
+          },
+          { id: "Grenada", text: "Grenada", children: [], checked: 0 },
+
+          { id: "Haiti", text: "Haiti", children: [], checked: 0 },
+          { id: "Jamaica", text: "Jamaica", children: [], checked: 0 },
+
+          {
+            id: "Netherlands Antilles",
+            text: "Netherlands Antilles",
+            children: [],
+            checked: 0,
+          },
+          { id: "Puerto Rico", text: "Puerto Rico", children: [], checked: 0 },
+          {
+            id: "St. Kitts & Nevis",
+            text: "Saint Kitts and Nevis",
+            children: [],
+            checked: 0,
+          },
+          { id: "Saint Lucia", text: "Saint Lucia", children: [], checked: 0 },
+          {
+            id: "St. Vincent & the Grenadines",
+            text: "Saint Vincent and the Grenadines",
+            children: [],
+            checked: 0,
+          },
+          {
+            id: "Sint Maarten (Dutch part)",
+            text: "Sint Maarten (Dutch part)",
+            children: [],
+            checked: 0,
+          },
+          {
+            id: "Trinidad and Tobago",
+            text: "Trinidad and Tobago",
+            children: [],
+            checked: 0,
+          },
+          {
+            id: "Turks & Caicos Islands",
+            text: "Turks and Caicos Islands",
+            children: [],
+            checked: 0,
+          },
+          {
+            id: "Virgin Islands, U.S.",
+            text: "United States Virgin Islands",
+            children: [],
+            checked: 0,
+          },
+        ],
+        checked: 0,
+      },
+      {
+        id: "South America",
+        text: "South America",
+        children: [
+          { id: "Argentina", text: "Argentina", children: [], checked: 0 },
+          {
+            id: "Bolivia",
+            text: "Bolivia (Plurinational State of)",
+            children: [],
+            checked: 0,
+          },
+          { id: "Brazil", text: "Brazil", children: [], checked: 0 },
+          { id: "Chile", text: "Chile", children: [], checked: 0 },
+          { id: "Colombia", text: "Colombia", children: [], checked: 0 },
+          { id: "Ecuador", text: "Ecuador", children: [], checked: 0 },
+          {
+            id: "Falkland Islands (Malvinas)",
+            text: "Falkland Islands (Malvinas)",
+            children: [],
+            checked: 0,
+          },
+          {
+            id: "French Guiana",
+            text: "French Guiana",
+            children: [],
+            checked: 0,
+          },
+          { id: "Guyana", text: "Guyana", children: [], checked: 0 },
+          { id: "Paraguay", text: "Paraguay", children: [], checked: 0 },
+          { id: "Peru", text: "Peru", children: [], checked: 0 },
+          { id: "Suriname", text: "Suriname", children: [], checked: 0 },
+
+          {
+            id: "Venezuela",
+            text: "Venezuela (Bolivarian Republic of)",
+            children: [],
+            checked: 0,
+          },
+        ],
+        checked: 0,
+      },
+      {
+        id: "Central America",
+        text: "Central America",
+        children: [
+          { id: "Belize", text: "Belize", children: [], checked: 0 },
+          { id: "Costa Rica", text: "Costa Rica", children: [], checked: 0 },
+          { id: "El Salvador", text: "El Salvador", children: [], checked: 0 },
+          { id: "Guatemala", text: "Guatemala", children: [], checked: 0 },
+          { id: "Honduras", text: "Honduras", children: [], checked: 0 },
+          { id: "Mexico", text: "Mexico", children: [], checked: 0 },
+          { id: "Nicaragua", text: "Nicaragua", children: [], checked: 0 },
+          { id: "Panama", text: "Panama", children: [], checked: 0 },
+        ],
+        checked: 0,
+      },
+      {
+        id: "Northern America",
+        text: "Northern America",
+        children: [
+          {
+            id: "United States of America",
+            text: "United States of America",
+            children: [],
+            checked: 0,
+          },
         ],
         checked: 0,
       },

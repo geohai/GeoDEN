@@ -1,4 +1,4 @@
-let countryHeirarchy = [
+const countryHeirarchy_main = [
   {
     id: "Asia",
     text: "Asia",
@@ -388,7 +388,7 @@ let countryHeirarchy = [
         checked: 0,
       },
       {
-        id: "Micronesia, Federated States of",
+        id: "Micronesia",
         text: "Micronesia",
         children: [
           { id: "Guam", text: "Guam", children: [], checked: 0 },
@@ -400,7 +400,7 @@ let countryHeirarchy = [
             checked: 0,
           },
           {
-            id: "Micronesia (Federated States of)",
+            id: "Micronesia, Federated States of",
             text: "Micronesia (Federated States of)",
             children: [],
             checked: 0,
@@ -420,8 +420,8 @@ let countryHeirarchy = [
     checked: 0,
   },
   {
-    id: "Latin America",
-    text: "Latin America",
+    id: "Americas",
+    text: "Americas",
     children: [
       {
         id: "Caribbean",
@@ -470,7 +470,7 @@ let countryHeirarchy = [
           { id: "Jamaica", text: "Jamaica", children: [], checked: 0 },
           { id: "Martinique", text: "Martinique", children: [], checked: 0 },
           { id: "Montserrat", text: "Montserrat", children: [], checked: 0 },
-          { id: "PuertoRico", text: "Puerto Rico", children: [], checked: 0 },
+          { id: "Puerto Rico", text: "Puerto Rico", children: [], checked: 0 },
           {
             id: "St. Kitts & Nevis",
             text: "Saint Kitts and Nevis",
