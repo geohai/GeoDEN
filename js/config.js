@@ -22,31 +22,44 @@ function makeTree(data) {
   });
 }*/
 
-const setBoxes = (category) => {
+let setBoxes = (category) => {
   let localHeirarchy = countryHeirarchy_main;
   //console.log(category.countryList);
   // first, iterate through every country
   for (let i = 0; i < localHeirarchy.length; i++) {
     for (let j = 0; j < localHeirarchy[i].children.length; j++) {
       for (let l = 0; l < localHeirarchy[i].children[j].children.length; l++) {
-        //fruits.includes("Mango");
-        //console.log(localHeirarchy[i].children[j].children[l].id)
-
-        localHeirarchy[i].children[j].children[l].checked = category.countryList.includes(localHeirarchy[i].children[j].children[l].id);
+        // if the country is in the category, check it, otherwise uncheck it
+        localHeirarchy[i].children[j].children[l].checked =
+          category.countryList.includes(
+            localHeirarchy[i].children[j].children[l].id
+          );
       }
     }
   }
   return localHeirarchy;
 };
 
-const makeTree = async (category) => {
+let makeTree = async (category) => {
   const categoryData = await setBoxes(category);
+
+  let tree;
   // do something else here after firstFunction completes
-  let tree = new Tree("#treeContainer", {
+  tree = new Tree("#treeContainer", {
     data: categoryData,
     closeDepth: 1,
     loaded: function () {
       this.collapseAll();
+    },
+    onChange: function () {
+      // Countries selected
+      let selectedCountries = [];
+      for (let i = 0; i < this.selectedNodes.length; i++) {
+        selectedCountries.push(this.selectedNodes[i].id);
+      }
+      //console.log(selectedCountries);
+      category.countryList = selectedCountries;
+      updateSymbols(activeYear, (reset = true));
     },
   });
 };
@@ -162,25 +175,10 @@ function constructCategoryDiv(category) {
   /*Exit Edit Window Buttons*/
 
   // Get the buttons by their class name
-  const submitButton = document.querySelector(".countrySubmit");
-  const cancelButton = document.querySelector(".countryCancel");
-
-  // Add click event listener to the Submit button
-  submitButton.addEventListener("click", function () {
-    container.selectAll("*").remove();
-    // Call the function to change the category name
-    changeCategoryName(category, titleChange);
-    // Call the function to change the category countries
-    //changeCategoryCountries(category, countriesChange);
-    // Code to execute when the Submit button is clicked
-    countryConfig.classed("open", false);
-    countryConfig.classed("closed", true);
-    updateSymbols(activeYear, (reset = true));
-    initiateCategoryDivs();
-  });
+  const closeButton = document.querySelector(".countryExitButton");
 
   // Add click event listener to the Cancel button
-  cancelButton.addEventListener("click", function () {
+  closeButton.addEventListener("click", function () {
     // Code to execute when the Cancel button is clicked
     countryConfig.classed("open", false);
     countryConfig.classed("closed", true);

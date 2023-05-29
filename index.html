@@ -82,7 +82,7 @@
         <!--Animation Toggle Buttons-->
         <div id="animationControls">
           <button class="icon-button inactive-animButton" id="playButton">
-            <img src="img/play-solid.svg" id="playButtonIMG"/>
+            <img src="img/play-solid.svg" id="playButtonIMG" />
             <span class="tooltip playTooltip"
               ><b>Start Animation</b
               ><em><br />Speed Up: <b>↑</b><br />Slow Down: <b>↓</b></em></span
@@ -167,6 +167,7 @@
       </div>
       <div class="configWindow" id="categoryConfig"></div>
       <div class="configWindow closed" id="countryConfig">
+        <button class="countryExitButton"><img src="img/x.svg" /></button>
         <input
           id="categoryTitle"
           type="text"
@@ -176,32 +177,7 @@
         <button id="categoryRemove" class="icon-button">
           <img src="img/trash.svg" />
         </button>
-        <div id="treeContainer">
-          <script>/*
-            let tree = new Tree("#treeContainer", {
-              data: countryHeirarchy,
-              closeDepth: 1,
-              beforeLoad: function (rawData) {
-                // do some format
-                console.log(rawData);
-                return formatData(rawData);
-              },
-              loaded: function () {
-                this.collapseAll();
-
-                for (let i = 0; i < countryHeirarchy.length; i++) {
-                  for (let j = 0; j < countryHeirarchy[i].children.length; j++) {
-                    countryHeirarchy[i].children[j].checked = 1;
-                    console.log(countryHeirarchy[i].children[j].checked)
-                  }
-                }
-                console.log(countryHeirarchy);
-              },
-            });*/
-          </script>
-        </div>
-        <button class="countrySubmit countryExitButton">Submit</button>
-        <button class="countryCancel countryExitButton">Cancel</button>
+        <div id="treeContainer"></div>
       </div>
       <!--<div class="configWindow" id="countryConfig"></div>-->
     </div>

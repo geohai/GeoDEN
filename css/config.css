@@ -140,64 +140,73 @@
 
 .countryExitButton {
   position: absolute;
-  bottom: .4rem;
   border: solid 0rem rgb(213, 213, 213);
-  border-radius: .7rem;
-  width: 5rem;
+  border-radius: .3rem;
+  width: 1.7rem;
+  height: 1.7rem!important;
   background-color: rgba(150, 127, 150, 0.731);
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 1rem;
   color: rgb(183, 183, 183);
+  background-color: rgba(208, 104, 104, 0.6);
+}
+
+.countryExitButton img {
+  top: .1rem;
+  left: .1rem;
+  position: absolute;
+  transition: all 0.2s ease;
+  filter: grayscale(.1) invert(.5) brightness(.7);
+}
+
+.countryExitButton:hover img {
+  filter: grayscale(.1) invert(.5) brightness(1.8);
+}
+
+#countryConfig.open .countryExitButton img{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#countryConfig.closed .countryExitButton img{
+  width: 0rem;
+  height: 0rem !important;
 }
 
 .countryExitButton:hover {
-  bottom: .5rem !important;
-  color: rgb(226, 226, 226);
+  top: .7rem !important;
+  background-color: rgb(208, 104, 104);
 }
 
 #countryConfig.open .countryExitButton{
   opacity: 100%;
   visibility: visible;
   height: 1.7rem;
-  bottom: .4rem;
+  top: .8rem;
+  left: .8rem;
 }
 
 #countryConfig.closed  .countryExitButton{
   opacity: 0%;
   visibility: hidden;
-  height: .5rem;
-  bottom: .4rem;
-}
-.countrySubmit {
-  background-color: rgba(84, 175, 87, 0.5);
-  left: 50%;
-  transform: translateX(-5.2rem);
-}
-
-.countryCancel {
-  background-color: rgba(208, 104, 104, 0.5);
-  left: 50%;
-  transform: translateX(.2rem);
-}
-
-.countrySubmit:hover {
-  background-color: rgb(84, 175, 87);
-}
-
-.countryCancel:hover {
-  background-color: rgb(208, 104, 104);
+  height: 0rem;
+  top: -2rem;
+  left: .8rem;
 }
 
 #categoryTitle{
   position: absolute;
-  left: 7%!important;
-  right:2.5rem!important;
+  left: 2.8rem!important;
+  right: .8rem!important;
   transition: all 0.2s ease-in;
-  background-color: rgb(159, 159, 159);
+  background-color: rgb(178, 178, 178);
   color: #2b2b2b;
   font-weight: 100!important;
   font-size: 1rem;
+  text-align: center;
+  padding-right: 1rem;
+  border-radius: .3rem;
 }
 
 #countryConfig.closed #categoryTitle{
@@ -214,41 +223,43 @@
 
 #categoryTitle:hover,
 #categoryTitle:focus {
-  background-color: rgb(186, 186, 186);
+  background-color: rgb(209, 209, 209);
   color: #2d3138;
 }
 
 #categoryRemove {
   position: absolute;
-  right: 0.4rem;
-  height: 2rem;
   width: 2rem;
   cursor: pointer;
   filter: grayscale(1) invert(0.5) brightness(1);
   transition: all 0.15s ease-out;
+  left: 50%;
+  transform: translateX(-1rem);
 }
 
 #categoryRemove:hover {
   filter: grayscale(.1) invert(0) brightness(2);
-  top: 0.6rem!important;
+  bottom: 0.2rem!important;
   rotate: 6deg;
 }
 
 #countryConfig.closed #categoryRemove{
   opacity: 0%;
   visibility: hidden;
-  top: -2rem;
+  bottom: 1rem;
+  height: 0rem !important;
 }
 
 #countryConfig.open #categoryRemove{
   opacity: 100%;
   visibility: visible;
-  top: .8rem;
+  bottom: 0.1rem;
+  height: 2rem;
 }
 
 #treeContainer{
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(213, 213, 213, 0.3);
   border-radius: 1rem;
   width: 90%;
   left: 5%;

@@ -470,7 +470,7 @@ const countryHeirarchy_main = [
           { id: "Jamaica", text: "Jamaica", children: [], checked: 0 },
           { id: "Martinique", text: "Martinique", children: [], checked: 0 },
           { id: "Montserrat", text: "Montserrat", children: [], checked: 0 },
-          { id: "PuertoRico", text: "Puerto Rico", children: [], checked: 0 },
+          { id: "Puerto Rico", text: "Puerto Rico", children: [], checked: 0 },
           {
             id: "St. Kitts & Nevis",
             text: "Saint Kitts and Nevis",
