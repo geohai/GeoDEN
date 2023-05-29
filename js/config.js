@@ -10,9 +10,49 @@ function initiateCategoryDivs() {
   //createButton();
 }
 
+/*
+// Function to create a treeview
+function makeTree(data) {
+  let tree = new Tree("#treeContainer", {
+    data: data,
+    closeDepth: 1,
+    loaded: function () {
+      this.collapseAll();
+    },
+  });
+}*/
+
+const setBoxes = (category) => {
+  let localHeirarchy = countryHeirarchy_main;
+  //console.log(category.countryList);
+  // first, iterate through every country
+  for (let i = 0; i < localHeirarchy.length; i++) {
+    for (let j = 0; j < localHeirarchy[i].children.length; j++) {
+      for (let l = 0; l < localHeirarchy[i].children[j].children.length; l++) {
+        //fruits.includes("Mango");
+        //console.log(localHeirarchy[i].children[j].children[l].id)
+
+        localHeirarchy[i].children[j].children[l].checked = category.countryList.includes(localHeirarchy[i].children[j].children[l].id);
+      }
+    }
+  }
+  return localHeirarchy;
+};
+
+const makeTree = async (category) => {
+  const categoryData = await setBoxes(category);
+  // do something else here after firstFunction completes
+  let tree = new Tree("#treeContainer", {
+    data: categoryData,
+    closeDepth: 1,
+    loaded: function () {
+      this.collapseAll();
+    },
+  });
+};
+
 // This function creates a the Category Div
 function constructCategoryDiv(category) {
-  
   // Save the container for the whole window, the editer window, the tree container, and the title in the div
   const container = d3.select("#categoryConfig");
   const countryConfig = d3.select("#countryConfig");
@@ -40,7 +80,7 @@ function constructCategoryDiv(category) {
     .attr("src", "img/edit.svg")
     .each(function () {
       d3.select(this).on("click", function () {
-        console.log(category)
+        //console.log(category);
         editCategory(category);
       });
     });
@@ -55,6 +95,7 @@ function constructCategoryDiv(category) {
       d3.select(this).on("click", function () {
         toggleVisibility(category);
       });
+      makeTree;
     });
 
   // Function to handle toggle visibility button click
@@ -87,9 +128,14 @@ function constructCategoryDiv(category) {
 
     // Set the category name
     categoryTitle.attr("value", category.name);
+
+    // Remove the tree container
+    treeContainer.selectAll("*").remove();
+
+    makeTree(category);
   }
 
-  /*Title Input*/
+  /* Title Inputs */
 
   // save the Title
   let titleChange = "";
@@ -113,7 +159,7 @@ function constructCategoryDiv(category) {
     titleChange = value;
   });
 
-  /*Exit Buttons*/
+  /*Exit Edit Window Buttons*/
 
   // Get the buttons by their class name
   const submitButton = document.querySelector(".countrySubmit");
@@ -130,7 +176,7 @@ function constructCategoryDiv(category) {
     countryConfig.classed("open", false);
     countryConfig.classed("closed", true);
     updateSymbols(activeYear, (reset = true));
-    initiateCategoryDivs()
+    initiateCategoryDivs();
   });
 
   // Add click event listener to the Cancel button
@@ -146,5 +192,5 @@ function changeCategoryName(category, newName) {
   //console.log("Category name changed to:", newName);
   category.name = newName;
   //updateSymbols(activeYear, (reset = true));
-  console.log(category);
+  //console.log(category);
 }

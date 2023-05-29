@@ -158,8 +158,13 @@
   cursor: grab;
 }
 
-.range-slider::-webkit-slider-thumb:active {
-  cursor: grabbing;
+.range-slider:active {
+  cursor: grabbing !important;
+}
+
+.range-slider::-webkit-slider-thumb:active,
+.range-slider::-webkit-slider-thumb:hover:active {
+  cursor: grabbing !important;
 }
 
 .step {
