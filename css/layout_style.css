@@ -48,6 +48,7 @@
   top: 0rem;
   height: 1rem;
   margin: auto;
+  user-select: none;
 }
 
 #controlBar {
