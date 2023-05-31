@@ -6,6 +6,7 @@
   display: inline-block;
   position: absolute;
   z-index: 9;
+  user-select: none;
 }
 #map {
   right: 20%;
@@ -64,6 +65,7 @@
   padding-bottom: .5vmin;
   padding-left: .5vmin;
   padding-right: .5vmin;
+  user-select: none;
 }
 
 

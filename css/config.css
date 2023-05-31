@@ -16,6 +16,11 @@
   top: 2.5rem;
   bottom: 0.1rem;
   background-color: rgb(78, 78, 78);
+  overflow: auto;
+}
+
+#categoryConfig::-webkit-scrollbar {
+  width: 0rem;
 }
 
 #countryConfig {

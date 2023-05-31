@@ -7,20 +7,11 @@ function initiateCategoryDivs() {
     constructCategoryDiv(category);
   });
 
-  //createButton();
+  createCategoryButton();
 }
 
-/*
-// Function to create a treeview
-function makeTree(data) {
-  let tree = new Tree("#treeContainer", {
-    data: data,
-    closeDepth: 1,
-    loaded: function () {
-      this.collapseAll();
-    },
-  });
-}*/
+let tempCategory = null;
+let addCategoryButton = false;
 
 let setBoxes = (category) => {
   let localHeirarchy = countryHeirarchy_main;
@@ -71,6 +62,8 @@ function constructCategoryDiv(category) {
   const countryConfig = d3.select("#countryConfig");
   const treeContainer = d3.select("#treeContainer");
   const categoryTitle = d3.select("#categoryTitle");
+
+
 
   // create a new svg element for each chart
   const categoryDiv = container.append("div").attr("class", "categoryDiv");
@@ -139,6 +132,8 @@ function constructCategoryDiv(category) {
     // Add the 'open' class
     countryConfig.classed("open", true);
 
+    tempCategory = category;
+
     // Set the category name
     categoryTitle.attr("value", category.name);
 
@@ -182,6 +177,26 @@ function constructCategoryDiv(category) {
     // Code to execute when the Cancel button is clicked
     countryConfig.classed("open", false);
     countryConfig.classed("closed", true);
+    tempCategory = null;
+  });
+
+  const categoryRemove = document.querySelector("#categoryRemove");
+  // Add click event listener to the Cancel button
+  categoryRemove.addEventListener("click", function () {
+    const index = allCategoryGroups.indexOf(tempCategory);
+    if (index !== -1) {
+      tempCategory.hidden = true;
+      updateSymbols(activeYear, (reset = true));
+      allCategoryGroups.splice(index, 1);
+      console.log(allCategoryGroups);
+      
+    }
+    categoryContainer.selectAll("*").remove();
+    initiateCategoryDivs();
+    // Code to execute when the Cancel button is clicked
+    countryConfig.classed("open", false);
+    countryConfig.classed("closed", true);
+    tempCategory = null;
   });
 }
 
@@ -191,4 +206,36 @@ function changeCategoryName(category, newName) {
   category.name = newName;
   //updateSymbols(activeYear, (reset = true));
   //console.log(category);
+}
+
+const categoryContainer = d3.select("#categoryConfig");
+
+// This function creates the add category button.  It sets up interaction as well.
+function createCategoryButton() {
+  addCategoryButton = true;
+
+  // Create a button below the last chart
+  const buttonDiv = categoryContainer.append("div").attr("class", "button-div");
+
+  // Append a button element to the button container
+  buttonDiv
+    .append("button")
+    .attr("id", "addChart")
+    .attr("class", "icon-button")
+    .append("img")
+    .attr("src", "img/cross.svg");
+
+  // Add an event listener to the button
+  buttonDiv.select("button").on("click", function () {
+    allCategoryGroups.push({
+      name: "New Category",
+      hidden: false,
+      countryList: [],
+      dataPoints: {},
+      midPoints: [],
+      color: "#ffffff",
+    });
+    categoryContainer.selectAll("*").remove();
+    initiateCategoryDivs();
+  });
 }
