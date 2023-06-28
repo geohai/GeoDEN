@@ -175,13 +175,13 @@
 }
 
 .step img {
-  filter: grayscale(1) invert(.5) brightness(.7);
+  filter: grayscale(1) invert(0.5) brightness(0.7);
   transition: all 0.1s ease;
   width: 1.3rem;
 }
 
 .step:hover img {
-  filter: grayscale(1) invert(.5) brightness(1.5);
+  filter: grayscale(1) invert(0.5) brightness(1.5);
 }
 
 #forward {
@@ -210,15 +210,15 @@
 }
 
 #playButtonIMG {
-  filter: grayscale(1) invert(.5) brightness(1.2);
+  filter: grayscale(1) invert(0.5) brightness(1.2);
 }
 
 #playButton:hover #playButtonIMG {
-  filter: grayscale(1) invert(.5) brightness(2) !important;
+  filter: grayscale(1) invert(0.5) brightness(2) !important;
 }
 
 #playButton.active-animButton #playButtonIMG {
-  filter: grayscale(1) invert(.5) brightness(1.5);
+  filter: grayscale(1) invert(0.5) brightness(1.5);
 }
 
 /* Midpoint Controls */

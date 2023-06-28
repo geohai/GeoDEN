@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/barChart.css" />
     <link rel="stylesheet" href="css/controls.css" />
     <link rel="stylesheet" href="css/config.css" />
+    <link rel="stylesheet" href="css/tutorial.css" />
+    <link rel="stylesheet" href="css/timeView.css" />
     <link rel="stylesheet" href="lib/leaflet.css" />
 
     <!--TreeView-->
@@ -24,7 +26,7 @@
 
   <body>
     <div id="background"></div>
-    <div id="helpWindow_main" class="helpWindow"></div>
+    <div id="helpWindow_main" class="helpWindow closed"></div>
 
     <!-- HEADINGS -->
     <!--Year-->
@@ -158,10 +160,10 @@
 
     <!--Panel Divs-->
 
-    <div class="panelDiv openConfig" id="config">
+    <div class="panelDiv" id="config">
       <div class="configWindow" id="titleConfig">
         <button class="icon-button" id="toggleConfigButton">
-          <img src="img/cross.svg" />
+          <img src="img/cross.svg" id="toggleConfigImg" />
         </button>
         <span id="configTitleText">Categories</span>
       </div>
@@ -181,13 +183,69 @@
       </div>
       <!--<div class="configWindow" id="countryConfig"></div>-->
     </div>
-    <div class="panelDiv" id="gantt"></div>
+    <div class="panelDiv" id="timeview">
+      <input
+        id="heatmapMinInput"
+        class="heatmapYearInput"
+        type="number"
+        min="1943"
+        max="2020"
+        value="1943"
+      />
+      <input
+        id="heatmapMaxInput"
+        class="heatmapYearInput"
+        type="number"
+        min="1943"
+        max="2020"
+        value="2020"
+      />
+      <div id="heatmapGeneralContainer">
+        <div id="heatmapContainer"></div>
+      </div>
+      <div id="heatmapMinLine"></div>
+      <div id="heatmapMaxLine"></div>
+      <div id="heatmapToolbar" class="inactive">
+        <div id="heatmapTool_cases" class="heatmapTool" title="Reported Cases">
+          Reported Cases
+        </div>
+        <div id="heatmapTool_serotype" class="heatmapTool" title="Serotype">
+          Serotype
+        </div>
+        <div id="heatmapTool_category" class="heatmapTool" title="Category">
+          Category
+        </div>
+      </div>
+      <div id="heatmapTooltip" class="inactive">
+        <div
+          id="heatmapTip_cases"
+          class="heatmapTooltip"
+          title="Reported Cases"
+        >
+          0
+        </div>
+        <div id="heatmapTip_year" class="heatmapTooltip" title="Year">2000</div>
+      </div>
+    </div>
     <div class="panelDiv" id="matrix"></div>
     <div class="panelDiv" id="stats">
       <div id="barTitle"></div>
-      <div id="chart_panel"><div id="chart_container"></div></div>
+      <div id="chart_panel">
+        <div id="chart_container"></div>
+      </div>
     </div>
     <div class="panelDiv" id="map"></div>
+
+    <!--Tutorial Dialogue-->
+    <dialog id="opening_dialog">
+      <div id="tutorial_dialog">
+        <p class="dialog_title">Welcome to the Dengue Visualization Tool!</p>
+        <div class="tutorial T_dialog"></div>
+      </div>
+      <button id="close_dialog">
+        <img src="img/cross.svg" alt="Close Tutorial Window" />
+      </button>
+    </dialog>
 
     <!--External JS Scripts-->
     <!--Leaflet-->
@@ -217,5 +275,8 @@
     <script type="text/javascript" src="js/caculateStats.js"></script>
     <script type="text/javascript" src="js/resize.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/tutorial.js"></script>
+    <script type="text/javascript" src="js/timeView.js"></script>
+    <script type="text/javascript" src="js/startupCookies.js"></script>
   </body>
 </html>

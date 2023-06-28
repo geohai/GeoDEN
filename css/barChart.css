@@ -89,7 +89,7 @@
   position: relative;
   height: 1.8rem;
   width: 1.8rem;
-  left: 9px;
+  left: .6rem;
   cursor: pointer;
   font-size: .5rem;
   filter: grayscale(1) invert(.7);

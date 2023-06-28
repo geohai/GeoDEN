@@ -1,9 +1,11 @@
 let statsMap;
 
+let timeRange = [activeYear - yearDelay, activeYear];
+
 // This is a function to be called when the year changes so that stats can be calculated for that year
 function calculateStats() {
   // Calculate Min and Max years
-  let timeRange = calculateTimeRange();
+  timeRange = calculateTimeRange();
   // Get active countries
   let activeCountries = getActiveCountries(visibleCategoryGroups);
   // Get Data for time-frame

@@ -50,7 +50,7 @@ let makeTree = async (category) => {
       }
       //console.log(selectedCountries);
       category.countryList = selectedCountries;
-      updateSymbols(activeYear, (reset = true));
+      updateSymbols(activeYear, (reset = true), (resetHeatmap = true));
     },
   });
 };
@@ -62,8 +62,6 @@ function constructCategoryDiv(category) {
   const countryConfig = d3.select("#countryConfig");
   const treeContainer = d3.select("#treeContainer");
   const categoryTitle = d3.select("#categoryTitle");
-
-
 
   // create a new svg element for each chart
   const categoryDiv = container.append("div").attr("class", "categoryDiv");
@@ -94,12 +92,20 @@ function constructCategoryDiv(category) {
   // Append a button for toggling the visibility
   categoryDiv
     .append("button")
-    .attr("class", "icon-button visibility-toggle category-icon-button")
+    .attr("class", "icon-button visibility-toggle category-icon-button visible")
     .append("img")
     .attr("src", eyeImg)
     .each(function () {
       d3.select(this).on("click", function () {
         toggleVisibility(category);
+        // Toggle visible class
+        //d3.select(this).classList.toggle("invisible");
+        //(this).classList.toggle("visible");
+        event.preventDefault();
+        var image = d3.select(this);
+        image.classList.toggle("visible");
+        //d3.select(this).classed("visible", !d3.select(this).classed("visible"));
+        //d3.select(this).classed("invisible", !d3.select(this).classed("invisible"));
       });
       makeTree;
     });
@@ -120,6 +126,10 @@ function constructCategoryDiv(category) {
       d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
         "src",
         "img/hide.svg"
+      );
+      d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
+        "class",
+        "icon-button visibility-toggle category-icon-button invisible"
       );
     }
     updateSymbols(activeYear, (reset = true));
@@ -189,7 +199,6 @@ function constructCategoryDiv(category) {
       updateSymbols(activeYear, (reset = true));
       allCategoryGroups.splice(index, 1);
       console.log(allCategoryGroups);
-      
     }
     categoryContainer.selectAll("*").remove();
     initiateCategoryDivs();
@@ -210,6 +219,8 @@ function changeCategoryName(category, newName) {
 
 const categoryContainer = d3.select("#categoryConfig");
 
+let newCategoryInt = 1;
+
 // This function creates the add category button.  It sets up interaction as well.
 function createCategoryButton() {
   addCategoryButton = true;
@@ -225,17 +236,48 @@ function createCategoryButton() {
     .append("img")
     .attr("src", "img/cross.svg");
 
+  const buildEmptyEvents = () => {
+    let emptyEvents = {};
+    for (let i = 1943; i <= 2020; i++) {
+      emptyEvents[i] = {1: 0, 2: 0, 3: 0, 4: 0};
+    }
+    return emptyEvents;
+  };
+
+  const emptyEvents = buildEmptyEvents();
+
   // Add an event listener to the button
   buttonDiv.select("button").on("click", function () {
     allCategoryGroups.push({
-      name: "New Category",
+      name: "NewCategory_"+newCategoryInt++,
       hidden: false,
       countryList: [],
       dataPoints: {},
       midPoints: [],
       color: "#ffffff",
+      allTimeEvents: emptyEvents,
     });
     categoryContainer.selectAll("*").remove();
     initiateCategoryDivs();
+    updateSymbols(activeYear, (resetHeatmap = true));
   });
 }
+
+// This function sets up the config toggle screw and interaction.
+const configWindow = document.querySelector("#config");
+const configToggle = document.querySelector("#toggleConfigButton");
+const r = document.querySelector(":root");
+
+configToggle.addEventListener("click", function () {
+  configWindow.classList.toggle("closed");
+  if (configWindow.classList.contains("closed")) {
+    r.style.setProperty("--mapCategoriesBorder", "3.1rem");
+  } else {
+    r.style.setProperty("--mapCategoriesBorder", "20%");
+  }
+  // Tell Leaftlet the map has changed size after .1 seconds
+  setTimeout(function () {
+    map.invalidateSize(true);
+    window.dispatchEvent(new Event("resize"));
+  }, 150);
+});

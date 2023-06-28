@@ -8,14 +8,28 @@
 
 #titleConfig {
   height: 2rem;
-  top: 0.1rem;
-  background-color: rgb(26, 26, 26);
+  top: 0.2rem;
+  background-color: hsl(0, 0%, 10%);
+}
+
+#config.closed #categoryConfig {
+  visibility: hidden;
+  opacity: 0%;
+}
+
+#config.closed #configTitleText {
+  visibility: hidden;
+  opacity: 0%;
 }
 
 #categoryConfig {
+  transition: all 0.1s ease-in-out;
   top: 2.5rem;
-  bottom: 0.1rem;
-  background-color: rgb(78, 78, 78);
+  bottom: 0.2rem;
+  width: auto;
+  left: 0.2rem;
+  right: 0.2rem;
+  background-color: hsl(0, 0%, 31%);
   overflow: auto;
 }
 
@@ -27,8 +41,8 @@
   bottom: 0.2rem;
   transition: all 0.3s ease-in;
   z-index: 11;
-  width: 97%;
   left: 1.1%;
+  height: auto;
 }
 
 #countryConfig.open {
@@ -39,14 +53,13 @@
     radial-gradient(ellipse at 70% 90%, #39404c, transparent);
   box-shadow: 0 0.4rem 0.6rem 0.1rem rgba(0, 0, 0, 0.5);
   opacity: 100%;
-  height: auto;
   visibility: visible;
 }
 
 #countryConfig.closed {
-  opacity: 90%;
-  bottom: 0.1rem;
-  top:100%;
+  opacity: 0%;
+  bottom: 10%;
+  top: 90%;
   visibility: hidden;
 }
 
@@ -60,6 +73,7 @@
   left: 12%;
   color: rgb(213, 213, 213);
   z-index: 9;
+  transition: all 0.1ss ease-in;
 }
 
 #toggleConfigButton {
@@ -70,14 +84,26 @@
   top: 0.05rem;
   cursor: pointer;
   font-size: 0.5rem;
-  filter: grayscale(1) invert(0.5);
-  transition: all 0.15s ease;
-  rotate: 0deg;
   z-index: 10;
 }
 
-#toggleConfigButton:hover {
-  filter: grayscale(1) invert(0.8);
+#toggleConfigImg {
+  filter: grayscale(1) invert(0.5) brightness(1);
+  transition: all 0.2s ease-in-out;
+  rotate: 0deg;
+}
+
+#config.closed #toggleConfigImg {
+  rotate: 225deg;
+  filter: grayscale(1) invert(0.5) brightness(2);
+}
+
+#toggleConfigImg:hover {
+  filter: grayscale(1) invert(0.5) brightness(1.8);
+}
+
+#config.closed #toggleConfigImg:hover {
+  filter: grayscale(1) invert(0.5) brightness(1.8);
 }
 
 .categoryDiv {
@@ -135,6 +161,14 @@
   width: 1.9rem;
 }
 
+.visibility-toggle.visible{
+  filter: grayscale(0.1) invert(0.5) brightness(2) !important;
+}
+
+.visibility-toggle.invisible{
+  filter: grayscale(0) invert(0) brightness(0) !important;
+}
+
 .category-edit {
   top: 0.3rem;
   right: 2.2rem;
@@ -142,13 +176,12 @@
   width: 1.8rem;
 }
 
-
 .countryExitButton {
   position: absolute;
   border: solid 0rem rgb(213, 213, 213);
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   width: 1.7rem;
-  height: 1.7rem!important;
+  height: 1.7rem !important;
   background-color: rgba(150, 127, 150, 0.731);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -158,72 +191,72 @@
 }
 
 .countryExitButton img {
-  top: .1rem;
-  left: .1rem;
+  top: 0.1rem;
+  left: 0.1rem;
   position: absolute;
   transition: all 0.2s ease;
-  filter: grayscale(.1) invert(.5) brightness(1.4);
+  filter: grayscale(0.1) invert(0.5) brightness(1.4);
 }
 
 .countryExitButton:hover img {
-  filter: grayscale(.1) invert(.5) brightness(1.8);
+  filter: grayscale(0.1) invert(0.5) brightness(1.8);
 }
 
-#countryConfig.open .countryExitButton img{
+#countryConfig.open .countryExitButton img {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-#countryConfig.closed .countryExitButton img{
+#countryConfig.closed .countryExitButton img {
   width: 0rem;
   height: 0rem !important;
 }
 
 .countryExitButton:hover {
-  top: .7rem !important;
+  top: 0.7rem !important;
   background-color: rgb(208, 104, 104);
 }
 
-#countryConfig.open .countryExitButton{
+#countryConfig.open .countryExitButton {
   opacity: 100%;
   visibility: visible;
   height: 1.7rem;
-  top: .8rem;
-  left: .8rem;
+  top: 0.8rem;
+  right: 0.8rem;
 }
 
-#countryConfig.closed  .countryExitButton{
+#countryConfig.closed .countryExitButton {
   opacity: 0%;
   visibility: hidden;
   height: 0rem;
   top: -2rem;
-  left: .8rem;
+  right: 0.8rem;
 }
 
-#categoryTitle{
+#categoryTitle {
   position: absolute;
-  left: 2.8rem!important;
-  right: .8rem!important;
+  right: 2.8rem !important;
+  left: 2.8rem !important;
   transition: all 0.2s ease-in;
   background-color: rgb(178, 178, 178);
   color: #2b2b2b;
-  font-weight: 100!important;
+  font-weight: 100 !important;
   font-size: 1rem;
   text-align: center;
   padding-right: 1rem;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
 
-#countryConfig.closed #categoryTitle{
+#countryConfig.closed #categoryTitle {
   opacity: 0%;
   visibility: hidden;
   top: -2rem;
 }
 
-#countryConfig.open #categoryTitle{
+#countryConfig.open #categoryTitle {
   opacity: 100%;
   visibility: visible;
-  top: .8rem;
+  top: 0.8rem;
 }
 
 #categoryTitle:hover,
@@ -236,57 +269,56 @@
   position: absolute;
   width: 2rem;
   cursor: pointer;
-  filter: grayscale(1) invert(0.5) brightness(1);
+  filter: grayscale(1) invert(0.5) brightness(1.2);
   transition: all 0.15s ease-out;
-  left: 50%;
-  transform: translateX(-1rem);
+  left: 0.75rem;
 }
 
 #categoryRemove:hover {
-  filter: grayscale(.1) invert(0) brightness(2);
-  bottom: 0.2rem!important;
+  filter: grayscale(0.1) invert(0) brightness(2);
+  top: 0.55rem !important;
   rotate: 6deg;
 }
 
-#countryConfig.closed #categoryRemove{
+#countryConfig.closed #categoryRemove {
   opacity: 0%;
   visibility: hidden;
-  bottom: 1rem;
+  top: 1rem;
   height: 0rem !important;
 }
 
-#countryConfig.open #categoryRemove{
+#countryConfig.open #categoryRemove {
   opacity: 100%;
   visibility: visible;
-  bottom: 0.1rem;
+  top: 0.75rem;
   height: 2rem;
 }
 
-#treeContainer{
+#treeContainer {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 1rem;
   width: 90%;
   left: 5%;
   transition: all 0.2s ease-in;
-  bottom: 2.4rem!important;
-  top: 2.9rem!important;
+  bottom: 0.8rem !important;
+  top: 2.9rem !important;
   overflow: auto;
   scrollbar-width: thin;
-  font-size: .1rem!important;
-  color:#efefef;
+  font-size: 0.1rem !important;
+  color: #efefef;
 }
 
 #treeContainer::-webkit-scrollbar {
   width: 0rem;
 }
 
-#countryConfig.closed #treeContainer{
+#countryConfig.closed #treeContainer {
   opacity: 0%;
   visibility: hidden;
 }
 
-#countryConfig.open #treeContainer{
+#countryConfig.open #treeContainer {
   opacity: 100%;
   visibility: visible;
 }

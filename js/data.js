@@ -50,6 +50,7 @@ let category1 = {
   name: "Americas", // 3: name
   color: "#ffffff", // 4: color
   hidden: false, // 5: polyline layergroup
+  allTimeEvents: {1:0,2:0,3:0,4:0}, // 6: all time events
 };
 // Africa
 let category2 = {
@@ -86,6 +87,7 @@ let category2 = {
   name: "Africa",
   color: "#919191",
   hidden: false,
+  allTimeEvents: {1:0,2:0,3:0,4:0}
 };
 // Asia
 let category3 = {
@@ -119,6 +121,7 @@ let category3 = {
   name: "Asia",
   color: "#424242",
   hidden: false,
+  allTimeEvents: {1:0,2:0,3:0,4:0}
 };
 // Oceania
 let category4 = {
@@ -148,6 +151,7 @@ let category4 = {
   name: "Oceania",
   color: "#ffffff",
   hidden: false,
+  allTimeEvents: {1:0,2:0,3:0,4:0}
 };
 
 let allCategoryGroups = [category1, category2, category3, category4];
@@ -181,7 +185,7 @@ function getData(map) {
 
     // function here to set category groups
     // This gets all points, adds them to the layer group and
-    updateSymbols(activeYear);
+    updateSymbols(activeYear, reset = true, resetHeatmap = true);
 
     initiateCategoryDivs();
   });
@@ -192,7 +196,7 @@ function getData(map) {
 }
 
 // delete current points and add correct points for given year
-function updateSymbols(index, reset = false) {
+function updateSymbols(index, reset = false, resetHeatmap = false) {
   // Set active year to index
   activeYear = index;
   visibleCategoryGroups = [];
@@ -208,6 +212,9 @@ function updateSymbols(index, reset = false) {
 
   // remove points that aren't relavent
   removeUnnecessaryPoints(reset);
+
+  // If resetHeatmap is true, recalculate all time events
+  // otherwise if reset is true, construct time view
 
   // add correct points to objects and to map
   selectPoints();
@@ -228,6 +235,13 @@ function updateSymbols(index, reset = false) {
 
   // Function to update the other 3 panels!
   calculateStats();
+
+  if (resetHeatmap) {
+    // delay .01 seconds to allow for the points to be added to the map
+    calculateAllTimeEvents();
+  } else {
+    constructTimeView();
+  }
 }
 
 // function to find years that are not relavent, and remove them from the list and clear from the map
@@ -262,7 +276,6 @@ function removeUnnecessaryPoints(reset) {
         // if a key is greater than the year being looked at or less that the year being looked at, remove it
         if (year > activeYear || year < activeYear - yearDelay) {
           //remove year
-          //console.log() // activeLayerGroups[cat]
           allCategoryGroups[category].dataPoints[year].clearLayers();
           delete allCategoryGroups[category].dataPoints[year];
         }
@@ -303,7 +316,6 @@ function selectPoints() {
 
 //
 function getDataPoints(year, categoryList) {
-  //console.log(categoryList);
   let tempData = dataset[year];
   let points = [];
   for (i in tempData) {
@@ -363,8 +375,6 @@ function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
           longitudes.push(layers[layer]._latlng.lng);
         }
       }
-      //console.log(year);
-      //console.log(latitudes);
       if (latitudes.length > 0) {
         tracePointArray.push([mean(latitudes), mean(longitudes)]);
       }

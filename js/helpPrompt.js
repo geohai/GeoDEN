@@ -14,6 +14,9 @@ function helpWindowMain() {
 
   // Create an event listener to check if the user has clicked on the help prompt icon
   helpIcon.addEventListener("click", function () {
+    // Give toggle the helpWindow to have closed class
+    helpWindow.classList.toggle("closed");
+    helpWindow.classList.toggle("open");
     // If the prompt was open, close it by changing the icon,
     //      moving the promp below the background, and setting isOpen as false
     if (isOpen === true) {
@@ -34,6 +37,7 @@ function helpWindowMain() {
       helpIcon.style.color = "black";
       // set the window to have contents
       helpWindow.innerHTML = helpWindowContent;
+      makeTutorialPage();
     }
   });
 
@@ -86,9 +90,12 @@ function helpWindowMain() {
   helpWindowContent +=
     "<br><br><br><b>Credits:</b>" + "<small><br>Aidan Marler";
   helpWindowContent +=
-    "<br>Yannik Roell" +
+    "<br>Dr. Yannik Roell" +
     "<br>Dr. Thomas Jaenisch" +
     "<br>Dr. Morteza Karimzadeh</font></small>";
   helpWindowContent +=
     "<br><br><font size='2rem'> and a special thanks to</font><br><font size='4rem'>Dr. Janey Messina</font>";
+  helpWindowContent +=
+    "<div id = 'tutorial_help' class='tutorial T_help'></div>";
 }
+

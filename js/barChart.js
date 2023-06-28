@@ -369,6 +369,3 @@ function createButton() {
 
 // call the updateChart function initially to create the initial charts
 initiateCharts();
-
-// On window resize, call updateChart
-window.onresize = updateChart;
