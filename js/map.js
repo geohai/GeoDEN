@@ -86,7 +86,8 @@ function pointToLayer(row) {
   }); // set as svg
 
   //add formatted attribute to panel content string
-  var popupContent = createPopupContent(row);
+  const popupContent = createPopupContent(row);
+
   //bind the popup to the circle marker
   layer.bindPopup(popupContent, {
     offset: new L.Point(0, -0),

@@ -155,18 +155,14 @@ document.addEventListener("keydown", function (event) {
     }
     $(".range-slider").val(parseInt(activeYear));
     updateSymbols(activeYear);
-  } else if (event.keyCode == "38") {
-    if (animSpeed > 110) {
-      animSpeed -= 100;
-    }
-  } else if (event.keyCode == "40") {
-    if (animSpeed < 1600) {
-      animSpeed += 100;
-    }
   }
 });
 
 //--FUNCTIONS--//
+function updateAnimSpeed() {
+  const sliderValue = parseInt(document.getElementById("animationSpeed").value);
+  animSpeed = (sliderValue**-1)*1000;
+}
 
 function serotypeCheck(type) {
   if (type == 1) {
@@ -196,10 +192,10 @@ function midpointModeCheck() {
 function start_mapAnimation() {
   if (animation_active) {
     animButton.innerHTML =
-      '<img src="img/pause-solid.svg" id="playButtonIMG"><span class="tooltip playTooltip"><b>Stop Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+      '<img src="img/pause-solid.svg" id="playButtonIMG"><span class="tooltip playTooltip"><b>Stop Animation</b></span>';
   } else {
     animButton.innerHTML =
-      '<img src="img/play-solid.svg" id="playButtonIMG"><span class="tooltip playTooltip"><b>Start Animation</b><em><br>Speed Up: <b>↑</b><br>Slow Down: <b>↓</b></em></span>';
+      '<img src="img/play-solid.svg" id="playButtonIMG"><span class="tooltip playTooltip"><b>Start Animation</b></span>';
   }
 
   // set speed

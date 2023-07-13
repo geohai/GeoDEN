@@ -1,25 +1,25 @@
 /*Title Section*/
 #barTitle {
   position: absolute;
-  background-color: rgb(26, 26, 26);
-  top: .2rem;
-  height: 3rem;
-  left: .2rem;
-  right: .2rem;
-  border-radius: 2.5vmin;
+  background-color: rgba(26, 26, 26, 0.685);
+  top: 1rem;
+  height: 2.6rem;
+  left: .5rem;
+  right: .5rem;
+  border-radius: 2vmin;
 }
 
 .headerText {
   width: 100%;
   position: absolute;
   color: rgb(169, 169, 169);
-  font-size:.9rem;
+  font-size: .8rem;
   text-align: center;
   
 }
 
 .headerText .big {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: rgb(255, 255, 255);
 }
 
@@ -28,12 +28,12 @@
 }
 
 #barchartTitle .big {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: rgb(214, 214, 214);
 }
 
 #barchartSubtitle {
-  top: 1.1rem;
+  top: 1rem;
 }
 
 /*Chart*/
@@ -43,13 +43,14 @@
   /*
   background: radial-gradient(ellipse at 30% 20%, #575257, transparent),
     radial-gradient(ellipse at 60% 80%, #41464e, transparent);*/
-  bottom: .2rem;
-  left: .2rem;
-  right: .2rem;
-  border-radius: 2.5vmin;
-  top: 3.6rem;
-  background-color: rgb(78, 78, 78);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 1vmin;
+  top: .2rem;
+  background-color: var(--innerPanelBackgroundColor);
   cursor: default;
+  box-shadow: var(--innerPanelBoxShadow)
 }
 
 #chart_container {
@@ -57,8 +58,8 @@
   bottom: 0rem;
   left: 0rem;
   right: 0rem;
-  top: 0.3rem;
-  background-color: rgba(133, 133, 133, 0);
+  top: 4rem;
+  background-color: hsla(0, 100%, 36%, 0);
   overflow: auto;
   scrollbar-width: thin;
 }
@@ -74,16 +75,17 @@
   background-color: rgb(29, 29, 29);
   border-top-left-radius: 1vb;
   border-bottom-left-radius: 1vb;
-  height: 30px;
-  width: 30px;
+  height: 2rem;
+  width: 2rem;
   border: solid rgb(29, 29, 29);
-  cursor: grab;
+  cursor: default;
   z-index: 999;
 }
 
+/*
 .tab_label:active {
   cursor: grabbing;
-}
+}*/
 
 #addChart{
   position: relative;

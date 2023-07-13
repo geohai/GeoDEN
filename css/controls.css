@@ -2,60 +2,29 @@
 #title {
   color: rgb(130, 130, 130);
   position: absolute;
-  right: 1rem;
   font-weight: lighter;
-  font-size: 1.8rem;
-  top: -0.4rem;
+  font-size: 3.5vmin;
+  top: 1vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: right;
-}
-
-#year {
-  position: absolute;
-  font-size: 2.6rem;
-  height: 2.7rem;
-  width: 10rem;
-  font-weight: lighter;
-  letter-spacing: 0.5rem;
-  color: rgb(0, 0, 0);
-  left: 1rem;
+  transform: translate(0%, -50%);
+  left: 10vmin;
   text-align: center;
-  top: 0.5rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: 1rem;
-  border: solid 0.1rem rgb(172, 172, 172);
-  background-color: rgb(172, 172, 172);
-  transition: all 0.2s ease;
-}
-#year::placeholder {
-  color: rgb(0, 0, 0);
-}
-#year:focus::placeholder {
-  color: rgb(112, 112, 112);
-}
-#year:focus,
-#year:focus:hover {
-  border: solid 0.1rem rgb(255, 255, 255);
-  background-color: rgb(255, 255, 255);
-}
-#year:hover {
-  border: solid 0.1rem rgb(255, 255, 255);
-  background-color: rgb(255, 255, 255);
 }
 
 /* Data Warning */
 #dataWarning {
   position: absolute;
-  font-size: 1rem;
-  left: 12rem;
-  top: 1rem;
-  width: 2rem;
-  height: 2rem;
+  font-size: 0;
+  right: 9vmin;
+  top: 1.5vmin;
+  width: 4vmin;
+  height: 4vmin;
 }
 
 .data-warning-icon {
-  filter: grayscale(1) invert(0.3);
-  height: 2.2rem;
+  filter: grayscale(0) invert(0.5);
+  height: 4vmin;
   transition: all 0.2s ease;
 }
 
@@ -64,74 +33,11 @@
 }
 
 .data-warning-icon:hover {
-  filter: grayscale(0.8) invert(0.5);
+  filter: grayscale(0.5) invert(0);
 }
 
 #dataWarning.yearWarn .data-warning-icon:hover {
-  filter: grayscale(0.7) invert(0.1);
-}
-
-/* Year Delay */
-
-#div_yearDelay {
-  /* the div that holds everything*/
-  position: absolute;
-  width: 10rem;
-  height: 2.7rem;
-  text-align: center;
-  margin: auto;
-  border-radius: 1rem;
-  top: 0.5rem;
-  left: 14.7rem;
-  border: solid 0.1rem rgb(172, 172, 172);
-  background-color: rgb(172, 172, 172);
-  border-width: 0.1rem;
-  line-height: 0rem;
-  font-size: 0.9rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  cursor: default;
-  user-select: none;
-}
-
-#label_yearDelay {
-  /* the static label */
-  position: absolute;
-  font-style: italic;
-  font-weight: 100 !important;
-  letter-spacing: 0.05rem;
-  font-size: 110%;
-  line-height: 2.7rem;
-  text-align: left;
-  left: 0.8rem;
-  color: rgb(0, 0, 0);
-}
-
-#current_yearDelay {
-  /* the input window */
-  position: absolute;
-  font-size: 2.2rem;
-  height: 1.8rem;
-  width: 3.3rem;
-  font-weight: lighter;
-  letter-spacing: 0.1rem;
-  color: rgb(0, 0, 0);
-  right: 0.2rem;
-  top: 0.2rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: 0.8rem;
-  border: solid 0.1rem rgb(172, 172, 172);
-  background-color: rgb(172, 172, 172);
-  transition: all 0.2s ease;
-  text-align: right;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 0.3rem !important;
-}
-
-#current_yearDelay:focus,
-#div_yearDelay:hover #current_yearDelay {
-  border: solid 0.1rem rgb(255, 255, 255);
-  background-color: rgb(255, 255, 255);
+  filter: grayscale(0.5) invert(0);
 }
 
 /*
@@ -140,86 +46,6 @@
   background-color: rgb(255, 255, 255);
 }*/
 
-/* Timeline */
-#timeControls {
-  position: absolute;
-  left: 3rem;
-  width: 20rem;
-}
-
-.range-slider {
-  position: absolute;
-  right: 1.8rem;
-  left: 5.25rem;
-  cursor: pointer;
-  top: 0.4rem;
-}
-
-.range-slider::-webkit-slider-thumb {
-  cursor: grab;
-}
-
-.range-slider:active {
-  cursor: grabbing !important;
-}
-
-.range-slider::-webkit-slider-thumb:active,
-.range-slider::-webkit-slider-thumb:hover:active {
-  cursor: grabbing !important;
-}
-
-.step {
-  position: absolute;
-  width: 1.8rem !important;
-  top: 0.3rem;
-}
-
-.step img {
-  filter: grayscale(1) invert(0.5) brightness(0.7);
-  transition: all 0.1s ease;
-  width: 1.3rem;
-}
-
-.step:hover img {
-  filter: grayscale(1) invert(0.5) brightness(1.5);
-}
-
-#forward {
-  right: 0.3rem;
-  cursor: pointer;
-}
-
-#reverse {
-  right: 14.7rem;
-  cursor: pointer;
-}
-
-/* - Animation Play,Pause - */
-#playButton {
-  position: absolute;
-  left: 1.3rem;
-  margin: auto;
-  bottom: 0.1rem;
-  height: 1.7rem;
-  width: 1.7rem;
-  transition: all 0.2s ease;
-}
-
-#playButton:hover {
-  bottom: 0.18rem;
-}
-
-#playButtonIMG {
-  filter: grayscale(1) invert(0.5) brightness(1.2);
-}
-
-#playButton:hover #playButtonIMG {
-  filter: grayscale(1) invert(0.5) brightness(2) !important;
-}
-
-#playButton.active-animButton #playButtonIMG {
-  filter: grayscale(1) invert(0.5) brightness(1.5);
-}
 
 /* Midpoint Controls */
 /* - Midpoint Toggle - */
@@ -253,13 +79,6 @@
 .midpointButton.inactive-mid .midpointControl-icon {
   /* inactive */
   filter: grayscale(1) invert(0.5) brightness(0.6);
-}
-
-#serotypeToggles {
-  position: absolute;
-  line-height: 1.8rem;
-  letter-spacing: 0.1rem;
-  right: 0.25rem;
 }
 
 #midpointToggle {

@@ -1,0 +1,234 @@
+/* - Category Viewer - */
+#categoryConfig {
+  transition: all 0.1s ease-in-out;
+  top: calc(12vmin + 2.5rem);
+  bottom: 45%;
+  width: auto;
+  left: 0.2rem;
+  right: 0.2rem;
+  background-color: var(--innerPanelBackgroundColor);
+  box-shadow: var(--innerPanelBoxShadow);
+  overflow: auto;
+}
+
+/* - Category Bar Thing - */
+.categoryDiv {
+  position: relative;
+  height: 2.2rem;
+  width: 95%;
+  left: 2.5%;
+  border-radius: .4rem;
+  margin-top: 0.5rem;
+  transition: all 0.15s ease;
+  cursor: default;
+  border: none;
+}
+
+.categoryDiv.visible {
+  background: 
+    radial-gradient(ellipse at 0% 20%, hsl(300, 8%, 42%), transparent),
+    radial-gradient(ellipse at 100% 20%, hsl(272, 8%, 38%), transparent),
+    radial-gradient(ellipse at 50% 100%, hsl(217, 20%, 38%), transparent);
+}
+
+.categoryDiv.hidden {
+  background-color: hsl(0, 0%, 28%);
+}
+
+/* Category Title */
+.categoryTitle {
+  top: 50%;
+  font-weight: 100;
+  letter-spacing: 0.1rem;
+  color: #ffffff;
+  font-size: large;
+  left: 40%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  position: absolute;
+  background-color: hsla(0, 0%, 100%, 0);
+  border: 0rem solid;
+  border-radius: 1vmin;
+  transition: all 0.15s ease;
+  height: auto;
+  padding-left: 0.5rem;
+}
+
+.categoryDiv.hidden .categoryTitle {
+  color: hsl(0, 0%, 0%);
+}
+
+/* Visibility Icon */
+.visibility-icon {
+  position: absolute;
+  top: 50%;
+  right: 2.4rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  transform: translate(0%, -50%);
+  transition: all 0.15s ease;
+  border-radius: 0.4rem;
+  box-shadow: inset 0 0.05rem 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+.visibility-icon img{
+  filter: grayscale(1) brightness(1.5);
+}
+
+.visibility-icon.visible img{
+  filter: grayscale(1) brightness(3) !important;
+}
+
+.visibility-icon.invisible img{
+  filter: grayscale(1) brightness(.35) !important;
+}
+
+.visibility-icon img {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.visibility-icon:hover {
+  background-color: hsla(0, 0%, 0%, .17);
+}
+
+.visibility-icon.invisible:hover {
+  background-color: hsla(0, 0%, 100%, .12);
+}
+
+/* Edit Button */
+.category-edit{
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+  top: 0.2rem;
+  right: .3rem;
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: hsl(0, 0%, 28%);
+  border-radius: .3rem;
+  transition: all 0.15s ease;
+  box-shadow: inset 0 0.05rem 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+  overflow: visible;
+}
+
+.category-edit img {
+  cursor: pointer;
+  filter: grayscale(1) invert(0.5) brightness(.8);
+  transition: all 0.15s ease;
+}
+
+.category-edit:hover {
+  background-color: hsl(0, 0%, 16%);
+  box-shadow: inset 0 0.05rem 0.1rem 0.1rem rgba(0, 0, 0, 0);
+}
+.category-edit:hover img{
+  filter: grayscale(1) invert(0.5) brightness(2);
+}
+
+/* Edit Button Toolip */
+
+.edit-tooltip {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 1000%; 
+  height: 1000%;
+  padding: 0.5rem; /* Add padding for text */
+  background-color: black;
+  color: white;
+  z-index: 999;
+  visibility: visible;
+}
+
+
+.category-edit .tooltip {
+  visibility: hidden;
+  background-color: hsla(0, 0%, 10%, 0.9);
+  border: 0.1rem solid hsla(0, 0%, 40%, 1);
+  backdrop-filter: blur(.1rem) !important;
+  width: 10rem;
+  height: fit-content;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  z-index: 999;
+  left: 50%;
+  margin-left: -60px;
+  cursor: default;
+  pointer-events: none;
+  font-size: 1.1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity 0.1s;
+  transition-delay: 0.3s;
+}
+
+.category-edit:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* - Country Editor - */
+
+#countryConfig.open {
+  bottom: 0.5vmin;
+  top: 0.5vmin;
+  left: 0.5vmin;
+  right: 0.5vmin;
+  width: auto;
+  backdrop-filter: blur(0.3rem);
+  background: radial-gradient(ellipse at 30% 20%, #716671, transparent),
+    radial-gradient(ellipse at 70% 90%, #39404c, transparent);
+  box-shadow: 0 0.4rem 0.6rem 0.1rem rgba(0, 0, 0, 0.5);
+  opacity: 100%;
+  visibility: visible;
+}
+
+#countryConfig.closed {
+  opacity: 0%;
+  bottom: 0%;
+  top: 100%;
+  visibility: hidden;
+}
+
+/* Title */
+#categoryTitle {
+  position: absolute;
+  right: 2.8rem !important;
+  left: 2.8rem !important;
+  transition: all 0.2s ease-in;
+  background-color: rgb(178, 178, 178);
+  color: #2b2b2b;
+  font-weight: 100 !important;
+  font-size: 1rem;
+  text-align: center;
+  padding-right: 0rem;
+  border-radius: 0.3rem;
+  border: none;
+  height: 1.5rem;
+}
+
+#countryConfig.closed #categoryTitle {
+  opacity: 0%;
+  visibility: hidden;
+  top: -2rem;
+}
+
+#countryConfig.open #categoryTitle {
+  opacity: 100%;
+  visibility: visible;
+  top: 0.8rem;
+}
+
+#categoryTitle:hover,
+#categoryTitle:focus {
+  background-color: rgb(209, 209, 209);
+  color: #2d3138;
+}

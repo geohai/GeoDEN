@@ -121,19 +121,20 @@ function constructHeatMap(data, categories, categoryIndex, MaxValue, categoryNam
 
 
         // Build color scales
-        const startingColor = "hsl(0, 0%, 10%)"
+        const startingColor = "hsl(0, 0%, 7%)"
+        const colorPowerCoeffiecient = 0.45;
         const colorScales = {
             // Set up scales after doing tool tips
-            col1: d3.scaleSequential((t) => d3.interpolate(startingColor, type1_color)(Math.pow(t, .3)))
+            col1: d3.scaleSequential((t) => d3.interpolate(startingColor, type1_color)(Math.pow(t, colorPowerCoeffiecient)))
                 .domain([0, MaxValue]),
 
-            col2: d3.scaleSequential((t) => d3.interpolate(startingColor, type2_color)(Math.pow(t, .3)))
+            col2: d3.scaleSequential((t) => d3.interpolate(startingColor, type2_color)(Math.pow(t, colorPowerCoeffiecient)))
                 .domain([0, MaxValue]),
 
-            col3: d3.scaleSequential((t) => d3.interpolate(startingColor, type3_color)(Math.pow(t, .3)))
+            col3: d3.scaleSequential((t) => d3.interpolate(startingColor, type3_color)(Math.pow(t, colorPowerCoeffiecient)))
                 .domain([0, MaxValue]),
 
-            col4: d3.scaleSequential((t) => d3.interpolate(startingColor, type4_color)(Math.pow(t, .3)))
+            col4: d3.scaleSequential((t) => d3.interpolate(startingColor, type4_color)(Math.pow(t, colorPowerCoeffiecient)))
                 .domain([0, MaxValue])
         }
 
@@ -314,6 +315,9 @@ function constructTimeView() {
                     }
                 }
             }
+        }
+        if (maxValue == 0) {
+            maxValue = 1;
         }
         return maxValue;
     };

@@ -1,16 +1,19 @@
 :root {
-  --topBorder: 7rem; /* Top of the panels.  Borders the header and controlbar. */
-  --bottomBorder: .8rem; /* Bottom of the panels. */
-  --leftBorder: .8rem; /* Left of the panels. */
-  --rightBorder: .8rem; /* Right of the panels. */
-  --mapTimeviewBorder: 47%; /* Border between the map and timeview. */
+  --topBorder: 6.5vmin; /* Top of the panels.  Borders the header and controlbar. */
+  --bottomBorder: 1vmin; /* Bottom of the panels. */
+  --leftBorder: 1.5vmin; /* Left of the panels. */
+  --rightBorder: 1.5vmin; /* Right of the panels. */
+  --mapTimeviewBorder: 50%; /* Border between the map and timeview. */
   --mapStatsBorder: 20%; /* Border between the map and stats. */
-  --mapCategoriesBorder: 20%; /* Border between the map and stats. */
+  --mapCategoriesBorder: 35vmin; /* Border between the map and stats. */
+
+  --innerPanelBackgroundColor: hsl(0, 0%, 20%);
+  --innerPanelBoxShadow: inset 0 .1vmin .2vmin .1vmin hsla(0, 0%, 0%, 0.5);
 }
 
 .panelDiv {
-  border-radius: 1rem;
-  background-color: rgb(53, 53, 53);
+  border-radius: 1vmin;
+  background-color: hsl(0, 0%, 25%);
   border: solid rgb(100, 100, 100, 0) 0.25rem;
   outline-offset: 5vmin;
   display: inline-block;
@@ -21,7 +24,7 @@
 }
 
 #map {
-  right: calc(var(--mapStatsBorder) + 0.3rem);
+  right: var(--rightBorder);/*calc(var(--mapStatsBorder) + 0.3rem);*/
   bottom: var(--bottomBorder);
   top: calc(var(--mapTimeviewBorder) + 0.3rem);
   left: calc(var(--mapCategoriesBorder) + 0.3rem);
@@ -29,7 +32,7 @@
 }
 
 #timeview {
-  right: calc(var(--mapStatsBorder) + 0.3rem);
+  right: var(--rightBorder); /*calc(var(--mapStatsBorder) + 0.3rem);*/
   bottom: calc(100% - var(--mapTimeviewBorder) + 0.3rem);
   top: var(--topBorder);
   left: calc(var(--mapCategoriesBorder) + 0.3rem);
@@ -43,10 +46,11 @@
 }
 
 #stats {
-  right: var(--rightBorder);
-  bottom: var(--bottomBorder);
-  top: var(--topBorder);/*42%; change back to this if/when adding the matrix*/ 
-  left: calc(100% - var(--mapStatsBorder) + 0.3rem);
+  right: 0rem;
+  bottom: 0rem;
+  top: 55%;/*42%; change back to this if/when adding the matrix*/ 
+  left: 0rem;
+  background-color: #00000000;
 }
 
 #config {
@@ -83,17 +87,19 @@
 
 #serotypeToggles {
   position: absolute;
-  background-color: rgb(26, 26, 26);
-  color: rgb(0, 0, 0);
-  border-radius: 20px;
-  height: 2rem;
-  width: 9.5rem;
+  background: linear-gradient(to bottom, hsl(0, 0%, 10%), hsl(0, 0%, 5%));
+  border-radius: 1vmin;
   line-height: 2rem;
   text-align: center;
+  align-items: center;
   z-index: 999;
   cursor: default;
-  margin: auto;
-  right: 0.2rem;
+  right: 1vmin !important;
+  left: 1vmin;
+  top: 1vmin;
+  height: 7vmin;
+  width: auto;
+  box-shadow: 0 0.1vmin 0.3vmin 0.1vmin hsla(240, 16%, 4%, 0.5);
 }
 
 .control_div {

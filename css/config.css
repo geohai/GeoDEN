@@ -2,35 +2,8 @@
   position: absolute;
   width: 97%;
   left: 1.1%;
-  border-radius: 1rem;
+  border-radius: 1vmin;
   transition: all 0.5s ease;
-}
-
-#titleConfig {
-  height: 2rem;
-  top: 0.2rem;
-  background-color: hsl(0, 0%, 10%);
-}
-
-#config.closed #categoryConfig {
-  visibility: hidden;
-  opacity: 0%;
-}
-
-#config.closed #configTitleText {
-  visibility: hidden;
-  opacity: 0%;
-}
-
-#categoryConfig {
-  transition: all 0.1s ease-in-out;
-  top: 2.5rem;
-  bottom: 0.2rem;
-  width: auto;
-  left: 0.2rem;
-  right: 0.2rem;
-  background-color: hsl(0, 0%, 31%);
-  overflow: auto;
 }
 
 #categoryConfig::-webkit-scrollbar {
@@ -43,24 +16,6 @@
   z-index: 11;
   left: 1.1%;
   height: auto;
-}
-
-#countryConfig.open {
-  bottom: 0.1rem;
-  top: 2.5rem;
-  backdrop-filter: blur(0.3rem);
-  background: radial-gradient(ellipse at 30% 20%, #716671, transparent),
-    radial-gradient(ellipse at 70% 90%, #39404c, transparent);
-  box-shadow: 0 0.4rem 0.6rem 0.1rem rgba(0, 0, 0, 0.5);
-  opacity: 100%;
-  visibility: visible;
-}
-
-#countryConfig.closed {
-  opacity: 0%;
-  bottom: 10%;
-  top: 90%;
-  visibility: hidden;
 }
 
 #configTitleText {
@@ -106,77 +61,8 @@
   filter: grayscale(1) invert(0.5) brightness(1.8);
 }
 
-.categoryDiv {
-  position: relative;
-  background-color: rgb(43, 43, 43);
-  height: 2.2rem;
-  width: 95%;
-  left: 2.5%;
-  border-radius: 2rem;
-  margin-top: 0.5rem;
-}
 
-.categoryTitle {
-  top: 0.24rem;
-  font-weight: 500;
-  color: #bababa;
-  font-size: large;
-  left: 0.19rem;
-  right: 4rem;
-  position: absolute;
-  background-color: #ffffff00;
-  border: 0rem solid;
-  border-radius: 0.8rem;
-  transition: all 0.15s ease;
-  height: 1.6rem;
-  padding-left: 0.5rem;
-}
-
-.categoryTitle:hover,
-.categoryTitle:focus {
-  background-color: #3b3b3b;
-}
-
-.category-icon-button {
-  position: absolute;
-  text-align: right;
-  z-index: 10;
-  cursor: default;
-}
-
-.category-icon-button img {
-  cursor: pointer;
-  filter: grayscale(1) invert(0.5) brightness(0.7);
-  transition: all 0.15s ease;
-}
-
-.category-icon-button img:hover {
-  filter: grayscale(1) invert(0.5) brightness(1.5);
-}
-
-.visibility-toggle {
-  top: 0.3rem;
-  right: 0.4rem;
-  height: 1.9rem;
-  width: 1.9rem;
-}
-
-.visibility-toggle.visible{
-  filter: grayscale(0.1) invert(0.5) brightness(2) !important;
-}
-
-.visibility-toggle.invisible{
-  filter: grayscale(0) invert(0) brightness(0) !important;
-}
-
-.category-edit {
-  top: 0.3rem;
-  right: 2.2rem;
-  height: 1.8rem;
-  width: 1.8rem;
-}
-
-.countryExitButton {
+#countryExitButton {
   position: absolute;
   border: solid 0rem rgb(213, 213, 213);
   border-radius: 0.3rem;
@@ -187,37 +73,37 @@
   transition: all 0.2s ease;
   font-size: 1rem;
   color: rgb(183, 183, 183);
-  background-color: rgba(208, 104, 104, 0.7);
+  background-color: hsla(134, 57%, 40%, .7);
 }
 
-.countryExitButton img {
-  top: 0.1rem;
-  left: 0.1rem;
+#countryExitButton img {
+  top: 0.25rem;
+  left: 0.2rem;
   position: absolute;
   transition: all 0.2s ease;
   filter: grayscale(0.1) invert(0.5) brightness(1.4);
 }
 
-.countryExitButton:hover img {
+#countryExitButton:hover img {
   filter: grayscale(0.1) invert(0.5) brightness(1.8);
 }
 
-#countryConfig.open .countryExitButton img {
-  width: 1.5rem;
-  height: 1.5rem;
+#countryConfig.open #countryExitButton img {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
-#countryConfig.closed .countryExitButton img {
+#countryConfig.closed #countryExitButton img {
   width: 0rem;
   height: 0rem !important;
 }
 
-.countryExitButton:hover {
+#countryExitButton:hover {
   top: 0.7rem !important;
-  background-color: rgb(208, 104, 104);
+  background-color: hsl(134, 77%, 40%);
 }
 
-#countryConfig.open .countryExitButton {
+#countryConfig.open #countryExitButton {
   opacity: 100%;
   visibility: visible;
   height: 1.7rem;
@@ -225,44 +111,12 @@
   right: 0.8rem;
 }
 
-#countryConfig.closed .countryExitButton {
+#countryConfig.closed #countryExitButton {
   opacity: 0%;
   visibility: hidden;
   height: 0rem;
   top: -2rem;
   right: 0.8rem;
-}
-
-#categoryTitle {
-  position: absolute;
-  right: 2.8rem !important;
-  left: 2.8rem !important;
-  transition: all 0.2s ease-in;
-  background-color: rgb(178, 178, 178);
-  color: #2b2b2b;
-  font-weight: 100 !important;
-  font-size: 1rem;
-  text-align: center;
-  padding-right: 1rem;
-  border-radius: 0.3rem;
-}
-
-#countryConfig.closed #categoryTitle {
-  opacity: 0%;
-  visibility: hidden;
-  top: -2rem;
-}
-
-#countryConfig.open #categoryTitle {
-  opacity: 100%;
-  visibility: visible;
-  top: 0.8rem;
-}
-
-#categoryTitle:hover,
-#categoryTitle:focus {
-  background-color: rgb(209, 209, 209);
-  color: #2d3138;
 }
 
 #categoryRemove {
@@ -297,7 +151,7 @@
 #treeContainer {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 1rem;
+  border-radius: 1vmin;
   width: 90%;
   left: 5%;
   transition: all 0.2s ease-in;

@@ -1,14 +1,10 @@
 /* -- Button Defaults -- */
 .button {
   cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
   text-align: center;
-  font-size: 1rem;
-  line-height: 1.2rem;
+  line-height: 0vmin;
   border-radius: 0.3rem;
-  border: 0px solid;
-  top: .1rem;
+  border: none;
   position: relative;
   color: rgb(255, 255, 255);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -23,7 +19,7 @@
 .button:hover {
   box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.24),
     0 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.19);
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
 }
 
 .inactive-button {
@@ -36,36 +32,65 @@
   color: rgb(201, 201, 201);
 }
 
+.serotypeSwitch {
+  position: absolute;
+  width: 5vmin;
+  height: 5vmin;
+  bottom: .95vmin !important;
+  border-radius: 1vmin;
+  border: solid 0vmin hsl(0, 0%, 10%);
+  font-size: 3.7vmin;
+  line-height: 1vmin;
+  transform: translate(-50%, 0%);
+  font-weight: 500;
+}
+
+.serotypeSwitch.active-button {
+  color: hsl(0, 0%, 100%);
+}
+
+.serotypeSwitch.active-button:hover {
+  height: 5.3vmin;
+  font-size: 4.3vmin;
+  bottom: calc(.95vmin - .15vmin) !important;
+  box-shadow: 0 0vmin 0vmin 0.2vmin hsl(0, 0%, 100%);
+}
+
 /* - Serotype Toggles - */
 #serotypeCheck_1.active-button {
   background-color: #D4B100;
 }
 #serotypeCheck_1.active-button:hover {
   background-color: #ebc817;
-  font-size: 1.2rem;
-  height: 1.6rem;
 }
 #serotypeCheck_2.active-button {
   background-color: #B32D9D;
 }
 #serotypeCheck_2.active-button:hover {
   background-color: #d144ba;
-  font-size: 1.2rem;
-  height: 1.6rem;
 }
 #serotypeCheck_3.active-button {
   background-color: #21BEE6;
 }
 #serotypeCheck_3.active-button:hover {
   background-color: #3ed3f8;
-  font-size: 1.2rem;
-  height: 1.6rem;
 }
 #serotypeCheck_4.active-button {
   background-color: #26670A;
 }
 #serotypeCheck_4.active-button:hover {
   background-color: #388217;
-  font-size: 1.2rem;
-  height: 1.6rem;
+}
+
+#serotypeCheck_1 {
+  left: calc(50% - 9vmin);
+}
+#serotypeCheck_2 {
+  left: calc(50% - 3vmin);
+}
+#serotypeCheck_3 {
+  left: calc(50% + 3vmin);
+}
+#serotypeCheck_4 {
+  left: calc(50% + 9vmin);
 }

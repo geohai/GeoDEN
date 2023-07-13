@@ -10,12 +10,13 @@ function initiateCategoryDivs() {
   createCategoryButton();
 }
 
+//
 let tempCategory = null;
 let addCategoryButton = false;
 
+//
 let setBoxes = (category) => {
   let localHeirarchy = countryHeirarchy_main;
-  //console.log(category.countryList);
   // first, iterate through every country
   for (let i = 0; i < localHeirarchy.length; i++) {
     for (let j = 0; j < localHeirarchy[i].children.length; j++) {
@@ -31,6 +32,7 @@ let setBoxes = (category) => {
   return localHeirarchy;
 };
 
+//
 let makeTree = async (category) => {
   const categoryData = await setBoxes(category);
 
@@ -48,7 +50,6 @@ let makeTree = async (category) => {
       for (let i = 0; i < this.selectedNodes.length; i++) {
         selectedCountries.push(this.selectedNodes[i].id);
       }
-      //console.log(selectedCountries);
       category.countryList = selectedCountries;
       updateSymbols(activeYear, (reset = true), (resetHeatmap = true));
     },
@@ -63,76 +64,79 @@ function constructCategoryDiv(category) {
   const treeContainer = d3.select("#treeContainer");
   const categoryTitle = d3.select("#categoryTitle");
 
-  // create a new svg element for each chart
+  // create a new row label for each category
   const categoryDiv = container.append("div").attr("class", "categoryDiv");
 
-  categoryDiv
-    .append("input")
+  if (category.hidden == true) {
+    categoryDiv.classed("hidden", true);
+  } else {
+    categoryDiv.classed("visible", true);
+  }
+
+  const categoryDivTitle = categoryDiv
+    .append("div")
     .attr("class", "categoryTitle")
-    .attr("value", category.name);
+    .text(category.name);
 
   let eyeImg = "img/show.svg";
+  let hideMessage = "Hide category";
   if (category.hidden == true) {
     eyeImg = "img/hide.svg";
+    hideMessage = "Show category";
+  } else {
+    eyeImg = "img/show.svg";
+    hideMessage = "Hide category";
   }
+
+  // Append the eye to show visibility
+  const visibilityIconVisible = (category.hidden ? "invisible" : "visible")
+  const visibilityIcon = categoryDiv
+    .append("button")
+    .attr("class", "visibility-icon icon-button "+ visibilityIconVisible)
+    .append("img")
+    .attr("src", eyeImg)
+    .attr("title", hideMessage);
+
+  visibilityIcon.each(function () {
+    d3.select(this.parentNode).on("click", function () {
+      toggleVisibility(category);
+      categoryDiv.classed("visible", !categoryDiv.classed("visible"));
+      categoryDiv.classed("hidden", !categoryDiv.classed("hidden"));
+    });
+  });
 
   // Append a button for editing the category
   categoryDiv
     .append("button")
-    .attr("class", "icon-button category-edit category-icon-button")
+    .attr("class", "category-edit icon-button")
+    .attr("title", "Edit category")
     .append("img")
     .attr("src", "img/edit.svg")
     .each(function () {
-      d3.select(this).on("click", function () {
-        //console.log(category);
-        editCategory(category);
+      d3.select(this.parentNode).on("click", function () {
+        tempCategory = category;
+        editCategory(tempCategory);
       });
-    });
-
-  // Append a button for toggling the visibility
-  categoryDiv
-    .append("button")
-    .attr("class", "icon-button visibility-toggle category-icon-button visible")
-    .append("img")
-    .attr("src", eyeImg)
-    .each(function () {
-      d3.select(this).on("click", function () {
-        toggleVisibility(category);
-        // Toggle visible class
-        //d3.select(this).classList.toggle("invisible");
-        //(this).classList.toggle("visible");
-        event.preventDefault();
-        var image = d3.select(this);
-        image.classList.toggle("visible");
-        //d3.select(this).classed("visible", !d3.select(this).classed("visible"));
-        //d3.select(this).classed("invisible", !d3.select(this).classed("invisible"));
-      });
-      makeTree;
     });
 
   // Function to handle toggle visibility button click
   function toggleVisibility(category) {
-    // Your logic for toggling visibility goes here
-    //console.log("Visibility toggled for category:", category);
-    //allCategoryGroups.category.hidden = !category.hidden;
+    // Toggle the 'hidden' property of the category
     category.hidden = !category.hidden;
-    // Update the source based on the 'hidden' state
-    if (category.hidden == false) {
-      d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
-        "src",
-        "img/show.svg"
-      );
-    } else {
-      d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
-        "src",
-        "img/hide.svg"
-      );
-      d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
-        "class",
-        "icon-button visibility-toggle category-icon-button invisible"
-      );
-    }
-    updateSymbols(activeYear, (reset = true));
+
+    // Update the visibility icon based on the 'hidden' state
+    const visibilityIcon = d3.select(
+      categoryDiv.node().querySelector(".visibility-icon")
+    );
+    visibilityIcon.classed("invisible", category.hidden);
+    visibilityIcon.classed("visible", !category.hidden);
+    d3.select(categoryDiv._groups[0][0].childNodes[1].childNodes[0]).attr(
+      "src",
+      category.hidden ? "img/hide.svg" : "img/show.svg"
+    );
+
+    // Update symbols and any other necessary functionality
+    updateSymbols(activeYear, true);
   }
 
   // Function to handle edit category button click
@@ -142,31 +146,23 @@ function constructCategoryDiv(category) {
     // Add the 'open' class
     countryConfig.classed("open", true);
 
-    tempCategory = category;
-
     // Set the category name
-    categoryTitle.attr("value", category.name);
+    categoryTitle.property("value", category.name);
 
     // Remove the tree container
     treeContainer.selectAll("*").remove();
 
+    // Repopulate the tree container
     makeTree(category);
   }
 
   /* Title Inputs */
 
-  // save the Title
-  let titleChange = "";
-
-  // On submit (Enter key press), check the value and change the activeYear to the input value
+  // On submit (Enter key press), check the value and change the title to that value
   categoryTitle.on("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault(); // prevent form from submitting
-
-      // Get input value
-      let value = categoryTitle.property("value");
-
-      titleChange = value;
+      categoryTitle.node().blur();
     }
   });
 
@@ -174,19 +170,21 @@ function constructCategoryDiv(category) {
   categoryTitle.on("blur", (event) => {
     // Perform actions when the input field loses focus
     let value = categoryTitle.property("value");
-    titleChange = value;
+    changeCategoryName(tempCategory, value);
   });
 
   /*Exit Edit Window Buttons*/
 
   // Get the buttons by their class name
-  const closeButton = document.querySelector(".countryExitButton");
+  const closeButton = document.querySelector("#countryExitButton");
 
   // Add click event listener to the Cancel button
   closeButton.addEventListener("click", function () {
-    // Code to execute when the Cancel button is clicked
-    countryConfig.classed("open", false);
-    countryConfig.classed("closed", true);
+    if (tempCategory !== null) {
+      // Code to execute when the Cancel button is clicked
+      countryConfig.classed("open", false);
+      countryConfig.classed("closed", true);
+    }
     tempCategory = null;
   });
 
@@ -195,26 +193,42 @@ function constructCategoryDiv(category) {
   categoryRemove.addEventListener("click", function () {
     const index = allCategoryGroups.indexOf(tempCategory);
     if (index !== -1) {
+      // Filter out the elements within "countryConfig" and its children
+      const filteredElements = Array.from(container.selectAll("*")).filter(
+        function (element) {
+          return !element.closest("#countryConfig");
+        }
+      );
+      filteredElements.forEach((element) => {
+        element.remove();
+      });
+      //elementsToRemove.forEach((element) => { element.remove(); });
       tempCategory.hidden = true;
       updateSymbols(activeYear, (reset = true));
       allCategoryGroups.splice(index, 1);
-      console.log(allCategoryGroups);
+      initiateCategoryDivs();
+      // Code to execute when the Cancel button is clicked
+      countryConfig.classed("open", false);
+      countryConfig.classed("closed", true);
     }
-    categoryContainer.selectAll("*").remove();
-    initiateCategoryDivs();
-    // Code to execute when the Cancel button is clicked
-    countryConfig.classed("open", false);
-    countryConfig.classed("closed", true);
     tempCategory = null;
   });
 }
 
 // This function changes the category name
 function changeCategoryName(category, newName) {
-  //console.log("Category name changed to:", newName);
   category.name = newName;
-  //updateSymbols(activeYear, (reset = true));
-  //console.log(category);
+  const filteredElements = Array.from(categoryContainer.selectAll("*")).filter(
+    function (element) {
+      return !element.closest("#countryConfig");
+    }
+  );
+  filteredElements.forEach((element) => {
+    element.remove();
+  });
+  initiateCategoryDivs();
+  // Update symbols and any other necessary functionality
+  updateSymbols(activeYear, true);
 }
 
 const categoryContainer = d3.select("#categoryConfig");
@@ -239,7 +253,7 @@ function createCategoryButton() {
   const buildEmptyEvents = () => {
     let emptyEvents = {};
     for (let i = 1943; i <= 2020; i++) {
-      emptyEvents[i] = {1: 0, 2: 0, 3: 0, 4: 0};
+      emptyEvents[i] = { 1: 0, 2: 0, 3: 0, 4: 0 };
     }
     return emptyEvents;
   };
@@ -249,7 +263,7 @@ function createCategoryButton() {
   // Add an event listener to the button
   buttonDiv.select("button").on("click", function () {
     allCategoryGroups.push({
-      name: "NewCategory_"+newCategoryInt++,
+      name: "NewCategory_" + newCategoryInt++,
       hidden: false,
       countryList: [],
       dataPoints: {},
@@ -257,27 +271,20 @@ function createCategoryButton() {
       color: "#ffffff",
       allTimeEvents: emptyEvents,
     });
-    categoryContainer.selectAll("*").remove();
+    //categoryContainer.selectAll("*").remove();
+    // Filter out the elements within "countryConfig" and its children
+    const filteredElements = Array.from(
+      categoryContainer.selectAll("*")
+    ).filter(function (element) {
+      return !element.closest("#countryConfig");
+    });
+    filteredElements.forEach((element) => {
+      element.remove();
+    });
     initiateCategoryDivs();
     updateSymbols(activeYear, (resetHeatmap = true));
   });
 }
 
 // This function sets up the config toggle screw and interaction.
-const configWindow = document.querySelector("#config");
-const configToggle = document.querySelector("#toggleConfigButton");
 const r = document.querySelector(":root");
-
-configToggle.addEventListener("click", function () {
-  configWindow.classList.toggle("closed");
-  if (configWindow.classList.contains("closed")) {
-    r.style.setProperty("--mapCategoriesBorder", "3.1rem");
-  } else {
-    r.style.setProperty("--mapCategoriesBorder", "20%");
-  }
-  // Tell Leaftlet the map has changed size after .1 seconds
-  setTimeout(function () {
-    map.invalidateSize(true);
-    window.dispatchEvent(new Event("resize"));
-  }, 150);
-});

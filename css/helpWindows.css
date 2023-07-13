@@ -18,11 +18,12 @@
 }
 
 #helpIcon_main {
-  top: .25rem;
-  left: .25rem;
-  width: 1.9rem;
-  height: 1.9rem;
-  font-size: 1.3rem;
+  top: 1.7vmin;
+  right: 4vmin;
+  width: 3.7vmin;
+  height: 3.7vmin;
+  font-size: 3vmin;
+  border-radius: 3.7vmin;
 }
 
 #helpWindow_main {

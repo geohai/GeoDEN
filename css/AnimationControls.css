@@ -1,0 +1,89 @@
+/* - Container - */
+#animationControls {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1vmin;
+  line-height: 2rem;
+  text-align: center;
+  align-items: center;
+  z-index: 999;
+  cursor: default;
+  right: 50% !important;
+  width: 6rem !important;
+  top: 9.5vmin;
+  height: 3.5rem;
+  background-color: var(--innerPanelBackgroundColor);
+  box-shadow: var(--innerPanelBoxShadow);
+  transform: translate(50%, 0%);
+  background-color: hsl(257, 10%, 16%);
+}
+
+/* - Button - */
+#playButton {
+    position: absolute;
+    left: 50%;
+    margin: auto;
+    bottom: 1.35rem;
+    height: 1.7rem;
+    width: 1.7rem;
+    transition: all 0.2s ease;
+    transform: translate(-50%, 0%);
+  }
+  
+  #playButton:hover {
+    bottom: 1.5rem;
+  }
+  
+  #playButtonIMG {
+    filter: grayscale(1) invert(0.5) brightness(1.2);
+  }
+  
+  #playButton:hover #playButtonIMG {
+    filter: grayscale(1) invert(0.5) brightness(2) !important;
+  }
+  
+  #playButton.active-animButton #playButtonIMG {
+    filter: grayscale(1) invert(0.5) brightness(1.5);
+  }
+  
+
+/* - Slider - */
+#animSpeedContainer {
+    position: absolute;
+    bottom: 0rem !important;
+}
+
+#animationSpeed {
+    appearance: auto;
+  -webkit-appearance: none;
+  width: 80%;
+  height: .3rem;
+  border-radius: 1rem;
+  background: hsl(0, 0%, 83%);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+#animationSpeed:hover {
+  opacity: 1;
+}
+
+#animationSpeed::-webkit-slider-thumb {
+  cursor: pointer;
+}
+
+#animationSpeed::-moz-range-thumb {
+  cursor: pointer;
+}
+
+/* - ToolTip - */
+
+.playTooltip {
+    top: 110%;
+    margin-left: -5.25rem;
+    width: 9rem !important;
+    pointer-events: none;
+  }
