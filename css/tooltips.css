@@ -147,4 +147,10 @@
   transition: all ease 0.1s;
 }
 
+.tooltip.midpointControl {
+  bottom: 110%;
+  margin-left: -3.5rem;
+  z-index: 1;
+}
+
 

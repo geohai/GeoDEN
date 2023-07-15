@@ -73,19 +73,32 @@
 
 .midpointButton.active-mid .midpointControl-icon {
   /* active */
-  filter: grayscale(1) invert(0.5) brightness(1.5);
+  filter: grayscale(1) invert(0.5) brightness(0);
 }
 
 .midpointButton.inactive-mid .midpointControl-icon {
   /* inactive */
-  filter: grayscale(1) invert(0.5) brightness(0.6);
+  filter: grayscale(1) invert(0.5) brightness(1);
 }
 
 #midpointToggle {
   position: absolute;
   line-height: 2rem;
   letter-spacing: 0.1rem;
-  right: 10.6rem;
-  width: 12rem;
+  left: 1vmin;
+  bottom: 0vmin;
+  width: 11rem;
+  height: 2rem;
   z-index: 998;
+  background-color: hsla(0, 0%, 90%, .8)  !important;
+  border-radius: 0;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  transform: translate(0%, 0%);
+  transition: all 0.5s ease;
+  backdrop-filter: blur(.1rem);
+}
+
+#midpointToggle:hover {
+  background-color: hsla(0, 0%, 90%, 1)  !important;
 }

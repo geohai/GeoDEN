@@ -60,7 +60,7 @@ function constructChart(dataObj) {
 
   // set the width and height of each chart
   const width = chartContainer.node().getBoundingClientRect().width;
-  const barWidth = width * 0.7;
+  const barWidth = width;
   const height = 30;
   const barHeight = 10;
 

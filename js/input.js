@@ -67,10 +67,10 @@ focusMidpointButton.addEventListener("click", () => {
   focusMidpointButton.classList.toggle("inactive-mid", !midpointMode);
   if (midpointMode) {
     focusMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/enlarge.svg" /><span class="tooltip bottom-C"><b>Large</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/enlarge.svg" /><span class="tooltip midpointControl"><b>Smaller</b></br>Midpoints</span>';
   } else {
     focusMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/shrink.svg" /><span class="tooltip bottom-C"><b>Small</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/shrink.svg" /><span class="tooltip midpointControl"><b>Larger</b></br>Midpoints</span>';
   }
   updateSymbols(activeYear, (reset = true));
 });
@@ -82,10 +82,10 @@ typeMidpointButton.addEventListener("click", () => {
   typeMidpointButton.classList.toggle("inactive-mid", !serotypeMidpoints);
   if (serotypeMidpoints) {
     typeMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/multipleType.svg" /><span class="tooltip bottom-C"><b>Serotype</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/multipleType.svg" /><span class="tooltip midpointControl"><b>Regional</b></br>Midpoints</span>';
   } else {
     typeMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/singleType.svg" /><span class="tooltip bottom-C"><b>Regional</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/singleType.svg" /><span class="tooltip midpointControl"><b>Serotype</b></br>Midpoints</span>';
   }
   updateSymbols(activeYear, (reset = true));
 });
@@ -97,10 +97,10 @@ traceMidpointButton.addEventListener("click", () => {
   traceMidpointButton.classList.toggle("inactive-mid", !midpointTrace);
   if (midpointTrace) {
     traceMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/trace.svg" /><span class="tooltip bottom-C"><b>Trace Midpoints</b></br><em>Requires a Delay</em></span>';
+      '<img class="midpointControl-icon" src="img/trace.svg" /><span class="tooltip midpointControl"><b>Average Midpoint</b></span>';
   } else {
     traceMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/point.svg" /><span class="tooltip bottom-C"><b>Average Midpoint</b></span>';
+      '<img class="midpointControl-icon" src="img/point.svg" /><span class="tooltip midpointControl"><b>Trace Midpoints</b></br><em>Requires a Delay</em></span>';
   }
   updateSymbols(activeYear, (reset = true));
 });
@@ -112,10 +112,10 @@ soloMidpointButton.addEventListener("click", () => {
   soloMidpointButton.classList.toggle("inactive-mid", !showEventPoints);
   if (showEventPoints) {
     soloMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/show.svg" /><span class="tooltip bottom-C"><b>Show</b></br>Reported Cases</span>';
+      '<img class="midpointControl-icon" src="img/show.svg" /><span class="tooltip midpointControl"><b>Hide</b></br>Reported Cases</span>';
   } else {
     soloMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/hide.svg" /><span class="tooltip bottom-C"><b>Don\'t Show</b></br>Reported Cases</span>';
+      '<img class="midpointControl-icon" src="img/hide.svg" /><span class="tooltip midpointControl"><b>Show</b></br>Reported Cases</span>';
   }
 
   updateSymbols(activeYear, (reset = true));
