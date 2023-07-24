@@ -69,6 +69,38 @@
   width: 0rem;
 }
 
+.chart_border {
+  position: absolute;
+  pointer-events: auto;
+  background-color: hsla(0, 100%, 50%, 0);
+  z-index: 1000;
+}
+
+#chart_borderTop {
+  height: 3.5rem;
+  left: 0rem;
+  right: 0rem;
+  top: 0rem;
+}
+#chart_borderBottom {
+  height: 1rem;
+  left: 0rem;
+  right: 0rem;
+  bottom: 0rem;
+}
+#chart_borderRight {
+  width: 1rem;
+  right: 0rem;
+  bottom: 0rem;
+  top: 0rem;
+}
+#chart_borderLeft {
+  width: 1rem;
+  left: 0rem;
+  bottom: 0rem;
+  top: 0rem;
+}
+
 /*Tab Labels*/
 
 .tab_label {
@@ -103,11 +135,6 @@
 
   transition: all ease 0.2s;
 }
-
-/*
-.tab_label:active {
-  cursor: grabbing;
-}*/
 
 #addChart{
   position: relative;

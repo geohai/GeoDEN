@@ -1,5 +1,5 @@
 // chartContainer is just a variable to hold the div chart container, which should be used to place and show the 5 horizontal bar charts
-let chartContainer = d3.select("#chart_container"); //.append("svg").append("g");
+const chartContainer = d3.select("#chart_container");
 
 // Create an activeData variable, so store data for our 5 variables of interest.  Each starts as count 0 to wait for statsMap to be created and store the actual information.
 let activeData = [
@@ -41,6 +41,7 @@ function removeChart(dataObj) {
     .remove();
   // remove that item from activeData array
   activeData.splice(index, 1);
+  return;
 }
 
 // -- MAIN FUNCTIONS -- //
@@ -148,17 +149,16 @@ function constructChart(dataObj) {
       </button>`
     );
 
-  const trashIcon = chart.selectAll(".barTrashIcon");
+    /*
+  const trashIcon = chart.select(".barTrashIcon");
   trashIcon.on("click", function () {
-    console.log("test")
-  });
+    console.log("trash clicked");
+    removeChart(dataObj);
+  });*/
 
   // Tab Interaction Events!
   typeButton
     .select("button")
-    .on("click", function () {
-      //console.log("tab clicked");
-    })
     .on("mousedown", function () {
       //console.log("mouse down on tab");
     })
@@ -168,7 +168,7 @@ function constructChart(dataObj) {
       tooltip
         .style("visibility", "visible")
         .style("opacity", 1)
-        .style("width", "6.5rem");
+        .style("width", "7rem");
 
       // Show the tooltip buttons
       const tooltipButtons = chart.selectAll(".button.typeTool");
@@ -182,7 +182,7 @@ function constructChart(dataObj) {
         tooltip
           .style("visibility", "visible")
           .style("opacity", 1)
-          .style("width", "6.5rem");
+          .style("width", "7rem");
         tooltipButtons
           .style("visibility", "visible")
           .style("opacity", 1)
@@ -191,6 +191,12 @@ function constructChart(dataObj) {
 
         tooltipButtons.on("click", function () {
           //console.log(dataObj.types)
+          console.log(this.innerHTML);
+          // if the innerHTML is not a number (1-4), then it must be the trash icon.  Remove the chart
+          if (this.innerHTML!= "1" && this.innerHTML != "2" && this.innerHTML != "3" && this.innerHTML != "4") {
+            removeChart(dataObj);
+            return;
+          };
           if (dataObj.types.toString().includes(this.innerHTML)) {
             dataObj.types = parseInt(
               sortNumbersInString(
@@ -214,7 +220,7 @@ function constructChart(dataObj) {
         tooltip
           .style("visibility", "visible")
           .style("opacity", 1)
-          .style("width", "6.5rem");
+          .style("width", "7rem");
         tooltipButtons
           .style("visibility", "visible")
           .style("opacity", 1)
@@ -373,6 +379,26 @@ function createButton() {
     }
   });
 }
+
+// This section is to remove all open tooltips when the mouse leaves the chart area
+// Honestly, I would have implemented it on when the mouse leaves a tooltip that tooltip closes, but I couldn't get that to work
+const chartBorder = d3.selectAll(".chart_border");
+chartBorder.on("mouseover", function () {
+  // Hide the tooltip
+  const tooltips = chartContainer.selectAll(".tooltip");
+  tooltips
+    .style("visibility", "hidden")
+    .style("opacity", 0)
+    .style("width", ".5rem");
+
+  // Hide the tooltip buttons
+  const tooltipButtons = chartContainer.selectAll(".button.typeTool");
+  tooltipButtons
+    .style("visibility", "hidden")
+    .style("opacity", 0)
+    .style("width", ".9rem")
+    .style("left", "0rem");
+});
 
 // call the updateChart function initially to create the initial charts
 initiateCharts();
