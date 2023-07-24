@@ -172,7 +172,7 @@ function constructHeatMap(
     // Function to handle mouse down event on the heatmap
     const mouseDown = function () {
       isDragging = true; // Set the flag to indicate dragging
-      console.log("mouse down");
+      //console.log("mouse down");
     };
 
     // Function to handle mouse up event on the heatmap
@@ -262,6 +262,7 @@ function constructHeatMap(
         .attr("pointer-events", "none")
         .style("stroke-width", "2px");
 
+        /*
       // Add left handle for year delay
       const leftHandle = heatmapSVG
         .append("rect")
@@ -291,7 +292,7 @@ function constructHeatMap(
           // Update year delay based on the drag position
           // Adjust the calculations according to your specific requirements
           let newYearDelay = Math.floor(
-            activeYear - (xPosition / x.bandwidth() + 1900)
+            activeYear - ((xPosition / x.bandwidth()) + 1900)
           );
           // Update your visualization with the new year delay
           if (newYearDelay < 0) {
@@ -329,7 +330,7 @@ function constructHeatMap(
           }, 50);
           // ...
         })
-      );
+      );*/
     }
 
     // -- Draw Heatmap -- //

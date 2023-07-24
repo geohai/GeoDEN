@@ -107,26 +107,6 @@
   z-index: 99999;
 }
 
-/* All hover and change events for the tooltips and their buttons are done in barChart.js
-/*Base tooltip class for when there is no interaction to make it invisible*/
-.tab_label .tooltip {
-  position: absolute;
-  visibility: hidden;
-  z-index: 9;
-  opacity: 0;
-  left: 5.55rem;
-  top: -.1rem;
-  height: 1.11rem;
-  width: 1rem;
-  border-width: 0.2vb;
-  border-radius: 0rem;
-  border-top-right-radius: 3vb;
-  border-bottom-right-radius: 3vb;
-  background-color: rgba(32, 32, 32, 0.844);
-  border-color: rgb(29, 29, 29);
-
-  transition: all ease 0.2s;
-}
 
 /* this is the base class for the buttons in the tooltip*/
 .button.typeTool {

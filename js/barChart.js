@@ -140,10 +140,18 @@ function constructChart(dataObj) {
                   ? "active-button"
                   : "inactive-button"
               }">4</button>
+            <!--Trash-->
+              <button class="button typeTool barTrashIcon">
+              <img src="img/trash.svg" alt="Remove Chart"></button>
             </div>
         </span>
       </button>`
     );
+
+  const trashIcon = chart.selectAll(".barTrashIcon");
+  trashIcon.on("click", function () {
+    console.log("test")
+  });
 
   // Tab Interaction Events!
   typeButton
@@ -256,11 +264,10 @@ function updateChart() {
     activeData.forEach((dataObj) => {
       // set the width and height of each chart
       const width = chartContainer.node().getBoundingClientRect().width;
-      const barWidth = width * 0.65;
+      const barWidth = width - 70;
       const events = statsMap.events === 0 ? 0 : statsMap.events;
       const adjWidth =
         statsMap.events === 0 ? 0 : barWidth * (dataObj.count / events);
-
 
       // update the bar width and count label to match the dataObj count value
       dataObj.chart
@@ -278,7 +285,7 @@ function updateChart() {
         .transition()
         .duration(200)
         // this .att sets the position of the label, as defined by the number of digits in the label
-        .attr("x", adjWidth + (dataObj.count.toString().length + 5) * 10)
+        .attr("x", adjWidth + (dataObj.count.toString().length + 5) * 9)
         .text(dataObj.count);
 
       // Update the SVG symbol in the .tab_label button
@@ -345,11 +352,11 @@ function createButton() {
 
   // Append a button element to the button container
   buttonDiv
-  .append("button")
-  .attr("id", "addChart")
-  .attr("class", "icon-button")
-  .append("img")
-  .attr("src", "img/cross.svg");
+    .append("button")
+    .attr("id", "addChart")
+    .attr("class", "icon-button")
+    .append("img")
+    .attr("src", "img/cross.svg");
 
   // Add an event listener to the button
   buttonDiv.select("button").on("click", function () {

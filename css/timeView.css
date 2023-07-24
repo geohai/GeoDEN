@@ -38,7 +38,7 @@
   color: rgb(255, 255, 255);
   left: 50%;
   text-align: center;
-  top: -.5vmin;
+  top: -0.5vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 1vmin;
   border: solid 0.1rem hsl(0, 0%, 7%);
@@ -73,7 +73,7 @@
   height: 4.5vmin;
   text-align: center;
   border-radius: 1vmin;
-  top: .4vmin;
+  top: 0.4vmin;
   border: solid 0.1rem hsl(0, 0%, 11%);
   background-color: hsl(0, 0%, 11%);
   border-width: 0.1rem;
@@ -132,7 +132,7 @@
 #timeControls {
   position: absolute;
   height: 100%;
-  left:  50%;
+  left: 50%;
   right: 0;
   top: 0%;
   justify-content: center;
@@ -175,7 +175,7 @@
 
 .step:hover img {
   filter: grayscale(1) invert(0.5) brightness(5);
-  box-shadow: 0 0 .3vmin 0.1vmin hsl(0, 0%, 0%);
+  box-shadow: 0 0 0.3vmin 0.1vmin hsl(0, 0%, 0%);
 }
 
 #forward {
@@ -196,9 +196,9 @@
 #heatmapGeneralContainer {
   position: absolute;
   top: 2.5rem;
-  bottom: calc(1.5rem + .7vmin);
-  left: .5vmin;
-  right: .5vmin;
+  bottom: calc(1.5rem + 0.7vmin);
+  left: 0.5vmin;
+  right: 0.5vmin;
   background-color: var(--innerPanelBackgroundColor);
   box-shadow: var(--innerPanelBoxShadow);
   border-radius: 1vmin;
@@ -246,10 +246,10 @@
   top: 2rem;
   left: calc(var(--HeatmapMinLine) - 0.2rem);
 
-  bottom: calc(1.5rem + .3vmin);
+  bottom: calc(1.5rem + 0.3vmin);
   width: 0.2rem;
   background-color: hsl(0, 0%, 50%);
-  box-shadow: 0 .1vmin .1vmin .1vmin hsla(0, 0%, 10%, 0.3);
+  box-shadow: 0 0.1vmin 0.1vmin 0.1vmin hsla(0, 0%, 10%, 0.3);
   border-radius: 0.1rem;
 }
 
@@ -258,10 +258,10 @@
   top: 2rem;
   right: calc(var(--HeatmapMaxLine) - 0.2rem);
 
-  bottom: calc(1.5rem + .3vmin);
+  bottom: calc(1.5rem + 0.3vmin);
   width: 0.2rem;
   background-color: hsl(0, 0%, 50%);
-  box-shadow: 0 .1vmin .1vmin .1vmin hsla(0, 0%, 10%, 0.3);
+  box-shadow: 0 0.1vmin 0.1vmin 0.1vmin hsla(0, 0%, 10%, 0.3);
   border-radius: 0.1rem;
 }
 

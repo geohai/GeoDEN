@@ -131,6 +131,12 @@ animButton.addEventListener("click", () => {
 
 // Keyboard Inputs
 document.addEventListener("keydown", function (event) {
+  const activeElement = document.activeElement;
+  if (activeElement.tagName.toLowerCase() === "input") {
+    // An input element has focus
+    return;
+  }
+
   if (event.key == " ") {
     event.preventDefault();
     animation_active = !animation_active;
@@ -161,7 +167,7 @@ document.addEventListener("keydown", function (event) {
 //--FUNCTIONS--//
 function updateAnimSpeed() {
   const sliderValue = parseInt(document.getElementById("animationSpeed").value);
-  animSpeed = (sliderValue**-1)*1000;
+  animSpeed = sliderValue ** -1 * 1000;
 }
 
 function serotypeCheck(type) {
@@ -294,3 +300,19 @@ function submit_YearDelay(inputInt) {
     showRangeAlert();
   }
 }
+
+//wait .5 disableing space bar for all input elements
+function disableSpaceForInputs() {
+  setTimeout(() => {
+    const inputElements = document.querySelectorAll("input");
+    inputElements.forEach(function (inputElement) {
+      inputElement.addEventListener("keydown", function (event) {
+        if (event.keyCode == 32) {
+          event.preventDefault(); // Prevent space key default action
+        }
+      });
+    });
+  }, 200);
+}
+
+disableSpaceForInputs();

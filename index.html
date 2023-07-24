@@ -60,34 +60,6 @@
 
     <!-- TIMEVIEW -->
     <div class="panelDiv" id="timeview">
-      <!-- TIMEVIEW Control Bar-->
-      <div id="timeviewControlBar">
-        <!--Timeline-->
-        <div id="timeControls"></div>
-        <input
-          id="year"
-          type="text"
-          placeholder="1943"
-          minlength="4"
-          maxlength="4"
-        />
-        <span class="tooltip heading"><b>Set year</b> </span>
-        <!--year delay-->
-        <div id="div_yearDelay">
-          <div id="label_yearDelay">Year Delay:</div>
-          <input
-            id="current_yearDelay"
-            type="number"
-            placeholder="0"
-            minlength="1"
-            maxlength="2"
-            min="0"
-            max="77"
-          />
-          <span class="tooltip heading"><b>Set year</b></span>
-        </div>
-      </div>
-
       <!-- TIMEVIEW Main Window-->
       <div id="timeviewMainWindow">
         <input
@@ -139,6 +111,33 @@
           </div>
         </div>
       </div>
+            <!-- TIMEVIEW Control Bar-->
+            <div id="timeviewControlBar">
+              <!--Timeline-->
+              <div id="timeControls"></div>
+              <input
+                id="year"
+                type="text"
+                placeholder="1943"
+                minlength="4"
+                maxlength="4"
+              />
+              <span class="tooltip heading"><b>Set year</b> </span>
+              <!--year delay-->
+              <div id="div_yearDelay">
+                <div id="label_yearDelay">Year Delay:</div>
+                <input
+                  id="current_yearDelay"
+                  type="number"
+                  placeholder="0"
+                  minlength="1"
+                  maxlength="2"
+                  min="0"
+                  max="77"
+                />
+                <span class="tooltip heading"><b>Set year</b></span>
+              </div>
+            </div>
     </div>
     <!-- MAP Panel -->
     <div class="panelDiv" id="map">

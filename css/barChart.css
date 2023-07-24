@@ -1,12 +1,12 @@
 /*Title Section*/
 #barTitle {
   position: absolute;
-  background-color: rgba(26, 26, 26, 0.685);
+  background-color: hsl(0, 0%, 11%);
   top: 1rem;
   height: 2.6rem;
   left: .5rem;
   right: .5rem;
-  border-radius: 2vmin;
+  border-radius: 2rem;
 }
 
 .headerText {
@@ -60,8 +60,9 @@
   right: 0rem;
   top: 4rem;
   background-color: hsla(0, 100%, 36%, 0);
-  overflow: auto;
-  scrollbar-width: thin;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 #chart_container::-webkit-scrollbar {
@@ -73,13 +74,34 @@
 .tab_label {
   position: absolute;
   background-color: rgb(29, 29, 29);
-  border-top-left-radius: 1vb;
-  border-bottom-left-radius: 1vb;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
   height: 2rem;
   width: 2rem;
   border: solid rgb(29, 29, 29);
   cursor: default;
   z-index: 999;
+}
+
+/* All hover and change events for the tooltips and their buttons are done in barChart.js
+/*Base tooltip class for when there is no interaction to make it invisible*/
+.tab_label .tooltip {
+  position: absolute;
+  visibility: hidden;
+  z-index: 9;
+  opacity: 0;
+  left: 5.55rem;
+  top: -1px;
+  height: 12px;
+  width: 1rem;
+  border-width: 0.2vb;
+  border-radius: 0rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: rgba(32, 32, 32, 0.844);
+  border-color: rgb(29, 29, 29);
+
+  transition: all ease 0.2s;
 }
 
 /*
@@ -92,6 +114,7 @@
   height: 1.8rem;
   width: 1.8rem;
   left: .6rem;
+  top: .1rem;
   cursor: pointer;
   font-size: .5rem;
   filter: grayscale(1) invert(.7);
@@ -100,7 +123,7 @@
 }
 
 #addChart:hover{
-  filter: grayscale(1) invert(1);
+  filter: grayscale(1) invert(1) brightness(2);
 }
 
 /* - Serotype Toggles - */
