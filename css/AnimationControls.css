@@ -4,62 +4,64 @@
   align-items: center;
   justify-content: center;
   border-radius: 1vmin;
-  line-height: 2rem;
+  line-height: 3.5vmin;
   text-align: center;
   align-items: center;
   z-index: 999;
   cursor: default;
-  right: 50% !important;
-  width: 6rem !important;
+  left: 1vmin !important;
+  width: 10vmin !important;
   top: 9.5vmin;
-  height: 3.5rem;
+  height: 6vmin;
   background-color: var(--innerPanelBackgroundColor);
   box-shadow: var(--innerPanelBoxShadow);
-  transform: translate(50%, 0%);
   background-color: hsl(257, 10%, 16%);
 }
 
 /* - Button - */
 #playButton {
-    position: absolute;
-    left: 50%;
-    margin: auto;
-    bottom: 1.35rem;
-    height: 1.7rem;
-    width: 1.7rem;
-    transition: all 0.2s ease;
-    transform: translate(-50%, 0%);
-  }
-  
-  #playButton:hover {
-    bottom: 1.5rem;
-  }
-  
-  #playButtonIMG {
-    filter: grayscale(1) invert(0.5) brightness(1.2);
-  }
-  
-  #playButton:hover #playButtonIMG {
-    filter: grayscale(1) invert(0.5) brightness(2) !important;
-  }
-  
-  #playButton.active-animButton #playButtonIMG {
-    filter: grayscale(1) invert(0.5) brightness(1.5);
-  }
-  
+  position: absolute;
+  left: calc(50%);
+  bottom: 2vmin;
+  height: 3.2vmin;
+  width: 3.2vmin;
+  transition: all 0.2s ease;
+  transform: translate(-50%, 0%);
+}
+
+#playButtonIMG {
+  height: 2.5vmin;
+  width: 2.5vmin;
+}
+
+#playButton:hover {
+  bottom: 2.3vmin;
+}
+
+#playButtonIMG {
+  filter: grayscale(1) invert(0.5) brightness(1.2);
+}
+
+#playButton:hover #playButtonIMG {
+  filter: grayscale(1) invert(0.5) brightness(2) !important;
+}
+
+#playButton.active-animButton #playButtonIMG {
+  filter: grayscale(1) invert(0.5) brightness(1.5);
+}
 
 /* - Slider - */
 #animSpeedContainer {
-    position: absolute;
-    bottom: 0rem !important;
+  position: absolute;
+  bottom: 0vmin !important;
 }
 
 #animationSpeed {
-    appearance: auto;
+  appearance: auto;
   -webkit-appearance: none;
   width: 80%;
-  height: .3rem;
-  border-radius: 1rem;
+  height: 0.5vmin;
+  border-radius: 1vmin;
   background: hsl(0, 0%, 83%);
   outline: none;
   opacity: 0.7;
@@ -73,17 +75,33 @@
 
 #animationSpeed::-webkit-slider-thumb {
   cursor: pointer;
+  width: 1vmin;
+  height: 1vmin;
+  background: ("img/trash.svg");
+  background-size: contain; /* Use 'contain' to make sure the image fits within the thumb */
+  background-repeat: no-repeat;
+  background-position: center center;
+  transform-origin: center center; /* This sets the origin point for scaling */
+  transform: scale(1); /* The initial scale factor */
 }
 
 #animationSpeed::-moz-range-thumb {
   cursor: pointer;
+  width: 1vmin;
+  height: 1vmin;
+  background: ("img/trash.svg");
+  background-size: contain; /* Use 'contain' to make sure the image fits within the thumb */
+  background-repeat: no-repeat;
+  background-position: center center;
+  transform-origin: center center; /* This sets the origin point for scaling */
+  transform: scale(1); /* The initial scale factor */
 }
 
 /* - ToolTip - */
 
 .playTooltip {
-    top: 110%;
-    margin-left: -5.25rem;
-    width: 9rem !important;
-    pointer-events: none;
-  }
+  top: 110%;
+  margin-left: -50%;
+  width: 9rem !important;
+  pointer-events: none;
+}

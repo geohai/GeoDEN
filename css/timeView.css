@@ -67,16 +67,19 @@
 
 #div_yearDelay {
   /* the div that holds everything*/
-  right: calc(50% + 15vmin);
+  right: 1vmin;
+  left: 12vmin;
   position: absolute;
-  width: 22vmin;
-  height: 4.5vmin;
+  width: auto;
+  height: 6vmin;
   text-align: center;
   border-radius: 1vmin;
-  top: 0.4vmin;
-  border: solid 0.1rem hsl(0, 0%, 11%);
+  top: 9.5vmin;
+  border: solid 0 hsl(0, 0%, 11%);
   background-color: hsl(0, 0%, 11%);
-  border-width: 0.1rem;
+  box-shadow: var(--innerPanelBoxShadow);
+  background-color: hsl(257, 10%, 16%);
+  border-width: 0;
   line-height: 0rem;
   font-size: 2vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -89,43 +92,44 @@
   position: absolute;
   font-style: italic;
   font-weight: 100 !important;
-  letter-spacing: 0.1vmin;
-  line-height: 4.5vmin;
   text-align: left;
-  left: 2vmin;
+  left: .8vmin;
   color: hsl(0, 0%, 80%);
-  top: 0;
-  padding-bottom: 3vmin;
+  bottom: .5vmin;
   background-color: rgba(0, 255, 255, 0);
   height: 2vmin;
+  font-size: 2.2vmin;
+  top: 50%;
 }
 
 #current_yearDelay {
   /* the input window */
   position: absolute;
   font-size: 4vmin;
-  height: 3vmin;
-  width: 7vmin;
-  font-weight: lighter;
-  letter-spacing: 0.1rem;
+  
+  letter-spacing: 0.2vmin;
   color: hsl(0, 0%, 80%);
-  right: 0.2vmin;
-  top: 0vmin;
+  right: .3vmin;
+  left: 11vmin;
+  top: .3vmin;
+  bottom: .3vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: 0.8rem;
-  border: solid 0.1rem hsl(0, 0%, 10%);
-  background-color: hsl(0, 0%, 10%);
+  border-radius: 1vmin;
+  border: none;
+  padding: .5vmin;
+  background-color: hsl(257, 10%, 16%);
   transition: all 0.2s ease;
-  text-align: right;
+  text-align: center;
   justify-content: center;
   align-items: center;
-  padding-bottom: 0.3rem !important;
+  padding-bottom: .8vmin;
 }
 
 #current_yearDelay:focus,
 #div_yearDelay:hover #current_yearDelay {
-  border: solid 0.1rem hsl(0, 0%, 0%);
-  background-color: hsl(0, 0%, 0%);
+  background-color: hsl(257, 20%, 20%);
+  box-shadow: var(--innerPanelBoxShadow);
+
 }
 
 /* Timeline */

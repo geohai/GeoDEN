@@ -123,20 +123,6 @@
                 maxlength="4"
               />
               <span class="tooltip heading"><b>Set year</b> </span>
-              <!--year delay-->
-              <div id="div_yearDelay">
-                <div id="label_yearDelay">Year Delay:</div>
-                <input
-                  id="current_yearDelay"
-                  type="number"
-                  placeholder="0"
-                  minlength="1"
-                  maxlength="2"
-                  min="0"
-                  max="77"
-                />
-                <span class="tooltip heading"><b>Set year</b></span>
-              </div>
             </div>
     </div>
     <!-- MAP Panel -->
@@ -207,6 +193,7 @@
             onchange="updateAnimSpeed()"
           />
         </div>
+
         <button class="icon-button inactive-animButton" id="playButton">
           <img src="img/play-solid.svg" id="playButtonIMG" />
           <span class="tooltip playTooltip"
@@ -215,6 +202,23 @@
           >
         </button>
       </div>
+
+      <!--Year Delay-->
+      <div id="div_yearDelay">
+      <div id="label_yearDelay">Year Delay</div>
+        <input
+          id="current_yearDelay"
+          type="number"
+          placeholder="0"
+          minlength="1"
+          maxlength="2"
+          min="0"
+          max="77"
+        />
+        <span class="tooltip heading"><b>Set year</b></span>
+      </div>
+
+
       <!-- Serotype Toggles -->
       <div class="control_div" id="serotypeToggles">
         <!--Type 1-->

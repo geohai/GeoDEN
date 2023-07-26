@@ -1,7 +1,7 @@
 /* - Category Viewer - */
 #categoryConfig {
   transition: all 0.1s ease-in-out;
-  top: calc(12vmin + 2.5rem);
+  top: calc(16.5vmin);
   bottom: 45%;
   width: auto;
   left: 0.2rem;
