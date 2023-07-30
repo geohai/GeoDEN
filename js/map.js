@@ -75,6 +75,7 @@ function pointToLayer(row) {
 
   //create circle marker layer
   let layer = L.marker(latlng, {
+    name: "test",
     icon: svgIcon,
     options: {
       // store the values of each serotype
@@ -90,6 +91,13 @@ function pointToLayer(row) {
 
   //bind the popup to the circle marker
   layer.bindPopup(popupContent, {
+    offset: new L.Point(0, -0),
+  });
+
+  const tooltipContent = createTooltipContent(row);
+
+  //bind the tooltip to the circle marker
+  layer.bindTooltip(tooltipContent, {
     offset: new L.Point(0, -0),
   });
 
@@ -113,9 +121,11 @@ function createSequenceControls() {
       $("#timeControls").append(
         '<button class="icon-button step" id="reverse" title="Previous Year"><img src="img/arrow_left.svg"></button>'
       );
-      
+
       // ... initialize other DOM elements
-      $("#timeControls").append('<input class="range-slider" type="range" title="Timeline"> ');
+      $("#timeControls").append(
+        '<input class="range-slider" type="range" title="Timeline"> '
+      );
       //add skip buttons
       //below Example 3.6...add step buttons
 
@@ -187,11 +197,11 @@ function createPopupContent(row) {
   //console.log(row)
 
   //add country to popup content string
-  let popupContent = "<p><b>" + row.COUNTR + "</b>, ";
-  popupContent += "" + row.YEAR + "</p>";
+  let popupContent = "<p><b>" + row.COUNTR + "</p></b>";
+  popupContent += "<p>" + row.YEAR + "</p>";
 
   //add types observed to conent string
-  popupContent += "<p> Types: <b>";
+  popupContent += "Types: <b>";
   if (row.DEN1 == 1) {
     popupContent += " 1";
   }
@@ -204,13 +214,35 @@ function createPopupContent(row) {
   if (row.DEN4 == 1) {
     popupContent += " 4";
   }
-  popupContent += "</b></p>";
 
-  popupContent += "Admin: <b>" + row.ADMIN_LEVEL + "</b>, ";
-  popupContent += "N_types: <b>" + row.N_TYPES + "</b>";
-  popupContent += "</br>X,Y: " + row.X + ", " + row.Y;
+  popupContent += "</b>";
+  //popupContent += "N_types: <b>" + row.N_TYPES + "</b>";
+  //popupContent += "</br>X,Y: " + row.X + ", " + row.Y;
 
   return popupContent;
+}
+
+// write the string to fit in each point's tooltip content
+function createTooltipContent(row) {
+  //console.log(row)
+
+  //add country to popup content string
+  let tooltipContent = "<b>";
+  if (row.DEN1 == 1) {
+    tooltipContent += " 1";
+  }
+  if (row.DEN2 == 1) {
+    tooltipContent += " 2";
+  }
+  if (row.DEN3 == 1) {
+    tooltipContent += " 3";
+  }
+  if (row.DEN4 == 1) {
+    tooltipContent += " 4";
+  }
+  tooltipContent += "</b>";
+
+  return tooltipContent;
 }
 
 //Function to create a new icon (pie chart symbol)

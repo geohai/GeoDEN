@@ -349,7 +349,7 @@ function startMidpointCalculation() {
       calcMidpointSumSerotypes(latitudes, longitudes, years, categories);
     }
   }
-}
+};
 
 // Plot a midpoint that shows midpoint of category, regardless of Serotype
 function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
@@ -507,14 +507,16 @@ function plotMidpoint(
     } else {
       color = categories[category].color;
     }
+    console.log(typeColor)
     // make midpoint
     let layerGroup = midpointToPointLayer(
-      avg_lat,
-      avg_lng,
-      categories[category].midPoints,
-      color,
-      (color = categories[category].color),
-      additionalInfo
+      lat = avg_lat,
+      lng = avg_lng,
+      //categories[category].midPoints,
+      primaryColor = color,
+      secondaryColor = (color = categories[category].color),
+      numberOfPoints = latitudes.length,
+      categoryName = categories[category]["name"]
     );
     categories[category].midPoints.push(layerGroup);
     categories[category].midPoints[
@@ -523,21 +525,14 @@ function plotMidpoint(
   }
 }
 
-// function to plot a polyline based on midpoint
-function plotMidpointTracer() {}
-function midpointSumSerotypesPoint() {}
-function midpointSumSerotypesTrace() {}
-function midpointBySerotypesPoint() {}
-function midpointBySerotypesPoint() {}
-
 // uses calculated midpoint to make a midpoint icon and add it to the map
 function midpointToPointLayer(
   lat,
   lng,
-  categoryLabel,
   primaryColor,
   secondaryColor,
-  additionalInfo
+  numberOfPoints,
+  categoryName
 ) {
   let latlng = L.latLng(lat, lng);
 
@@ -563,9 +558,98 @@ function midpointToPointLayer(
   let layer = L.marker(latlng, { icon: midpointIcon });
 
   //bind the popup to the circle marker
-  layer.bindPopup(categoryLabel + "<br>Midpoint" + " " + additionalInfo, {
+  layer.bindPopup(categoryName + "<br>" + "Mean of <b>" + numberOfPoints + "</b> Reported Cases",  {
+    offset: new L.Point(0, -0),
+  });
+
+  //bind the tooltip to the circle marker
+  layer.bindTooltip(categoryName, {
     offset: new L.Point(0, -0),
   });
 
   return L.layerGroup([layer]);
 }
+
+/*
+// function to plot a midpoint given a set of lat an lngs, cats
+function plotMidpoint(
+  latitudes,
+  longitudes,
+  categories,
+  typeColor
+) {
+  // As long as 1 point is in the list, make a midpoint
+  if (latitudes.length > 0) {
+    let avg_lat = mean(latitudes);
+    let avg_lng = mean(longitudes);
+    let pointColor;
+    if (typeColor) {
+      pointColor = typeColor;
+    } else {
+      pointColor = categories[category].color;
+    }
+
+    console.log(typeColor)
+
+    // make midpoint
+    let layerGroup = midpointToPointLayer(
+      lat = avg_lat,
+      lng = avg_lng,
+      primaryColor = pointColor,
+      secondaryColor =(color = categories[category].color),
+      numberOfPoints = latitudes.length,
+      categoryName = categories[category]["name"]
+    );
+    categories[category].midPoints.push(layerGroup);
+    categories[category].midPoints[
+      categories[category].midPoints.length - 1
+    ].addTo(map);
+  }
+}
+
+// uses calculated midpoint to make a midpoint icon and add it to the map
+function midpointToPointLayer(
+  lat,
+  lng,
+  primaryColor,
+  secondaryColor,
+  numberOfPoints,
+  categoryName
+) {
+  let latlng = L.latLng(lat, lng);
+
+  let size = 12;
+  let anchor = 7.5;
+
+  if (midpointMode) {
+    size = 27;
+    anchor = size / 2;
+  }
+
+  let midpointIcon = L.divIcon({
+    html: `<svg height="${size}" width="${size}" viewBox="0 0 20 20">
+	  <polygon points="10,0 0,10 10,20 20,10" fill = "white"/>
+    <polygon points="10,1 1,10 10,19 19,10" fill = "black"/>
+    <polygon points="10,3 3,10 10,17 17,10" fill = "${primaryColor}"/>
+    <circle cx="10" cy="10" r="3" fill="${secondaryColor}" />
+    </svg>`,
+    className: "midpoint",
+    iconAnchor: [size / 2, anchor],
+  });
+
+  let layer = L.marker(latlng, { icon: midpointIcon });
+
+  //bind the popup to the circle marker
+  layer.bindPopup(categoryName + "<br>" + "Mean of <b>" + numberOfPoints + "</b> Reported Cases",  {
+    offset: new L.Point(0, -0),
+  });
+
+  //bind the tooltip to the circle marker
+  layer.bindTooltip(categoryName, {
+    offset: new L.Point(0, -0),
+  });
+
+  return L.layerGroup([layer]);
+}
+
+*/
