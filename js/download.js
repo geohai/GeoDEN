@@ -7,7 +7,7 @@ async function generateCSVContent(dataset) {
 
   for (const [year, data] of Object.entries(dataset)) {
     for (const obj of data) {
-      console.log(obj.COUNTR);
+      //console.log(obj.COUNTR);
       csvContent += `${obj.YEAR},${obj.X},${obj.Y},"${obj.COUNTR}",${obj.DEN1},${obj.DEN2},${obj.DEN3},${obj.DEN4},${obj.SOURCE}\n`;
     }
   }

@@ -507,7 +507,7 @@ function plotMidpoint(
     } else {
       color = categories[category].color;
     }
-    console.log(typeColor)
+    //console.log(typeColor)
     // make midpoint
     let layerGroup = midpointToPointLayer(
       lat = avg_lat,

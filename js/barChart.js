@@ -191,7 +191,7 @@ function constructChart(dataObj) {
 
         tooltipButtons.on("click", function () {
           //console.log(dataObj.types)
-          console.log(this.innerHTML);
+          //console.log(this.innerHTML);
           // if the innerHTML is not a number (1-4), then it must be the trash icon.  Remove the chart
           if (this.innerHTML!= "1" && this.innerHTML != "2" && this.innerHTML != "3" && this.innerHTML != "4") {
             removeChart(dataObj);
