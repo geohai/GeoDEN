@@ -12,7 +12,7 @@
   bottom: calc(100% - var(--heatmapContainerTop));
   left: 50%;
   transform: translate(-50%, 0%);
-  width: 76vmin;
+  width: 10vmin;
   background-color: hsl(0, 0%, 0%, 0);
   border-radius: 1vmin;
 }
@@ -137,9 +137,10 @@
   position: absolute;
   height: 100%;
   left: 50%;
-  right: 0;
+  right: 10%;
   top: 0%;
   justify-content: center;
+  width: auto;
 }
 
 .range-slider {

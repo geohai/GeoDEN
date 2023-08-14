@@ -257,6 +257,10 @@ function constructChart(dataObj) {
 
 // updateChart updates the whole chart panel every time there is new data
 function updateChart() {
+  if (activeData.length === 0) {
+    chartContainer.selectAll("*").remove();
+    return;
+  }
   // upon updateChart being called, the activeData variable is updated
   activeData.forEach((dataObj) => {
     activeVars = dataObj.types;
