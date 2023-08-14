@@ -63,6 +63,7 @@ function constructCategoryDiv(category) {
   const countryConfig = d3.select("#countryConfig");
   const treeContainer = d3.select("#treeContainer");
   const categoryTitle = d3.select("#categoryTitle");
+  const categoryDownload = d3.select("#categoryDownload");
 
   // create a new row label for each category
   const categoryDiv = container.append("div").attr("class", "categoryDiv");
@@ -151,6 +152,9 @@ function constructCategoryDiv(category) {
 
     // Remove the tree container
     treeContainer.selectAll("*").remove();
+
+    // Add on click event to the download button
+    categoryDownload.on("click", () => callCategoryDownload(category));
 
     // Repopulate the tree container
     makeTree(category);

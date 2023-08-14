@@ -1,7 +1,7 @@
 "use strict";
 
 // Function to generate CSV content asynchronously
-async function generateCSVContent(dataset, minYear, maxYear) {
+async function generateCSVContent(dataset) {
   let csvContent =
     "Year,Latitude,Longitude,Country,Type_1,Type_2,Type_3,Type_4,Source,\n";
 
@@ -32,7 +32,7 @@ function downloadBlobAsFile(blob) {
 }
 
 // Function to initiate the download process
-async function callDownload(minYear, maxYear) {
+async function callDownload() {
   try {
     const csvContent = await generateCSVContent(dataset);
     const blob = createBlob(csvContent);
@@ -40,4 +40,8 @@ async function callDownload(minYear, maxYear) {
   } catch (error) {
     console.error("Error generating or downloading CSV:", error);
   }
+}
+
+function callCategoryDownload(category) {
+    console.log(category);
 }

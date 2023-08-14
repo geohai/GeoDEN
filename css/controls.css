@@ -34,15 +34,16 @@
 
 #data-warning-glow {
   position: absolute;
-  left: 1.2rem;
+  left: 1.35rem;
   bottom: 1rem;
   transition: all 0.1s ease;
+  z-index: 0;
 }
 
 #dataWarning.yearWarn #data-warning-glow {
   filter: grayscale(0) invert(0);
-  box-shadow: 0px 0px 2.3rem 1.7rem rgba(255, 237, 133, 0.7);
-  border-radius: 3rem;
+  box-shadow: 0px 0px 3vmin 2vmin rgb(178, 151, 18);
+  border-radius: 10vmin;
   width: 0rem;
   height: 0rem;
 }
