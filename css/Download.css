@@ -1,0 +1,58 @@
+.downloadButton {
+  background-color: hsl(0, 0%, 15%);
+  border: solid 0.1vmin hsl(0, 0%, 60%);
+  transition: all 0.2s ease;
+}
+
+.downloadButton:hover {
+  background-color: hsl(0, 0%, 0%);
+  border: solid 0.1vmin hsl(0, 0%, 100%);
+  box-shadow: none;
+}
+
+.downloadButton img {
+  filter: invert(0.5);
+  transition: all 0.2s ease;
+}
+
+.downloadButton:hover img {
+  filter: invert(1);
+}
+
+#mainDownloadButton {
+  border-radius: 0.5vmin;
+  position: absolute;
+  right: 14.8vmin;
+  top: 1.5vmin;
+  width: 4vmin;
+  height: 4vmin;
+}
+
+#mainDownloadButton .tooltip {
+  width: 10vmin;
+  right: 5vmin;
+  top: 110%;
+  font-size: 2vmin;
+  padding: 1vmin;
+  line-height: 2vmin;
+}
+
+#mainDownloadButton img {
+  height: 2.5vmin;
+  width: 2.5vmin;
+}
+
+#categoryDownload {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: 3rem;
+  height: 2.5rem;
+  box-shadow: 0 0.1rem 0.3rem 0.1rem hsla(0, 0%, 0%, 0.3);
+  border-radius: 0.5rem;
+}
+
+#categoryDownload img {
+    height: 1.5rem;
+    width: 1.5rem;
+}

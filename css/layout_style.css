@@ -135,3 +135,23 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(0, 0%, 15%);
 }
+
+a:link {
+  color: hsl(192, 77%, 76%);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: hsl(277, 84%, 75%);
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: hsl(277, 100%, 94%);
+  background-color: transparent;
+  text-decoration: underline;
+}

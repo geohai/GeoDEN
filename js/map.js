@@ -21,9 +21,10 @@ const type4_color = "#26670A";
 function createMap() {
   // Set up initial map center and zoom level
   map = L.map("map", {
-    center: [-10, 37], // EDIT latitude, longitude to re-center map
+    center: [-10, 55], // EDIT latitude, longitude to re-center map
     zoom: 2, // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
     minZoom: 2,
+    keyboard: false,
   });
 
   // Control panel to display map layers

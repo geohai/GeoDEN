@@ -160,10 +160,10 @@ function updateStatsTitle(timeRange) {
       "</b></div>";
   }
 
-  string +=
+  string =
     "<div class='headerText' id='barchartSubtitle'><b class='big'>" +
     statsMap.events +
-    "</b> Reported Cases</div><br>";
+    "</b> Reports</div><br>" + string;
   //string += "<div class='typeStats t1 active'><b class='big'>1</b> - <em>n:</em> " + statsMap.count1 + ", \t <em>p:</em> " + roundTo(statsMap.percent1, 2) + "%</div>"
   //string += "<div class='typeStats t2 active'><b class='big'>2</b> - <em>n:</em> " + statsMap.count2 + ", \t <em>p:</em> " + roundTo(statsMap.percent2, 2) + "%</div>"
   //string += "<div class='typeStats t3 active'><b class='big'>3</b> - <em>n:</em> " + statsMap.count3 + ", \t <em>p:</em> " + roundTo(statsMap.percent3, 2) + "%</div>"

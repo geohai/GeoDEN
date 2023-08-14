@@ -2,13 +2,13 @@
 #title {
   color: rgb(130, 130, 130);
   position: absolute;
-  font-weight: lighter;
+  font-weight: 400;
   font-size: 3.5vmin;
   top: 1vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: right;
   transform: translate(0%, -50%);
-  left: 10vmin;
+  left: 13vmin;
   text-align: center;
 }
 
@@ -30,6 +30,21 @@
 
 #dataWarning.yearWarn .data-warning-icon {
   filter: grayscale(0) invert(0);
+}
+
+#data-warning-glow {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1rem;
+  transition: all 0.1s ease;
+}
+
+#dataWarning.yearWarn #data-warning-glow {
+  filter: grayscale(0) invert(0);
+  box-shadow: 0px 0px 2.3rem 1.7rem rgba(255, 237, 133, 0.7);
+  border-radius: 3rem;
+  width: 0rem;
+  height: 0rem;
 }
 
 .data-warning-icon:hover {

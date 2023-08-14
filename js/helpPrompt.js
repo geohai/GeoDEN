@@ -70,22 +70,22 @@ function helpWindowMain() {
   // Add text to fill the help prompt here!
   // Title
   helpWindowContent =
-    "<b><font size='6rem'>Dengue Fever</b></br> 1943-2013</font><font size='4rem'>";
+    "<font size='6rem'><b>Dengue Fever</b> </br><i></font><font size='6rem'> Tool for </br> Exploratory </br> Analysis</i></br></font><font size='4rem'>";
 
   helpWindowContent +=
-    "<br><br><br><small>The dataset visualized is <a href='https://www.cell.com/trends/microbiology/fulltext/S0966-842X(13)00273-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0966842X13002734%3Fshowall%3Dtrue' target='_blank'><em>Messina et al. 2014</em></a></small>";
+    "<br><small>The main dataset (1943 to 2013) comes from <a href='https://www.cell.com/trends/microbiology/fulltext/S0966-842X(13)00273-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0966842X13002734%3Fshowall%3Dtrue' target='_blank'><em>Messina et al. 2014</em></a></br>Data from 2014 to 2020 does not have global scope.</small>";
 
-  helpWindowContent += "<br><br><br><b>Keybindings:</b>";
+  helpWindowContent += "<br><br><b>Keybindings:</b>";
   helpWindowContent +=
-    "<br><span class='keybindings'>⎵ <small>Space:</span> pause/play</small>";
+    "<br><span class='keybindings'>⎵ <small> Space:</span> Pause / Play</small>";
   helpWindowContent +=
-    "<br><span class='keybindings'>↑ <small>Up Arrow:</span> Speed-Up Animation</small>";
+    "<br><span class='keybindings'>→ <small> Right:</span> Next Year</small>";
   helpWindowContent +=
-    "<span class='keybindings'><br>↓ <small>Down Arrow:</span> Slow-Down Animation</small>";
+    "<br><span class='keybindings'>← <small> Left:</span> Previous Year</small>";
   helpWindowContent +=
-    "<br><span class='keybindings'>→ <small>Right Arrow:</span> Show Next Year</small>";
+    "<br><span class='keybindings'>↑ <small> Up:</span> Add Delay</small>";
   helpWindowContent +=
-    "<br><span class='keybindings'>← <small>Left Arrow:</span> Show Previous Year</small>";
+    "<span class='keybindings'><br>↓ <small> Down:</span> Subtract Delay</small>";
 
   helpWindowContent +=
     "<br><br><br><b>Credits:</b>" + "<small><br>Aidan Marler";
@@ -98,4 +98,3 @@ function helpWindowMain() {
   helpWindowContent +=
     "<div id = 'tutorial_help' class='tutorial T_help'></div>";
 }
-

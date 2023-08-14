@@ -185,7 +185,7 @@ function constructHeatMap(
 
     const mousemove = function (event, d) {
       if (!(event.buttons == 1)) {
-        casesTip.html("Reported Cases: <b>" + d.value + "</b>");
+        casesTip.html("Reports: <b>" + d.value + "</b>");
         yearTip.html("<b>" + d.year + "</b>");
         serotypeTip.html(
           "Serotype <b id='heatmapTool_serotypeNum'>" + d.type + "</b>"
@@ -213,7 +213,7 @@ function constructHeatMap(
     const mouseleave = function (d) {
       toolbar.classed("active", false).classed("inactive", true); // Toggle classes
       tooltip.classed("active", false).classed("inactive", true);
-      casesTip.html("Reported Cases");
+      casesTip.html("Reports");
       yearTip.html("Year");
       serotypeTip.html("Serotype");
       categoryTip.html("Category");

@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Dengue Vis</title>
+    <title>DF-TEA</title>
+    <link rel="icon" href="./img/icon.svg">
 
     <!--Stylesheets-->
     <link rel="stylesheet" href="css/layout_style.css" />
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="css/config.css" />
     <link rel="stylesheet" href="css/tutorial.css" />
     <link rel="stylesheet" href="css/timeView.css" />
+    <link rel="stylesheet" href="css/Download.css" />
 
     <link rel="stylesheet" href="css/AnimationControls.css" />
     <link rel="stylesheet" href="css/CategoryPanel.css" />
@@ -35,11 +37,20 @@
     <!-- HEADINGS -->
     <!--Year-->
     <div id="headings">
-      <h1 id="title">Dengue Vis</h1>
+      <h1 id="title" title="Dengue Fever - Tool for Exploratory Analysis">DF-TEA</h1>
+    </div>
+
+    <!-- download -->
+    <div id="download">
+      <button id="mainDownloadButton" class="button downloadButton"  onclick="callDownload(minYear=1943,maxYear=2013)">
+        <img class="download-icon" src="img/download.svg" />
+        <span class="tooltip"><b>Download</br>Dataset</b></span>
+      </button>
     </div>
 
     <!--data warning-->
     <div id="dataWarning">
+      <div id="data-warning-glow"></div>
       <img
         class="data-warning-icon"
         src="img/triangle-exclamation-solid.svg"
@@ -50,6 +61,7 @@
         countries.<br />
       </span>
     </div>
+
 
     <!--Create divs for a help icon and a help window-->
     <button id="helpIcon_main" class="helpIcon button">
@@ -87,9 +99,9 @@
           <div
             id="heatmapTool_cases"
             class="heatmapTool"
-            title="Reported Cases"
+            title="Reports"
           >
-            Reported Cases
+            Reports
           </div>
           <div id="heatmapTool_serotype" class="heatmapTool" title="Serotype">
             Serotype
@@ -102,7 +114,7 @@
           <div
             id="heatmapTip_cases"
             class="heatmapTooltip"
-            title="Reported Cases"
+            title="Reports"
           >
             0
           </div>
@@ -134,7 +146,7 @@
           id="soloMidpointButton"
         >
           <img class="midpointControl-icon" src="img/show.svg" />
-          <span class="tooltip midpointControl"><b>Hide</b><br />Reported Cases</span>
+          <span class="tooltip midpointControl"><b>Hide</b><br />Reports</span>
         </button>
         <button
           class="icon-button midpointButton inactive-mid"
@@ -167,16 +179,18 @@
       <!-- Category Window-->
       <div id="categoryConfig" class="configWindow">
         <div id="countryConfig" class="configWindow closed" >
-          <button id="countryExitButton"><img src="img/check.svg" /></button>
+          <button id="countryExitButton" title="Submit Changes"><img src="img/check.svg" alt="Submit Changes Icon" /></button>
           <input
             id="categoryTitle"
             type="text"
             placeholder=""
           />
-          <button id="categoryRemove" class="icon-button">
-            <img src="img/trash.svg" />
+          <button id="categoryRemove" class="icon-button" title="Remove Category">
+            <img src="img/trash.svg" alt="Remove Category Icon"/>
           </button>
           <div id="treeContainer"></div>
+          <button id="categoryDownload" class="icon-button downloadButton" title="Download Category Data">
+            <img src="img/download.svg" alt="Download Category Icon" />
         </div>
       </div>
 
@@ -303,6 +317,7 @@
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript" src="js/tutorial.js"></script>
     <script type="text/javascript" src="js/timeView.js"></script>
+    <script type="text/javascript" src="js/download.js"></script>
     <script type="text/javascript" src="js/startupCookies.js"></script>
   </body>
 </html>

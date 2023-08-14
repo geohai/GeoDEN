@@ -1,9 +1,9 @@
 // Define my tutorial slides
 const tutorialData = [
     {
-        title: 'Title 1',
-        textContent: 'Text content 1',
-        pictureContent: 'Picture content 1'
+        title: 'Welcome to DF-TEA',
+        textContent: 'DF-TEA is the Dengue Fever Tool for Exploratory Analysis. \n With this tool, you can look at reports of dengue fever accross the world from 1943 to 2020.',
+        pictureContent: 'img/point.svg'
     },
     {
         title: 'Title 2',
