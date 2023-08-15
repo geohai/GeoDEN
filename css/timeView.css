@@ -29,7 +29,6 @@
 
 /* Current Year */
 #year {
-  
   position: absolute;
   font-size: 5vmin;
   height: 5.8vmin;
@@ -46,7 +45,7 @@
   border: solid 0.1vmin hsl(0, 0%, 60%);
   transition: all 0.2s ease;
   transform: translate(-50%, 0%);
-  box-shadow: 0 .4vmin .6vmin hsla(0, 0%, 0%, .8);
+  box-shadow: 0 0.4vmin 0.6vmin hsla(0, 0%, 0%, 0.8);
 }
 #year::placeholder {
   color: hsl(0, 0%, 80%);
@@ -94,9 +93,9 @@
   font-style: italic;
   font-weight: 100 !important;
   text-align: left;
-  left: .8vmin;
+  left: 0.8vmin;
   color: hsl(0, 0%, 80%);
-  bottom: .5vmin;
+  bottom: 0.5vmin;
   background-color: rgba(0, 255, 255, 0);
   height: 2vmin;
   font-size: 2.2vmin;
@@ -107,30 +106,29 @@
   /* the input window */
   position: absolute;
   font-size: 4vmin;
-  
+
   letter-spacing: 0.2vmin;
   color: hsl(0, 0%, 80%);
-  right: .3vmin;
+  right: 0.3vmin;
   left: 11vmin;
-  top: .3vmin;
-  bottom: .3vmin;
+  top: 0.3vmin;
+  bottom: 0.3vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 1vmin;
   border: none;
-  padding: .5vmin;
+  padding: 0.5vmin;
   background-color: hsl(257, 10%, 16%);
   transition: all 0.2s ease;
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding-bottom: .8vmin;
+  padding-bottom: 0.8vmin;
 }
 
 #current_yearDelay:focus,
 #div_yearDelay:hover #current_yearDelay {
   background-color: hsl(257, 20%, 20%);
   box-shadow: var(--innerPanelBoxShadow);
-
 }
 
 /* Timeline */
