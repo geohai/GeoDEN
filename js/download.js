@@ -22,7 +22,7 @@ function createBlob(csv) {
 }
 
 // Function to download Blob as a file
-function downloadBlobAsFile(blob, fileName = "DS-TEA.csv") {
+function downloadBlobAsFile(blob, fileName = "TEA-DS.csv") {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
