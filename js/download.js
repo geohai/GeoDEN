@@ -22,11 +22,11 @@ function createBlob(csv) {
 }
 
 // Function to download Blob as a file
-function downloadBlobAsFile(blob) {
+function downloadBlobAsFile(blob, fileName = "DS-TEA.csv") {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "DF-TEA.csv";
+  a.download = fileName;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -42,6 +42,22 @@ async function callDownload() {
   }
 }
 
-function callCategoryDownload(category) {
-    console.log(category);
+/* -- DOWNLOAD CATEGORY DATA -- */
+async function callCategoryDownload(category) {
+  console.log(category);
+  try {
+    const filteredDataset = {};
+
+    for (const [year, data] of Object.entries(dataset)) {
+      filteredDataset[year] = data.filter((obj) =>
+        category.countryList.includes(obj.COUNTR)
+      );
+    }
+    const csvContent = await generateCSVContent(filteredDataset);
+    const blob = createBlob(csvContent);
+    const fileName = category.name + ".csv";
+    downloadBlobAsFile(blob, fileName);
+  } catch (error) {
+    console.error("Error generating or downloading CSV:", error);
+  }
 }

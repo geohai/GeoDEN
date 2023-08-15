@@ -70,7 +70,7 @@ function helpWindowMain() {
   // Add text to fill the help prompt here!
   // Title
   helpWindowContent =
-    "<font size='6rem'><b>Dengue Fever</b> </br><i></font><font size='6rem'> Tool for </br> Exploratory </br> Analysis</i></br></font><font size='4rem'>";
+    "<font size='6rem' letter-spacing: 1rem;> <b>T</b>ool for </br> <b>E</b>xploratory </br> <b>A</b>nalysis of </br> <b>D</b>engue </br> <b>S</b>erotypes</i></br></font><font size='4rem'>";
 
   helpWindowContent +=
     "<br><small>The main dataset (1943 to 2013) comes from <a href='https://www.cell.com/trends/microbiology/fulltext/S0966-842X(13)00273-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS0966842X13002734%3Fshowall%3Dtrue' target='_blank'><em>Messina et al. 2014</em></a></br>Data from 2014 to 2020 does not have global scope.</small>";

@@ -42,9 +42,9 @@
   letter-spacing: 0.1rem;
   color: #ffffff;
   font-size: large;
-  left: 40%;
-  width: 100%;
-  transform: translate(-50%, -50%);
+  left: 2rem;
+  right: 4rem;
+  transform: translate(0, -50%);
   text-align: center;
   position: absolute;
   background-color: hsla(0, 0%, 100%, 0);

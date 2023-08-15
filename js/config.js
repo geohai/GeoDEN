@@ -74,26 +74,41 @@ function constructCategoryDiv(category) {
     categoryDiv.classed("visible", true);
   }
 
+  // Append a button for downloading category data
+  categoryDiv
+    .append("button")
+    .attr("class", "downloadButton categoryDownload icon-button")
+    .attr("title", "Download data")
+    .append("img")
+    .attr("src", "img/download.svg")
+    .each(function () {
+      d3.select(this.parentNode).on("click", function () {
+        tempCategory = category;
+        callCategoryDownload(tempCategory);
+      });
+    });
+
   const categoryDivTitle = categoryDiv
     .append("div")
     .attr("class", "categoryTitle")
+    .attr("title", category.name)
     .text(category.name);
 
   let eyeImg = "img/show.svg";
-  let hideMessage = "Hide category";
+  let hideMessage = "Hide";
   if (category.hidden == true) {
     eyeImg = "img/hide.svg";
-    hideMessage = "Show category";
+    hideMessage = "Show";
   } else {
     eyeImg = "img/show.svg";
-    hideMessage = "Hide category";
+    hideMessage = "Hide";
   }
 
   // Append the eye to show visibility
-  const visibilityIconVisible = (category.hidden ? "invisible" : "visible")
+  const visibilityIconVisible = category.hidden ? "invisible" : "visible";
   const visibilityIcon = categoryDiv
     .append("button")
-    .attr("class", "visibility-icon icon-button "+ visibilityIconVisible)
+    .attr("class", "visibility-icon icon-button " + visibilityIconVisible)
     .append("img")
     .attr("src", eyeImg)
     .attr("title", hideMessage);
@@ -110,7 +125,7 @@ function constructCategoryDiv(category) {
   categoryDiv
     .append("button")
     .attr("class", "category-edit icon-button")
-    .attr("title", "Edit category")
+    .attr("title", "Edit")
     .append("img")
     .attr("src", "img/edit.svg")
     .each(function () {
@@ -131,7 +146,7 @@ function constructCategoryDiv(category) {
     );
     visibilityIcon.classed("invisible", category.hidden);
     visibilityIcon.classed("visible", !category.hidden);
-    d3.select(categoryDiv._groups[0][0].childNodes[1].childNodes[0]).attr(
+    d3.select(categoryDiv._groups[0][0].childNodes[2].childNodes[0]).attr(
       "src",
       category.hidden ? "img/hide.svg" : "img/show.svg"
     );

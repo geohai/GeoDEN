@@ -129,7 +129,7 @@
 }
 
 #categoryRemove:hover {
-  filter: grayscale(0) invert(0) brightness(2);
+  filter: grayscale(0) invert(0) brightness(.7);
   top: 0.6rem !important;
   rotate: 6deg;
 }
