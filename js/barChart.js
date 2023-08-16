@@ -149,7 +149,7 @@ function constructChart(dataObj) {
       </button>`
     );
 
-    /*
+  /*
   const trashIcon = chart.select(".barTrashIcon");
   trashIcon.on("click", function () {
     console.log("trash clicked");
@@ -193,10 +193,15 @@ function constructChart(dataObj) {
           //console.log(dataObj.types)
           //console.log(this.innerHTML);
           // if the innerHTML is not a number (1-4), then it must be the trash icon.  Remove the chart
-          if (this.innerHTML!= "1" && this.innerHTML != "2" && this.innerHTML != "3" && this.innerHTML != "4") {
+          if (
+            this.innerHTML != "1" &&
+            this.innerHTML != "2" &&
+            this.innerHTML != "3" &&
+            this.innerHTML != "4"
+          ) {
             removeChart(dataObj);
             return;
-          };
+          }
           if (dataObj.types.toString().includes(this.innerHTML)) {
             dataObj.types = parseInt(
               sortNumbersInString(
@@ -264,8 +269,9 @@ function updateChart() {
   // upon updateChart being called, the activeData variable is updated
   activeData.forEach((dataObj) => {
     activeVars = dataObj.types;
-    dataObj.count = statsMap["c" + activeVars];
-    //console.log(statsMap["c" + activeVars])
+    if (statsMap) {
+      dataObj.count = statsMap["c" + activeVars];
+    }
   });
 
   // The rest is the actual updating of each chart.  I put it all in a set timeout to make sure the data comes back from the above loop before it starts

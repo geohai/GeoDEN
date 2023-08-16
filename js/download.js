@@ -55,7 +55,20 @@ async function filterDataset(dataset, category) {
 
 // Function to calculate midpoints from the filtered dataset
 async function calculateMidpointDataset(dataset) {
-  const midpointDataset = {};
+  const nullValue = "ERR";
+  const mainType = "ANY";
+  const midpointDataset = [];
+
+  function generateRow(year, type, latitudes, longitudes) {
+    return {
+      Year: year,
+      Type: type,
+      Lat: latitudes.length > 0 ? mean(latitudes) : nullValue,
+      Lon: longitudes.length > 0 ? mean(longitudes) : nullValue,
+      Reports: latitudes.length,
+    };
+  }
+
   for (const [year, data] of Object.entries(dataset)) {
     let Midpoints = {
       Main_lat: [],
@@ -69,7 +82,7 @@ async function calculateMidpointDataset(dataset) {
       Type4_lat: [],
       Type4_lon: [],
     };
-    midpointDataset[year] = data.map((obj) => {
+    data.map((obj) => {
       Midpoints.Main_lat.push(obj.Y);
       Midpoints.Main_lon.push(obj.X);
       if (obj.DEN1 == 1) {
@@ -90,34 +103,87 @@ async function calculateMidpointDataset(dataset) {
       }
       return;
     });
+
+    if (Midpoints.Main_lat.length > 0) {
+      midpointDataset.push(
+        generateRow(year, mainType, Midpoints.Main_lat, Midpoints.Main_lon)
+      );
+    }
+    if (Midpoints.Type1_lat.length > 0) {
+      midpointDataset.push(
+        generateRow(year, 1, Midpoints.Type1_lat, Midpoints.Type1_lon)
+      );
+    }
+    if (Midpoints.Type2_lat.length > 0) {
+      midpointDataset.push(
+        generateRow(year, 2, Midpoints.Type2_lat, Midpoints.Type2_lon)
+      );
+    }
+    if (Midpoints.Type3_lat.length > 0) {
+      midpointDataset.push(
+        generateRow(year, 3, Midpoints.Type3_lat, Midpoints.Type3_lon)
+      );
+    }
+    if (Midpoints.Type4_lat.length > 0) {
+      midpointDataset.push(
+        generateRow(year, 4, Midpoints.Type4_lat, Midpoints.Type4_lon)
+      );
+    }
+
+    /*{
+        Year: year,
+        Type:
+          Midpoints.Main_lat.length > 0 ? mean(Midpoints.Main_lat) : nullValue,
+        Lat:
+          Midpoints.Main_lon.length > 0 ? mean(Midpoints.Main_lon) : nullValue,
+        Lon:
+          Midpoints.Type1_lat.length > 0
+            ? mean(Midpoints.Type1_lat)
+            : nullValue,
+      };*/
+    console.log(Midpoints);
+    console.log(midpointDataset);
+    /*
     midpointDataset[year] = {
       Year: year,
-      Main_lat: (Midpoints.Main_lat.length > 0 ? mean(Midpoints.Main_lat) : "NULL"),
-      Main_lon: (Midpoints.Main_lon.length > 0 ? mean(Midpoints.Main_lon) : "NULL"),
-      Type1_lat: (Midpoints.Type1_lat.length > 0 ? mean(Midpoints.Type1_lat) : "NULL"),
-      Type1_lon: (Midpoints.Type1_lon.length > 0 ? mean(Midpoints.Type1_lon) : "NULL"),
-      Type2_lat: (Midpoints.Type2_lat.length > 0 ? mean(Midpoints.Type2_lat) : "NULL"),
-      Type2_lon: (Midpoints.Type2_lon.length > 0 ? mean(Midpoints.Type2_lon) : "NULL"),
-      Type3_lat: (Midpoints.Type3_lat.length > 0 ? mean(Midpoints.Type3_lat) : "NULL"),
-      Type3_lon: (Midpoints.Type3_lon.length > 0 ? mean(Midpoints.Type3_lon) : "NULL"),
-      Type4_lat: (Midpoints.Type4_lat.length > 0 ? mean(Midpoints.Type4_lat) : "NULL"),
-      Type4_lon: (Midpoints.Type4_lon.length > 0 ? mean(Midpoints.Type4_lon) : "NULL"),
+      Main_lat:
+        Midpoints.Main_lat.length > 0 ? mean(Midpoints.Main_lat) : "NULL",
+      Main_lon:
+        Midpoints.Main_lon.length > 0 ? mean(Midpoints.Main_lon) : "NULL",
+      Type1_lat:
+        Midpoints.Type1_lat.length > 0 ? mean(Midpoints.Type1_lat) : "NULL",
+      Type1_lon:
+        Midpoints.Type1_lon.length > 0 ? mean(Midpoints.Type1_lon) : "NULL",
+      Type2_lat:
+        Midpoints.Type2_lat.length > 0 ? mean(Midpoints.Type2_lat) : "NULL",
+      Type2_lon:
+        Midpoints.Type2_lon.length > 0 ? mean(Midpoints.Type2_lon) : "NULL",
+      Type3_lat:
+        Midpoints.Type3_lat.length > 0 ? mean(Midpoints.Type3_lat) : "NULL",
+      Type3_lon:
+        Midpoints.Type3_lon.length > 0 ? mean(Midpoints.Type3_lon) : "NULL",
+      Type4_lat:
+        Midpoints.Type4_lat.length > 0 ? mean(Midpoints.Type4_lat) : "NULL",
+      Type4_lon:
+        Midpoints.Type4_lon.length > 0 ? mean(Midpoints.Type4_lon) : "NULL",
     };
-    //console.log(midpointDataset);
+    //console.log(midpointDataset);*/
   }
   return midpointDataset;
 }
 
 // Function to generate Midpoint CSV content asynchronously
 async function generateCSVMidpointContent(dataset) {
-  let csvContent =
-    "Year,Main_lat,Main_lon,Type1_lat,Type1_lon,Type2_lat,Type2_lon,Type3_lat,Type3_lon,Type4_lat,Type4_lon,\n";
+  let csvContent = "Year,Type,Lat,Lon,Reports,\n";
+  for (year in dataset) {
+    console.log(year);
+  }
   for (const [year, data] of Object.entries(dataset)) {
-    csvContent += `${data.Year},${data.Main_lat},${data.Main_lon},`;
+    csvContent += `${data.Year},${data.Type},${data.Lat},${data.Lon},${data.Reports},\n`; /*
     csvContent += `${data.Type1_lat},${data.Type1_lon},`;
     csvContent += `${data.Type2_lat},${data.Type2_lon},`;
     csvContent += `${data.Type3_lat},${data.Type3_lon},`;
-    csvContent += `${data.Type4_lat},${data.Type4_lon},\n`;
+    csvContent += `${data.Type4_lat},${data.Type4_lon},\n`;*/
   }
   return csvContent;
 }
