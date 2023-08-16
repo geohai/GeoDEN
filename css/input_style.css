@@ -38,7 +38,7 @@
   height: 5vmin;
   bottom: .95vmin !important;
   border-radius: 1vmin;
-  border: solid .4vmin hsl(0, 0%, 0%);
+  border: solid .3vmin hsl(0, 0%, 0%);
   font-size: 3.7vmin;
   line-height: 1vmin;
   transform: translate(-50%, 0%);
@@ -48,33 +48,33 @@
 
 .serotypeSwitch.active-button {
   color: hsl(0, 0%, 15%);
-  box-shadow: 0 0vmin 0vmin .1vmin hsl(0, 0%, 90%);
+  box-shadow: 0 0vmin 0vmin .1vmin hsl(0, 0%, 70%);
 }
 
 .serotypeSwitch:hover {
   height: 5.3vmin;
   font-size: 4.2vmin;
   bottom: calc(.95vmin - .15vmin) !important;
-  box-shadow: 0 0vmin 0vmin 0.2vmin hsl(0, 0%, 30%);
+  box-shadow: 0 0vmin 0vmin 0.15vmin hsl(0, 0%, 30%);
 }
 
 .serotypeSwitch.active-button:hover {
   color: hsl(0, 0%, 0%);
-  box-shadow: 0 0vmin 0vmin 0.2vmin hsl(0, 0%, 100%);
+  box-shadow: 0 0vmin 0vmin 0.15vmin hsl(0, 0%, 80%);
 }
 
 /* - Serotype Toggles - */
 #serotypeCheck_1.active-button {
-  background-color: hsl(50, 87%, 51%);
+  background-color: hsl(50, 87%, 57%);
 }
 #serotypeCheck_2.active-button {
-  background-color: hsl(310, 70%, 61%);
+  background-color: hsl(310, 70%, 53%);
 }
 #serotypeCheck_3.active-button {
-  background-color: hsl(192, 63%, 51%);
+  background-color: hsl(192, 63%, 52%);
 }
 #serotypeCheck_4.active-button {
-  background-color: hsl(102, 61%, 42%);
+  background-color: hsl(102, 61%, 28%);
 }
 
 #serotypeCheck_1 {

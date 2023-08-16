@@ -73,8 +73,8 @@ async function calculateMidpointDataset(dataset) {
       Midpoints.Main_lat.push(obj.Y);
       Midpoints.Main_lon.push(obj.X);
       if (obj.DEN1 == 1) {
-        Midpoints.Main_lat.push(obj.Y);
-        Midpoints.Main_lon.push(obj.X);
+        Midpoints.Type1_lat.push(obj.Y);
+        Midpoints.Type1_lon.push(obj.X);
       }
       if (obj.DEN2 == 1) {
         Midpoints.Type2_lat.push(obj.Y);

@@ -19,12 +19,16 @@ const type4_color = "#26670A";
 
 // Create the Map _ called from MAIN
 function createMap() {
+  const southWest = L.latLng(-80, -230);
+  const northEast = L.latLng(80, 330);
+  const bounds = L.latLngBounds(southWest, northEast);
   // Set up initial map center and zoom level
   map = L.map("map", {
     center: [-10, 55], // EDIT latitude, longitude to re-center map
     zoom: 2, // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
     minZoom: 2,
     keyboard: false,
+    maxBounds: bounds
   });
 
   // Control panel to display map layers
