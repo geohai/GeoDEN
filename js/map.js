@@ -27,8 +27,9 @@ function createMap() {
     center: [-10, 55], // EDIT latitude, longitude to re-center map
     zoom: 2, // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
     minZoom: 2,
+    maxZoom: 8,
     keyboard: false,
-    maxBounds: bounds
+    maxBounds: bounds,
   });
 
   // Control panel to display map layers
@@ -58,6 +59,16 @@ function createMap() {
     }
   ).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
   controlLayers.addBaseLayer(dark, "Dark");
+
+  // Stamen colored terrain basemap tiles with labels
+  let suitability = L.tileLayer(
+    "lib/EnvionmentalSuitability/{z}/{x}/{y}.png",
+    {
+      tms: false,
+      attribution: "Created by QGIS algorithm: Generate XYZ tiles (Directory)",
+    }
+  ).addTo(map);
+  controlLayers.addBaseLayer(suitability, "Envionmental Suitability");
 
   //call getData function
   getData(map);
@@ -326,17 +337,21 @@ function createIcon(type1, type2, type3, type4, label = false) {
   let offset = (nTypes) => {
     if (nTypes == 1) {
       if (midpointMode) {
-        return diameter / 2 + 6;
+        return diameter / 2 + 7;
+      } else {
+        return diameter / 2 + 1;
+      }
+    }
+    if (nTypes == 2) {
+      if (midpointMode) {
+        return diameter / 2 + 4;
       } else {
         return diameter / 2;
       }
     }
-    if (nTypes == 2) {
-      return 1;
-    }
     if (nTypes == 3) {
       if (midpointMode) {
-        return diameter / 2 + 3;
+        return diameter / 2 + 2;
       } else {
         return diameter / 2;
       }
