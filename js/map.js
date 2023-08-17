@@ -44,8 +44,8 @@ function createMap() {
   let light = L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
     {
-      attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
+        //
     }
   ); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
   controlLayers.addBaseLayer(light, "Light");
@@ -54,18 +54,16 @@ function createMap() {
   let dark = L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
     {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
     }
-  ).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
+  ) // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
   controlLayers.addBaseLayer(dark, "Dark");
 
   // Stamen colored terrain basemap tiles with labels
   let suitability = L.tileLayer(
     "lib/EnvionmentalSuitability/{z}/{x}/{y}.png",
     {
-      tms: false,
-      attribution: "Created by QGIS algorithm: Generate XYZ tiles (Directory)",
+      attribution: "QGIS XYZ tiles, <a href='https://www.nature.com/articles/s41564-019-0476-8'>Messina et al. 2019</a>",
     }
   ).addTo(map);
   controlLayers.addBaseLayer(suitability, "Envionmental Suitability");
