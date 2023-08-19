@@ -63,7 +63,7 @@ function createMap() {
   let suitability = L.tileLayer(
     "lib/EnvionmentalSuitability/{z}/{x}/{y}.png",
     {
-      attribution: "QGIS XYZ tiles, <a href='https://www.nature.com/articles/s41564-019-0476-8'>Messina et al. 2019</a>",
+      attribution: "QGIS XYZ tiles, <a href='https://www.nature.com/articles/s41564-019-0476-8' target='_blank'>Messina et al. 2019</a>",
     }
   ).addTo(map);
   controlLayers.addBaseLayer(suitability, "Envionmental Suitability");
