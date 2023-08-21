@@ -10,6 +10,7 @@ window.onresize = function () {
 $("#resizeTool").on("mousedown", resizeDrag);
 let isResizingMap = false;
 let mouseResizePos;
+let resizeInterval;
 
 // Mouse Down on resize tool
 function resizeDrag() {
@@ -36,7 +37,7 @@ window.addEventListener("mousemove", function () {
     // Set up a new interval to trigger the resize event
     resizeInterval = setInterval(function () {
       window.dispatchEvent(new Event("resize"));
-    }, 50);
+    }, 20);
   }
 });
 
