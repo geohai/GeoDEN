@@ -163,7 +163,7 @@ function constructHeatMap(
           .attr("width", x.bandwidth())
           .attr("height", y.bandwidth());
         const rectBounds = this.getBoundingClientRect(); // Get the bounding rectangle of the hovered rectangle
-        tooltipX = rectBounds.left; // Set tooltipX to the left coordinate of the rectangle
+        tooltipX = (rectBounds.left + rectBounds.right) / 2; // Set tooltipX to the left coordinate of the rectangle
         tooltipY = rectBounds.top; // Set tooltipY to the top coordinate of the rectangle
         //console.log(rectBounds)
       }
@@ -249,13 +249,20 @@ function constructHeatMap(
 
     // Function to highlight the active year with an overlay outline
     function highlightYear(year) {
+      if ((timeRange[1] < heatmapMinYear)||(timeRange[0] > heatmapMaxYear)) {
+        return;
+      }
+
+      console.log(timeRange)
+      const startYear = timeRange[0] > heatmapMinYear ? timeRange[0] : heatmapMinYear;
+      const endYear = timeRange[1] < heatmapMaxYear ? timeRange[1] : heatmapMaxYear;
       // Add the overlay
       const overlay = heatmapSVG
         .append("rect")
         .attr("class", "heatmapOverlay")
-        .attr("x", x(timeRange[0]))
+        .attr("x", x(startYear))
         .attr("y", 0)
-        .attr("width", x.bandwidth() * (timeRange[1] - timeRange[0] + 1))
+        .attr("width", x.bandwidth() * (endYear - startYear + 1))
         .attr("height", heatmapHeight)
         .style("fill", "none")
         .style("stroke", "hsl(0, 0%, 75%)")
