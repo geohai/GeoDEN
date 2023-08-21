@@ -37,7 +37,7 @@ window.addEventListener("mousemove", function () {
     // Set up a new interval to trigger the resize event
     resizeInterval = setInterval(function () {
       window.dispatchEvent(new Event("resize"));
-    }, 20);
+    }, 10);
   }
 });
 

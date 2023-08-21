@@ -1,12 +1,12 @@
 .downloadButton {
   background-color: hsl(0, 0%, 15%);
-  border: solid 0.1vmin hsl(0, 0%, 60%);
+  border: solid 0.2vmin hsl(0, 0%, 60%);
   transition: all 0.2s ease;
 }
 
 .downloadButton:hover {
   background-color: hsl(0, 0%, 0%);
-  border: solid 0.1vmin hsl(0, 0%, 100%);
+  border: solid 0.2vmin hsl(0, 0%, 100%);
   box-shadow: none;
 }
 
@@ -26,6 +26,8 @@
   top: 1.5vmin;
   width: 4vmin;
   height: 4vmin;
+  align-items: center;
+  align-content: center;
 }
 
 #mainDownloadButton .tooltip {

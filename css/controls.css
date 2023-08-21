@@ -2,13 +2,13 @@
 #title {
   color: rgb(130, 130, 130);
   position: absolute;
-  font-weight: 400;
+  font-weight: 100;
   font-size: 3.5vmin;
   top: 1vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: right;
   transform: translate(0%, -50%);
-  left: 13vmin;
+  left: calc(2vmin); /*var(--mapCategoriesBorder)*/
   text-align: center;
 }
 
