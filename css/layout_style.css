@@ -20,7 +20,6 @@
   position: absolute;
   z-index: 9;
   user-select: none;
-  transition: all 0.15s ease;
 }
 
 #map {

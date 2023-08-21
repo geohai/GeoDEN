@@ -1,14 +1,14 @@
 #resizeTool {
     position: absolute;
-    background-color: hsla(0, 0%, 25%, 0);
+    background-color: hsla(0, 0%, 0%, 0);
     cursor: ns-resize;
     z-index: 100;
     height: auto;
     width: auto;
     right: calc(var(--rightBorder) + 2rem);
     left: calc(var(--mapCategoriesBorder) + 0.3rem + 2rem);
-    bottom: calc(var(--mapTimeviewBorder) - 0.25rem);
-    top: calc(100% - var(--mapTimeviewBorder) - 0.25rem);
+    bottom: calc(100% - var(--mapTimeviewBorder) - 0.25rem);
+    top: calc(var(--mapTimeviewBorder) - 0.25rem);
     border-radius: 1rem;
 }
 

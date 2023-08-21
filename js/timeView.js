@@ -253,7 +253,7 @@ function constructHeatMap(
         return;
       }
 
-      console.log(timeRange)
+      //console.log(timeRange)
       const startYear = timeRange[0] > heatmapMinYear ? timeRange[0] : heatmapMinYear;
       const endYear = timeRange[1] < heatmapMaxYear ? timeRange[1] : heatmapMaxYear;
       // Add the overlay

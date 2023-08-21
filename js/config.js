@@ -282,7 +282,7 @@ function createCategoryButton() {
   // Add an event listener to the button
   buttonDiv.select("button").on("click", function () {
     allCategoryGroups.push({
-      name: "NewCategory_" + newCategoryInt++,
+      name: "Region_" + newCategoryInt++,
       hidden: false,
       countryList: [],
       dataPoints: {},
