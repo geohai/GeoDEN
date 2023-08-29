@@ -50,7 +50,7 @@ let category1 = {
   name: "Americas", // 3: name
   color: "#ffffff", // 4: color
   hidden: false, // 5: polyline layergroup
-  allTimeEvents: {1:0,2:0,3:0,4:0}, // 6: all time events
+  allTimeEvents: { 1: 0, 2: 0, 3: 0, 4: 0 }, // 6: all time events
 };
 // Africa
 let category2 = {
@@ -87,7 +87,7 @@ let category2 = {
   name: "Africa",
   color: "#919191",
   hidden: false,
-  allTimeEvents: {1:0,2:0,3:0,4:0}
+  allTimeEvents: { 1: 0, 2: 0, 3: 0, 4: 0 },
 };
 // Asia
 let category3 = {
@@ -121,7 +121,7 @@ let category3 = {
   name: "Asia",
   color: "#424242",
   hidden: false,
-  allTimeEvents: {1:0,2:0,3:0,4:0}
+  allTimeEvents: { 1: 0, 2: 0, 3: 0, 4: 0 },
 };
 // Oceania
 let category4 = {
@@ -151,7 +151,7 @@ let category4 = {
   name: "Oceania",
   color: "#ffffff",
   hidden: false,
-  allTimeEvents: {1:0,2:0,3:0,4:0}
+  allTimeEvents: { 1: 0, 2: 0, 3: 0, 4: 0 },
 };
 
 let allCategoryGroups = [category1, category2, category3, category4];
@@ -185,7 +185,7 @@ function getData(map) {
 
     // function here to set category groups
     // This gets all points, adds them to the layer group and
-    updateSymbols(activeYear, reset = true, resetHeatmap = true);
+    updateSymbols(activeYear, (reset = true), (resetHeatmap = true));
 
     initiateCategoryDivs();
   });
@@ -349,7 +349,7 @@ function startMidpointCalculation() {
       calcMidpointSumSerotypes(latitudes, longitudes, years, categories);
     }
   }
-};
+}
 
 // Plot a midpoint that shows midpoint of category, regardless of Serotype
 function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
@@ -386,6 +386,11 @@ function calcMidpointSumSerotypes(latitudes, longitudes, years, categories) {
     if (tracePointArray.length > 1) {
       let polyline = L.polyline(tracePointArray, {
         color: categories[category].color,
+      }).arrowheads({
+        fill: true,
+        frequency: "70px",
+        size: "7px",
+        offsets: { end: "5px" },
       });
       categories[category].lineTrace = L.layerGroup([polyline]);
       categories[category].lineTrace.addTo(map);
@@ -462,6 +467,12 @@ function calcMidpointBySerotype(latitudes, longitudes, years, categories) {
       if (tracePointArray.length > 1) {
         let polyline = L.polyline(tracePointArray, {
           color: typeColor,
+        }).arrowheads({
+          fill: true,
+          frequency: "90px",
+          size: "7px",
+          offsets: { end: "5px" },
+          cursor: { hover: "default"},
         });
         traceGroup.push(polyline);
       }
@@ -510,13 +521,13 @@ function plotMidpoint(
     //console.log(typeColor)
     // make midpoint
     let layerGroup = midpointToPointLayer(
-      lat = avg_lat,
-      lng = avg_lng,
+      (lat = avg_lat),
+      (lng = avg_lng),
       //categories[category].midPoints,
-      primaryColor = color,
-      secondaryColor = (color = categories[category].color),
-      numberOfPoints = latitudes.length,
-      categoryName = categories[category]["name"]
+      (primaryColor = color),
+      (secondaryColor = color = categories[category].color),
+      (numberOfPoints = latitudes.length),
+      (categoryName = categories[category]["name"])
     );
     categories[category].midPoints.push(layerGroup);
     categories[category].midPoints[
@@ -558,9 +569,16 @@ function midpointToPointLayer(
   let layer = L.marker(latlng, { icon: midpointIcon });
 
   //bind the popup to the circle marker
-  layer.bindPopup(categoryName + "<br>" + "Mean of <b>" + numberOfPoints + "</b> Reported Cases",  {
-    offset: new L.Point(0, -0),
-  });
+  layer.bindPopup(
+    categoryName +
+      "<br>" +
+      "Mean of <b>" +
+      numberOfPoints +
+      "</b> Reported Cases",
+    {
+      offset: new L.Point(0, -0),
+    }
+  );
 
   //bind the tooltip to the circle marker
   layer.bindTooltip(categoryName, {
