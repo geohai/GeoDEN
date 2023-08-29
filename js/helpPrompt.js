@@ -81,11 +81,11 @@ function helpWindowMain() {
   helpWindowContent +=
     "<br><span class='keybindings'>→ <small> Right:</span> Next Year</small>";
   helpWindowContent +=
-    "<br><span class='keybindings'>← <small> Left:</span> Previous Year</small>";
+    "<br><span class='keybindings'>← <small> Left:</span> Previous Year</small>";/*
   helpWindowContent +=
     "<br><span class='keybindings'>↑ <small> Up:</span> Add Delay</small>";
   helpWindowContent +=
-    "<span class='keybindings'><br>↓ <small> Down:</span> Subtract Delay</small>";
+    "<span class='keybindings'><br>↓ <small> Down:</span> Subtract Delay</small>";*/
 
   helpWindowContent +=
     "<br><br><br><b>Credits:</b>" + "<small><br>Aidan Marler";
