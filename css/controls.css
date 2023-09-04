@@ -1,6 +1,6 @@
 /* Year Input */
 #title {
-  color: rgb(130, 130, 130);
+  color: hsl(0, 0%, 60%);
   position: absolute;
   font-weight: 100;
   font-size: 3.5vmin;
@@ -10,6 +10,16 @@
   transform: translate(0%, -50%);
   left: calc(2vmin); /*var(--mapCategoriesBorder)*/
   text-align: center;
+  transition: color 1s ease;
+}
+
+#title-sub{
+  color: hsl(0, 0%, 20%);
+  transition: color 1s ease;
+}
+
+#title:hover #title-sub{
+  color: hsl(0, 0%, 100%);
 }
 
 /* Data Warning */

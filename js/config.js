@@ -271,7 +271,7 @@ function createCategoryButton() {
 
   const buildEmptyEvents = () => {
     let emptyEvents = {};
-    for (let i = 1943; i <= 2020; i++) {
+    for (let i = minYear; i <= maxYear; i++) {
       emptyEvents[i] = { 1: 0, 2: 0, 3: 0, 4: 0 };
     }
     return emptyEvents;

@@ -20,6 +20,7 @@ let activeData = [
   },
 ];
 
+// tracks if the add chart button has been added to the view (it is added last, to keep it at the end of the list)
 let addPresent = false;
 
 // -- UTILITY FUNCTIONS -- // these are little functions that can be reused anywhere

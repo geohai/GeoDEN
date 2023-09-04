@@ -18,7 +18,7 @@ function resizeDrag() {
   mouseResizePos = event.clientX;
 }
 
-console.log(window.outerHeight);
+//console.log(window.outerHeight);
 
 // Drag resize tool
 window.addEventListener("mousemove", function () {

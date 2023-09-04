@@ -3,7 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>TEA-DS</title>
+    <meta
+      name="description"
+      content="GeoDEN is the Geovisual Analyics Tool for Dengue Serotypes, allowing you to track thousands of Dengue reports over a span of 77 years."
+    />
+    <meta
+      name="keywords"
+      content="geoden,Dengue Map,geodengue,dengue fever over time,Visual Analyics,Dengue"
+    />
+    <title>GeoDEN</title>
     <link rel="icon" href="./img/icon.svg" />
 
     <!--Stylesheets-->
@@ -38,12 +46,13 @@
     <!-- HEADINGS -->
     <!--Year-->
     <div id="headings">
-      <h1 id="title" title="Tool for Exploratory Analysis of Dengue Serotypes">
-        Tool for Exploratory Analysis of Dengue Serotypes
+      <h1 id="title" title="GeoDEN">
+        GeoDEN<span id="title-sub"
+          >: The Geovisual Analyics Tool for Dengue Serotypes</span
+        >
       </h1>
     </div>
 
-    
     <!-- Language Selector -->
     <!--<div id="languageSelectorDiv">
       <select id="languageSelector">
@@ -57,7 +66,7 @@
       <button
         id="mainDownloadButton"
         class="button downloadButton"
-        onclick="callDownload(minYear=1943,maxYear=2013)"
+        onclick="callDownload()"
       >
         <img class="download-icon" src="img/download.svg" />
         <span class="tooltip"
@@ -78,10 +87,9 @@
         class="data-warning-icon"
         src="img/triangle-exclamation-solid.svg"
       /><span class="tooltip dataTooltip"
-        ><b>1943-2013</b> data comes from Messina et al. 2014. <br />
-        It was collected over the entireworld for research purposes.
-        <br /><br /><b>2014-2020</b> data was instead collected for only certain
-        countries.<br />
+        >Data from <b>2014-2020</b> was only collected for select countries.
+        <br />
+        It does not represent the whole world.
       </span>
     </div>
 
@@ -169,7 +177,7 @@
         >
           <img class="midpointControl-icon" src="img/shrink.svg" />
           <span class="tooltip midpointControl"
-            ><b>Larger</b><br />Midpoints</span
+            ><b>Larger</b><br />Centroids</span
           >
         </button>
         <button
@@ -178,7 +186,7 @@
         >
           <img class="midpointControl-icon" src="img/singleType.svg" />
           <span class="tooltip midpointControl"
-            ><b>Serotype</b><br />Midpoints</span
+            ><b>Serotype</b><br />Centroids</span
           >
         </button>
 
@@ -188,7 +196,7 @@
         >
           <img class="midpointControl-icon" src="img/point.svg" />
           <span class="tooltip midpointControl"
-            ><b>Trace Midpoints</b><br /><em>Requires a Delay</em></span
+            ><b>Trace Centroids</b><br /><em>Requires a Delay</em></span
           >
         </button>
       </div>
@@ -289,6 +297,18 @@
           <div id="chart_borderLeft" class="chart_border"></div>
           <div id="chart_borderRight" class="chart_border"></div>
         </div>
+        <div id="barChart_download">
+          <button
+            id="barChart_DownloadButton"
+            class="button downloadButton"
+            onclick="alert('This feature is not yet implemented.')"
+          >
+            <img class="download-icon" src="img/download.svg" />
+            <span class="tooltip"
+              ><b>Download<br />Co-Occurance for Current Time Range</b></span
+            >
+          </button>
+        </div>
         <div id="barTitle"></div>
       </div>
     </div>
@@ -325,6 +345,7 @@
     <script src="lib/d3.v6.js"></script>
 
     <!--Internal JS Scripts-->
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/input.js"></script>

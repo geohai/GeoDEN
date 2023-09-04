@@ -1,6 +1,6 @@
 :root {
-  --HeatmapMinLine: 2rem; /* leftmost heatmap point */
-  --HeatmapMaxLine: 2rem; /* rightmost heatmap point */
+  --HeatmapMinLine: 3vmin; /* leftmost heatmap point */
+  --HeatmapMaxLine: 3vmin; /* rightmost heatmap point */
   --SectionHeight: 23%; /* height of each section */
   --heatmapContainerTop: 6vmin; /* top of heatmap container */
 }
@@ -31,21 +31,22 @@
 #year {
   position: absolute;
   font-size: 5vmin;
-  height: 5.8vmin;
+  height: 5.4vmin;
   width: 17vmin;
   font-weight: lighter;
   letter-spacing: 0.5rem;
   color: rgb(255, 255, 255);
   left: 50%;
   text-align: center;
-  top: -2vmin;
+  top: -1vmin;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 1vmin;
-  background-color: hsl(0, 0%, 10%);
-  border: solid 0.1vmin hsl(0, 0%, 60%);
+  background-color: hsl(0, 0%, 6%);
+  border: solid 0.2vmin hsl(0, 0%, 60%);
   transition: all 0.2s ease;
   transform: translate(-50%, 0%);
   box-shadow: 0 0.4vmin 0.6vmin hsla(0, 0%, 0%, 0.8);
+  z-index: 101;
 }
 #year::placeholder {
   color: hsl(0, 0%, 80%);
@@ -55,12 +56,15 @@
 }
 #year:focus,
 #year:focus:hover {
-  border: solid 0.1vmin hsl(0, 0%, 100%);
+  border: solid 0.2vmin hsl(0, 0%, 100%);
   background-color: hsl(0, 0%, 0%);
 }
 #year:hover {
-  border: solid 0.1vmin hsl(0, 0%, 100%);
+  border: solid 0.2vmin hsl(0, 0%, 100%);
   background-color: hsl(0, 0%, 0%);
+}
+#year:hover #year::placeholder{
+  color: hsl(0, 0%, 100%);
 }
 
 /* Year Delay */
@@ -147,13 +151,37 @@
   left: 0vmin;
   width: 40vmin;
   cursor: pointer;
-  bottom: -4vmin;
-  height: 100%;
+  bottom: -2vmin;
+  height: .6vmin;
   transform: translate(-50%, 0%);
 }
 
 .range-slider::-webkit-slider-thumb {
   cursor: grab;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: #00f144;
+}
+
+.range-slider::-moz-range-thumb  {
+  cursor: grab;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: #00f144;
+}
+
+.range-slider::-ms-thumb {
+  cursor: grab;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: #00f144;
+}
+
+.range-slider::-thumb  {
+  cursor: grab;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: #00f144;
 }
 
 .range-slider:active {
@@ -164,6 +192,8 @@
 .range-slider::-webkit-slider-thumb:hover:active {
   cursor: grabbing !important;
 }
+
+
 
 .step {
   position: absolute;
@@ -200,10 +230,10 @@
 /*Main Window*/
 #heatmapGeneralContainer {
   position: absolute;
-  top: 2.5rem;
+  top: 4.5vmin;
   bottom: calc(1.5rem + 0.7vmin);
-  left: 0.5vmin;
-  right: 0.5vmin;
+  left: 2.2vmin;
+  right: 2.2vmin;
   background-color: var(--innerPanelBackgroundColor);
   box-shadow: var(--innerPanelBoxShadow);
   border-radius: 1vmin;
@@ -350,6 +380,7 @@
   pointer-events: none;
   transform: translate(-40%, -107%);
   transition: opacity 0.3s ease-in-out;
+  z-index: 99;
 }
 
 #heatmapTip_cases {

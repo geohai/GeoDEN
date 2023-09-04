@@ -4,36 +4,40 @@
   background-color: hsl(0, 0%, 11%);
   top: 1rem;
   height: 2.6rem;
-  left: .5rem;
-  right: .5rem;
-  border-radius: 2rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  border-radius: 0.7vmin;
 }
 
 .headerText {
-  width: 100%;
+  width: auto;
   position: absolute;
   color: rgb(169, 169, 169);
-  font-size: .8rem;
-  text-align: center;
-  
+  font-size: .9rem;
+  left: 2.8rem;
+  right: 0rem;
 }
 
 .headerText .big {
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   color: rgb(255, 255, 255);
 }
 
 #barchartTitle {
-  top: 0rem;
+  bottom: 0.1rem;
+  left: 2.8rem;
+  text-align: left !important;
 }
 
 #barchartTitle .big {
-  font-size: 1rem;
+  font-size: 1.5rem !important;
   color: rgb(214, 214, 214);
 }
 
 #barchartSubtitle {
-  top: 1rem;
+  bottom: 0.1rem;
+  right: .5rem;
+  text-align: right !important;
 }
 
 /*Chart*/
@@ -47,10 +51,10 @@
   left: 0;
   right: 0;
   border-radius: 1vmin;
-  top: .2rem;
+  top: 0.2rem;
   background-color: var(--innerPanelBackgroundColor);
   cursor: default;
-  box-shadow: var(--innerPanelBoxShadow)
+  box-shadow: var(--innerPanelBoxShadow);
 }
 
 #chart_container {
@@ -106,8 +110,8 @@
 .tab_label {
   position: absolute;
   background-color: rgb(29, 29, 29);
-  border-top-left-radius: .5rem;
-  border-bottom-left-radius: .5rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
   height: 2rem;
   width: 2rem;
   border: solid rgb(29, 29, 29);
@@ -136,20 +140,20 @@
   transition: all ease 0.2s;
 }
 
-#addChart{
+#addChart {
   position: relative;
   height: 1.8rem;
   width: 1.8rem;
-  left: .6rem;
-  top: .1rem;
+  left: 0.6rem;
+  top: 0.1rem;
   cursor: pointer;
-  font-size: .5rem;
-  filter: grayscale(1) invert(.7);
-  transition: all .15s ease;
+  font-size: 0.5rem;
+  filter: grayscale(1) invert(0.7);
+  transition: all 0.15s ease;
   rotate: 45deg;
 }
 
-#addChart:hover{
+#addChart:hover {
   filter: grayscale(1) invert(1) brightness(2);
 }
 

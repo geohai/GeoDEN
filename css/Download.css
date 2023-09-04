@@ -75,3 +75,20 @@
 .categoryDownload:hover img {
   filter: grayscale(1) invert(0.5) brightness(2);
 }
+
+/* Bar Chart Download */
+
+#barChart_download {
+  z-index: 99;
+  position: absolute;
+  left: .8rem;
+  top: 1.3rem;
+  height: auto;
+  width: auto;
+}
+
+#barChart_DownloadButton {
+  height: 2rem;
+  width: 2rem;
+  z-index: 100;
+}

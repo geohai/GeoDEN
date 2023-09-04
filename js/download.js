@@ -141,8 +141,8 @@ async function calculateMidpointDataset(dataset) {
             ? mean(Midpoints.Type1_lat)
             : nullValue,
       };*/
-    console.log(Midpoints);
-    console.log(midpointDataset);
+    //console.log(Midpoints);
+    //console.log(midpointDataset);
     /*
     midpointDataset[year] = {
       Year: year,
@@ -175,9 +175,9 @@ async function calculateMidpointDataset(dataset) {
 // Function to generate Midpoint CSV content asynchronously
 async function generateCSVMidpointContent(dataset) {
   let csvContent = "Year,Type,Lat,Lon,Reports,\n";
-  for (year in dataset) {
+  /*for (year in dataset) {
     console.log(year);
-  }
+  }*/
   for (const [year, data] of Object.entries(dataset)) {
     csvContent += `${data.Year},${data.Type},${data.Lat},${data.Lon},${data.Reports},\n`; /*
     csvContent += `${data.Type1_lat},${data.Type1_lon},`;

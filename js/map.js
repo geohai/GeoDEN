@@ -157,8 +157,8 @@ function createSequenceControls() {
   map.addControl(new SequenceControl());
 
   $(".range-slider").attr({
-    max: 2020,
-    min: 1943,
+    max: maxYear,
+    min: minYear,
     value: 0,
     step: 1,
   });
@@ -171,11 +171,11 @@ function createSequenceControls() {
     if ($(this).attr("id") == "forward") {
       index++;
       //Step 7: if past the last attribute, wrap around to first attribute
-      index = index > 2020 ? 1943 : index;
+      index = index > maxYear ? minYear : index;
     } else if ($(this).attr("id") == "reverse") {
       index--;
       //Step 7: if past the first attribute, wrap around to last attribute
-      index = index < 1943 ? 2020 : index;
+      index = index < minYear ? maxYear : index;
     }
 
     //Step 8: update slider

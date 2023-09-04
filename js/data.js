@@ -574,7 +574,7 @@ function midpointToPointLayer(
       "<br>" +
       "Mean of <b>" +
       numberOfPoints +
-      "</b> Reported Cases",
+      "</b> Reports",
     {
       offset: new L.Point(0, -0),
     }
@@ -658,7 +658,7 @@ function midpointToPointLayer(
   let layer = L.marker(latlng, { icon: midpointIcon });
 
   //bind the popup to the circle marker
-  layer.bindPopup(categoryName + "<br>" + "Mean of <b>" + numberOfPoints + "</b> Reported Cases",  {
+  layer.bindPopup(categoryName + "<br>" + "Mean of <b>" + numberOfPoints + "</b> Reports",  {
     offset: new L.Point(0, -0),
   });
 

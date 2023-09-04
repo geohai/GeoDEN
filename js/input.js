@@ -28,10 +28,6 @@ let animSpeed = 300;
 let midpointTrace = false;
 let showEventPoints = true;
 
-// General Variable
-let minYear = 1943;
-let maxYear = 2020;
-
 //--EVENT LISTENERS--//
 
 // Serotype Toggles
@@ -67,10 +63,10 @@ focusMidpointButton.addEventListener("click", () => {
   focusMidpointButton.classList.toggle("inactive-mid", !midpointMode);
   if (midpointMode) {
     focusMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/enlarge.svg" /><span class="tooltip midpointControl"><b>Smaller</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/enlarge.svg" /><span class="tooltip midpointControl"><b>Smaller</b></br>Centroids</span>';
   } else {
     focusMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/shrink.svg" /><span class="tooltip midpointControl"><b>Larger</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/shrink.svg" /><span class="tooltip midpointControl"><b>Larger</b></br>Centroids</span>';
   }
   updateSymbols(activeYear, (reset = true));
 });
@@ -82,10 +78,10 @@ typeMidpointButton.addEventListener("click", () => {
   typeMidpointButton.classList.toggle("inactive-mid", !serotypeMidpoints);
   if (serotypeMidpoints) {
     typeMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/multipleType.svg" /><span class="tooltip midpointControl"><b>Regional</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/multipleType.svg" /><span class="tooltip midpointControl"><b>Regional</b></br>Centroids</span>';
   } else {
     typeMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/singleType.svg" /><span class="tooltip midpointControl"><b>Serotype</b></br>Midpoints</span>';
+      '<img class="midpointControl-icon" src="img/singleType.svg" /><span class="tooltip midpointControl"><b>Serotype</b></br>Centroids</span>';
   }
   updateSymbols(activeYear, (reset = true));
 });
@@ -97,10 +93,10 @@ traceMidpointButton.addEventListener("click", () => {
   traceMidpointButton.classList.toggle("inactive-mid", !midpointTrace);
   if (midpointTrace) {
     traceMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/trace.svg" /><span class="tooltip midpointControl"><b>Average Midpoint</b></span>';
+      '<img class="midpointControl-icon" src="img/trace.svg" /><span class="tooltip midpointControl"><b>Average Centroid</b></span>';
   } else {
     traceMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/point.svg" /><span class="tooltip midpointControl"><b>Trace Midpoints</b></br><em>Requires a Delay</em></span>';
+      '<img class="midpointControl-icon" src="img/point.svg" /><span class="tooltip midpointControl"><b>Trace Centroids</b></br><em>Requires a Delay</em></span>';
   }
   updateSymbols(activeYear, (reset = true));
 });
@@ -112,10 +108,10 @@ soloMidpointButton.addEventListener("click", () => {
   soloMidpointButton.classList.toggle("inactive-mid", !showEventPoints);
   if (showEventPoints) {
     soloMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/show.svg" /><span class="tooltip midpointControl"><b>Hide</b></br>Reported Cases</span>';
+      '<img class="midpointControl-icon" src="img/show.svg" /><span class="tooltip midpointControl"><b>Hide</b></br>Reports</span>';
   } else {
     soloMidpointButton.innerHTML =
-      '<img class="midpointControl-icon" src="img/hide.svg" /><span class="tooltip midpointControl"><b>Show</b></br>Reported Cases</span>';
+      '<img class="midpointControl-icon" src="img/hide.svg" /><span class="tooltip midpointControl"><b>Show</b></br>Reports</span>';
   }
 
   updateSymbols(activeYear, (reset = true));
@@ -143,21 +139,21 @@ document.addEventListener("keydown", function (event) {
     start_mapAnimation();
   } else if (event.keyCode == "39") {
     event.preventDefault();
-    if (activeYear < 2020) {
+    if (activeYear < maxYear) {
       // update variables and visuals to show new year
       activeYear = parseInt(activeYear) + 1;
     } else {
-      activeYear = 1943;
+      activeYear = minYear;
     }
     $(".range-slider").val(parseInt(activeYear));
     updateSymbols(activeYear);
   } else if (event.keyCode == "37") {
     event.preventDefault();
-    if (activeYear > 1943) {
+    if (activeYear > minYear) {
       // update variables and visuals to show new year
       activeYear = parseInt(activeYear) - 1;
     } else {
-      activeYear = 2020;
+      activeYear = maxYear;
     }
     $(".range-slider").val(parseInt(activeYear));
     updateSymbols(activeYear);
@@ -209,7 +205,7 @@ function start_mapAnimation() {
 
   let animateSingleYear = () =>
     setTimeout(function () {
-      if (animation_active && parseInt(activeYear) < 2020) {
+      if (animation_active && parseInt(activeYear) < maxYear) {
         delayInMilliseconds = animSpeed;
         updateSymbols(parseInt(activeYear) + 1);
         animateSingleYear();
@@ -218,8 +214,8 @@ function start_mapAnimation() {
       } else {
         animation_active = false;
         start_mapAnimation();
-        if (activeYear == 2020) {
-          activeYear = 1943;
+        if (activeYear == maxYear) {
+          activeYear = minYear;
         }
       }
     }, delayInMilliseconds);
@@ -248,7 +244,7 @@ yearInput.addEventListener("keyup", (event) => {
       yearInput.blur();
       return;
     }
-    alert("Value must be any year from 1943 to 2020");
+    alert("Value must be any year from 1943 to " + maxYear);
   }
   event.preventDefault(); // prevent form from submitting
   // do something here

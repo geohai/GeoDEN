@@ -1,6 +1,6 @@
 let HeatmapScale = 0.5;
-let heatmapMinYear = 1943;
-let heatmapMaxYear = 2020;
+let heatmapMinYear = minYear;
+let heatmapMaxYear = maxYear;
 
 // Function to make a heatmap for a given category
 function constructHeatMap(
@@ -146,11 +146,13 @@ function constructHeatMap(
 
     let tooltipX = 0;
     let tooltipY = 0;
+    let yearHovered = 0;
 
     let isDragging = false; // Flag to indicate if the user is dragging the heatmap
 
     // Three functions that change the tooltip when the user hovers/moves/leaves a cell
     const mouseover = function (event, d) {
+      yearHovered = d.year;
       // if mouse down is false, show the tooltip
       if (!(event.buttons == 1)) {
         toolbar.classed("inactive", false).classed("active", true); // Toggle classes
@@ -168,20 +170,6 @@ function constructHeatMap(
         //console.log(rectBounds)
       }
     };
-
-    // Function to handle mouse down event on the heatmap
-    const mouseDown = function () {
-      isDragging = true; // Set the flag to indicate dragging
-      //console.log("mouse down");
-    };
-
-    // Function to handle mouse up event on the heatmap
-    const mouseUp = function () {
-      isDragging = false; // Set the flag to indicate dragging has ended
-    };
-
-    // Add event listeners for mouse down and up events
-    heatmapSVG.on("mousedown", mouseDown).on("mouseup", mouseUp);
 
     const mousemove = function (event, d) {
       if (!(event.buttons == 1)) {
@@ -249,13 +237,16 @@ function constructHeatMap(
 
     // Function to highlight the active year with an overlay outline
     function highlightYear(year) {
-      if ((timeRange[1] < heatmapMinYear)||(timeRange[0] > heatmapMaxYear)) {
+      if (timeRange[1] < heatmapMinYear || timeRange[0] > heatmapMaxYear) {
         return;
       }
 
       //console.log(timeRange)
-      const startYear = timeRange[0] > heatmapMinYear ? timeRange[0] : heatmapMinYear;
-      const endYear = timeRange[1] < heatmapMaxYear ? timeRange[1] : heatmapMaxYear;
+      const startYear =
+        timeRange[0] > heatmapMinYear ? timeRange[0] : heatmapMinYear;
+      const endYear =
+        timeRange[1] < heatmapMaxYear ? timeRange[1] : heatmapMaxYear;
+
       // Add the overlay
       const overlay = heatmapSVG
         .append("rect")
@@ -269,7 +260,6 @@ function constructHeatMap(
         .attr("pointer-events", "none")
         .style("stroke-width", "2px");
 
-        /*
       // Add left handle for year delay
       const leftHandle = heatmapSVG
         .append("rect")
@@ -293,14 +283,52 @@ function constructHeatMap(
         .style("cursor", "ew-resize");
 
       // Add event listeners for dragging the handles
+      leftHandle.on("mousedown", function () {
+        console.log(isDragging);
+        // Call the leftHandleDrag function when the mouse is pressed down on the left handle
+        const dragInterval = setInterval(leftHandleDrag, 1); // Adjust the interval as needed
+
+        // Attach a mouseup event listener to stop the dragging when the mouse button is released
+        d3.select(window).on("mouseup", function () {
+          clearInterval(dragInterval); // Clear the interval when the mouse button is released
+          d3.select(window).on("mouseup", null); // Remove the mouseup event listener
+        });
+
+        // Call the leftHandleDrag function immediately on mousedown
+        leftHandleDrag();
+      });
+
+      function leftHandleDrag() {
+        // Your left handle drag logic here
+        console.log(yearHovered);
+        // Update year delay based on the drag position
+        // Adjust the calculations according to your specific requirements
+        let newYearDelay = Math.floor(activeYear - yearHovered);
+        // Update your visualization with the new year delay
+        if (newYearDelay < 0) {
+          newYearDelay = 0;
+        }
+        yearDelay = newYearDelay;
+        // wait .3 seconds before updating the symbols
+        setTimeout(function () {
+          if (newYearDelay == yearDelay) {
+            updateSymbols(activeYear);
+          }
+        }, 0);
+
+        // Update your visualization with the new year delay
+        // ...
+      }
+
+      /*
+      // Add event listeners for dragging the handles
       leftHandle.call(
         d3.drag().on("drag", function () {
           const xPosition = event.x;
+          console.log(yearHovered);
           // Update year delay based on the drag position
           // Adjust the calculations according to your specific requirements
-          let newYearDelay = Math.floor(
-            activeYear - ((xPosition / x.bandwidth()) + 1900)
-          );
+          let newYearDelay = Math.floor(activeYear - yearHovered);
           // Update your visualization with the new year delay
           if (newYearDelay < 0) {
             newYearDelay = 0;
@@ -311,9 +339,65 @@ function constructHeatMap(
             if (newYearDelay == yearDelay) {
               updateSymbols(activeYear);
             }
-          }, 50);
+          }, 0);
         })
-      );
+      );*/
+
+      let hoveringDelayHandle = false; // Flag to indicate if the user is dragging the delay handle
+      let hoveringYearHandle = false; // Flag to indicate if the user is dragging the year handle
+
+      leftHandle.on("mouseover", function () {
+        hoveringDelayHandle = true;
+      });
+
+      rightHandle.on("mouseover", function () {
+        hoveringYearHandle = true;
+      });
+
+      // Function to handle mouse down event on the heatmap
+      const mouseDown = function () {
+        isDragging = true; // Set the flag to indicate dragging
+        console.log("mouse down");
+        if (hoveringDelayHandle) {
+          leftHandleDrag();
+          console.log("left handle drag");
+        }
+        if (hoveringYearHandle) {
+          rightHandleDrag();
+          console.log("right handle drag")
+        }
+      };
+
+      // Function to handle mouse up event on the heatmap
+      const mouseUp = function () {
+        isDragging = false; // Set the flag to indicate dragging has ended
+        hoveringDelayHandle = false; // Reset the flag
+        hoveringYearHandle = false; // Reset the flag
+        console.log("mouse up");
+      };
+
+      function rightHandleDrag() {
+        let newYear = yearHovered;
+
+        console.log(newYear);
+
+        if (newYear < minYear) {
+          newYear = minYear;
+        } else if (newYear > maxYear) {
+          newYear = maxYear;
+        }
+
+        activeYear = yearHovered;
+        // wait .3 seconds before updating the symbols
+        setTimeout(function () {
+          if (newYear == activeYear) {
+            updateSymbols(activeYear);
+          }
+        }, 0);
+      }
+
+      // Add event listeners for mouse down and up events
+      heatmapSVG.on("mousedown", mouseDown).on("mouseup", mouseUp);
 
       rightHandle.call(
         d3.drag().on("drag", function () {
@@ -322,22 +406,22 @@ function constructHeatMap(
           // Adjust the calculations according to your specific requirements
           let newYear = Math.floor(xPosition / x.bandwidth() + 1900);
 
-          if (newYear < 1943) {
-            newYear = 1943;
-          } else if (newYear > 2020) {
-            newYear = 2020;
+          if (newYear < minYear) {
+            newYear = minYear;
+          } else if (newYear > maxYear) {
+            newYear = maxYear;
           }
 
-          activeYear = newYear;
+          activeYear = yearHovered;
           // wait .3 seconds before updating the symbols
           setTimeout(function () {
             if (newYear == activeYear) {
               updateSymbols(activeYear);
             }
-          }, 50);
+          }, 0);
           // ...
         })
-      );*/
+      );
     }
 
     // -- Draw Heatmap -- //
@@ -484,7 +568,7 @@ function calculateAllTimeEvents() {
   // Set each categories allTimeEvents to the base structure
   for (category in allCategoryGroups) {
     allCategoryGroups[category].allTimeEvents = {};
-    for (let i = 1943; i <= 2020; i++) {
+    for (let i = minYear; i <= maxYear; i++) {
       allCategoryGroups[category].allTimeEvents[i] = { 1: 0, 2: 0, 3: 0, 4: 0 };
     }
   }
@@ -534,18 +618,18 @@ $(document).ready(function () {
     $("#heatmapMaxInput").attr("min", heatmapMinYear);
     const maxInput = $("#heatmapMaxInput").attr("min", heatmapMinYear);
 
-    if (heatmapMinYear < 1943) {
-      $("#heatmapMinInput").val(1943);
+    if (heatmapMinYear < minYear) {
+      $("#heatmapMinInput").val(minYear);
     }
-    if (heatmapMaxYear > 2020) {
-      $("#heatmapMaxInput").val(2020);
+    if (heatmapMaxYear > maxYear) {
+      $("#heatmapMaxInput").val(maxYear);
     }
 
     // FIX THESE
     // The idea is to keep the user from being able to put in a value that is too low or too high
     if (heatmapMinYear > minInput) {
       //console.log("minInput: " + minInput)
-      $("#heatmapMinInput").val(8008);
+      $("#heatmapMinInput").val(minYear);
     }
     if (heatmapMaxYear > maxInput) {
       //console.log("maxInput: " + maxInput)
