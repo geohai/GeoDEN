@@ -269,7 +269,7 @@ yearInput.addEventListener("blur", (event) => {
 /*-- Year Delay --*/
 
 // Set initial value to 0
-delayInput.value = "0";
+delayInput.value = "1";
 
 // On enter, submit the value
 delayInput.addEventListener("keyup", (event) => {
@@ -294,13 +294,14 @@ delayInput.addEventListener("input", () => {
 
 // Show alert for value range
 function showRangeAlert() {
-  alert("Value must be between 0 and " + (maxYear - minYear));
+  alert("Value must be between 1 and " + (maxYear - minYear));
 }
 
 // function to set a new year based on typing and submitting a new year
 function submit_YearDelay(inputInt) {
   if (inputInt <= maxYear - minYear && inputInt >= 0) {
-    delayInput.value = inputInt.toString();
+    const shownValue = inputInt + 1;
+    delayInput.value = shownValue.toString();
     yearDelay = inputInt;
     updateSymbols(activeYear);
   } else {
