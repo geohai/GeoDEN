@@ -11,7 +11,7 @@ By combining a map of reports with other visualizations and the power to select 
 
 A supplementary dataset has been added to fill in more recent data, and this covers the years 2014 - 2020.
 
-In the future, we would like to fill out our data from 2011 - present.
+<font size = '1'> *In the future, we would like to fill out our data from 2011 - present. *</font>
 
 ---
  ## Map
