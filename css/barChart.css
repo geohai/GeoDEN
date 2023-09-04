@@ -76,7 +76,7 @@
   position: absolute;
   pointer-events: auto;
   background-color: hsla(0, 100%, 50%, 0);
-  z-index: 1000;
+  z-index: 800;
 }
 
 #chart_borderTop {
@@ -115,7 +115,7 @@
   width: 2rem;
   border: solid rgb(29, 29, 29);
   cursor: default;
-  z-index: 999;
+  z-index: 800;
 }
 
 /* All hover and change events for the tooltips and their buttons are done in barChart.js

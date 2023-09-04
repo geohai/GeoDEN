@@ -22,7 +22,7 @@ function createBlob(csv) {
 }
 
 // Function to download Blob as a file
-function downloadBlobAsFile(blob, fileName = "TEA-DS.csv") {
+function downloadBlobAsFile(blob, fileName = "GeoDEN.csv") {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -37,11 +37,12 @@ async function callDownload() {
     const csvContent = await generateCSVContent(dataset);
     const blob = createBlob(csvContent);
     downloadBlobAsFile(blob);
+    alert("Downloaded GeoDEN.csv")
   } catch (error) {
     console.error("Error generating or downloading CSV:", error);
   }
 }
- 
+
 // Function to filter the dataset based on the countries in the category
 async function filterDataset(dataset, category) {
   const filteredDataset = {};
@@ -204,6 +205,7 @@ async function callCategoryDownload(category) {
     const blobMidpoint = createBlob(csvMidpointContent);
     const fileNameMidpoint = category.name + "_Midpoints.csv";
     downloadBlobAsFile(blobMidpoint, fileNameMidpoint);
+    alert("Downloaded " + fileName + " and " + fileNameMidpoint);
   } catch (error) {
     console.error("Error generating or downloading CSV:", error);
   }
