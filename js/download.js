@@ -41,7 +41,7 @@ async function callDownload() {
     console.error("Error generating or downloading CSV:", error);
   }
 }
-
+ 
 // Function to filter the dataset based on the countries in the category
 async function filterDataset(dataset, category) {
   const filteredDataset = {};

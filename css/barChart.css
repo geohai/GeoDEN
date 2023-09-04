@@ -7,37 +7,36 @@
   left: 0.5rem;
   right: 0.5rem;
   border-radius: 0.7vmin;
+  z-index: 5;
+  text-align: left !important;
 }
 
 .headerText {
   width: auto;
   position: absolute;
   color: rgb(169, 169, 169);
-  font-size: .9rem;
+  font-size: .7rem;
   left: 2.8rem;
   right: 0rem;
 }
 
 .headerText .big {
-  font-size: 1.7rem;
-  color: rgb(255, 255, 255);
+  font-size: 1.3rem;
+  color: hsl(0, 0%, 100%);
 }
 
 #barchartTitle {
-  bottom: 0.1rem;
+  top: 0rem;
   left: 2.8rem;
-  text-align: left !important;
 }
 
 #barchartTitle .big {
-  font-size: 1.5rem !important;
-  color: rgb(214, 214, 214);
+  font-size: 1rem !important;
+  color: hsl(0, 0%, 80%);
 }
 
 #barchartSubtitle {
-  bottom: 0.1rem;
-  right: .5rem;
-  text-align: right !important;
+  top: .9rem;
 }
 
 /*Chart*/

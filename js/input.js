@@ -157,6 +157,17 @@ document.addEventListener("keydown", function (event) {
     }
     $(".range-slider").val(parseInt(activeYear));
     updateSymbols(activeYear);
+  } else if (event.keyCode == "38") {
+    event.preventDefault();
+    if (yearDelay < maxYear - minYear) {
+      submit_YearDelay(yearDelay + 1)
+    }
+  }
+  if (event.keyCode == "40") {
+    event.preventDefault();
+    if (yearDelay > 0) {
+      submit_YearDelay(yearDelay - 1) // Wait for 500ms (0.5 seconds) before calling updateSymbols
+    }
   }
 });
 
@@ -283,12 +294,12 @@ delayInput.addEventListener("input", () => {
 
 // Show alert for value range
 function showRangeAlert() {
-  alert("Value must be between 0 and 77");
+  alert("Value must be between 0 and " + (maxYear - minYear));
 }
 
 // function to set a new year based on typing and submitting a new year
 function submit_YearDelay(inputInt) {
-  if (inputInt <= 77 && inputInt >= 0) {
+  if (inputInt <= maxYear - minYear && inputInt >= 0) {
     delayInput.value = inputInt.toString();
     yearDelay = inputInt;
     updateSymbols(activeYear);
