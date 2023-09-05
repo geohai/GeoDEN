@@ -159,14 +159,14 @@ document.addEventListener("keydown", function (event) {
     updateSymbols(activeYear);
   } else if (event.keyCode == "38") {
     event.preventDefault();
-    if (yearDelay < maxYear - minYear) {
-      submit_YearDelay(yearDelay + 1)
+    if (yearDelayVisual < maxYear - minYear + 1) {
+      submit_YearDelay(yearDelayVisual + 1);
     }
   }
   if (event.keyCode == "40") {
     event.preventDefault();
-    if (yearDelay > 0) {
-      submit_YearDelay(yearDelay - 1) // Wait for 500ms (0.5 seconds) before calling updateSymbols
+    if (yearDelayVisual > 1) {
+      submit_YearDelay(yearDelayVisual - 1); // Wait for 500ms (0.5 seconds) before calling updateSymbols
     }
   }
 });
@@ -269,7 +269,7 @@ yearInput.addEventListener("blur", (event) => {
 /*-- Year Delay --*/
 
 // Set initial value to 0
-delayInput.value = "1";
+delayInput.value = yearDelayVisual;
 
 // On enter, submit the value
 delayInput.addEventListener("keyup", (event) => {
@@ -287,22 +287,22 @@ delayInput.addEventListener("blur", (event) => {
 // On input event (including arrow button clicks), update the year delay
 delayInput.addEventListener("input", () => {
   let value = parseInt(delayInput.value.trim());
-  if (!isNaN(value) && value >= 0 && value <= 77) {
+  if (!isNaN(value) && value >= 1 && value <= 78) {
     submit_YearDelay(value);
   }
 });
 
 // Show alert for value range
 function showRangeAlert() {
-  alert("Value must be between 1 and " + (maxYear - minYear));
+  alert("Value must be between 1 and " + (maxYear - minYear + 1));
 }
 
 // function to set a new year based on typing and submitting a new year
 function submit_YearDelay(inputInt) {
-  if (inputInt <= maxYear - minYear && inputInt >= 0) {
-    const shownValue = inputInt + 1;
-    delayInput.value = shownValue.toString();
-    yearDelay = inputInt;
+  if (inputInt <= maxYear - minYear + 1 && inputInt >= 1) {
+    yearDelayVisual = inputInt;
+    delayInput.value = yearDelayVisual.toString();
+    yearDelay = yearDelayVisual - 1;
     updateSymbols(activeYear);
   } else {
     showRangeAlert();

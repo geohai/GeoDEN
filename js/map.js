@@ -4,6 +4,7 @@ let map;
 // active year being shown global variable
 let activeYear = 1988;
 let yearDelay = 0;
+let yearDelayVisual = 1; // this is for the "interval"/"period length" input.  It just keeps everything working without editing year delay.
 // global variable of the activeLayerGroup
 let activeLayerGroup;
 let activeLayerGroups = [];
