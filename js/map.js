@@ -28,7 +28,7 @@ function createMap() {
     center: [-10, 55], // EDIT latitude, longitude to re-center map
     zoom: 2, // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
     minZoom: 2,
-    maxZoom: 8,
+    maxZoom: 7,
     keyboard: false,
     maxBounds: bounds,
   });
