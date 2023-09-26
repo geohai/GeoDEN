@@ -37,6 +37,11 @@ document.getElementById('close_dialog').addEventListener('click', function () {
     setLastVisit();
 });
 
+// Event listener for the close button
+document.getElementById('open_dialog').addEventListener('click', function () {
+    showOpeningDialog();
+});
+
 // Check if the opening dialog should be displayed when the page loads
 if (shouldDisplayOpeningDialog()) {
     showOpeningDialog();

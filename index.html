@@ -76,7 +76,7 @@
     </div>
 
     <!--Create divs for a help icon and a help window-->
-    <button id="helpIcon_main" class="helpIcon button">
+    <button id="open_dialog" class="helpIcon button">
       ?<span class="tooltip">Help</span>
     </button>
 
@@ -87,9 +87,10 @@
         class="data-warning-icon"
         src="img/triangle-exclamation-solid.svg"
       /><span class="tooltip dataTooltip"
-        >Data from <b>2014-2020</b> was only collected for select countries.
+        >Data from <b>2014-2020</b> is incomplete, and does not reflect the entire world.
         <br />
-        It does not represent the whole world.
+        <br />
+        Data from about <b>1995-2010</b> is the most complete. 
       </span>
     </div>
 
@@ -315,11 +316,30 @@
     <!--Tutorial Dialogue-->
     <dialog id="opening_dialog">
       <div id="tutorial_dialog">
-        <p class="dialog_title">Welcome to the Dengue Visualization Tool!</p>
-        <div class="tutorial T_dialog"></div>
+        <h1 class="information">GeoDEN</h1>
+        <h2 class="information">The Geovisual Analyics Tool for Dengue Serotypes</h2>
+        <!--<div class="tutorial T_dialog"></div>-->
+        <section class="column-container information">
+          <div class="column">
+            <p class="information names">Aidan Marler<br>Yannik Roell<br>Morteza Karimzadeh</p>
+          </div>
+          <div class="column">
+            <p class="information names">Thomas Jaenisch<br>Janey Messina<br>Steffen Knoblauch</p>
+          </div>
+        </section>
+        <section class="information info-paragraph">
+          <p>GeoDEN is a visual analytics tool created to aid epidemiologists and dengue researchers better understand how DENV serotypes move and interact between populations.</p>
+          <p>Reports represent a <strong>year</strong> and <strong>country</strong> in which dengue was reported by researchers; each report also records which of the 4 serotypes were observed.  Reports do not represent prevelance - a single report may show serotypes 1, 2, and 4, but it is possible there were 1,000 cases of type 2 and a only a handful of types 1 and 4.</p>
+        </section>
+        <section class="information">
+          <h3>Introduction</h3>
+          <iframe class="info-video" width="560" height="315" src="https://www.youtube.com/embed/BfhMhkqbO-4?si=EMVdwsKnHuJVO6fl" title="YouTube video player" frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <h3>In-Depth Feature List</h3>
+          <iframe class="info-video" width="560" height="315" src="https://www.youtube.com/embed/BfhMhkqbO-4?si=EMVdwsKnHuJVO6fl" title="YouTube video player" frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </section>
       </div>
       <button id="close_dialog">
-        <img src="img/cross.svg" alt="Close Tutorial Window" />
+        <img src="img/cross.svg" alt="Close Information Window" />
       </button>
     </dialog>
 
