@@ -16,6 +16,10 @@ function constructHeatMap(
     "#heatmapContainer" + categoryName
   );
 
+  // Left and right sides of the heatmap
+  const leftBounds = heatmapContainer.getBoundingClientRect().left;
+  const rightBounds = heatmapContainer.getBoundingClientRect().right;
+
   // -- Check to see if we need to do this -- //
   // Don't make a heatmap if there are no active categories
   if (type1_active + type2_active + type3_active + type4_active === 0) {
@@ -152,7 +156,6 @@ function constructHeatMap(
 
     // Three functions that change the tooltip when the user hovers/moves/leaves a cell
     const mouseover = function (event, d) {
-      yearHovered = d.year;
       // if mouse down is false, show the tooltip
       if (!(event.buttons == 1)) {
         toolbar.classed("inactive", false).classed("active", true); // Toggle classes
@@ -185,16 +188,6 @@ function constructHeatMap(
         // set tooltip position relative to mouse
         tooltip.style("left", tooltipX + "px");
         tooltip.style("top", tooltipY + "px");
-        //tooltip.attr(event.pageX + 10, event.pageY + 10);
-        /*
-            tooltip.html(
-                "Year: <b>" + d.year + "</b>   Cases: <b>" +
-                d.value +
-                "</b>    Serotype: <b>" +
-                d.type +
-                "</b> Category: <b>"+
-                categoryName + "</b>"
-            );*/
       }
     };
 
@@ -218,22 +211,6 @@ function constructHeatMap(
         .attr("width", x.bandwidth() + 1)
         .attr("height", y.bandwidth() + 1);
     };
-
-    /*
-        // Function to highlight the active year with an overlay outline
-        function highlightYear(year) {
-            // Add the overlay
-            heatmapSVG.append("rect")
-                .attr("class", "heatmapOverlay")
-                .attr("x", x(timeRange[0]))
-                .attr("y", 0)
-                .attr("width", x.bandwidth() * ((timeRange[1] - timeRange[0]) + 1))
-                .attr("height", heatmapHeight)
-                .style("fill", "none")
-                .style("stroke", "hsl(0, 0%, 75%)")
-                .attr("pointer-events", "none")
-                .style("stroke-width", "2px");
-        };*/
 
     // Function to highlight the active year with an overlay outline
     function highlightYear(year) {
@@ -282,144 +259,72 @@ function constructHeatMap(
         .style("fill", "rgba(0, 0, 0, 0)") // Transparent fill
         .style("cursor", "ew-resize");
 
-      // Add event listeners for dragging the handles
-      leftHandle.on("mousedown", function () {
-        console.log(isDragging);
-        // Call the leftHandleDrag function when the mouse is pressed down on the left handle
-        const dragInterval = setInterval(leftHandleDrag, 1); // Adjust the interval as needed
-
-        // Attach a mouseup event listener to stop the dragging when the mouse button is released
-        d3.select(window).on("mouseup", function () {
-          clearInterval(dragInterval); // Clear the interval when the mouse button is released
-          d3.select(window).on("mouseup", null); // Remove the mouseup event listener
-        });
-
-        // Call the leftHandleDrag function immediately on mousedown
-        leftHandleDrag();
-      });
-
-      function leftHandleDrag() {
-        // Your left handle drag logic here
-        console.log(yearHovered);
-        // Update year delay based on the drag position
-        // Adjust the calculations according to your specific requirements
-        let newYearDelay = Math.floor(activeYear - yearHovered);
-        // Update your visualization with the new year delay
-        if (newYearDelay < 0) {
-          newYearDelay = 0;
-        }
-        yearDelay = newYearDelay;
-        // wait .3 seconds before updating the symbols
-        setTimeout(function () {
-          if (newYearDelay == yearDelay) {
-            updateSymbols(activeYear);
-          }
-        }, 0);
-
-        // Update your visualization with the new year delay
-        // ...
-      }
-
-      /*
-      // Add event listeners for dragging the handles
-      leftHandle.call(
-        d3.drag().on("drag", function () {
-          const xPosition = event.x;
-          console.log(yearHovered);
-          // Update year delay based on the drag position
-          // Adjust the calculations according to your specific requirements
-          let newYearDelay = Math.floor(activeYear - yearHovered);
-          // Update your visualization with the new year delay
-          if (newYearDelay < 0) {
-            newYearDelay = 0;
-          }
-          yearDelay = newYearDelay;
-          // wait .3 seconds before updating the symbols
-          setTimeout(function () {
-            if (newYearDelay == yearDelay) {
-              updateSymbols(activeYear);
-            }
-          }, 0);
-        })
-      );*/
-
-      let hoveringDelayHandle = false; // Flag to indicate if the user is dragging the delay handle
-      let hoveringYearHandle = false; // Flag to indicate if the user is dragging the year handle
-
-      leftHandle.on("mouseover", function () {
-        hoveringDelayHandle = true;
-      });
-
-      rightHandle.on("mouseover", function () {
-        hoveringYearHandle = true;
-      });
-
-      // Function to handle mouse down event on the heatmap
-      const mouseDown = function () {
-        isDragging = true; // Set the flag to indicate dragging
-        console.log("mouse down");
-        if (hoveringDelayHandle) {
-          leftHandleDrag();
-          console.log("left handle drag");
-        }
-        if (hoveringYearHandle) {
-          rightHandleDrag();
-          console.log("right handle drag")
-        }
-      };
-
-      // Function to handle mouse up event on the heatmap
-      const mouseUp = function () {
-        isDragging = false; // Set the flag to indicate dragging has ended
-        hoveringDelayHandle = false; // Reset the flag
-        hoveringYearHandle = false; // Reset the flag
-        console.log("mouse up");
-      };
-
-      function rightHandleDrag() {
-        let newYear = yearHovered;
-
-        console.log(newYear);
-
-        if (newYear < minYear) {
-          newYear = minYear;
-        } else if (newYear > maxYear) {
-          newYear = maxYear;
-        }
-
-        activeYear = yearHovered;
-        // wait .3 seconds before updating the symbols
-        setTimeout(function () {
-          if (newYear == activeYear) {
-            updateSymbols(activeYear);
-          }
-        }, 0);
-      }
-
-      // Add event listeners for mouse down and up events
-      heatmapSVG.on("mousedown", mouseDown).on("mouseup", mouseUp);
-
       rightHandle.call(
-        d3.drag().on("drag", function () {
+        d3.drag()
+        .on("start", function () {
+          rightHandle.style("fill", "white"); // Change fill to white on drag start
+        })
+        .on("drag", function () {
+          rightHandle.style("fill", "white");
           const xPosition = event.x;
+
+          const cellIndex = Math.floor(
+            (xPosition - leftBounds - (x.bandwidth() * .5)) / x.bandwidth()
+          );
+          let newYear = cellIndex + parseInt(heatmapMinYear);
+
           // Update active year based on the drag position
           // Adjust the calculations according to your specific requirements
-          let newYear = Math.floor(xPosition / x.bandwidth() + 1900);
+          //let newYear = Math.floor(xPosition / x.bandwidth());
 
-          if (newYear < minYear) {
-            newYear = minYear;
-          } else if (newYear > maxYear) {
-            newYear = maxYear;
+          if (newYear < parseInt(heatmapMinYear)) {
+            newYear = parseInt(heatmapMinYear);
+          } else if (newYear > parseInt(heatmapMaxYear)) {
+            newYear = parseInt(heatmapMaxYear);
           }
 
-          activeYear = yearHovered;
+          activeYear = newYear;
           // wait .3 seconds before updating the symbols
           setTimeout(function () {
             if (newYear == activeYear) {
               updateSymbols(activeYear);
             }
-          }, 0);
+          }, 0.5);
           // ...
+        })
+        .on("end", function () {
+          console.log("end")
+          rightHandle.style("fill", "white");
+          //rightHandle.style("fill", "rgba(255, 255, 255, 0.5)"); // Reset fill on drag end
+        })
+      );
+
+      leftHandle.call(
+        d3.drag()
+        .on("start", function () {
+          leftHandle.style("fill", "white"); // Change fill to white on drag start
+        })
+        .on("drag", function () {
+          const xPosition = event.x;
+
+          const cellIndex = Math.floor(
+            ((xPosition - leftBounds + (x.bandwidth() * .5)) / x.bandwidth())
+          );
+          let newInterval = activeYear - (cellIndex + parseInt(heatmapMinYear));
+
+          if (newInterval < 0) {
+            newInterval = 0;
+          } else if (newInterval > activeYear - parseInt(heatmapMinYear)) {
+            newInterval = activeYear - parseInt(heatmapMinYear);
+          }
+
+          yearDelay = newInterval;
+          // wait .3 seconds before updating the symbols
+          setTimeout(function () {
+            if (newInterval == yearDelay) {
+              updateSymbols(activeYear);
+            }
+          }, 0.5);
         })
       );
     }
