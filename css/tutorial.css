@@ -47,6 +47,7 @@
   display: flex; /* Use flexbox to create columns */
   position: relative;
   width: 400px;
+  max-width: 85%;
   left: 50%;
   transform: translate(-50%, 0);
   outline: none;
@@ -69,6 +70,7 @@
 .info-paragraph {
   /* Add some margin to the <p> element */
   width: 700px;
+  max-width: 85%;
   left: 50%;
   transform: translate(-50%, 0);
   text-align: left;
