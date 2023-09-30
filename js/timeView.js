@@ -241,41 +241,35 @@ function constructHeatMap(
       const leftHandle = heatmapSVG
         .append("rect")
         .attr("class", "handle")
-        .attr("x", x(timeRange[0]) - 2.5) // Adjust the position as needed
+        .attr("x", x(timeRange[0]) - 5) // Adjust the position as needed
         .attr("y", 0)
-        .attr("width", 7)
+        .attr("width", 7.5)
         .attr("height", heatmapHeight)
-        .style("fill", "rgba(0, 0, 0, 0)") // Transparent fill
+        .style("fill", "rgba(200, 200, 200, .0)") // Transparent fill
         .style("cursor", "ew-resize");
 
       // Add right handle for active year
       const rightHandle = heatmapSVG
         .append("rect")
         .attr("class", "handle")
-        .attr("x", x(timeRange[1]) + x.bandwidth() - 2.5) // Adjust the position as needed
-        .attr("y", 0)
-        .attr("width", 7)
-        .attr("height", heatmapHeight)
-        .style("fill", "rgba(0, 0, 0, 0)") // Transparent fill
+        .attr("x", x(timeRange[1]) + x.bandwidth() - 0) // Adjust the position as needed
+        .attr("y", -5)
+        .attr("width", 7.5)
+        .attr("height", heatmapHeight + 10)
+        .style("fill", "rgba(180, 180, 180, .0)") // Transparent fill
         .style("cursor", "ew-resize");
 
       rightHandle.call(
-        d3.drag()
-        .on("start", function () {
-          rightHandle.style("fill", "white"); // Change fill to white on drag start
-        })
-        .on("drag", function () {
-          rightHandle.style("fill", "white");
+        d3.drag().on("drag", function () {
           const xPosition = event.x;
 
           const cellIndex = Math.floor(
-            (xPosition - leftBounds - (x.bandwidth() * .5)) / x.bandwidth()
+            (xPosition - leftBounds - x.bandwidth() * 0.5) / x.bandwidth()
           );
           let newYear = cellIndex + parseInt(heatmapMinYear);
 
           // Update active year based on the drag position
           // Adjust the calculations according to your specific requirements
-          //let newYear = Math.floor(xPosition / x.bandwidth());
 
           if (newYear < parseInt(heatmapMinYear)) {
             newYear = parseInt(heatmapMinYear);
@@ -284,46 +278,40 @@ function constructHeatMap(
           }
 
           activeYear = newYear;
+          //updateSymbols(activeYear);
           // wait .3 seconds before updating the symbols
           setTimeout(function () {
-            if (newYear == activeYear) {
-              updateSymbols(activeYear);
-            }
+            //if (newYear == activeYear) {
+            $(".range-slider").val(parseInt(activeYear));
+            updateSymbols(activeYear);
+            //}
           }, 0.5);
           // ...
-        })
-        .on("end", function () {
-          console.log("end")
-          rightHandle.style("fill", "white");
-          //rightHandle.style("fill", "rgba(255, 255, 255, 0.5)"); // Reset fill on drag end
         })
       );
 
       leftHandle.call(
-        d3.drag()
-        .on("start", function () {
-          leftHandle.style("fill", "white"); // Change fill to white on drag start
-        })
-        .on("drag", function () {
+        d3.drag().on("drag", function () {
           const xPosition = event.x;
 
           const cellIndex = Math.floor(
-            ((xPosition - leftBounds + (x.bandwidth() * .5)) / x.bandwidth())
+            (xPosition - leftBounds + x.bandwidth() * 0.7) / x.bandwidth()
           );
           let newInterval = activeYear - (cellIndex + parseInt(heatmapMinYear));
 
           if (newInterval < 0) {
             newInterval = 0;
           } else if (newInterval > activeYear - parseInt(heatmapMinYear)) {
-            newInterval = activeYear - parseInt(heatmapMinYear);
+            newInterval = activeYear - parseInt(heatmapMinYear) + 1;
           }
 
-          yearDelay = newInterval;
+          //yearDelay = newInterval;
           // wait .3 seconds before updating the symbols
           setTimeout(function () {
-            if (newInterval == yearDelay) {
-              updateSymbols(activeYear);
-            }
+            submit_YearDelay(newInterval, (submitErrors = false));
+            //if (newInterval == yearDelay) {
+            //  updateSymbols(activeYear);
+            //}
           }, 0.5);
         })
       );

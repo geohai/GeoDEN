@@ -298,14 +298,16 @@ function showRangeAlert() {
 }
 
 // function to set a new year based on typing and submitting a new year
-function submit_YearDelay(inputInt) {
+function submit_YearDelay(inputInt, submitErrors = true) {
   if (inputInt <= maxYear - minYear + 1 && inputInt >= 1) {
     yearDelayVisual = inputInt;
     delayInput.value = yearDelayVisual.toString();
     yearDelay = yearDelayVisual - 1;
     updateSymbols(activeYear);
   } else {
-    showRangeAlert();
+    if (submitErrors) {
+      showRangeAlert();
+    }
   }
 }
 

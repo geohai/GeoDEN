@@ -63,7 +63,7 @@
   border: solid 0.2vmin hsl(0, 0%, 100%);
   background-color: hsl(0, 0%, 0%);
 }
-#year:hover #year::placeholder{
+#year:hover #year::placeholder {
   color: hsl(0, 0%, 100%);
 }
 
@@ -152,7 +152,7 @@
   width: 40vmin;
   cursor: pointer;
   bottom: -2vmin;
-  height: .6vmin;
+  height: 0.6vmin;
   transform: translate(-50%, 0%);
 }
 
@@ -163,7 +163,7 @@
   background-color: #00f144;
 }
 
-.range-slider::-moz-range-thumb  {
+.range-slider::-moz-range-thumb {
   cursor: grab;
   width: 2vmin;
   height: 2vmin;
@@ -177,7 +177,7 @@
   background-color: #00f144;
 }
 
-.range-slider::-thumb  {
+.range-slider::-thumb {
   cursor: grab;
   width: 2vmin;
   height: 2vmin;
@@ -192,8 +192,6 @@
 .range-slider::-webkit-slider-thumb:hover:active {
   cursor: grabbing !important;
 }
-
-
 
 .step {
   position: absolute;
@@ -499,4 +497,9 @@
   position: absolute;
   height: 100%;
   width: 100%;
+}
+
+/* Handles */
+.handle {
+  fill: rgba(255, 255, 255, 0);
 }
