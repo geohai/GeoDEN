@@ -21,8 +21,19 @@ The map is one of our most powerful visualizations
 It has circular glyphs on it on it which mark reports of Dengue.  The size informs the number of serotypes reported, and a pie chart shows which those are.
 
 ---
-### Color
+## Color
  - Serotype 1 is Yellow
  - Serotype 2 is Pink
  - Serotype 3 is Blue
  - Serotype 4 is Green
+
+---
+## Libraries Used
+ - JQuery
+ - Leaflet
+ - Leaflet Arrows
+ - D3
+ - PapaParse
+ - SimpleStatistics
+ - TreeJS
+
