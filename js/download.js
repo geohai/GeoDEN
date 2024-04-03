@@ -31,17 +31,19 @@ function downloadBlobAsFile(blob, fileName = "GeoDEN.csv") {
   URL.revokeObjectURL(url);
 }
 
-// Function to initiate the download process
+// Function to initiate the download process - Called from Index HTML
 async function callDownload() {
   try {
     const csvContent = await generateCSVContent(dataset);
     const blob = createBlob(csvContent);
     downloadBlobAsFile(blob);
-    alert("Downloaded GeoDEN.csv")
+    alert("Downloaded GeoDEN.csv");
   } catch (error) {
     console.error("Error generating or downloading CSV:", error);
   }
 }
+
+/* --------------------------------------------------*/
 
 // Function to filter the dataset based on the countries in the category
 async function filterDataset(dataset, category) {
@@ -189,7 +191,7 @@ async function generateCSVMidpointContent(dataset) {
   return csvContent;
 }
 
-/* -- DOWNLOAD CATEGORY DATA -- */
+/* -- DOWNLOAD CATEGORY DATA -- Called from Index HTML -- */
 async function callCategoryDownload(category) {
   //console.log(category);
   try {
@@ -203,9 +205,43 @@ async function callCategoryDownload(category) {
       midpointDataset
     );
     const blobMidpoint = createBlob(csvMidpointContent);
-    const fileNameMidpoint = category.name + "_Midpoints.csv";
+    const fileNameMidpoint = category.name + "_Centroids.csv";
     downloadBlobAsFile(blobMidpoint, fileNameMidpoint);
     alert("Downloaded " + fileName + " and " + fileNameMidpoint);
+  } catch (error) {
+    console.error("Error generating or downloading CSV:", error);
+  }
+}
+
+/* --------------------------------------------------*/
+async function calculateCooccuranceDataset() {}
+
+async function generateCSVOccuranceContent(statsMapArray) {
+  let csvContent = "Region,Total,Serotype 1,Serotype 2,Serotype 3,Serotype 4,Serotypes 123,Serotypes 124,Serotypes 134,Serotypes 234,Serotypes 1234\n";
+  csvContent += `All,${statsMap.events},${statsMap.c1},${statsMap.c2},${statsMap.c3},${statsMap.c4},${statsMap.c123},${statsMap.c124},${statsMap.c134},${statsMap.c234},${statsMap.c1234}\n`;
+  csvContent += `,,,,,,,,,\n`
+  for (let i = 0; i < statsMapArray.length; i++) {
+    const statsMap = statsMapArray[i];
+    csvContent += `${statsMap.name},${statsMap.events},${statsMap.c1},${statsMap.c2},${statsMap.c3},${statsMap.c4},${statsMap.c123},${statsMap.c124},${statsMap.c134},${statsMap.c234},${statsMap.c1234}\n`;
+  }
+
+  return csvContent;
+}
+
+async function callOccuranceDownload() {
+  try {
+    const statsMapArray = calculateCooccuranceStats();
+    const csvContent = await generateCSVOccuranceContent(statsMapArray);
+    const blob = createBlob(csvContent);
+    const timeRange = calculateTimeRange();
+    if (timeRange[0] == timeRange[1]) {
+      downloadBlobAsFile(blob, "CoOccuranceReport_" + timeRange[0] + ".csv");
+      alert("Downloaded Co-Occurance Report: " + timeRange[0]);
+    } else {
+      downloadBlobAsFile(blob, "CoOccuranceReport_" + timeRange[0] + "-" + timeRange[1] + ".csv");
+      alert("Downloaded Co-Occurance Report: " + timeRange[0] + "-" + timeRange[1]); 
+    }
+    
   } catch (error) {
     console.error("Error generating or downloading CSV:", error);
   }

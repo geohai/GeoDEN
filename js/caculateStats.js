@@ -16,8 +16,6 @@ function calculateStats() {
   // Display General Stats
   updateStatsTitle(timeRange);
   updateChart();
-  // Display Co-Occurance
-  //console.log(statsMap)
 }
 
 // Calculate the actual min and max years
@@ -163,10 +161,43 @@ function updateStatsTitle(timeRange) {
   string =
     "<div class='headerText' id='barchartSubtitle'><b class='big'>" +
     statsMap.events +
-    "</b> Reports</div><br>" + string;
+    "</b> Reports</div><br>" +
+    string;
   //string += "<div class='typeStats t1 active'><b class='big'>1</b> - <em>n:</em> " + statsMap.count1 + ", \t <em>p:</em> " + roundTo(statsMap.percent1, 2) + "%</div>"
   //string += "<div class='typeStats t2 active'><b class='big'>2</b> - <em>n:</em> " + statsMap.count2 + ", \t <em>p:</em> " + roundTo(statsMap.percent2, 2) + "%</div>"
   //string += "<div class='typeStats t3 active'><b class='big'>3</b> - <em>n:</em> " + statsMap.count3 + ", \t <em>p:</em> " + roundTo(statsMap.percent3, 2) + "%</div>"
   //string += "<div class='typeStats t4 active'><b class='big'>4</b> - <em>n:</em> " + statsMap.count4 + ", \t <em>p:</em> " + roundTo(statsMap.percent4, 2) + "%</div>"
   barTitle.innerHTML = string;
 }
+
+function calculateCooccuranceStats() {
+  let statsMapArray = [];
+  // Calculate Min and Max years
+  timeRange = calculateTimeRange();
+  // Get active countries
+  let activeCountries = getActiveCountries(visibleCategoryGroups);
+
+  for (let i = 0; i < visibleCategoryGroups.length; i += 1) {    
+    let timeRangeData = getDataForTimeRange(timeRange, visibleCategoryGroups[i]["countryList"]);
+  // Find Stats
+    let occuranceStatsMap = calculateTimeRangeStats(timeRangeData);
+    occuranceStatsMap["name"] = visibleCategoryGroups[i]["name"];
+    statsMapArray.push(occuranceStatsMap);
+  }
+  statsMapArray.push({"name": "", "events": "", "c1": "", "c2": "", "c3": "", "c4": "", "c123": "", "c124": "", "c134": "", "c234": "", "c1234": ""})
+
+  for (let i = 0; i < activeCountries.length; i += 1) {
+    const timeRangeData = getDataForTimeRange(timeRange, [activeCountries[i]]);
+    let occuranceStatsMap = calculateTimeRangeStats(timeRangeData);
+    let regionName = activeCountries[i];
+    if (regionName.includes(",")) {
+      //remove all text from the comma after
+      regionName = regionName.substring(0, regionName.indexOf(","));
+    }
+    occuranceStatsMap["name"] = regionName;
+    statsMapArray.push(occuranceStatsMap);
+  }
+
+  return statsMapArray;
+}
+
