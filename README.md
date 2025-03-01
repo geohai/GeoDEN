@@ -1,14 +1,24 @@
 # GeoDEN
 
-![GeoDEN](https://res.cloudinary.com/dz3zgmhnr/image/upload/v1740858426/20ef85af-52cf-4b60-9fac-de218c156693.png)
- ---
- 
- #### *GeoDEN* is a Geographic Visual Analytics tool, visualizing Dengue and its 4 serotypes over time and space.
+
+**GeoDEN** (Geographic Dengue Exploration) is a visual exploration tool that empowers epidemiologists and researchers to investigate the spatiotemporal distribution, movement, and co-occurrence of dengue virus serotypes (DENV1–DENV4). This repository hosts the code and data used to build GeoDEN, as described in our paper published in _Computer Graphics Forum_.
 
 By combining a map of reports with other visualizations and the power to select a specific place an time, GeoDEN enables the user find novel insights as well as verify known knowlege and events.
 
+![GeoDEN](https://res.cloudinary.com/dz3zgmhnr/image/upload/v1740858426/20ef85af-52cf-4b60-9fac-de218c156693.png)
+![GeoDEN Teaser](path/to/your/image.png)
 
-**GeoDEN** (Geographic Dengue Exploration) is a visual exploration tool that empowers epidemiologists and researchers to investigate the spatiotemporal distribution, movement, and co-occurrence of dengue virus serotypes (DENV1–DENV4). This repository hosts the code and data used to build GeoDEN, as described in our paper published in _Computer Graphics Forum_.
+**Figure**  
+**A.** Serotype Selection: choose active serotypes.  
+**B.** Animation Controls: toggle and adjust animation speed.  
+**C.** Interval Length Editor: modify number of years visualized.  
+**D.** Region Faceting: define regions for visualization.  
+**E.** Co-Occurrence Histogram: examine frequency of serotype co-occurrence.  
+**F.** Year Editor: adjust the year.  
+**G.** Heatmap Timeline: compare regions and serotypes over time.  
+**H.** Map: view reports, centroids, trajectories, and environmental suitability.
+
+
 
 Key features include:
 - An **interactive map** that visualizes dengue reports by serotype over time, serotype **clusters** , and **cluster trajectories** . 
@@ -40,6 +50,37 @@ Key features include:
    This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
+
+
+
+
+
+---
+### Dataset
+
+*GeoDEN* uses Messina et al. 2014's global dataset of reports for the years from 1943 - 2013.
+
+A supplementary dataset has been added to fill in more recent data, and this covers the years 2014 - 2020.
+
+<font size = '1'> *In the future, we would like to fill out our data from 2011 - present.* </font>
+
+---
+## Color
+ - Serotype 1 is Yellow
+ - Serotype 2 is Pink
+ - Serotype 3 is Blue
+ - Serotype 4 is Green
+---
+
+
+**Dependencies**:  
+   - [Leaflet](https://leafletjs.com/)
+   - [D3.js](https://d3js.org/)
+   - [PapaParse](https://www.papaparse.com/)
+   - [JQuery](https://jquery.com/)
+   - [Leaflet.Arrowheads](https://github.com/slutske22/leaflet-arrowheads)
+   - [TreeJs](https://github.com/i-am-json/TreeJs/) or similar hierarchical control library
+
 ## Citation
 
 *(The citation information will be updated once the paper is published.)*
@@ -58,56 +99,5 @@ Key features include:
   doi={...}
 }
 ```
-
 Please cite our paper if you use or modify this work in your own research projects.
 
----
-
-
-
-
-
-
-
-
-
----
-### Dataset
-
-*GeoDEN* uses Messina et al. 2014's global dataset of reports for the years from 1943 - 2013.
-
-A supplementary dataset has been added to fill in more recent data, and this covers the years 2014 - 2020.
-
-<font size = '1'> *In the future, we would like to fill out our data from 2011 - present.* </font>
-
----
- ## Map
-
-The map is one of our most powerful visualizations
-
-It has circular glyphs on it on it which mark reports of Dengue.  The size informs the number of serotypes reported, and a pie chart shows which those are.
-
----
-## Color
- - Serotype 1 is Yellow
- - Serotype 2 is Pink
- - Serotype 3 is Blue
- - Serotype 4 is Green
-
----
-## Libraries Used
- - JQuery
- - Leaflet
- - Leaflet Arrows
- - D3
- - PapaParse
- - SimpleStatistics
- - TreeJS
-
-3. **Dependencies**:  
-   - [Leaflet](https://leafletjs.com/)
-   - [D3.js](https://d3js.org/)
-   - [PapaParse](https://www.papaparse.com/)
-   - [JQuery](https://jquery.com/)
-   - [Leaflet.Arrowheads](https://github.com/slutske22/leaflet-arrowheads)
-   - [TreeJs](https://github.com/i-am-json/TreeJs/) or similar hierarchical control library
