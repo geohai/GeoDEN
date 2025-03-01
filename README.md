@@ -50,7 +50,7 @@ Key features include:
 
 ## License
 
-- **Our Original Code** is licensed under the [MIT License](./MIT-license).
+- **Our Original Code** is licensed under the [MIT License](./MIT-LICENSE).
 - **Third-Party Code** or libraries retain their existing licenses (e.g., Apache 2.0). See [LICENSE](./LICENSE) for details.
 
 ---
