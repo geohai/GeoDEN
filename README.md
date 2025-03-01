@@ -17,7 +17,11 @@ By combining a map of reports with other visualizations and the power to select 
 **G.** Heatmap Timeline: compare regions and serotypes over time.  
 **H.** Map: view reports, centroids, trajectories, and environmental suitability.
 
-
+# Color
+ - Serotype 1 is Yellow
+ - Serotype 2 is Pink
+ - Serotype 3 is Blue
+ - Serotype 4 is Green
 
 Key features include:
 - An **interactive map** that visualizes dengue reports by serotype over time, serotype **clusters** , and **cluster trajectories** . 
@@ -44,15 +48,11 @@ Key features include:
 - **Co-Occurrence**: Check the bars to compare frequencies of single or multiple serotypes in the selected region/time range.  
 - **Environmental Suitability**: Toggle between a standard basemap and the environmental suitability overlay to see expected vs. reported dengue occurrence.  
 
+
 ## License
 
-   This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-
-
-
-
+- **Our Original Code** is licensed under the [MIT License](./MIT-license).
+- **Third-Party Code** or libraries retain their existing licenses (e.g., Apache 2.0). See [LICENSE](./LICENSE) for details.
 
 ---
 ### Dataset
@@ -62,14 +62,6 @@ Key features include:
 A supplementary dataset has been added to fill in more recent data, and this covers the years 2014 - 2020.
 
 <font size = '1'> *In the future, we would like to fill out our data from 2011 - present.* </font>
-
----
-## Color
- - Serotype 1 is Yellow
- - Serotype 2 is Pink
- - Serotype 3 is Blue
- - Serotype 4 is Green
----
 
 
 **Dependencies**:  
