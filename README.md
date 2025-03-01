@@ -1,6 +1,6 @@
 # GeoDEN
 
-https://res.cloudinary.com/dz3zgmhnr/image/upload/v1740858426/20ef85af-52cf-4b60-9fac-de218c156693.png
+![GeoDEN](https://res.cloudinary.com/dz3zgmhnr/image/upload/v1740858426/20ef85af-52cf-4b60-9fac-de218c156693.png)
  ---
  #### *GeoDEN* is a Geographic Visual Analytics tool, visualizing Dengue and its 4 serotypes over time and space.
 
