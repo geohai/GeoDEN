@@ -6,7 +6,6 @@
 By combining a map of reports with other visualizations and the power to select a specific place an time, GeoDEN enables the user find novel insights as well as verify known knowlege and events.
 
 ![GeoDEN](https://res.cloudinary.com/dz3zgmhnr/image/upload/v1740858426/20ef85af-52cf-4b60-9fac-de218c156693.png)
-![GeoDEN Teaser](path/to/your/image.png)
 
 **Figure**  
 **A.** Serotype Selection: choose active serotypes.  
