@@ -17,7 +17,6 @@ By combining a map of reports with other visualizations and the power to select 
 **G.** Heatmap Timeline: compare regions and serotypes over time.  
 **H.** Map: view reports, centroids, trajectories, and environmental suitability.
 
-# Color
  - Serotype 1 is Yellow
  - Serotype 2 is Pink
  - Serotype 3 is Blue
