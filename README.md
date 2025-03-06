@@ -56,11 +56,13 @@ Key features include:
 ---
 ### Dataset
 
-*GeoDEN* uses Messina et al. 2014's global dataset of reports for the years from 1943 - 2013.
+*GeoDEN* uses [Messina et al. 2014's](https://www.nature.com/articles/sdata20144) global dataset of reports for the years from 1943 - 2013.
 
 A supplementary dataset has been added to fill in more recent data, and this covers the years 2014 - 2020.
 
 <font size = '1'> *In the future, we would like to fill out our data from 2011 - present.* </font>
+
+*GeoDEN* also uses [Messina et al. 2019's](https://www.nature.com/articles/s41564-019-0476-8) map of *Aedes* mosquito enironmental suitability, calculated using with data from 2015.
 
 
 **Dependencies**:  
